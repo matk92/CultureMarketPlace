@@ -1,10 +1,10 @@
 # CultureMarketPlace
 
 ## Intégrants : 
-Calvelo Nicolas
-Mathiou Keca
-Bryan Dencil
-Rémy Saguez 
+- Calvelo Nicolas
+- Mathiou Keca
+- Bryan Dencil
+- Rémy Saguez 
 
 ## Description du projet
 
