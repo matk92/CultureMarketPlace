@@ -36,7 +36,6 @@ Description courte du projet : Un site web pour gérer vos ventes des produits c
 - [Pays](#pays)
 - [Clients](#clients) -> [Nom](#nomClients), [Prénom](#prénomClients), [Nom](#nomClients), [mail](#mailClients), [Mdp](#mdpClients)
 - [Produits](#produits)
-- [Licence](#licence)
 
 ## Guide d’installation :
 
