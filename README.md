@@ -41,4 +41,4 @@ tâche à faire :
 logo = caddie sur la planète avec des drapeaux de dans. (Nicolas)
 
 fronte = regarder sigma (bryan.dencil06@gmail.com et Saguez Rémy)
-bake = (nico et mathieu.keca@gmail.com)
+back = (nico et mathieu.keca@gmail.com)
