@@ -50,8 +50,8 @@ Instructions d'utilisation du projet.
 BDD utilisée.
 
 ## Outils utilisés
-Figma : https://www.figma.com/files/team/1296047598903997991
-Trello : https://trello.com/b/SBasrghg/culturemarketplace
+Figma : 
+Trello : 
 Discord
 Google Docs
 
