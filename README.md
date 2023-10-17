@@ -1,8 +1,8 @@
 # CultureMarketPlace
 
 ## Intégrants : 
-- Calvelo Nicolas
-- Mathiou Keca
+- Nicolas Calvelo
+- Mathieu Keca
 - Bryan Dencil
 - Rémy Saguez 
 
