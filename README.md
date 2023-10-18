@@ -50,25 +50,19 @@ Instructions d'utilisation du projet.
 BDD utilisée.
 
 ## Outils utilisés
-Figma : 
-Trello : 
+
+Figma
+Trello
 Discord
 Google Docs
 
 ## Logiciels utilisés
+
 Visual Studio Code
 Ubuntu/Linux
 
+## 
 
-
-
-
-
-
-tâche à faire :
-
-logo = caddie sur la planète avec des drapeaux de dans. (Nicolas)
-
-front= regarder sigma (bryan.dencil06@gmail.com et Saguez Rémy)
-back = (nico et mathieu.keca@gmail.com)
+front= Bryan et Rémy
+back = Nicolas et Mathieu
 
