@@ -10,13 +10,13 @@ services:
       - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./server/apache2.conf:/etc/apache2/apache2.conf
       - ./server/php.ini:/usr/local/etc/php/php.ini
-  db:
-      image: mysql:latest
-      restart: always
-      environment:
-        - MYSQL_ROOT_PASSWORD=123456
-        - MYSQL_DATABASE=culturalmp
-        - MYSQL_USER=root
-        - MYSQL_PASSWORD=123456
-      volumes:
-        - ./data.sql:/data.sql
+  # db:
+  #     image: mysql:latest
+  #     restart: always
+  #     environment:
+  #       - MYSQL_ROOT_PASSWORD=123456
+  #       - MYSQL_DATABASE=culturalmp
+  #       - MYSQL_USER=root
+  #       - MYSQL_PASSWORD=123456
+  #     volumes:
+  #       - ./data.sql:/data.sql

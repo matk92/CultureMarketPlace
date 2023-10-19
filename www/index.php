@@ -1,9 +1,24 @@
 <?php
 
-use App\Controllers\Error;
+namespace App;
+
+spl_autoload_register(function ($class) {
+    $file = str_replace("App\\", "", $class);
+    $file = str_replace("\\", "/", $file);
+    $file .= ".php";
+    if (file_exists($file)) {
+        include $file;
+    } else {
+        die("Le fichier " . $file . " n'existe pas");
+    }
+});
 
 // Recupérer l'URL
-$path = "/" . trim($_GET['path'], '/');
+$uri = strtolower($_SERVER['REQUEST_URI']);
+$uri = strtok($uri, '?');
+if (strlen($uri) > 1)
+    $uri = rtrim($uri, '/');
+
 // Recupérer fichier yaml
 $fileRoutes = "routes.yaml";
 if (file_exists($fileRoutes)) {
@@ -12,8 +27,10 @@ if (file_exists($fileRoutes)) {
     die("Le fichier de routing n'existe pas");
 }
 
-if (!empty($yaml[$path])) {
-    $match = $yaml[$path];
+$controllersPath = "src/Controllers/";
+
+if (!empty($yaml[$uri])) {
+    $match = $yaml[$uri];
 
     // Check if there is a controller in the route
     if (!empty($match["controller"])) {
@@ -30,8 +47,9 @@ if (!empty($yaml[$path])) {
     }
 
     // Check if controller file exist
-    if (file_exists("Controllers/" . $controller . ".php")) {
-        include "Controllers/" . $controller . ".php";
+    if (file_exists($controllersPath . $controller . ".php")) {
+        include $controllersPath . $controller . ".php";
+        $controller = "App\\Controllers\\" . $controller;
         if (class_exists($controller)) {
             $object = new $controller();
             if (method_exists($object, $action)) {
@@ -47,7 +65,7 @@ if (!empty($yaml[$path])) {
     }
 } else {
     // Not Found
-    include "Controllers/Error.php";
-    $controller = new Error();
+    include $controllersPath . "/Error.php";
+    $controller = new Controllers\Error();
     $controller->page404();
 }
