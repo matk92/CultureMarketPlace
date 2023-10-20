@@ -15,7 +15,7 @@ class Security
     public function logout(): void
     {
 
-        echo "Logout";
+        new View("Security/logout", "front");
     }
 
     public function register(): void
