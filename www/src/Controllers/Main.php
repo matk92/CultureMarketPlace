@@ -7,7 +7,8 @@ class Main
 
     public function home(): void
     {
-        echo "Page d'accueil";
+        new View("Views/Main/home.view.php");
     }
+
    
 }
