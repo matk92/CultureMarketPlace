@@ -20,7 +20,6 @@ class Security
 
     public function register(): void
     {
-
-        echo "Register";
+        new View("Security/register", "front");
     }
 }
