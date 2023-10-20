@@ -1,4 +1,11 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
 <h1>Bienvenue chez</h1>
 <h2>Cultural MarketPlace</h2>
 
@@ -9,6 +16,15 @@
         <p>Mot de passe</p>
         <input type="password" name="password" placeholder="Password"></br>
     
-        <input type="submit" value="Login">
+        <input type="submit" value="Connexion"> </br>
+
+        <small>
+             Mot de passe oublié ?<a href="#">cilqué ici</a>  Nouveau client ?<a href="#">c'est par ici</a>
+		</small>
+       
+
     </form>
 </section>
+</body>
+
+</html>
