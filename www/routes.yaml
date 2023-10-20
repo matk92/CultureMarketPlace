@@ -13,3 +13,7 @@
 /register:
   controller: Security
   action: register
+
+/home:
+  controller: Main
+  action: home
