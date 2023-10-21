@@ -1,19 +1,27 @@
 /:
-  controller: Main
+  controller: MainController
   action: home
 
 /login:
-  controller: Security
+  controller: SecurityController
   action: login
 
 /logout:
-  controller: Security
+  controller: SecurityController
   action: logout
 
 /register:
-  controller: Security
+  controller: SecurityController
   action: register
 
 /home:
-  controller: Main
+  controller: MainController
   action: home
+
+/products:
+  controller: ProductController
+  action: index
+
+/orders:
+  controller: OrderController
+  action: index

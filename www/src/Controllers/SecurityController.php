@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Core\View;
 
-class Security
+class SecurityController
 {
 
     public function login(): void

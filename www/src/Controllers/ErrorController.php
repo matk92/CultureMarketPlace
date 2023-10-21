@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class Error {
+class ErrorController {
 
 
     public function page404(): void

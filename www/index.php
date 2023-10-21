@@ -66,6 +66,6 @@ if (!empty($yaml[$uri])) {
 } else {
     // Not Found
     include $controllersPath . "/Error.php";
-    $controller = new Controllers\Error();
+    $controller = new Controllers\ErrorController();
     $controller->page404();
 }
