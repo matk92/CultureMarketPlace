@@ -25,3 +25,7 @@
 /orders:
   controller: OrderController
   action: index
+
+/config:
+  controller: AdminController
+  action: config
