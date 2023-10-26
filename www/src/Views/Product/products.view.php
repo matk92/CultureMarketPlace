@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-</head>
-
-<body>
 <h1>Products</h1>
 <section class="first_secton">
     <nav>
@@ -21,6 +13,3 @@
 <section>
     <h2>Produits</h2>
 </section>
-</body>
-
-</html>
