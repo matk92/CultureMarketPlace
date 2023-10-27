@@ -1,0 +1,14 @@
+{
+  "name": "culturemarketplace",
+  "version": "1.0.0",
+  "description": "- Nicolas Calvelo\r - Mathieu Keca\r - Bryan Dencil\r - Rémy Saguez",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^4.4.0"
+  }
+}
