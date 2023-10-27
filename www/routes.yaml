@@ -29,3 +29,15 @@
 /dashboard:
   controller: AdminController
   action: dashboard
+
+/pages:
+  controller: AdminController
+  action: pages
+
+/products:
+  controller: AdminController
+  action: products
+
+/settings:
+  controller: AdminController
+  action: settings

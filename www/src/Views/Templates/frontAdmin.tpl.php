@@ -11,13 +11,13 @@
 
 <header>
         <nav>
-        <div class="adminMenu-msg">Cultural MarketPlace</div>
             <ul>
-					<li><a href="#"><i class="fa-solid fa-store"></i> Tableau de bord</a></li>
-					<li><a href="#"><i class="fa-regular fa-file-lines"></i> Pages</a></li>
-					<li><a href="#"><i class="fa-solid fa-bag-shopping"></i> Produits</a></li>
-                    <hr>
-					<li><a href="#"><i class="fa-solid fa-gear"></i> Paramètres</a></li>
+                <div class="adminMenu-msg"><a href="/">Cultural MarketPlace</a></div>
+				<li><a href="/dashboard"><i class="fa-solid fa-store"></i> Tableau de bord</a></li>
+				<li><a href="/pages"><i class="fa-regular fa-file-lines"></i> Pages</a></li>
+				<li><a href="/products"><i class="fa-solid fa-bag-shopping"></i> Produits</a></li>
+                <hr>
+				<li><a href="/settings"><i class="fa-solid fa-gear"></i> Paramètres</a></li>
             </ul>
         </nav>
 
