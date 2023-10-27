@@ -33,8 +33,11 @@ nav a {
     text-decoration: none;
 }
 
+nav a.active,
 nav a:hover {
-    background-color: #ddd;
+    border: 2px solid black;
+    padding: 8px;
+    border-radius: 12px;
 }
 
 main{
