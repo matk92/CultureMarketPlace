@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Raleway:wght@800&display=auto');
 
 body{
     margin: 0;
@@ -12,6 +12,7 @@ body{
     background-size: cover;
     margin: 0;
     padding: 0;
+    position: relative;
 }
 
 .container {
@@ -33,7 +34,7 @@ body{
 }
 
 .nav a {
-    color: rgb(201, 35, 35);
+    color: #CD403D;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -46,8 +47,18 @@ body{
     color: black;
 }
 
+.home-msg {
+    position: absolute;
+    bottom: 100px;
+    left: 80px;
+    padding: 10px;
+    color: white;
+    font-family: 'Raleway', sans-serif;
+    font-size: 4rem;
+}
+
 footer {
-    background-color: rgb(161, 48, 48);
+    background-color: #CD403D;
     padding: 20px;
     text-align: center;
 }
@@ -57,4 +68,21 @@ footer li{
 }
 footer a{
     color: white;
+}
+footer hr{
+    color: white;
+}
+footer p{
+    color: white;
+    font-size: 1em;
+    text-align: center;
+}
+.social-media{
+    position: relative;
+    font-size: 2em;
+    text-align: right;
+    right: 80px;
+}
+.social-media a{
+    margin: 10px;
 }
