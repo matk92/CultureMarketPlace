@@ -26,6 +26,6 @@
   controller: OrderController
   action: index
 
-/config:
+/dashboard:
   controller: AdminController
-  action: config
+  action: dashboard

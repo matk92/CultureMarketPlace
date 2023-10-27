@@ -7,8 +7,8 @@ use App\Core\View;
 class AdminController
 {
 
-    public function config(): void
+    public function dashboard(): void
     {
-        new View("Admin/config", "front");
+        new View("Admin/dashboard", "frontAdmin");
     }
 }
