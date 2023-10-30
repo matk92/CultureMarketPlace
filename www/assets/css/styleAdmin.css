@@ -67,6 +67,12 @@ main{
     right: 0;
 }
 
+.navAdmin ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 40px;
+}
+
 .navAdmin a {
     color: #CD403D;
     padding: 10px 5px;
