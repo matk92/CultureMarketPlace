@@ -26,4 +26,14 @@ class AdminController
     {
         new View("Admin/settings", "frontAdmin");
     }
+
+    public function profile(): void
+    {
+        new View("Admin/profile", "frontAdmin");
+    }
+
+    public function notifications(): void
+    {
+        new View("Admin/notifications", "frontAdmin");
+    }
 }

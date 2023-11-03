@@ -7,6 +7,6 @@ class ErrorController {
     public function page404(): void
     {
         http_response_code(404);
-        echo "<img src='assets/images/error404.jpg'width='100%' height='auto'>";
+        echo "error 404, la page demandée n'existe pas";
     }
 }
