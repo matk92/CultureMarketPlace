@@ -10,14 +10,14 @@
 	
     <header>
         <div class="bg-img">
-            <div class="home-msg">Productos españoles</div>
+            <div class="home-msg">Cultural MarketPlace</div>
             <nav class="container">
                 <ul>
 					<div class="nav">
-						<li><a href="#">Accueil</a></li>
-						<li><a href="#">Produits</a></li>
+						<li><a href="/">Accueil</a></li>
+						<li><a href="products">Produits</a></li>
 						<li><a href="#">|</a></li>
-						<li><a href="#">Mon Panier</a></li>
+						<li><a href="#"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
 					</div>	
                 </ul>
             </nav>
