@@ -1,19 +1,25 @@
-<h1>Bienvenue chez</h1>
-<h2>Cultural MarketPlace</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connexion</title>
+    <link rel="stylesheet" type="text/css" href="../css/styleLogin.css">
+</head>
 
-<section id="section_connectez_vous">
+<body>
+    <h1>Bienvenue chez<br><em>Cultural MarketPlace</em> </h1>
+    
+    <div  id="section_connectez_vous">
     <form>
+        <div id="section_align_text">
+            <h2>Connectez vous</h2>
         <p>Email</p>
         <input type="text" name="username" placeholder="Username">
         <p>Mot de passe</p>
-        <input type="password" name="password" placeholder="Password"></br>
-    
-        <input type="submit" value="Connexion"> </br>
-
-        <small>
-             Mot de passe oublié ?<a href="#">cilqué ici</a>  Nouveau client ?<a href="#">c'est par ici</a>
-		</small>
-       
-
+        <input type="password" name="password" placeholder="Password">
+        <br/><br/>
+        <button class="button" type="submit">Créer compte</button>
+        </div>
     </form>
-</section>
+</div>
+</body>
+</html>
