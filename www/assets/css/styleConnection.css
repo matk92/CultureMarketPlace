@@ -2,4 +2,54 @@
 
 body{
     background-color: #F1F1F1;
+    background-image: url(imgages/imgdrapeaux.jpg) ;
+    background-size: 100%;
+}
+h1{
+    color: #F1F1F1;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+h2{
+    font-family: 'Raleway', sans-serif;
+}
+#section_connectez_vous{
+    background-color: #FAFAFA;
+    width: 50%;
+    height: 65%;
+    top: 60%;
+    left: 50%;
+    border-radius: 19px;
+    text-align: center;
+    position: absolute;
+    transform: translate(-50%, -50%);/*La propriété transform: translate(-50%, -50%); est utilisée pour déplacer un élément par rapport à son point de référence d'origine, généralement son coin supérieur gauche, afin de le centrer verticalement et horizontalement dans son conteneur parent. */
+    overflow: auto; /* Des barres de défilement sont ajoutées uniquement lorsque le contenu dépasse les limites de la boîte parente. Si le contenu ne déborde pas, aucune barre de défilement n'est visible. */
+    font-family: 'Raleway', sans-serif;
+}
+#section_align_text{
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-25%, -65%);/*La propriété transform: translate(-50%, -50%); est utilisée pour déplacer un élément par rapport à son point de référence d'origine, généralement son coin supérieur gauche, afin de le centrer verticalement et horizontalement dans son conteneur parent. */
+    background-color:#FAFAFA;
+    width: 50%;
+}
+input{
+
+    background-color: #F0F0F0;
+    width: 60%;
+    height: 35px;
+    border-radius: 4px;
+    border: 1px solid #FAFAFA;
+}
+
+.button{
+    background-color: #00AAFF;  
+    width: 50%;
+    height: 35px;
+    border-radius: 4px;
+    border: 1px solid #00AAFF;
+    position: absolute;
+    transform: translate(12%, 5%);/*La propriété transform: translate(-50%, -50%); est utilisée pour déplacer un élément par rapport à son point de référence d'origine, généralement son coin supérieur gauche, afin de le centrer verticalement et horizontalement dans son conteneur parent. */
 }
