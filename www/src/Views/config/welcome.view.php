@@ -7,5 +7,5 @@
 	  </div>
 	  </h1>
 	</div>
-	<a href="#" class="btnConfig"><span>Commencer la configuration</span></a>
+	<a href="login" class="btnConfig"><span>Commencer la configuration</span></a>
 </div>
