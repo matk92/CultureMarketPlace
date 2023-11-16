@@ -14,7 +14,8 @@ class User extends DB
     private int $status;
     private bool $isDeleted;
 
-    public function getAttributes(): array
+    // Permets a la class DB de recuperer les attributs
+    protected function getAttributes(): array
     {
         return get_object_vars($this);
     }

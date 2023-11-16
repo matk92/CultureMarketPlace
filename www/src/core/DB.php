@@ -83,8 +83,10 @@ class DB
 
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
+            // On parcours le tableau de resultat
             foreach ($result as $key => $value) {
                 try {
+                    // On essaye de setter la valeur dans l'objet
                     $function = 'set' . ucfirst($key);
                     $this->$function($value);
                 } catch (\Throwable $th) {

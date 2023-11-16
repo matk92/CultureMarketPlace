@@ -15,16 +15,22 @@ spl_autoload_register(function ($class) {
     }
 });
 
+// Function pour charger les variables d'environnement
 function loadEnv($path)
 {
+    // Si le fichier n'existe pas, on arrete le script
     if (!file_exists($path)) {
         die('.env file does not exist');
     }
 
+    // On recupere les lignes du fichier
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    // On parcours les lignes
     foreach ($lines as $line) {
+        // Si la ligne contient un =, on recupere le nom et la valeur de la variable
         if (str_contains($line, '=')) {
             list($name, $value) = explode('=', $line, 2);
+            // On les ajoute dans les variables d'environnement
             $_ENV[$name] = $value;
         }
     }
