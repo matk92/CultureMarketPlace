@@ -17,7 +17,7 @@ h2{
     background-color: #FAFAFA;
     width: 50%;
     height: 65%;
-    top: 60%;
+    top: 55%;
     left: 50%;
     border-radius: 19px;
     text-align: center;
@@ -52,4 +52,20 @@ input{
     border: 1px solid #00AAFF;
     position: absolute;
     transform: translate(12%, 5%);/*La propriété transform: translate(-50%, -50%); est utilisée pour déplacer un élément par rapport à son point de référence d'origine, généralement son coin supérieur gauche, afin de le centrer verticalement et horizontalement dans son conteneur parent. */
+}
+
+.vl {
+    border-left: 6px solid green;
+    height: 500px;
+    position: absolute;
+    left: 50%;
+    margin-left: -3px;
+    top: 0;
+  }
+
+  .information{
+    
+
+    position: absolute;
+    top: 70%;
 }

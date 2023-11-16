@@ -26,18 +26,30 @@
   controller: OrderController
   action: index
 
-/dashboard:
+/admin/dashboard:
   controller: AdminController
   action: dashboard
 
-/pages:
+/admin/pages:
   controller: AdminController
   action: pages
 
-/products:
+/admin/products:
   controller: AdminController
   action: products
 
-/settings:
+/admin/settings:
   controller: AdminController
   action: settings
+
+/admin/profile:
+  controller: AdminController
+  action: profile
+
+/admin/notifications:
+  controller: AdminController
+  action: notifications
+
+/welcome:
+  controller: ConfigController
+  action: welcome

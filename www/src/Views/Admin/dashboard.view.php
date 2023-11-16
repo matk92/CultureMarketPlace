@@ -5,6 +5,6 @@
 </div>
 
 
-<script src="assets/js/chartjs/chart1.js"></script>
-<script src="assets/js/chartjs/chart2.js"></script>
-<script src="assets/js/chartjs/chart3.js"></script>
+<script src="../assets/js/chartjs/chart1.js"></script>
+<script src="../assets/js/chartjs/chart2.js"></script>
+<script src="../assets/js/chartjs/chart3.js"></script>
