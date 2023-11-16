@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS categories;
 
-CREATE TABLE users (
+CREATE TABLE rbnm_users (
     id                  INT AUTO_INCREMENT,
     first_name          VARCHAR(64) NOT NULL,
     last_name           VARCHAR(64) NOT NULL,

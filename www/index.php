@@ -2,16 +2,36 @@
 
 namespace App;
 
+// Fonction que se déclenche quand on instancie une class qui n'existe pas
 spl_autoload_register(function ($class) {
     $file = str_replace("App\\", "", $class);
     $file = str_replace("\\", "/", $file);
-    $file .= ".php";
+    $file = "src/" . $file .  ".php";
+
     if (file_exists($file)) {
         include $file;
     } else {
         die("Le fichier " . $file . " n'existe pas");
     }
 });
+
+function loadEnv($path)
+{
+    if (!file_exists($path)) {
+        die('.env file does not exist');
+    }
+
+    $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (str_contains($line, '=')) {
+            list($name, $value) = explode('=', $line, 2);
+            $_ENV[$name] = $value;
+        }
+    }
+}
+
+// Usage
+loadEnv(__DIR__ . '/.env');
 
 // Recupérer l'URL
 $uri = strtolower($_SERVER['REQUEST_URI']);
