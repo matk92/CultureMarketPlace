@@ -32,12 +32,12 @@ class DB
             // si oui on fait un update
             $sql = "UPDATE $this->tableName SET ";
             foreach ($attributes as $key => $value) {
-                if ($key != "id") {
+                if ($key != "id" && !empty($value)) {
                     $sql .= "$key = \"$value\", ";
                 }
             }
             $sql = substr($sql, 0, -2);
-            $sql .= " WHERE id = :id";
+            $sql .= " WHERE id = " . $attributes['id'];
         } else {
             // sinon on fait un insert
             $sql = "INSERT INTO $this->tableName (";
@@ -49,7 +49,7 @@ class DB
             $sql = substr($sql, 0, -2);
             $sql .= ") VALUES (";
             foreach ($attributes as $key => $value) {
-                if ($key != "id") {
+                if ($key != "id" && !empty($value)) {
                     $sql .= "\"$value\", ";
                 }
             }
@@ -61,7 +61,6 @@ class DB
         $stmt = $this->connection->prepare($sql);
 
         // on execute la requete
-
         $stmt->execute();
 
         // on recupere l'id de l'objet si il n'en a pas
@@ -70,7 +69,27 @@ class DB
         }
     }
 
+    // Si l'entity a un id, on recupere les informations de la base de données et on les injecte dans l'objet
     public function populate()
     {
+        $attributes = $this->getAttributes();
+
+        if (isset($attributes['id'])) {
+            $sql = "SELECT * FROM $this->tableName WHERE id = :id";
+
+            $stmt = $this->connection->prepare($sql);
+            $stmt->bindValue(":id", $attributes['id']);
+            $stmt->execute();
+
+            $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+            foreach ($result as $key => $value) {
+                try {
+                    $function = 'set' . ucfirst($key);
+                    $this->$function($value);
+                } catch (\Throwable $th) {
+                }
+            }
+        }
     }
 }
