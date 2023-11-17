@@ -128,4 +128,5 @@ button
     align-items: center;
     border-radius: 4px;
     background: var(--lisi-primary-lisi-primary, #0AF);
+    font-family: 'Raleway', sans-serif;
 }
