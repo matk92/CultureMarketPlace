@@ -9,7 +9,7 @@ body
     flex-direction: column;
     align-items: flex-start;
     flex-shrink: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(image/imgdrapeaux.jpg), lightgray 50% / cover no-repeat;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), url(../images/imgdrapeaux.jpg), lightgray 50% / cover no-repeat;
 }
 
 #h1
