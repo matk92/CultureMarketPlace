@@ -6,8 +6,8 @@ use App\Core\DB;
 class Payment extends DB
 {
     private int $id;
-    private int $idPaymentMethod;
-    private int $idOrder;
+    private int $paymentMethodId;
+    private int $orderId;
     private int $amount;
     private string $date;
     private string $status;
@@ -27,39 +27,39 @@ class Payment extends DB
     }
 
     /**
-     * Get the value of idPaymentMethod
+     * Get the value of paymentMethodId
      */
-    public function getIdPaymentMethod(): int
+    public function getPaymentMethodId(): int
     {
-        return $this->idPaymentMethod;
+        return $this->paymentMethodId;
     }
 
     /**
-     * Set the value of idPaymentMethod
+     * Set the value of paymentMethodId
      *
      * @return  void
      */
-    public function setIdPaymentMethod(int $idPaymentMethod): void
+    public function setPaymentMethodId(int $paymentMethodId): void
     {
-        $this->idPaymentMethod = $idPaymentMethod;
+        $this->paymentMethodId = $paymentMethodId;
     }
 
     /**
-     * Get the value of idOrder
+     * Get the value of orderId
      */
-    public function getIdOrder(): int
+    public function getOrderId(): int
     {
-        return $this->idOrder;
+        return $this->orderId;
     }
 
     /**
-     * Set the value of idOrder
+     * Set the value of orderId
      *
      * @return  void
      */
-    public function setIdOrder(int $idOrder): void
+    public function setOrderId(int $orderId): void
     {
-        $this->idOrder = $idOrder;
+        $this->orderId = $orderId;
     }
 
     /**

@@ -12,7 +12,7 @@ class Product extends DB
     private string $description;
     private float $price;
     private int $stock;
-    private int $idCategory;
+    private int $categoryId;
 
     // Permets a la class DB de recuperer les attributs
     protected function getAttributes(): array
@@ -121,20 +121,20 @@ class Product extends DB
     }
 
     /**
-     * Get the value of idCategory
+     * Get the value of categoryId
      */
-    public function getIdCategory(): int
+    public function getCategoryId(): int
     {
-        return $this->idCategory;
+        return $this->categoryId;
     }
 
     /**
-     * Set the value of idCategory
+     * Set the value of categoryId
      *
      * @return  void
      */
-    public function setIdCategory(int $idCategory): void
+    public function setCategoryId(int $categoryId): void
     {
-        $this->idCategory = $idCategory;
+        $this->categoryId = $categoryId;
     }
 }

@@ -9,7 +9,6 @@ class PaymentMethodType extends DB
     private int $id;
     private string $name;
     private string $description;
-    private string $image;
 
     // Permets a la class DB de recuperer les attributs
     protected function getAttributes(): array
@@ -61,24 +60,6 @@ class PaymentMethodType extends DB
     {
         $description = ucfirst(strtolower(trim($description)));
         $this->description = $description;
-    }
-
-    /**
-     * Get the value of image
-     */
-    public function getImage(): string
-    {
-        return $this->image;
-    }
-
-    /**
-     * Set the value of image
-     * 
-     * @return  void
-     */
-    public function setImage(string $image): void
-    {
-        $this->image = $image;
     }
 
 }

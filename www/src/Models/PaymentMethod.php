@@ -7,8 +7,8 @@ use App\Core\DB;
 class PaymentMethod extends DB
 {
     private int $id;
-    private int $idUser;
-    private int $idPaymentMethodType;
+    private int $userId;
+    private int $paymentMethodTypeId;
     private string $cardNumber;
     private string $expirationDate;
     private string $securityCode;
@@ -35,39 +35,39 @@ class PaymentMethod extends DB
     }
 
     /**
-     * Get the value of idUser
+     * Get the value of userId
      */
-    public function getIdUser(): int
+    public function getUserId(): int
     {
-        return $this->idUser;
+        return $this->userId;
     }
 
     /**
-     * Set the value of idUser
+     * Set the value of userId
      *
      * @return  void
      */
-    public function setIdUser(int $idUser): void
+    public function setUserId(int $userId): void
     {
-        $this->idUser = $idUser;
+        $this->userId = $userId;
     }
 
     /**
-     * Get the value of idPaymentMethodType
+     * Get the value of paymentMethodTypeId
      */
-    public function getIdPaymentMethodType(): int
+    public function getPaymentMethodTypeId(): int
     {
-        return $this->idPaymentMethodType;
+        return $this->paymentMethodTypeId;
     }
 
     /**
-     * Set the value of idPaymentMethodType
+     * Set the value of paymentMethodTypeId
      *
      * @return  void
      */
-    public function setIdPaymentMethodType(int $idPaymentMethodType): void
+    public function setPaymentMethodTypeId(int $paymentMethodTypeId): void
     {
-        $this->idPaymentMethodType = $idPaymentMethodType;
+        $this->paymentMethodTypeId = $paymentMethodTypeId;
     }
 
     /**

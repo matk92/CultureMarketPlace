@@ -3,14 +3,12 @@
 namespace App\Models;
 
 use App\Core\DB;
-use DateTime;
 
 class Review extends DB
 {
     private int $id;
-    private int $idUser;
-    private int $idProduct;
-    private DateTime $date;
+    private int $userId;
+    private int $productId;
     private string $comment;
     private int $rating;
     private bool $isApproved;
@@ -30,57 +28,39 @@ class Review extends DB
     }
 
     /**
-     * Get the value of idUser
+     * Get the value of userId
      */
-    public function getIdUser(): int
+    public function getUserID(): int
     {
-        return $this->idUser;
+        return $this->userId;
     }
 
     /**
-     * Set the value of idUser
+     * Set the value of userId
      *
      * @return  void
      */
-    public function setIdUser(int $idUser): void
+    public function setUserId(int $userId): void
     {
-        $this->idUser = $idUser;
+        $this->userId = $userId;
     }
 
     /**
-     * Get the value of idProduct
+     * Get the value of productId
      */
-    public function getIdProduct(): int
+    public function getProductId(): int
     {
-        return $this->idProduct;
+        return $this->productId;
     }
 
     /**
-     * Set the value of idProduct
+     * Set the value of productId
      *
      * @return  void
      */
-    public function setIdProduct(int $idProduct): void
+    public function setProductId(int $productId): void
     {
-        $this->idProduct = $idProduct;
-    }
-
-    /**
-     * Get the value of date
-     */
-    public function getDate(): DateTime
-    {
-        return $this->date;
-    }
-
-    /**
-     * Set the value of date
-     *
-     * @return  void
-     */
-    public function setDate(DateTime $date): void
-    {
-        $this->date = $date;
+        $this->productId = $productId;
     }
 
     /**

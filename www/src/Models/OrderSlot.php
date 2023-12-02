@@ -6,8 +6,8 @@ use App\Core\DB;
 class OrderSlot extends DB
 {
     private int $id;
-    private int $idOrder;
-    private int $idProduct;
+    private int $orderId;
+    private int $productId;
     private int $quantity;
 
     // Permets a la class DB de recuperer les attributs
@@ -25,39 +25,39 @@ class OrderSlot extends DB
     }
 
     /**
-     * Get the value of idOrder
+     * Get the value of orderId
      */
-    public function getIdOrder(): int
+    public function getOrderId(): int
     {
-        return $this->idOrder;
+        return $this->orderId;
     }
 
     /**
-     * Set the value of idOrder
+     * Set the value of orderId
      *
      * @return  void
      */
-    public function setIdOrder(int $idOrder): void
+    public function setOrderId(int $orderId): void
     {
-        $this->idOrder = $idOrder;
+        $this->orderId = $orderId;
     }
 
     /**
-     * Get the value of idProduct
+     * Get the value of productId
      */
-    public function getIdProduct(): int
+    public function getProductId(): int
     {
-        return $this->idProduct;
+        return $this->productId;
     }
 
     /**
-     * Set the value of idProduct
+     * Set the value of productId
      *
      * @return  void
      */
-    public function setIdProduct(int $idProduct): void
+    public function setProductId(int $productId): void
     {
-        $this->idProduct = $idProduct;
+        $this->productId = $productId;
     }
 
     /**

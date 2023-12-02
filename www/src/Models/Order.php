@@ -7,7 +7,7 @@ use App\Core\DB;
 class Order extends DB
 {
     private int $id;
-    private int $idUser;
+    private int $userId;
     private int $status;
 
     // Permets a la class DB de recuperer les attributs
@@ -25,21 +25,21 @@ class Order extends DB
     }
 
     /**
-     * Get the value of idUser
+     * Get the value of userId
      */
-    public function getIdUser(): int
+    public function getUserId(): int
     {
-        return $this->idUser;
+        return $this->userId;
     }
 
     /**
-     * Set the value of idUser
+     * Set the value of userId
      *
      * @return  void
      */
-    public function setIdUser(int $idUser): void
+    public function setUserId(int $userId): void
     {
-        $this->idUser = $idUser;
+        $this->userId = $userId;
     }
 
     /**
