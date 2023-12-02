@@ -12,6 +12,7 @@ class Review extends DB
     private string $comment;
     private int $rating;
     private bool $isApproved;
+    private string $updatedAt;
 
     // Permets a la class DB de recuperer les attributs
     protected function getAttributes(): array
@@ -117,4 +118,11 @@ class Review extends DB
         $this->isApproved = $isApproved;
     }
 
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): string
+    {
+        return $this->updatedAt;
+    }
 }

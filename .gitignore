@@ -1,5 +1,3 @@
 node_modules
-.mariadb_data
-.postgres
-
+.postgres_data
 .env

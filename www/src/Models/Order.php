@@ -9,6 +9,7 @@ class Order extends DB
     private int $id;
     private int $userId;
     private int $status;
+    private string $updatedAt;
 
     // Permets a la class DB de recuperer les attributs
     protected function getAttributes(): array
@@ -59,4 +60,13 @@ class Order extends DB
     {
         $this->status = $status;
     }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): string
+    {
+        return $this->updatedAt;
+    }
+    
 }

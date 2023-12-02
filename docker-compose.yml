@@ -12,6 +12,7 @@ services:
       - ./server/php.ini:/usr/local/etc/php/php.ini
 
   postgres:
+    build: postgres
     image: postgres:16-alpine
     restart: always
     environment:
@@ -19,8 +20,8 @@ services:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
-      - ./postgres/init.sql:/postgres/init.sql
+      - ./.postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   phpmyadmin:
     image: phpmyadmin

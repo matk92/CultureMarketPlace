@@ -12,7 +12,7 @@ class DB
     {
         // connexion à la base de données
         try {
-            $this->connection = new \PDO("mysql:host=mariadb;dbname=cmp;charset=utf8", "root", "123456");
+            $this->connection = new \PDO("pgsql:host=postgres;dbname=".$_ENV["POSTGRES_DB"].";charset=utf8", $_ENV["POSTGRES_USER"], $_ENV["POSTGRES_PASSWORD"]);
         } catch (\Throwable $th) {
             echo "Erreur de connexion : " . $th->getMessage();
         }
@@ -36,7 +36,15 @@ class DB
                     $sql .= "$key = \"$value\", ";
                 }
             }
-            $sql = substr($sql, 0, -2);
+
+            // modify manually updatedAt TIMESTAMP because we can't do it automatically with postgreSQL
+            if (isset($attributes['updatedAt'])) {
+                $sql .= "updatedAt = NOW()";
+            } else {
+                // remove last comma and space
+                $sql = substr($sql, 0, -2);
+            }
+
             $sql .= " WHERE id = " . $attributes['id'];
         } else {
             // sinon on fait un insert

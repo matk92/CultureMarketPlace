@@ -19,6 +19,7 @@ class PaymentMethod extends DB
     private string $cardHolderCountry;
     private string $cardHolderPhone;
     private string $cardHolderEmail;
+    private string $updatedAt;
 
     // Permets a la class DB de recuperer les attributs
     protected function getAttributes(): array
@@ -249,4 +250,13 @@ class PaymentMethod extends DB
     {
         $this->cardHolderEmail = $cardHolderEmail;
     }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): string
+    {
+        return $this->updatedAt;
+    }
+    
 }

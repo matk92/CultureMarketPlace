@@ -13,6 +13,7 @@ class Product extends DB
     private float $price;
     private int $stock;
     private int $categoryId;
+    private string $updatedAt;
 
     // Permets a la class DB de recuperer les attributs
     protected function getAttributes(): array
@@ -137,4 +138,13 @@ class Product extends DB
     {
         $this->categoryId = $categoryId;
     }
+
+    /**
+     * Get the value of updatedAt
+     */
+    public function getUpdatedAt(): string
+    {
+        return $this->updatedAt;
+    }
+    
 }

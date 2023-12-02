@@ -13,6 +13,7 @@ class User extends DB
     private string $pwd;
     private int $status;
     private bool $isDeleted;
+    private string $role;
 
     // Permets a la class DB de recuperer les attributs
     protected function getAttributes(): array
@@ -134,5 +135,23 @@ class User extends DB
     public function setIsDeleted(bool $isDeleted): void
     {
         $this->isDeleted = $isDeleted;
+    }
+
+    /**
+     * Get the value of role
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set the value of role
+     *
+     * @return  void
+     */
+    public function setRole(string $role): void
+    {
+        $this->role = $role;
     }
 }
