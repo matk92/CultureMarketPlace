@@ -4,12 +4,12 @@ namespace App\Models;
 
 use App\Core\DB;
 
-class Category extends DB
+class PaymentMethodType extends DB
 {
     private int $id;
     private string $name;
-    private int $amount;
-    private string $unit;
+    private string $description;
+    private string $image;
 
     // Permets a la class DB de recuperer les attributs
     protected function getAttributes(): array
@@ -35,7 +35,7 @@ class Category extends DB
 
     /**
      * Set the value of name
-     *
+     * 
      * @return  void
      */
     public function setName(string $name): void
@@ -43,41 +43,42 @@ class Category extends DB
         $name = ucwords(strtolower(trim($name)));
         $this->name = $name;
     }
-
+    
     /**
-     * Get the value of amount
+     * Get the value of description
      */
-    public function getAmount(): int
+    public function getDescription(): string
     {
-        return $this->amount;
+        return $this->description;
     }
 
     /**
-     * Set the value of amount
-     *
+     * Set the value of description
+     * 
      * @return  void
      */
-    public function setAmount(int $amount): void
+    public function setDescription(string $description): void
     {
-        $this->amount = $amount;
+        $description = ucfirst(strtolower(trim($description)));
+        $this->description = $description;
     }
 
     /**
-     * Get the value of unit
+     * Get the value of image
      */
-    public function getUnit(): string
+    public function getImage(): string
     {
-        return $this->unit;
+        return $this->image;
     }
 
     /**
-     * Set the value of unit
-     *
+     * Set the value of image
+     * 
      * @return  void
      */
-    public function setUnit(string $unit): void
+    public function setImage(string $image): void
     {
-        $unit = strtoupper(trim($unit));
-        $this->unit = $unit;
+        $this->image = $image;
     }
+
 }

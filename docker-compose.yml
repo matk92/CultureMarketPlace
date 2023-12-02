@@ -20,7 +20,7 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
-      - ./init.sql:/postgres/init.sql
+      - ./postgres/init.sql:/postgres/init.sql
 
   phpmyadmin:
     image: phpmyadmin
