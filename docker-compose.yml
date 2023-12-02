@@ -1,4 +1,4 @@
-version: "3"
+version: "4"
 
 services:
   web:
@@ -10,24 +10,26 @@ services:
       - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./server/apache2.conf:/etc/apache2/apache2.conf
       - ./server/php.ini:/usr/local/etc/php/php.ini
-  mariadb:
-    image: mariadb
+
+  postgres:
+    image: postgres:16-alpine
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: cmp
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 123456
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
     volumes:
-      - .mariadb_data:/var/lib/mysql
+      - ./postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/postgres/init.sql
+
   phpmyadmin:
     image: phpmyadmin
     restart: always
     ports:
       - 8080:80
     environment:
-      PMA_HOST: mariadb
-      PMA_USER: root
-      PMA_PASSWORD: 123456
+      PMA_HOST: ${PMA_HOST}
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASSWORD}
     depends_on:
-      - mariadb
+      - postgres
