@@ -25,6 +25,18 @@ class PaymentMethodType extends DB
     }
 
     /**
+     * Set the value of id
+     * @return  void
+     */
+    public function setId(int $id): void
+    {
+        if ($id < 0) {
+            throw new \Exception("L'id ne peut pas etre negatif");
+        }
+        $this->id = $id;
+    }
+
+    /**
      * Get the value of name
      */
     public function getName(): string
@@ -42,7 +54,7 @@ class PaymentMethodType extends DB
         $name = ucwords(strtolower(trim($name)));
         $this->name = $name;
     }
-    
+
     /**
      * Get the value of description
      */
@@ -61,5 +73,4 @@ class PaymentMethodType extends DB
         $description = ucfirst(strtolower(trim($description)));
         $this->description = $description;
     }
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Core\DB;
@@ -9,7 +10,6 @@ class Payment extends DB
     private int $paymentMethodId;
     private int $orderId;
     private int $amount;
-    private string $date;
     private string $status;
 
     // Permets a la class DB de recuperer les attributs
@@ -24,6 +24,18 @@ class Payment extends DB
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     * @return  void
+     */
+    public function setId(int $id): void
+    {
+        if ($id < 0) {
+            throw new \Exception("L'id ne peut pas etre negatif");
+        }
+        $this->id = $id;
     }
 
     /**
@@ -81,24 +93,6 @@ class Payment extends DB
     }
 
     /**
-     * Get the value of date
-     */
-    public function getDate(): string
-    {
-        return $this->date;
-    }
-
-    /**
-     * Set the value of date
-     *
-     * @return  void
-     */
-    public function setDate(string $date): void
-    {
-        $this->date = $date;
-    }
-
-    /**
      * Get the value of status
      */
     public function getStatus(): string
@@ -115,5 +109,4 @@ class Payment extends DB
     {
         $this->status = $status;
     }
-
 }

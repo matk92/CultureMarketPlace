@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use App\Core\DB;
@@ -22,6 +23,18 @@ class OrderSlot extends DB
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     * @return  void
+     */
+    public function setId(int $id): void
+    {
+        if ($id < 0) {
+            throw new \Exception("L'id ne peut pas etre negatif");
+        }
+        $this->id = $id;
     }
 
     /**
@@ -77,5 +90,4 @@ class OrderSlot extends DB
     {
         $this->quantity = $quantity;
     }
-
 }

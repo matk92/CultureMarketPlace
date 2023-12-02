@@ -17,13 +17,13 @@ class MainController
         // $myUser->setPwd("Test1234");
         // $myUser->save();
 
-        $myUser = (new User());
-        $myUser->setId(7);
-        $myUser->populate();
+        // $myUser = (new User());
+        // $myUser->setId(7);
+        // $myUser->populate();
 
-        $myUser->setFirstname("update");
-        $myUser->save();
+        // $myUser->setFirstname("update");
+        // $myUser->save();
 
-        new View("Main/home", "front");
+        // new View("Main/home", "front");
     }
 }

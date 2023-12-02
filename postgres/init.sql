@@ -1,12 +1,12 @@
-DROP TABLE IF EXISTS rbnm_user;
-DROP TABLE IF EXISTS rbnm_review;
-DROP TABLE IF EXISTS rbnm_categorie;
-DROP TABLE IF EXISTS rbnm_product;
-DROP TABLE IF EXISTS rbnm_order_slot;
-DROP TABLE IF EXISTS rbnm_order;
-DROP TABLE IF EXISTS rbnm_payement_method_type;
-DROP TABLE IF EXISTS rbnm_payment_method;
-DROP TABLE IF EXISTS rbnm_payment;
+DROP TABLE IF EXISTS rbnm_user CASCADE;
+DROP TABLE IF EXISTS rbnm_review CASCADE;
+DROP TABLE IF EXISTS rbnm_categorie CASCADE;
+DROP TABLE IF EXISTS rbnm_product CASCADE;
+DROP TABLE IF EXISTS rbnm_order_slot CASCADE;
+DROP TABLE IF EXISTS rbnm_order CASCADE;
+DROP TABLE IF EXISTS rbnm_payement_method_type CASCADE;
+DROP TABLE IF EXISTS rbnm_payment_method CASCADE;
+DROP TABLE IF EXISTS rbnm_payment CASCADE;
 
 CREATE TABLE rbnm_user (
     id SERIAL PRIMARY KEY,
@@ -15,22 +15,9 @@ CREATE TABLE rbnm_user (
     email VARCHAR(320) NOT NULL,
     pwd VARCHAR(255) NOT NULL,
     status SMALLINT NOT NULL DEFAULT 0,
-    isDeleted BOOLEAN NOT NULL DEFAULT 0,
-    insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp
-    role SMALLINT NOT NULL DEFAULT 0,
-);
-
-CREATE TABLE rbnm_review (
-    id SERIAL PRIMARY KEY,
-    userId INT NOT NULL,
-    productId INT NOT NULL,
-    rating INT NOT NULL,
-    comment VARCHAR(255) NOT NULL,
-    isApproved BOOLEAN NOT NULL DEFAULT 0,
+    isDeleted BOOLEAN NOT NULL DEFAULT FALSE,
     insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
-    updatedAt TIMESTAMP NULL,
-    FOREIGN KEY (userId) REFERENCES rbnm_user(id),
-    FOREIGN KEY (productId) REFERENCES rbnm_product(id)
+    role SMALLINT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE rbnm_categorie (
@@ -53,12 +40,16 @@ CREATE TABLE rbnm_product (
     FOREIGN KEY (categoryId) REFERENCES rbnm_categorie(id)
 );
 
-CREATE TABLE rbnm_order_slot (
+CREATE TABLE rbnm_review (
     id SERIAL PRIMARY KEY,
-    orderId INT NOT NULL,
+    userId INT NOT NULL,
     productId INT NOT NULL,
-    quantity INT NOT NULL,
-    FOREIGN KEY (orderId) REFERENCES rbnm_order(id),
+    rating INT NOT NULL,
+    comment VARCHAR(255) NOT NULL,
+    isApproved BOOLEAN NOT NULL DEFAULT FALSE,
+    insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    updatedAt TIMESTAMP NULL,
+    FOREIGN KEY (userId) REFERENCES rbnm_user(id),
     FOREIGN KEY (productId) REFERENCES rbnm_product(id)
 );
 
@@ -69,6 +60,15 @@ CREATE TABLE rbnm_order (
     insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
     updatedAt TIMESTAMP NULL,
     FOREIGN KEY (userId) REFERENCES rbnm_user(id)
+);
+
+CREATE TABLE rbnm_order_slot (
+    id SERIAL PRIMARY KEY,
+    orderId INT NOT NULL,
+    productId INT NOT NULL,
+    quantity INT NOT NULL,
+    FOREIGN KEY (orderId) REFERENCES rbnm_order(id),
+    FOREIGN KEY (productId) REFERENCES rbnm_product(id)
 );
 
 CREATE TABLE rbnm_payement_method_type (
@@ -101,7 +101,6 @@ CREATE TABLE rbnm_payment (
     paymentMethodId INT NOT NULL,
     orderId INT NOT NULL,
     amount INT NOT NULL,
-    date timestamp NOT NULL DEFAULT current_timestamp(),
     status SMALLINT NOT NULL DEFAULT 0,
     insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
     FOREIGN KEY (paymentMethodId) REFERENCES rbnm_payment_method(id),

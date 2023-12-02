@@ -26,6 +26,18 @@ class Order extends DB
     }
 
     /**
+     * Set the value of id
+     * @return  void
+     */
+    public function setId(int $id): void
+    {
+        if ($id < 0) {
+            throw new \Exception("L'id ne peut pas etre negatif");
+        }
+        $this->id = $id;
+    }
+
+    /**
      * Get the value of userId
      */
     public function getUserId(): int
@@ -68,5 +80,4 @@ class Order extends DB
     {
         return $this->updatedAt;
     }
-    
 }

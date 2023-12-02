@@ -12,7 +12,9 @@ class DB
     {
         // connexion à la base de données
         try {
-            $this->connection = new \PDO("pgsql:host=postgres;dbname=".$_ENV["POSTGRES_DB"].";charset=utf8", $_ENV["POSTGRES_USER"], $_ENV["POSTGRES_PASSWORD"]);
+            $this->connection = new \PDO(
+                "pgsql:host=postgres;port=5432;dbname=" . $_ENV["POSTGRES_DB"] . ";user=" . $_ENV["POSTGRES_USER"] . ";password=" . $_ENV["POSTGRES_PASSWORD"]
+            );
         } catch (\Throwable $th) {
             echo "Erreur de connexion : " . $th->getMessage();
         }
@@ -25,54 +27,53 @@ class DB
     {
 
         // il faut recuperer les attributs de la classe que herite DB
+        if (!method_exists($this, "getAttributes")) {
+            throw new \Exception("La classe " . get_called_class() . " doit contenir une methode getAttributes() pour pouvoir etre sauvegardee en base de donnees");
+        }
         $attributes = $this->getAttributes();
 
-        // on verifie si l'objet a un id
-        if (isset($attributes['id'])) {
-            // si oui on fait un update
+        // on verifie si l'objet a un id, si oui on fait un update, sinon on fait un insert
+        $isUpdate = isset($attributes['id']);
+        $execute = [];
+
+        if ($isUpdate) {
             $sql = "UPDATE $this->tableName SET ";
             foreach ($attributes as $key => $value) {
-                if ($key != "id" && !empty($value)) {
-                    $sql .= "$key = \"$value\", ";
-                }
+                $sql .= "$key = :$key, ";
+                $execute[":$key"] = $value;
             }
-
-            // modify manually updatedAt TIMESTAMP because we can't do it automatically with postgreSQL
-            if (isset($attributes['updatedAt'])) {
-                $sql .= "updatedAt = NOW()";
-            } else {
-                // remove last comma and space
-                $sql = substr($sql, 0, -2);
-            }
-
-            $sql .= " WHERE id = " . $attributes['id'];
+            // remove last comma and space
+            $sql = substr($sql, 0, -2);
+            $sql .= " WHERE id = " . $attributes['id'] . ";";
         } else {
-            // sinon on fait un insert
             $sql = "INSERT INTO $this->tableName (";
             foreach ($attributes as $key => $value) {
-                if ($key != "id") {
-                    $sql .= "$key, ";
-                }
+                $sql .= "$key, ";
             }
+            // remove last comma and space
             $sql = substr($sql, 0, -2);
             $sql .= ") VALUES (";
+
             foreach ($attributes as $key => $value) {
-                if ($key != "id" && !empty($value)) {
-                    $sql .= "\"$value\", ";
-                }
+                $sql .= ":$key, ";
+                $execute[":$key"] = $value;
             }
+
+            // remove last comma and space
             $sql = substr($sql, 0, -2);
-            $sql .= ")";
+            $sql .= ");";
         }
+
+        echo $sql;
 
         // on prepare la requete
         $stmt = $this->connection->prepare($sql);
 
         // on execute la requete
-        $stmt->execute();
+        $stmt->execute($execute);
 
         // on recupere l'id de l'objet si il n'en a pas
-        if (!isset($attributes['id'])) {
+        if (!isset($attributes['id']) && method_exists($this, "setId")) {
             $this->setId($this->connection->lastInsertId());
         }
     }

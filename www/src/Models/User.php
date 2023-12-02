@@ -7,7 +7,7 @@ use App\Core\DB;
 class User extends DB
 {
     private int $id;
-    private string $firstname;
+    private string $firstName;
     private string $lastname;
     private string $email;
     private string $pwd;
@@ -34,24 +34,27 @@ class User extends DB
      */
     public function setId(int $id): void
     {
+        if ($id < 0) {
+            throw new \Exception("L'id ne peut pas etre negatif");
+        }
         $this->id = $id;
     }
 
     /**
      * @return string
      */
-    public function getFirstname(): string
+    public function getFirstName(): string
     {
-        return $this->firstname;
+        return $this->firstName;
     }
 
     /**
-     * @param string $firstname
+     * @param string $firstName
      */
-    public function setFirstname(string $firstname): void
+    public function setFirstName(string $firstName): void
     {
-        $firstname = ucwords(strtolower(trim($firstname)));
-        $this->firstname = $firstname;
+        $firstName = ucwords(strtolower(trim($firstName)));
+        $this->firstName = $firstName;
     }
 
     /**

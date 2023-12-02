@@ -34,6 +34,18 @@ class PaymentMethod extends DB
     {
         return $this->id;
     }
+    
+    /**
+     * Set the value of id
+     * @return  void
+     */
+    public function setId(int $id): void
+    {
+        if ($id < 0) {
+            throw new \Exception("L'id ne peut pas etre negatif");
+        }
+        $this->id = $id;
+    }
 
     /**
      * Get the value of userId
@@ -258,5 +270,4 @@ class PaymentMethod extends DB
     {
         return $this->updatedAt;
     }
-    
 }
