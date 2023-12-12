@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=auto');
+
+/* CSS global */
+
+body {
+  background-color: #F1F1F1;
+}
+
+nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #F7F7F7;
+  padding: 20px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+  }
+
+  a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+
+    &.active, &:hover {
+      border: 2px solid black;
+      padding: 8px;
+      border-radius: 12px;
+    }
+  }
+}
+
+main {
+  margin-left: 300px;
+}
+
+button {
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    transition: transform 0.1s ease-in-out;
+  }
+}
+
+/* CSS Tableau de bord */
+
+.adminMenu-msg {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+}
+
+.chart-container {
+  width: 600px;
+  height: 1200px;
+}
+
+.navAdmin {
+  margin-left: 270px;
+
+  li {
+    display: inline-block;
+    right: 0;
+  }
+
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 40px;
+  }
+
+  a {
+    color: #CD403D;
+    padding: 10px 5px;
+    text-decoration: none;
+    font-size: 1.3rem;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+#sectionTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* CSS Pages et Produits */
+
+.searchBar {
+  border-color: #2A4D73;
+  border-radius: 42px;
+  border-width: 1px;
+  width: 180px;
+  padding-left: 30px;
+}
+
+.btnAdd {
+  border: none;
+  background-color: #2F567E;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  width: 180px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+/* CSS Pages */
+
+.allPages {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.viewPage {
+  background-color: white;
+  border-radius: 8px;
+  width: 300px;
+  padding-bottom: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-8px);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  hr {
+    color: #E3E3E3;
+    width: 80%;
+  }
+}
+
+.iconPage {
+  font-size: 150px;
+  color: #2F567E;
+  margin-left: 30%;
+}
+
+/* BTN Pages et Produits */
+
+.btnPage {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btnView {
+  border-color: #2F567E;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: white;
+  color: #2F567E;
+}
+
+.btnEdit {
+  border: none;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: #2F567E;
+  color: white;
+}
+
+.btnDelete {
+  border: none;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: #CD403D;
+  color: white;
+}
+
+.btnView, .btnEdit, .btnDelete {
+  font-size: 0.85rem;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  width: 90px;
+  height: 40px;
+}
+
+.btnEdit:hover, .btnAdd:hover {
+  background-color: #4d6ae0;
+}
+
+.btnView:hover {
+  background-color: #E3E3E3;
+}
+
+.btnDelete:hover {
+  background-color: #e04d4d;
+}
+
+/* CSS Produits */
+
+.allProducts {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.viewProduct {
+  background-color: white;
+  border-radius: 12px;
+  width: 350px;
+  padding-bottom: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-8px);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 1.25rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+  }
+
+  hr {
+    color: #E3E3E3;
+    width: 80%;
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px 12px 0px 0px;
+  }
+
+  p {
+    margin: 10px;
+    color: #2F567E;
+  }
+}
+
+.btnProduct {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.price {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+/* CSS Profile */
+
+.profile-content {
+  display: flex;
+}
+
+.imageProfile {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+}
+
+.profile-form {
+  display: flex;
+  margin-top: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.column {
+  margin-right: 40px;
+}
+
+.profile-form input {
+  border-color: #2F567E;
+  border-width: 1px;
+  width: 335px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: white;
+  color: #1E3050;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.profile-msg {
+  font-size: 2rem;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+}
+
+.btnChange, .btnCancel {
+  width: 200px;
+  height: 40px;
+}
+
+.btnChange {
+  border: none;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: #1E3050;
+  color: white;
+}
+
+.btnCancel {
+  border-color: #1E3050;
+  border-radius: 4px;
+  border-width: 1px;
+  color: #1E3050;
+}
+
+.btnChange:hover {
+  background-color: #5773a1;
+}
+
+.btnCancel:hover {
+  background-color: #d7e6ff;
+}

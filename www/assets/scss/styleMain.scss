@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Raleway:wght@800&display=auto');
+
+body {
+  margin: 0;
+}
+
+.bg-img {
+  background-image: url("../images/background_img1.png");
+  min-height: 40rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  top: 40px;
+  right: 150px;
+  margin: auto;
+}
+
+.nav {
+  background-color: white;
+  border-radius: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+
+  li {
+    display: inline-block;
+  }
+
+  a {
+    color: #CD403D;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.home-msg {
+  position: absolute;
+  bottom: 100px;
+  left: 80px;
+  padding: 10px;
+  color: white;
+  font-family: 'Raleway', sans-serif;
+  font-size: 4rem;
+}
+
+footer {
+  background-color: #CD403D;
+  padding: 20px;
+  text-align: center;
+
+  li {
+    display: inline;
+    margin: 20px;
+  }
+
+  a, hr {
+    color: white;
+  }
+
+  p {
+    color: white;
+    font-size: 1em;
+    text-align: center;
+  }
+}
+
+.social-media {
+  position: relative;
+  font-size: 2em;
+  text-align: right;
+  right: 80px;
+
+  a {
+    margin: 10px;
+  }
+}
