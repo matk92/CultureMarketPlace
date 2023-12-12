@@ -4,11 +4,15 @@
   "description": "- Nicolas Calvelo\r - Mathieu Keca\r - Bryan Dencil\r - Rémy Saguez",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch" : "sass --watch www/assets/scss/main.scss www/assets/scss/style.css"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chart.js": "^4.4.0"
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
   }
 }
