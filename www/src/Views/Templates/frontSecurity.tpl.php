@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Front</title>
-    <link rel="stylesheet" href="assets/css/styleConnection.css">
+    <link rel="stylesheet" href="assets/scss/styleConnection.scss">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>

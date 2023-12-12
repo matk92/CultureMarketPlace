@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Register</title>
-    <link rel="stylesheet" type="text/css" href="styleConnection.css">
+    <link rel="stylesheet" href="assets/scss/styleConnection.scss">
 </head>
 
 <body>

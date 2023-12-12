@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ERROR 404</title>
-    <link rel="stylesheet" href="../assets/css/styleError.css">
+    <link rel="stylesheet" href="/assets/scss/styleError.scss">
 </head>
 <body>
     <main>

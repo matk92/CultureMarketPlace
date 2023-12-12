@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin - Cultural Marketplace</title>
-    <link rel="stylesheet" href="../assets/css/styleAdmin.css">
+    <link rel="stylesheet" href="/assets/scss/styleAdmin.scss">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>

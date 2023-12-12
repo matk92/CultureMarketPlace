@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Connexion</title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/styleCart.css">
+    <link rel="stylesheet" type="text/scss" href="../assets/scss/styleCart.scss">
 </head>
 
 

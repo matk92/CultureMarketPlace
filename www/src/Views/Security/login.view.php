@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Connexion</title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/styleLogin.css">
+    <link rel="stylesheet" href="assets/scss/styleLogin.scss">
 </head>
 
 
