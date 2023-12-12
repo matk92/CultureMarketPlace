@@ -11,19 +11,17 @@ class MainController
     public function home(): void
     {
         // $myUser = new User();
-        // $myUser->setFirstname("YVEs");
-        // $myUser->setLastname("   SKrZypczYK    ");
+        // $myUser->setFirstName("YVEs");
+        // $myUser->setLastName("   SKrZypczYK    ");
         // $myUser->setEmail("Y.skrzypczyk@gmail.com");
         // $myUser->setPwd("Test1234");
         // $myUser->save();
 
-        // $myUser = (new User());
-        // $myUser->setId(7);
-        // $myUser->populate();
-
-        // $myUser->setFirstname("update");
+        // $myUser = User::populate(1);
+        // // print_r($myUser);
+        // $myUser->setFirstName("update");
         // $myUser->save();
 
-        // new View("Main/home", "front");
+        new View("Main/home", "front");
     }
 }

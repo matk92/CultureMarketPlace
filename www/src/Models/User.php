@@ -6,20 +6,13 @@ use App\Core\DB;
 
 class User extends DB
 {
-    private int $id;
-    private string $firstName;
-    private string $lastname;
-    private string $email;
-    private string $pwd;
-    private int $status;
-    private bool $isDeleted;
-    private string $role;
-
-    // Permets a la class DB de recuperer les attributs
-    protected function getAttributes(): array
-    {
-        return get_object_vars($this);
-    }
+    protected int $id;
+    protected string $firstname;
+    protected string $lastname;
+    protected string $email;
+    protected string $pwd;
+    protected int $status;
+    protected string $role;
 
     /**
      * @return int
@@ -43,18 +36,18 @@ class User extends DB
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getFirstname(): string
     {
-        return $this->firstName;
+        return $this->firstname;
     }
 
     /**
-     * @param string $firstName
+     * @param string $firstname
      */
-    public function setFirstName(string $firstName): void
+    public function setFirstname(string $firstname): void
     {
-        $firstName = ucwords(strtolower(trim($firstName)));
-        $this->firstName = $firstName;
+        $firstname = ucwords(strtolower(trim($firstname)));
+        $this->firstname = $firstname;
     }
 
     /**
@@ -122,22 +115,6 @@ class User extends DB
     public function setStatus(int $status): void
     {
         $this->status = $status;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDeleted(): bool
-    {
-        return $this->isDeleted;
-    }
-
-    /**
-     * @param bool $isDeleted
-     */
-    public function setIsDeleted(bool $isDeleted): void
-    {
-        $this->isDeleted = $isDeleted;
     }
 
     /**

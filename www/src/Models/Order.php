@@ -6,16 +6,10 @@ use App\Core\DB;
 
 class Order extends DB
 {
-    private int $id;
-    private int $userId;
-    private int $status;
-    private string $updatedAt;
-
-    // Permets a la class DB de recuperer les attributs
-    protected function getAttributes(): array
-    {
-        return get_object_vars($this);
-    }
+    protected int $id;
+    protected int $userid;
+    protected int $status;
+    protected string $updated;
 
     /**
      * Get the value of id
@@ -38,21 +32,21 @@ class Order extends DB
     }
 
     /**
-     * Get the value of userId
+     * Get the value of userid
      */
     public function getUserId(): int
     {
-        return $this->userId;
+        return $this->userid;
     }
 
     /**
-     * Set the value of userId
+     * Set the value of userid
      *
      * @return  void
      */
-    public function setUserId(int $userId): void
+    public function setUserId(int $userid): void
     {
-        $this->userId = $userId;
+        $this->userid = $userid;
     }
 
     /**
@@ -74,10 +68,10 @@ class Order extends DB
     }
 
     /**
-     * Get the value of updatedAt
+     * Get the value of updated
      */
     public function getUpdatedAt(): string
     {
-        return $this->updatedAt;
+        return $this->updated;
     }
 }

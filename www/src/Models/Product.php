@@ -6,20 +6,14 @@ use App\Core\DB;
 
 class Product extends DB
 {
-    private int $id;
-    private string $name;
-    private string $image;
-    private string $description;
-    private float $price;
-    private int $stock;
-    private int $categoryId;
-    private string $updatedAt;
-
-    // Permets a la class DB de recuperer les attributs
-    protected function getAttributes(): array
-    {
-        return get_object_vars($this);
-    }
+    protected int $id;
+    protected string $name;
+    protected string $image;
+    protected string $description;
+    protected float $price;
+    protected int $stock;
+    protected int $categoryid;
+    protected string $updated;
 
     /**
      * Get the value of id
@@ -134,28 +128,28 @@ class Product extends DB
     }
 
     /**
-     * Get the value of categoryId
+     * Get the value of categoryid
      */
     public function getCategoryId(): int
     {
-        return $this->categoryId;
+        return $this->categoryid;
     }
 
     /**
-     * Set the value of categoryId
+     * Set the value of categoryid
      *
      * @return  void
      */
-    public function setCategoryId(int $categoryId): void
+    public function setCategoryId(int $categoryid): void
     {
-        $this->categoryId = $categoryId;
+        $this->categoryid = $categoryid;
     }
 
     /**
-     * Get the value of updatedAt
+     * Get the value of updated
      */
     public function getUpdatedAt(): string
     {
-        return $this->updatedAt;
+        return $this->updated;
     }
 }

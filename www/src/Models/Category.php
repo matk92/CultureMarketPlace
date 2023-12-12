@@ -6,16 +6,10 @@ use App\Core\DB;
 
 class Category extends DB
 {
-    private int $id;
-    private string $name;
-    private int $amount;
-    private string $unit;
-
-    // Permets a la class DB de recuperer les attributs
-    protected function getAttributes(): array
-    {
-        return get_object_vars($this);
-    }
+    protected int $id;
+    protected string $name;
+    protected int $amount;
+    protected string $unit;
 
     /**
      * Get the value of id

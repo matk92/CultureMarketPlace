@@ -10,13 +10,13 @@ DROP TABLE IF EXISTS rbnm_payment CASCADE;
 
 CREATE TABLE rbnm_user (
     id SERIAL PRIMARY KEY,
-    firstname VARCHAR(25) NOT NULL,
-    lastname VARCHAR(50) NOT NULL,
+    firstName VARCHAR(25) NOT NULL,
+    lastName VARCHAR(50) NOT NULL,
     email VARCHAR(320) NOT NULL,
     pwd VARCHAR(255) NOT NULL,
     status SMALLINT NOT NULL DEFAULT 0,
     isDeleted BOOLEAN NOT NULL DEFAULT FALSE,
-    insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
     role SMALLINT NOT NULL DEFAULT 0
 );
 
@@ -35,8 +35,8 @@ CREATE TABLE rbnm_product (
     price INT NOT NULL,
     stock INT NOT NULL DEFAULT 0,
     categoryId INT NOT NULL,
-    insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
-    updatedAt TIMESTAMP NULL,
+    inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    updated TIMESTAMP NULL,
     FOREIGN KEY (categoryId) REFERENCES rbnm_categorie(id)
 );
 
@@ -47,8 +47,8 @@ CREATE TABLE rbnm_review (
     rating INT NOT NULL,
     comment VARCHAR(255) NOT NULL,
     isApproved BOOLEAN NOT NULL DEFAULT FALSE,
-    insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
-    updatedAt TIMESTAMP NULL,
+    inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    updated TIMESTAMP NULL,
     FOREIGN KEY (userId) REFERENCES rbnm_user(id),
     FOREIGN KEY (productId) REFERENCES rbnm_product(id)
 );
@@ -57,8 +57,8 @@ CREATE TABLE rbnm_order (
     id SERIAL PRIMARY KEY,
     userId INT NOT NULL,
     status SMALLINT NOT NULL DEFAULT 0,
-    insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
-    updatedAt TIMESTAMP NULL,
+    inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    updated TIMESTAMP NULL,
     FOREIGN KEY (userId) REFERENCES rbnm_user(id)
 );
 
@@ -91,7 +91,7 @@ CREATE TABLE rbnm_payment_method (
     cardHolderCountry VARCHAR(50) NOT NULL,
     cardHolderPhone VARCHAR(10) NOT NULL,
     cardHolderEmail VARCHAR(320) NOT NULL,
-    updatedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    updated TIMESTAMP NOT NULL DEFAULT current_timestamp,
     FOREIGN KEY (userId) REFERENCES rbnm_user(id),
     FOREIGN KEY (paymentMethodTypeId) REFERENCES rbnm_payement_method_type(id)
 );
@@ -102,7 +102,7 @@ CREATE TABLE rbnm_payment (
     orderId INT NOT NULL,
     amount INT NOT NULL,
     status SMALLINT NOT NULL DEFAULT 0,
-    insertedAt TIMESTAMP NOT NULL DEFAULT current_timestamp,
+    inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
     FOREIGN KEY (paymentMethodId) REFERENCES rbnm_payment_method(id),
     FOREIGN KEY (orderId) REFERENCES rbnm_order(id)
 );

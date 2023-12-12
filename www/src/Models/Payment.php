@@ -6,17 +6,11 @@ use App\Core\DB;
 
 class Payment extends DB
 {
-    private int $id;
-    private int $paymentMethodId;
-    private int $orderId;
-    private int $amount;
-    private string $status;
-
-    // Permets a la class DB de recuperer les attributs
-    protected function getAttributes(): array
-    {
-        return get_object_vars($this);
-    }
+    protected int $id;
+    protected int $paymentMethodId;
+    protected int $orderid;
+    protected int $amount;
+    protected string $status;
 
     /**
      * Get the value of id
@@ -57,21 +51,21 @@ class Payment extends DB
     }
 
     /**
-     * Get the value of orderId
+     * Get the value of orderid
      */
     public function getOrderId(): int
     {
-        return $this->orderId;
+        return $this->orderid;
     }
 
     /**
-     * Set the value of orderId
+     * Set the value of orderid
      *
      * @return  void
      */
-    public function setOrderId(int $orderId): void
+    public function setOrderId(int $orderid): void
     {
-        $this->orderId = $orderId;
+        $this->orderid = $orderid;
     }
 
     /**

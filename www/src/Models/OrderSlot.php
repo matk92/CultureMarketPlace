@@ -6,16 +6,11 @@ use App\Core\DB;
 
 class OrderSlot extends DB
 {
-    private int $id;
-    private int $orderId;
-    private int $productId;
-    private int $quantity;
+    protected int $id;
+    protected int $orderid;
+    protected int $productid;
+    protected int $quantity;
 
-    // Permets a la class DB de recuperer les attributs
-    protected function getAttributes(): array
-    {
-        return get_object_vars($this);
-    }
 
     /**
      * Get the value of id
@@ -38,39 +33,39 @@ class OrderSlot extends DB
     }
 
     /**
-     * Get the value of orderId
+     * Get the value of orderid
      */
     public function getOrderId(): int
     {
-        return $this->orderId;
+        return $this->orderid;
     }
 
     /**
-     * Set the value of orderId
+     * Set the value of orderid
      *
      * @return  void
      */
-    public function setOrderId(int $orderId): void
+    public function setOrderId(int $orderid): void
     {
-        $this->orderId = $orderId;
+        $this->orderid = $orderid;
     }
 
     /**
-     * Get the value of productId
+     * Get the value of productid
      */
     public function getProductId(): int
     {
-        return $this->productId;
+        return $this->productid;
     }
 
     /**
-     * Set the value of productId
+     * Set the value of productid
      *
      * @return  void
      */
-    public function setProductId(int $productId): void
+    public function setProductId(int $productid): void
     {
-        $this->productId = $productId;
+        $this->productid = $productid;
     }
 
     /**

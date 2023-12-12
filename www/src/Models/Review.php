@@ -6,19 +6,13 @@ use App\Core\DB;
 
 class Review extends DB
 {
-    private int $id;
-    private int $userId;
-    private int $productId;
-    private string $comment;
-    private int $rating;
-    private bool $isApproved;
-    private string $updatedAt;
-
-    // Permets a la class DB de recuperer les attributs
-    protected function getAttributes(): array
-    {
-        return get_object_vars($this);
-    }
+    protected int $id;
+    protected int $userid;
+    protected int $productid;
+    protected string $comment;
+    protected int $rating;
+    protected bool $isapproved;
+    protected string $updated;
 
     /**
      * @return int
@@ -41,39 +35,39 @@ class Review extends DB
     }
 
     /**
-     * Get the value of userId
+     * Get the value of userid
      */
     public function getUserID(): int
     {
-        return $this->userId;
+        return $this->userid;
     }
 
     /**
-     * Set the value of userId
+     * Set the value of userid
      *
      * @return  void
      */
-    public function setUserId(int $userId): void
+    public function setUserId(int $userid): void
     {
-        $this->userId = $userId;
+        $this->userid = $userid;
     }
 
     /**
-     * Get the value of productId
+     * Get the value of productid
      */
     public function getProductId(): int
     {
-        return $this->productId;
+        return $this->productid;
     }
 
     /**
-     * Set the value of productId
+     * Set the value of productid
      *
      * @return  void
      */
-    public function setProductId(int $productId): void
+    public function setProductId(int $productid): void
     {
-        $this->productId = $productId;
+        $this->productid = $productid;
     }
 
     /**
@@ -113,28 +107,28 @@ class Review extends DB
     }
 
     /**
-     * Get the value of isApproved
+     * Get the value of isapproved
      */
     public function getIsApproved(): bool
     {
-        return $this->isApproved;
+        return $this->isapproved;
     }
 
     /**
-     * Set the value of isApproved
+     * Set the value of isapproved
      *
      * @return  void
      */
-    public function setIsApproved(bool $isApproved): void
+    public function setIsApproved(bool $isapproved): void
     {
-        $this->isApproved = $isApproved;
+        $this->isapproved = $isapproved;
     }
 
     /**
-     * Get the value of updatedAt
+     * Get the value of updated
      */
     public function getUpdatedAt(): string
     {
-        return $this->updatedAt;
+        return $this->updated;
     }
 }

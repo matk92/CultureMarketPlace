@@ -6,15 +6,9 @@ use App\Core\DB;
 
 class PaymentMethodType extends DB
 {
-    private int $id;
-    private string $name;
-    private string $description;
-
-    // Permets a la class DB de recuperer les attributs
-    protected function getAttributes(): array
-    {
-        return get_object_vars($this);
-    }
+    protected int $id;
+    protected string $name;
+    protected string $description;
 
     /**
      * Get the value of id

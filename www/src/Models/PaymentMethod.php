@@ -6,26 +6,20 @@ use App\Core\DB;
 
 class PaymentMethod extends DB
 {
-    private int $id;
-    private int $userId;
-    private int $paymentMethodTypeId;
-    private string $cardNumber;
-    private string $expirationDate;
-    private string $securityCode;
-    private string $cardHolderName;
-    private string $cardHolderAddress;
-    private string $cardHolderZipCode;
-    private string $cardHolderCity;
-    private string $cardHolderCountry;
-    private string $cardHolderPhone;
-    private string $cardHolderEmail;
-    private string $updatedAt;
-
-    // Permets a la class DB de recuperer les attributs
-    protected function getAttributes(): array
-    {
-        return get_object_vars($this);
-    }
+    protected int $id;
+    protected int $userid;
+    protected int $paymentmethodtypeid;
+    protected string $cardnumber;
+    protected string $expirationdate;
+    protected string $securitycode;
+    protected string $cardholdername;
+    protected string $cardholderaddress;
+    protected string $cardholderzipcode;
+    protected string $cardholdercity;
+    protected string $cardHolderCountry;
+    protected string $cardHolderPhone;
+    protected string $cardHolderEmail;
+    protected string $updated;
 
     /**
      * Get the value of id
@@ -48,165 +42,165 @@ class PaymentMethod extends DB
     }
 
     /**
-     * Get the value of userId
+     * Get the value of userid
      */
     public function getUserId(): int
     {
-        return $this->userId;
+        return $this->userid;
     }
 
     /**
-     * Set the value of userId
+     * Set the value of userid
      *
      * @return  void
      */
-    public function setUserId(int $userId): void
+    public function setUserId(int $userid): void
     {
-        $this->userId = $userId;
+        $this->userid = $userid;
     }
 
     /**
-     * Get the value of paymentMethodTypeId
+     * Get the value of paymentmethodtypeid
      */
     public function getPaymentMethodTypeId(): int
     {
-        return $this->paymentMethodTypeId;
+        return $this->paymentmethodtypeid;
     }
 
     /**
-     * Set the value of paymentMethodTypeId
+     * Set the value of paymentmethodtypeid
      *
      * @return  void
      */
-    public function setPaymentMethodTypeId(int $paymentMethodTypeId): void
+    public function setPaymentMethodTypeId(int $paymentmethodtypeid): void
     {
-        $this->paymentMethodTypeId = $paymentMethodTypeId;
+        $this->paymentmethodtypeid = $paymentmethodtypeid;
     }
 
     /**
-     * Get the value of cardNumber
+     * Get the value of cardnumber
      */
     public function getCardNumber(): string
     {
-        return $this->cardNumber;
+        return $this->cardnumber;
     }
 
     /**
-     * Set the value of cardNumber
+     * Set the value of cardnumber
      *
      * @return  void
      */
-    public function setCardNumber(string $cardNumber): void
+    public function setCardNumber(string $cardnumber): void
     {
-        $this->cardNumber = $cardNumber;
+        $this->cardnumber = $cardnumber;
     }
 
     /**
-     * Get the value of expirationDate
+     * Get the value of expirationdate
      */
     public function getExpirationDate(): string
     {
-        return $this->expirationDate;
+        return $this->expirationdate;
     }
 
     /**
-     * Set the value of expirationDate
+     * Set the value of expirationdate
      *
      * @return  void
      */
-    public function setExpirationDate(string $expirationDate): void
+    public function setExpirationDate(string $expirationdate): void
     {
-        $this->expirationDate = $expirationDate;
+        $this->expirationdate = $expirationdate;
     }
 
     /**
-     * Get the value of securityCode
+     * Get the value of securitycode
      */
     public function getSecurityCode(): string
     {
-        return $this->securityCode;
+        return $this->securitycode;
     }
 
     /**
-     * Set the value of securityCode
+     * Set the value of securitycode
      *
      * @return  void
      */
-    public function setSecurityCode(string $securityCode): void
+    public function setSecurityCode(string $securitycode): void
     {
-        $this->securityCode = $securityCode;
+        $this->securitycode = $securitycode;
     }
 
     /**
-     * Get the value of cardHolderName
+     * Get the value of cardholdername
      */
     public function getCardHolderName(): string
     {
-        return $this->cardHolderName;
+        return $this->cardholdername;
     }
 
     /**
-     * Set the value of cardHolderName
+     * Set the value of cardholdername
      *
      * @return  void
      */
-    public function setCardHolderName(string $cardHolderName): void
+    public function setCardHolderName(string $cardholdername): void
     {
-        $this->cardHolderName = $cardHolderName;
+        $this->cardholdername = $cardholdername;
     }
 
     /**
-     * Get the value of cardHolderAddress
+     * Get the value of cardholderaddress
      */
     public function getCardHolderAddress(): string
     {
-        return $this->cardHolderAddress;
+        return $this->cardholderaddress;
     }
 
     /**
-     * Set the value of cardHolderAddress
+     * Set the value of cardholderaddress
      *
      * @return  void
      */
-    public function setCardHolderAddress(string $cardHolderAddress): void
+    public function setCardHolderAddress(string $cardholderaddress): void
     {
-        $this->cardHolderAddress = $cardHolderAddress;
+        $this->cardholderaddress = $cardholderaddress;
     }
 
     /**
-     * Get the value of cardHolderZipCode
+     * Get the value of cardholderzipcode
      */
     public function getCardHolderZipCode(): string
     {
-        return $this->cardHolderZipCode;
+        return $this->cardholderzipcode;
     }
 
     /**
-     * Set the value of cardHolderZipCode
+     * Set the value of cardholderzipcode
      *
      * @return  void
      */
-    public function setCardHolderZipCode(string $cardHolderZipCode): void
+    public function setCardHolderZipCode(string $cardholderzipcode): void
     {
-        $this->cardHolderZipCode = $cardHolderZipCode;
+        $this->cardholderzipcode = $cardholderzipcode;
     }
 
     /**
-     * Get the value of cardHolderCity
+     * Get the value of cardholdercity
      */
     public function getCardHolderCity(): string
     {
-        return $this->cardHolderCity;
+        return $this->cardholdercity;
     }
 
     /**
-     * Set the value of cardHolderCity
+     * Set the value of cardholdercity
      *
      * @return  void
      */
-    public function setCardHolderCity(string $cardHolderCity): void
+    public function setCardHolderCity(string $cardholdercity): void
     {
-        $this->cardHolderCity = $cardHolderCity;
+        $this->cardholdercity = $cardholdercity;
     }
 
     /**
@@ -264,10 +258,10 @@ class PaymentMethod extends DB
     }
 
     /**
-     * Get the value of updatedAt
+     * Get the value of updated
      */
     public function getUpdatedAt(): string
     {
-        return $this->updatedAt;
+        return $this->updated;
     }
 }
