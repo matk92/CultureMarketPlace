@@ -42,6 +42,9 @@ class DB
         if ($isUpdate) {
             $sql = "UPDATE $this->tableName SET ";
             foreach ($attributes as $key => $value) {
+                if (is_bool($value)) {
+                    $value = $value ? 't' : 'f';
+                }
                 $sql .= "$key = :$key, ";
                 $execute[":$key"] = $value;
             }
@@ -60,6 +63,9 @@ class DB
             $sql .= ") VALUES (";
 
             foreach ($attributes as $key => $value) {
+                if (is_bool($value)) {
+                    $value = $value ? 't' : 'f';
+                }
                 $sql .= ":$key, ";
                 $execute[":$key"] = $value;
             }
@@ -98,7 +104,6 @@ class DB
         $stmt->bindValue(":id", $data['id']);
         $stmt->execute();
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-
         $object = new static();
 
         // On parcours le tableau de resultat

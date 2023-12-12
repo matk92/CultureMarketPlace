@@ -15,12 +15,14 @@ class MainController
         // $myUser->setLastName("   SKrZypczYK    ");
         // $myUser->setEmail("Y.skrzypczyk@gmail.com");
         // $myUser->setPwd("Test1234");
+        // $myUser->setStatus(1);
+        // $myUser->setIsDeleted(false);
         // $myUser->save();
 
-        // $myUser = User::populate(1);
-        // // print_r($myUser);
-        // $myUser->setFirstName("update");
-        // $myUser->save();
+        $myUser = User::populate(1);
+        // var_dump($myUser);
+        $myUser->setFirstName("update 5");
+        $myUser->save();
 
         new View("Main/home", "front");
     }

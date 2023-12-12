@@ -12,6 +12,7 @@ class User extends DB
     protected string $email;
     protected string $pwd;
     protected int $status;
+    protected bool $isdeleted;
     protected string $role;
 
     /**
@@ -115,6 +116,22 @@ class User extends DB
     public function setStatus(int $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDeleted(): bool
+    {
+        return $this->isdeleted;
+    }
+
+    /**
+     * @param bool $isdeleted
+     */
+    public function setIsdeleted(bool $isdeleted): void
+    {   
+        $this->isdeleted = $isdeleted;
     }
 
     /**
