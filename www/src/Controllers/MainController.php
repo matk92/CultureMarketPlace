@@ -19,10 +19,10 @@ class MainController
         // $myUser->setIsDeleted(false);
         // $myUser->save();
 
-        $myUser = User::populate(1);
+        // $myUser = User::populate(1);
         // var_dump($myUser);
-        $myUser->setFirstName("update 5");
-        $myUser->save();
+        // $myUser->setFirstName("update 5");
+        // $myUser->save();
 
         new View("Main/home", "front");
     }
