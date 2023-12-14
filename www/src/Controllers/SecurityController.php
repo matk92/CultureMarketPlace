@@ -26,16 +26,18 @@ class SecurityController
 
     public function register(): int|bool
     {
+        $form = new Register();
+        $formConfig = $form->getConfig();
+
+        $view = new View("Security/register", "frontSecurity");
+        $view->assign("form", $formConfig);
+
         if ($_SERVER["REQUEST_METHOD"] === "GET") {
             // if its method GET
-            $form = new Register();
-            $formConfig = $form->getConfig();
-
-            $view = new View("Security/register", "frontSecurity");
-            $view->assign("form", $formConfig);
             return http_response_code(200);
         } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $exist = (new User())->getOneBy(["email" => $_POST["email"]], "object");
+            $exist = (new User())->getOneBy(["email" => $_POST["email"]]);
+
             if ($exist) {
                 return http_response_code(409);
             }
@@ -47,11 +49,8 @@ class SecurityController
             $myUser->setEmail($_POST["email"]);
             $myUser->setPwd($_POST["pwd"]);
             $myUser->save();
-            
+
             return http_response_code(201);
-        } else {
-            // if its method other
-            return http_response_code(405);
         }
     }
 }

@@ -95,26 +95,21 @@ class DB
 
     public function getOneBy(array $data, $return = "array"): object|array|int
     {
-        $sql = "SELECT * FROM $this->tableName WHERE id = :id";
+        $sql = "SELECT * FROM $this->tableName WHERE ";
+        $execute = [];
+        
+        foreach ($data as $key => $value) {
+            $sql .= $key . "=:" . $key . " AND ";
+            $execute[":" . $key] = $value;
+        }
+        $sql = substr($sql, 0, -5);
 
         $stmt = $this->connection->prepare($sql);
+        $stmt->execute($execute);
+
         if ($return == "object")
             $stmt->setFetchMode(\PDO::FETCH_CLASS, get_called_class());
 
-        $stmt->bindValue(":id", $data['id']);
-        $stmt->execute();
-        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
-        $object = new static();
-
-        // On parcours le tableau de resultat
-        foreach ($result as $key => $value) {
-            try {
-                // On essaye de setter la valeur dans l'objet
-                $function = 'set' . ucfirst($key);
-                $object->$function($value);
-            } catch (\Throwable $th) {
-            }
-        }
-        return $object;
+        return $stmt->fetch();
     }
 }
