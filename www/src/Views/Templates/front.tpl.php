@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Front</title>
-    <link rel="stylesheet" href="assets/scss/styleMain.scss">
+    <link rel="stylesheet" href="assets/scss/styleHome.scss">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
 </head>
 <body>

@@ -1,0 +1,381 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=auto");
+.bodyAdmin {
+  background-color: #F1F1F1;
+}
+
+.nav_admin {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #F7F7F7;
+  padding: 20px;
+}
+.nav_admin ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav_admin li {
+  margin-bottom: 10px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+}
+.nav_admin a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+.nav_admin a.active, .nav_admin a:hover {
+  border: 2px solid black;
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.mainAdmin {
+  margin-left: 300px;
+}
+
+button {
+  transition: background-color 0.1s ease;
+}
+button:hover {
+  transform: translateY(-2px);
+  transition: transform 0.1s ease-in-out;
+}
+
+/* CSS Tableau de bord */
+.adminMenu-msg {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+}
+
+.chart-container {
+  width: 600px;
+  height: 1200px;
+}
+
+.navAdmin {
+  margin-left: 270px;
+}
+.navAdmin li {
+  display: inline-block;
+  right: 0;
+}
+.navAdmin ul {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 40px;
+}
+.navAdmin a {
+  color: #CD403D;
+  padding: 10px 5px;
+  text-decoration: none;
+  font-size: 1.3rem;
+  display: block;
+  font-family: "Poppins", sans-serif;
+}
+.navAdmin a:hover {
+  color: black;
+}
+
+#sectionTopAdmin {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* CSS Pages et Produits */
+.searchBarAdmin {
+  border-color: #2A4D73;
+  border-radius: 42px;
+  border-width: 1px;
+  width: 180px;
+  padding-left: 30px;
+}
+
+/* CSS Pages */
+.allPages {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.viewPage {
+  background-color: white;
+  border-radius: 8px;
+  width: 300px;
+  padding-bottom: 30px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+.viewPage:hover {
+  transform: translateY(-8px);
+  transition: transform 0.3s ease-in-out;
+}
+.viewPage h3 {
+  text-align: center;
+}
+.viewPage hr {
+  color: #E3E3E3;
+  width: 80%;
+}
+
+.iconPage {
+  font-size: 150px;
+  color: #045a7c;
+  margin-left: 30%;
+}
+
+/* BTN Pages et Produits */
+/* CSS Produits */
+.allProductsAdmin {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.viewProductAdmin {
+  background-color: white;
+  border-radius: 12px;
+  width: 350px;
+  padding-bottom: 30px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+.viewProductAdmin:hover {
+  transform: translateY(-8px);
+  transition: transform 0.3s ease-in-out;
+}
+.viewProductAdmin h3 {
+  text-align: center;
+  font-size: 1.25rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+}
+.viewProductAdmin hr {
+  color: #E3E3E3;
+  width: 80%;
+}
+.viewProductAdmin img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px 12px 0px 0px;
+}
+.viewProductAdmin p {
+  margin: 10px;
+  color: #2F567E;
+}
+
+.priceAdmin {
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+/* CSS Profile */
+.profileContentAdmin {
+  display: flex;
+}
+
+.imageProfileAdmin {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+}
+
+.profileFormAdmin {
+  display: flex;
+  margin-top: 20px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.columnAdmin {
+  margin-right: 40px;
+}
+
+.profileFormAdmin input {
+  border-color: #2F567E;
+  border-width: 1px;
+  width: 335px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: white;
+  color: #1E3050;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.profileTitleAdmin {
+  font-size: 2rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+}
+
+/*
+.button {
+	--text-color: var(--white);
+	--text-hover-color: var(--white);
+	display: inline-block;
+	font-family: var(--main-font);
+	color: var(--text-color);
+	text-decoration: none;
+	font-weight: 600;
+	font-size: rem(16);
+	line-height: rem(18);
+	padding: rem(10) rem(16);
+	border-radius: var(--main-radius);
+	border: none;
+	background-color: var(--button-bg-color);
+	cursor: pointer;
+	transition: all var(--transition-duration);
+	&:hover {
+		background-color: var(--button-bg-hover-color);
+		color: var(--text-hover-color);
+	}
+
+	// Modificateurs de couleur
+	&-primary {
+		--button-bg-color: var(--blue);
+		--button-bg-hover-color: var(--blue-darker);
+	}
+	&-secondary {
+		--button-bg-color: var(--grey);
+		--button-bg-hover-color: var(--grey-darker);
+	}
+	&-danger {
+		--button-bg-color: var(--red);
+		--button-bg-hover-color: var(--red-darker);
+	}
+
+	&-outline {
+		--button-bg-color: transparent;
+		--button-bg-hover-color: var(--text-color);
+		--text-hover-color: var(--white);
+		border: solid thin currentColor;
+	}
+
+	// Modificateurs de taille
+	&-lg {
+		padding: rem(16) rem(24);
+	}
+	&-sm {
+		padding: rem(8) rem(12);
+	}
+}
+*/
+/* --- START ADMIN BUTTONS --- */
+.btnAddAdmin {
+  border: none;
+  background-color: #2F567E;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  width: 180px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.btnPageAdmin {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btnViewAdmin {
+  border-color: #2F567E;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: white;
+  color: #2F567E;
+}
+
+.btnEditAdmin {
+  border: none;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: #2F567E;
+  color: white;
+}
+
+.btnDeleteAdmin {
+  border: none;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: #CD403D;
+  color: white;
+}
+
+.btnViewAdmin, .btnEditAdmin, .btnDeleteAdmin {
+  font-size: 0.85rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  width: 90px;
+  height: 40px;
+}
+
+.btnEditAdmin:hover, .btnAddAdmin:hover {
+  background-color: #4d6ae0;
+}
+
+.btnViewAdmin:hover {
+  background-color: #E3E3E3;
+}
+
+.btnDeleteAdmin:hover {
+  background-color: #e04d4d;
+}
+
+.btnProductAdmin {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.btnSaveChangeAdmin, .btnCancelChangeAdmin {
+  width: 200px;
+  height: 40px;
+}
+
+.btnSaveChangeAdmin {
+  border: none;
+  border-radius: 4px;
+  border-width: 1px;
+  background-color: #1E3050;
+  color: white;
+}
+
+.btnCancelChangeAdmin {
+  border-color: #1E3050;
+  border-radius: 4px;
+  border-width: 1px;
+  color: #1E3050;
+}
+
+.btnSaveChangeAdmin:hover {
+  background-color: #5773a1;
+}
+
+.btnCancelChangeAdmin:hover {
+  background-color: #d7e6ff;
+}
+
+/* --- END ADMIN BUTTONS --- */
+
+/*# sourceMappingURL=main.css.map */

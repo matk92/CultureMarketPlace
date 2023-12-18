@@ -1,3 +1,4 @@
+/*
 .button {
 	--text-color: var(--white);
 	--text-hover-color: var(--white);
@@ -48,3 +49,104 @@
 		padding: rem(8) rem(12);
 	}
 }
+*/
+
+/* --- START ADMIN BUTTONS --- */
+
+.btnAddAdmin {
+	border: none;
+	background-color: #2F567E;
+	color: white;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	font-size: 1rem;
+	width: 180px;
+	height: 40px;
+	border-radius: 4px;
+}
+
+.btnPageAdmin {
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-evenly;
+}
+  
+.btnViewAdmin {
+	border-color: #2F567E;
+	border-radius: 4px;
+	border-width: 1px;
+	background-color: white;
+	color: #2F567E;
+}
+  
+.btnEditAdmin {
+	border: none;
+	border-radius: 4px;
+	border-width: 1px;
+	background-color: #2F567E;
+	color: white;
+}
+  
+.btnDeleteAdmin {
+	border: none;
+	border-radius: 4px;
+	border-width: 1px;
+	background-color: #CD403D;
+	color: white;
+}
+  
+.btnViewAdmin, .btnEditAdmin, .btnDeleteAdmin {
+	font-size: 0.85rem;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	width: 90px;
+	height: 40px;
+}
+  
+.btnEditAdmin:hover, .btnAddAdmin:hover {
+	background-color: #4d6ae0;
+}
+  
+.btnViewAdmin:hover {
+	background-color: #E3E3E3;
+}
+  
+.btnDeleteAdmin:hover {
+	background-color: #e04d4d;
+}
+
+.btnProductAdmin {
+	margin-top: 20px;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.btnSaveChangeAdmin, .btnCancelChangeAdmin {
+	width: 200px;
+	height: 40px;
+}
+  
+.btnSaveChangeAdmin {
+	border: none;
+	border-radius: 4px;
+	border-width: 1px;
+	background-color: #1E3050;
+	color: white;
+}
+  
+.btnCancelChangeAdmin {
+	border-color: #1E3050;
+	border-radius: 4px;
+	border-width: 1px;
+	color: #1E3050;
+}
+  
+.btnSaveChangeAdmin:hover {
+	background-color: #5773a1;
+}
+  
+.btnCancelChangeAdmin:hover {
+	background-color: #d7e6ff;
+}
+
+/* --- END ADMIN BUTTONS --- */

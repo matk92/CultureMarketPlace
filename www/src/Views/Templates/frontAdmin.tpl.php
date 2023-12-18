@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin - Cultural Marketplace</title>
-    <link rel="stylesheet" href="/assets/scss/styleAdmin.scss">
+    <link rel="stylesheet" href="/assets/scss/main.css">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="bodyAdmin">
 
 <header>
-        <nav>
+        <nav class="nav_admin">
             <ul>
                 <div class="adminMenu-msg"><a href="/">Cultural MarketPlace</a></div>
 				<li><a href="dashboard"><i class="fa-solid fa-store"></i> Tableau de bord</a></li>
@@ -32,7 +32,7 @@
 
 
     </header>
-    <main>
+    <main class="mainAdmin">
         <?php include $this->view; ?>
     </main>
 

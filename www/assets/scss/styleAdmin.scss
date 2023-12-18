@@ -1,12 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=auto');
-
-/* CSS global */
-
-body {
+.bodyAdmin {
   background-color: #F1F1F1;
 }
 
-nav {
+.nav_admin {
   position: fixed;
   left: 0;
   top: 0;
@@ -41,7 +37,7 @@ nav {
   }
 }
 
-main {
+.mainAdmin {
   margin-left: 300px;
 }
 
@@ -99,14 +95,14 @@ button {
   }
 }
 
-#sectionTop {
+#sectionTopAdmin {
   display: flex;
   justify-content: space-between;
 }
 
 /* CSS Pages et Produits */
 
-.searchBar {
+.searchBarAdmin {
   border-color: #2A4D73;
   border-radius: 42px;
   border-width: 1px;
@@ -114,17 +110,7 @@ button {
   padding-left: 30px;
 }
 
-.btnAdd {
-  border: none;
-  background-color: #2F567E;
-  color: white;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  width: 180px;
-  height: 40px;
-  border-radius: 4px;
-}
+
 
 /* CSS Pages */
 
@@ -161,71 +147,23 @@ button {
 
 .iconPage {
   font-size: 150px;
-  color: #2F567E;
+  color: #045a7c;
   margin-left: 30%;
 }
 
 /* BTN Pages et Produits */
 
-.btnPage {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-evenly;
-}
 
-.btnView {
-  border-color: #2F567E;
-  border-radius: 4px;
-  border-width: 1px;
-  background-color: white;
-  color: #2F567E;
-}
-
-.btnEdit {
-  border: none;
-  border-radius: 4px;
-  border-width: 1px;
-  background-color: #2F567E;
-  color: white;
-}
-
-.btnDelete {
-  border: none;
-  border-radius: 4px;
-  border-width: 1px;
-  background-color: #CD403D;
-  color: white;
-}
-
-.btnView, .btnEdit, .btnDelete {
-  font-size: 0.85rem;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 400;
-  width: 90px;
-  height: 40px;
-}
-
-.btnEdit:hover, .btnAdd:hover {
-  background-color: #4d6ae0;
-}
-
-.btnView:hover {
-  background-color: #E3E3E3;
-}
-
-.btnDelete:hover {
-  background-color: #e04d4d;
-}
 
 /* CSS Produits */
 
-.allProducts {
+.allProductsAdmin {
   margin-top: 40px;
   display: flex;
   justify-content: space-evenly;
 }
 
-.viewProduct {
+.viewProductAdmin {
   background-color: white;
   border-radius: 12px;
   width: 350px;
@@ -265,13 +203,9 @@ button {
   }
 }
 
-.btnProduct {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-evenly;
-}
 
-.price {
+
+.priceAdmin {
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
   text-align: center;
@@ -280,18 +214,18 @@ button {
 
 /* CSS Profile */
 
-.profile-content {
+.profileContentAdmin {
   display: flex;
 }
 
-.imageProfile {
+.imageProfileAdmin {
   border-radius: 50%;
   width: 200px;
   height: 200px;
   margin-right: 20px;
 }
 
-.profile-form {
+.profileFormAdmin {
   display: flex;
   margin-top: 20px;
   font-family: 'Raleway', sans-serif;
@@ -299,11 +233,11 @@ button {
   margin-bottom: 20px;
 }
 
-.column {
+.columnAdmin {
   margin-right: 40px;
 }
 
-.profile-form input {
+.profileFormAdmin input {
   border-color: #2F567E;
   border-width: 1px;
   width: 335px;
@@ -315,36 +249,9 @@ button {
   margin-bottom: 20px;
 }
 
-.profile-msg {
+.profileTitleAdmin {
   font-size: 2rem;
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
 }
 
-.btnChange, .btnCancel {
-  width: 200px;
-  height: 40px;
-}
-
-.btnChange {
-  border: none;
-  border-radius: 4px;
-  border-width: 1px;
-  background-color: #1E3050;
-  color: white;
-}
-
-.btnCancel {
-  border-color: #1E3050;
-  border-radius: 4px;
-  border-width: 1px;
-  color: #1E3050;
-}
-
-.btnChange:hover {
-  background-color: #5773a1;
-}
-
-.btnCancel:hover {
-  background-color: #d7e6ff;
-}
