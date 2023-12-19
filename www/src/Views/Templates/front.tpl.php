@@ -17,7 +17,7 @@
 						<li><a href="/">Accueil</a></li>
 						<li><a href="products">Produits</a></li>
 						<li><a href="#">|</a></li>
-						<li><a href="cart"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
+						<li><a href="orders"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
 					</div>	
                 </ul>
             </nav>

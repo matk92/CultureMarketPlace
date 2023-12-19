@@ -1,67 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Connexion</title>
-    <link rel="stylesheet" href="assets/scss/styleLogin.scss">
-</head>
-
-
-<body>
-    <div id="h1">
-        <h1>Bienvenue chez<br><em>Cultural MarketPlace</em> </h1>
-        <div  id="section_connectez_vous">
-            <form>
-                <div id="LeTableau">
-                        <h2>Connectez-vous à votre compte</h2>
-                    <div id="Email">    
-                        <p>Email</p>
-                        <input type="text" name="username" placeholder="Username">
+<div class="connection-content">
+    <h1 class="connection-title">Bienvenue chez<br><em>Cultural MarketPlace</em> </h1>
+    <div class="section-log">
+        <form>
+            <div class="LeTableau">
+                <h2 class="connection-second_title">Connectez-vous à votre compte</h2>
+                    <div class="connection-email">    
+                        <p class="connection-p">Email</p>
+                        <input class="connection-in" type="text" name="username" placeholder="Username">
                     </div>
-                    <div id="MotDePasse">
-                        <p>Mot de passe</p>
-                        <input type="password" name="password" placeholder="Password">
+                    <div class  ="connection-password">
+                        <p class="connection-p">Mot de passe</p>
+                        <input class="connection-in" type="password" name="password" placeholder="Password">
                     </div>
                     <br/>
-                    <button class="button" type="submit">Connexion</button>
-                </div>
-            </form>
-            <div id="information">
-                <br/>
-                <hr/>
-                    <p>Mot de passe oublié ?<a href="#" class="btnconfig"> Cliquez ici</a> | Nouveau client ?<a href="register" class="btnconfig"> C'est par ici</a></p>
+                <button class="button-connection" type="submit">Connexion</button>
             </div>
+        </form>
+        <div id="information">
+        <br/>
+        <hr/>
+        <p class="connection-p">Mot de passe oublié ?<a href="#" class="btnconfig"> Cliquez ici</a> | Nouveau client ?<a href="register" class="btnconfig"> C'est par ici</a></p>
         </div>
     </div>
-</body>
-</html>
-
-
-
-
-<!--<body>
-    <h1>Bienvenue chez<br><em>Cultural MarketPlace</em> </h1>
-    
-    <div id="section_connectez_vous">
-    <form>
-        <div id="section_align_text">
-            <h2>Connectez vous</h2>
-        <p>Email</p>
-        <input type="text" name="username" placeholder="Username">
-        <p>Mot de passe</p>
-        <input type="password" name="password" placeholder="Password">
-        <br/><br/>
-        <button class="button" type="submit">Connexion</button>
-        </div>
-
-        <br/>
-        
-        <div id="information">
-        <hr />
-        <p>Mot de passe oublié ?<a href="#" class="btnconfig">cliquez ici</a></p>
-        <vl />
-        <p>Vous n'avez pas de compte ?<a& href="register" class="btnconfig">Créér un compte</a></p>
-        </div>
-    </form>
 </div>
-</body>
-</html>

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&display=auto");
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=auto");
 .bodyAdmin {
   background-color: #F1F1F1;
 }
@@ -227,6 +228,152 @@ button:hover {
   font-weight: 800;
 }
 
+body.config-body {
+  background-color: #E63946;
+  font-family: arvo;
+  margin: 0;
+  padding: 0;
+}
+
+.mainConfig {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h1.config-title {
+  text-align: center;
+  text-transform: uppercase;
+  color: #F1FAEE;
+  font-size: 4rem;
+}
+
+.roller-config {
+  height: 4.125rem;
+  line-height: 4rem;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1D3557;
+}
+
+#spare-time-config {
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 1rem;
+  margin-top: 0;
+  color: #A8DADC;
+}
+
+.roller-config #rolltext-config {
+  position: absolute;
+  top: 0;
+  animation: slide-config 5s infinite;
+}
+
+@keyframes slide-config {
+  0% {
+    top: 0;
+  }
+  25% {
+    top: -4rem;
+  }
+  50% {
+    top: -8rem;
+  }
+  72.5% {
+    top: -12.25rem;
+  }
+}
+body.connection {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(../images/imgdrapeaux.jpg), lightgray 50%/cover no-repeat;
+}
+
+.connection-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+h1.connection-title {
+  color: #FFF;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+}
+
+.section-log {
+  text-align: center;
+  display: flex;
+  width: 754px;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 19px;
+  background: #FAFAFA;
+}
+
+.LeTableau {
+  display: flex;
+  width: 350px;
+  padding: 5px;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+h2.connection-second_title {
+  color: #000;
+  font-family: "Raleway", sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.connection-ins {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1px;
+  align-self: stretch;
+}
+
+p.connection-p {
+  color: #000;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+input.connection-in {
+  height: 40px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: #F0F0F0;
+}
+
 /*
 .button {
 	--text-color: var(--white);
@@ -377,5 +524,56 @@ button:hover {
 }
 
 /* --- END ADMIN BUTTONS --- */
+/* --- START CONFIG BUTTONS --- */
+.btnConfig {
+  position: fixed;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  padding: 15px 30px;
+  font-size: 1.2em;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  background-color: #E63946;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+.btnConfig span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.btnConfig span:after {
+  content: ">>";
+  position: absolute;
+  opacity: 0;
+  right: -25px;
+  transition: 1s;
+}
+.btnConfig:hover span {
+  padding-right: 25px;
+}
+.btnConfig:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* --- END CONFIG BUTTONS --- */
+/* --- START CONNECTION BUTTONS --- */
+.button-connection {
+  display: flex;
+  width: 270px;
+  height: 40px;
+  padding: 10px 89.5px 10px 88.5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background: var(--lisi-primary-lisi-primary, #0AF);
+  font-family: "Raleway", sans-serif;
+}
+
+/* --- END CONNECTION BUTTONS --- */
 
 /*# sourceMappingURL=main.css.map */

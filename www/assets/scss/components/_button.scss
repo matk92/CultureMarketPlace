@@ -150,3 +150,62 @@
 }
 
 /* --- END ADMIN BUTTONS --- */
+
+/* --- START CONFIG BUTTONS --- */
+
+.btnConfig {
+	position: fixed;
+	left: 50%;
+	top: 70%;
+	transform: translate(-50%, -50%);
+	padding: 15px 30px;
+	font-size: 1.2em;
+	border: 2px solid white;
+	border-radius: 10px;
+	color: white;
+	background-color: #E63946;
+	text-decoration: none;
+	transition: all 0.5s;
+  
+	span {
+	  cursor: pointer;
+	  display: inline-block;
+	  position: relative;
+	  transition: 0.5s;
+  
+	  &:after {
+		content: '>>';
+		position: absolute;
+		opacity: 0;
+		right: -25px;
+		transition: 1s;
+	  }
+	}
+  
+	&:hover span {
+	  padding-right: 25px;
+  
+	  &:after {
+		opacity: 1;
+		right: 0;
+	  }
+	}
+  }
+
+/* --- END CONFIG BUTTONS --- */
+
+/* --- START CONNECTION BUTTONS --- */
+
+.button-connection {
+	display: flex;
+	width: 270px;
+	height: 40px;
+	padding: 10px 89.5px 10px 88.5px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 4px;
+	background: var(--lisi-primary-lisi-primary, #0AF);
+	font-family: 'Raleway', sans-serif;
+  }
+
+/* --- END CONNECTION BUTTONS --- */  
