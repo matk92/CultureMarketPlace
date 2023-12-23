@@ -1,0 +1,20 @@
+$guther: rem(30);
+$col: 12;
+
+.grid {
+    @for $i from 1 through $col {
+        .col-#{$i} {
+            width: calc(100% / 12 * $i);
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 calc(var(--guther) / -2);
+    }
+
+    [class^="col-"] {
+        padding: 0 calc(var(--guther) / 2);
+    }
+}
