@@ -10,7 +10,11 @@
 	
     <header>
         <div class="bg-img-home">
-            <div class="title-home">Culutural MarketPlace</div>
+            <div class="title-home">Culutural MarketPlace</div><br>
+            <div class="subtitle-home">La boutique en ligne des produits culturels</div>
+            <div class="discover-button-home">
+                <a href="products#product">Découvrir</a>
+            </div>
             <nav class="container-home">
                 <ul>
 					<div class="nav-home">

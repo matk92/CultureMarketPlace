@@ -1,1 +1,1 @@
-<h1>nom du site du produteur</h1>
+<h1 id="product">Product</h1>

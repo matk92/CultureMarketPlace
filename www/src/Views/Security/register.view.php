@@ -19,7 +19,7 @@
         <div id="information">
         <br/>
         <hr/>
-        <p class="connection-p">Mot de passe oublié ?<a href="#" class="btnconfig">Cliquez ici</a></p>
+        <p class="connection-p">Vous avez déjà un compte ?<a href="/login" class="btnconfig">Cliquez ici</a></p>
         </div>
     </div>
 </div>
