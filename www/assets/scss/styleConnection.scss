@@ -56,15 +56,6 @@ h2.connection-second_title {
   line-height: normal;
 }
 
-.connection-ins{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 1px;
-  align-self: stretch;
-}
-
 p.connection-p {
   color: #000;
   font-family: 'Raleway', sans-serif;
@@ -76,7 +67,9 @@ p.connection-p {
 
 input.connection-in {
   height: 40px;
+  width: 250px;
   align-self: stretch;
   border-radius: 4px;
   background: #F0F0F0;
+  
 }

@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome - Cultural Marketplace</title>
-    <link rel="stylesheet" href="/assets/scss/main.css">
+    <title>CuluturalMarketPlace - Welcome</title>
+    <link rel="stylesheet" href="/assets/scss/style.css">
 </head>
 <body>
     <main>

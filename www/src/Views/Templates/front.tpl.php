@@ -2,18 +2,18 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Front</title>
-    <link rel="stylesheet" href="assets/scss/styleHome.scss">
+    <title>CuluturalMarketPlace</title>
+    <link rel="stylesheet" href="assets/scss/style.css">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="home-body">
 	
     <header>
-        <div class="bg-img">
-            <div class="home-msg">Cultural MarketPlace</div>
-            <nav class="container">
+        <div class="bg-img-home">
+            <div class="title-home">Culutural MarketPlace</div>
+            <nav class="container-home">
                 <ul>
-					<div class="nav">
+					<div class="nav-home">
 						<li><a href="/">Accueil</a></li>
 						<li><a href="products">Produits</a></li>
 						<li><a href="#">|</a></li>
@@ -28,11 +28,11 @@
         <?php include $this->view; ?>
     </main>
 
-    <footer>
+    <footer class="footer-home">
     <p>Avez-vous des préoccupations ou des questions? Soyez assuré(e) que nous sommes là pour vous aider.<br />
        N'hésitez pas à nous contacter à l'adresse adressemail@blabla.fr, nous sommes déterminés à vous fournir une assistance rapide
        et efficace. Votre satisfaction est notre priorité absolue.</p>  
-    <div class="social-media">
+    <div class="social-media-home">
         <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
         <a href="#"><i class="fa-brands fa-twitter"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
