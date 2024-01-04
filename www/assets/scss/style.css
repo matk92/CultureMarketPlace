@@ -294,79 +294,82 @@ h1.config-title {
     top: -12.25rem;
   }
 }
-body.connection {
-  text-align: center;
+body.security {
+  font-family: "Poppins", sans-serif;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(../images/imgdrapeaux.jpg), lightgray 50%/cover no-repeat;
-}
-
-.connection-content {
-  display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 60px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0%);
+  min-height: 100vh;
+  background-image: url("../images/flags.jpg");
+  background-size: cover;
+  background-position: center;
+}
+body.security * {
+  box-sizing: border-box;
 }
 
-h1.connection-title {
-  color: #FFF;
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
+.wrapper-security {
+  width: 420px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: white;
+  border-radius: 10px;
+  padding: 30px 40px;
+}
+.wrapper-security h1.title-security {
+  font-size: 2.25rem;
   text-align: center;
-  font-family: "Raleway", sans-serif;
 }
-
-.section-log {
+.wrapper-security .rememberme-security {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin: -15px 0 15px;
+}
+.wrapper-security .rememberme-security label input {
+  accent-color: white;
+  margin-right: 3px;
+}
+.wrapper-security .rememberme-security a {
+  color: white;
+  text-decoration: none;
+}
+.wrapper-security .rememberme-security a:hover {
+  text-decoration: underline;
+}
+.wrapper-security .register-link-security {
+  font-size: 0.9rem;
   text-align: center;
-  display: flex;
-  width: 754px;
-  padding: 20px;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 19px;
-  background: #FAFAFA;
+  margin: 20px 0 15px;
 }
-
-.LeTableau {
-  display: flex;
-  width: 350px;
-  padding: 5px;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
+.wrapper-security .register-link-security p a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
 }
-
-h2.connection-second_title {
-  color: #000;
-  font-family: "Raleway", sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+.wrapper-security .register-link-security p a:hover {
+  text-decoration: underline;
 }
-
-p.connection-p {
-  color: #000;
-  font-family: "Raleway", sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+.wrapper-security .input-box-security {
+  width: 100%;
+  height: 50px;
+  margin: 30px 0;
 }
-
-input.connection-in {
-  height: 40px;
-  width: 250px;
-  align-self: stretch;
-  border-radius: 4px;
-  background: #F0F0F0;
+.wrapper-security .input-box-security input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 40px;
+  color: white;
+  padding: 20px 45px 20px 20px;
+}
+.wrapper-security .input-box-security input::placeholder {
+  color: white;
 }
 
 body.error {
@@ -410,6 +413,7 @@ body.error {
 }
 body.home-body {
   margin: 0;
+  background-color: #CD403D;
 }
 
 .bg-img-home {
@@ -445,32 +449,12 @@ body.home-body {
   text-align: center;
 }
 
-.discover-button-home {
-  width: 20%;
-  border: white solid 2px;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1.5em;
-  font-family: "Raleway", sans-serif;
-  text-align: center;
-  text-decoration: none;
-  transition: 0.3s;
-  margin-top: 50px;
-  align-self: center;
-}
-.discover-button-home a {
-  color: white;
-  text-decoration: none;
-}
-.discover-button-home:hover {
-  transform: translateY(-5px);
-}
-
 .chevron-double-home {
   color: white;
   width: 20%;
   align-self: center;
   margin-top: 75px;
+  transition: 0.3s;
 }
 .chevron-double-home a {
   color: white;
@@ -509,8 +493,8 @@ body.home-body {
   display: block;
   font-family: "Poppins", sans-serif;
 }
-.nav-home a:hover {
-  color: black;
+.nav-home a.active, .nav-home a:hover {
+  text-decoration: underline #CD403D 3px;
 }
 
 footer.footer-home {
@@ -542,6 +526,7 @@ footer.footer-home p {
 }
 
 h1.homepage {
+  margin-top: 50px;
   text-align: center;
   font-family: "Raleway", sans-serif;
   font-weight: 800;
@@ -550,14 +535,78 @@ h1.homepage {
 
 .homepage-content {
   background-color: #CD403D;
-  margin: 0;
-  padding: 0;
 }
 
 .homepage-content-text {
   text-align: center;
   font-family: "Raleway", sans-serif;
   color: white;
+}
+
+.homepage-content-img {
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 80px;
+}
+.homepage-content-img .img-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.homepage-content-img .img-text img {
+  width: 250px;
+  height: 250px;
+}
+.homepage-content-img .img-text h2 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+}
+.homepage-content-img .img-text p {
+  font-size: 1.2rem;
+  font-family: "Raleway", sans-serif;
+  color: white;
+  text-align: center;
+  max-width: 250px;
+}
+
+.discover-products {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.discover-products img {
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 50px;
+  float: left;
+}
+
+.discover-products-text {
+  padding-left: 20px;
+  padding-right: 40%;
+}
+.discover-products-text h2 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: white;
+}
+.discover-products-text p {
+  font-size: 1.2rem;
+  font-family: "Raleway", sans-serif;
+  color: white;
+}
+
+.products-content {
+  background-color: aqua;
 }
 
 /*
@@ -748,18 +797,42 @@ h1.homepage {
 
 /* --- END CONFIG BUTTONS --- */
 /* --- START CONNECTION BUTTONS --- */
-.button-connection {
-  display: flex;
-  width: 270px;
-  height: 40px;
-  padding: 10px 89.5px 10px 88.5px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
-  background: var(--lisi-primary-lisi-primary, #0AF);
-  font-family: "Raleway", sans-serif;
+.btn-security {
+  width: 100%;
+  height: 45px;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 20px 0;
+  transition: all 0.3s ease;
 }
 
 /* --- END CONNECTION BUTTONS --- */
+/* --- START HOME BUTTONS --- */
+.discover-button-home {
+  width: 20%;
+  border: white solid 2px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.5em;
+  font-family: "Raleway", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-top: 50px;
+  align-self: center;
+}
+.discover-button-home a {
+  color: white;
+  text-decoration: none;
+}
+.discover-button-home:hover {
+  transform: translateY(-5px);
+}
+
+/* --- END HOME BUTTONS --- */
 
 /*# sourceMappingURL=style.css.map */

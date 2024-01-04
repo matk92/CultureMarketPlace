@@ -18,11 +18,11 @@
                         <a href="products#product">Découvrir</a>
                     </div>
                 <?php else : ?>
-                    <div class="spacer"></div> <!-- Espaceur ajouté -->
+                    <div class="spacer"></div>
                 <?php endif; ?>
                 <?php if ($_SERVER['REQUEST_URI'] == "/") : ?>
                     <div class="chevron-double-home">
-                        <a href="#title">
+                        <a href="#title-homepage">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
                             </svg>
@@ -49,6 +49,7 @@
     </main>
 
     <footer class="footer-home">
+    <hr>
     <p>Avez-vous des préoccupations ou des questions? Soyez assuré(e) que nous sommes là pour vous aider.<br />
        N'hésitez pas à nous contacter à l'adresse adressemail@blabla.fr, nous sommes déterminés à vous fournir une assistance rapide
        et efficace. Votre satisfaction est notre priorité absolue.</p>  
@@ -57,7 +58,6 @@
         <a href="#"><i class="fa-brands fa-twitter"></i></a>
         <a href="#"><i class="fa-brands fa-instagram"></i></a>
     </div>
-    <hr>
     <ul>
         <li><a href="#">© Copyright 2023 Cultural MarketPlace</a></li>
         <li><a href="#">Mentions légales</a></li>
@@ -66,6 +66,23 @@
         <li><a href="#">Conditions générales de vente</a></li>
     </ul>
 </footer>
+
+<script>
+
+const links = document.querySelectorAll('nav a');
+
+links.forEach(link => {
+  if (link.href === window.location.href) {
+    link.classList.add('active');
+  }
+});
+
+document.querySelector('.chevron-double-home a').addEventListener('click', function(event) {
+  event.preventDefault();
+  document.querySelector('#title-homepage').scrollIntoView({ behavior: 'smooth' });
+});
+
+</script>
 
 </body>
 </html>

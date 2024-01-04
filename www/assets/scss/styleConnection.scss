@@ -1,75 +1,89 @@
-body.connection {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-shrink: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url(../images/imgdrapeaux.jpg), lightgray (50% / cover) no-repeat;
-}
+body.security {
 
-.connection-content {
+  * {
+    box-sizing: border-box;
+  }
+
+  font-family: 'Poppins', sans-serif;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 60px;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0%);
+  min-height: 100vh;
+  background-image :url("../images/flags.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
-h1.connection-title {
-  color: #FFF;
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
-}
+.wrapper-security {
+  width: 420px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: white;
+  border-radius: 10px;
+  padding: 30px 40px;
 
-.section-log {
-  text-align: center;
-  display: flex;
-  width: 754px;
-  padding: 20px;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 19px;
-  background: #FAFAFA;
-}
+  h1.title-security {
+    font-size: 2.25rem;
+    text-align: center;
+  }
 
-.LeTableau {
-  display: flex;
-  width: 350px;
-  padding: 5px;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-}
+  .rememberme-security {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    margin: -15px 0 15px;
 
-h2.connection-second_title {
-  color: #000;
-  font-family: 'Raleway', sans-serif;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
+    label input {
+      accent-color: white;
+      margin-right: 3px;
+    }
 
-p.connection-p {
-  color: #000;
-  font-family: 'Raleway', sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
+    a {
+      color: white;
+      text-decoration: none;
+    }
 
-input.connection-in {
-  height: 40px;
-  width: 250px;
-  align-self: stretch;
-  border-radius: 4px;
-  background: #F0F0F0;
-  
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  .register-link-security {
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 20px 0 15px;
+
+    p a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    p a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .input-box-security {
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+
+    input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 40px;
+      color: white;
+      padding: 20px 45px 20px 20px;
+    }
+    
+    input::placeholder {
+      color: white;
+    }
+  }
 }

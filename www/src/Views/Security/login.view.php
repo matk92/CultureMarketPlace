@@ -1,25 +1,19 @@
-<div class="connection-content">
-    <h1 class="connection-title">Bienvenue chez<br><em>Cultural MarketPlace</em> </h1>
-    <div class="section-log">
-        <form>
-            <div class="LeTableau">
-                <h2 class="connection-second_title">Connectez-vous à votre compte</h2>
-                    <div class="connection-email">    
-                        <p class="connection-p">Email</p>
-                        <input class="connection-in" type="text" name="username" placeholder="Username">
-                    </div>
-                    <div class  ="connection-password">
-                        <p class="connection-p">Mot de passe</p>
-                        <input class="connection-in" type="password" name="password" placeholder="Password">
-                    </div>
-                    <br/>
-                <button class="button-connection" type="submit">Connexion</button>
-            </div>
-        </form>
-        <div id="information">
-        <br/>
-        <hr/>
-        <p class="connection-p">Mot de passe oublié ?<a href="#" class="btnconfig"> Cliquez ici</a> | Nouveau client ?<a href="register" class="btnconfig"> C'est par ici</a></p>
+<div class="wrapper-security">
+    <form action="">
+        <h1 class="title-security">Connexion</h1>
+        <div class="input-box-security">
+            <input type="text" placeholder="Email" required>
         </div>
-    </div>
+        <div class="input-box-security">
+            <input type="password" placeholder="Password" required>
+        </div>
+        <div class="rememberme-security">
+            <label><input type="checkbox">Rester connecté</label>
+            <a href="#">Mot de passe oublié ?</a>
+        </div>
+        <button type="submit" class="btn-security">Connexion</button>
+        <div class="register-link-security">
+            <p>Nouveau client ? <a href="/register">S'inscrire ici</a></p>
+        </div>
+    </form>
 </div>

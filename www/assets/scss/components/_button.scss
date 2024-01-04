@@ -196,16 +196,44 @@
 
 /* --- START CONNECTION BUTTONS --- */
 
-.button-connection {
-	display: flex;
-	width: 270px;
-	height: 40px;
-	padding: 10px 89.5px 10px 88.5px;
-	justify-content: center;
-	align-items: center;
-	border-radius: 4px;
-	background: var(--lisi-primary-lisi-primary, #0AF);
-	font-family: 'Raleway', sans-serif;
+.btn-security {
+    width: 100%;
+    height: 45px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 20px 0;
+    transition: all 0.3s ease;
   }
 
 /* --- END CONNECTION BUTTONS --- */  
+
+/* --- START HOME BUTTONS --- */
+
+.discover-button-home {
+	width: 20%;
+	border: white solid 2px;
+	border-radius: 5px;
+	padding: 10px 20px;
+	font-size: 1.5em;
+	font-family: 'Raleway', sans-serif;
+	text-align: center;
+	text-decoration: none;
+	transition: 0.3s;
+	margin-top: 50px;
+	align-self: center;
+  
+	a {
+	  color: white;
+	  text-decoration: none;
+	}
+  
+	&:hover {
+	  transform: translateY(-5px);
+	}
+  }
+
+/* --- END HOME BUTTONS --- */

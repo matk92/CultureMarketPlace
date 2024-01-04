@@ -1,5 +1,6 @@
 body.home-body {
   margin: 0;
+  background-color: #CD403D;
 }
 
 .bg-img-home {
@@ -35,34 +36,12 @@ body.home-body {
   text-align: center;
 }
 
-.discover-button-home {
-  width: 20%;
-  border: white solid 2px;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1.5em;
-  font-family: 'Raleway', sans-serif;
-  text-align: center;
-  text-decoration: none;
-  transition: 0.3s;
-  margin-top: 50px;
-  align-self: center;
-
-  a {
-    color: white;
-    text-decoration: none;
-  }
-
-  &:hover {
-    transform: translateY(-5px);
-  }
-}
-
 .chevron-double-home {
   color: white;
   width: 20%;
   align-self: center;
   margin-top: 75px;
+  transition: 0.3s;
 
   a {
     color: white;
@@ -104,8 +83,8 @@ body.home-body {
     display: block;
     font-family: 'Poppins', sans-serif;
 
-    &:hover {
-      color: black;
+    &.active, &:hover {
+      text-decoration: underline #CD403D 3px; 
     }
   }
 }
