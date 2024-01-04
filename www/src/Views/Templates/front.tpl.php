@@ -10,11 +10,28 @@
 	
     <header>
         <div class="bg-img-home">
-            <div class="title-home">Culutural MarketPlace</div><br>
-            <div class="subtitle-home">La boutique en ligne des produits culturels</div>
-            <div class="discover-button-home">
-                <a href="products#product">Découvrir</a>
-            </div>
+            <div class="content-header-home">
+                <div class="title-home">Culutural MarketPlace</div><br>
+                <div class="subtitle-home">La boutique en ligne des produits culturels</div>
+                <?php if ($_SERVER['REQUEST_URI'] == "/") : ?>
+                    <div class="discover-button-home">
+                        <a href="products#product">Découvrir</a>
+                    </div>
+                <?php else : ?>
+                    <div class="spacer"></div> <!-- Espaceur ajouté -->
+                <?php endif; ?>
+                <?php if ($_SERVER['REQUEST_URI'] == "/") : ?>
+                    <div class="chevron-double-home">
+                        <a href="#title">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                            </svg>
+                        </a>
+                    </div>
+                <?php else : ?>
+                    <div class="spacer-home"></div>
+                <?php endif; ?>
+            </div>>
             <nav class="container-home">
                 <ul>
 					<div class="nav-home">
@@ -25,7 +42,6 @@
 					</div>	
                 </ul>
             </nav>
-        </div>
     </header>
 
     <main>

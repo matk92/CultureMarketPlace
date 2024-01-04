@@ -415,15 +415,73 @@ body.home-body {
 .bg-img-home {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   background-image: url("../images/background_img1.png");
-  min-height: 60rem;
+  min-height: 45rem;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0;
   padding: 0;
   position: relative;
+}
+
+.content-header-home {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-home {
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+}
+
+.subtitle-home {
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.discover-button-home {
+  width: 20%;
+  border: white solid 2px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1.5em;
+  font-family: "Raleway", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-top: 50px;
+  align-self: center;
+}
+.discover-button-home a {
+  color: white;
+  text-decoration: none;
+}
+.discover-button-home:hover {
+  transform: translateY(-5px);
+}
+
+.chevron-double-home {
+  color: white;
+  width: 20%;
+  align-self: center;
+  margin-top: 75px;
+}
+.chevron-double-home a {
+  color: white;
+  text-decoration: none;
+}
+.chevron-double-home:hover {
+  transform: translateY(-5px);
+}
+
+.spacer-home {
+  margin-top: 320px;
 }
 
 .container-home {
@@ -455,24 +513,6 @@ body.home-body {
   color: black;
 }
 
-.title-home {
-  position: absolute;
-  color: white;
-  font-family: "Raleway", sans-serif;
-  font-weight: 800;
-  font-size: 4rem;
-  text-align: center;
-}
-
-.subtitle-home {
-  position: absolute;
-  color: white;
-  font-family: "Raleway", sans-serif;
-  font-size: 1.5rem;
-  text-align: center;
-  margin-top: 120px;
-}
-
 footer.footer-home {
   background-color: #CD403D;
   padding: 20px;
@@ -499,26 +539,6 @@ footer.footer-home p {
 }
 .social-media-home a {
   margin: 10px;
-}
-
-.discover-button-home {
-  position: absolute;
-  margin-top: 250px;
-  border: white solid 2px;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 1.5em;
-  font-family: "Raleway", sans-serif;
-  text-align: center;
-  text-decoration: none;
-  transition: 0.3s;
-}
-.discover-button-home a {
-  color: white;
-  text-decoration: none;
-}
-.discover-button-home:hover {
-  transform: translateY(-5px);
 }
 
 h1.homepage {
