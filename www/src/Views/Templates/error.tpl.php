@@ -2,14 +2,14 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ERROR 404</title>
-    <link rel="stylesheet" href="../assets/css/styleError.css">
+    <title>CuluturalMarketPlace - Error 404</title>
+    <link rel="stylesheet" href="/assets/scss/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body class="error">
     <main>
         <section>
-	        <div class="content">
+	        <div class="content-error">
 		        <h2>404</h2>
 		        <h2>404</h2>
 	        </div>

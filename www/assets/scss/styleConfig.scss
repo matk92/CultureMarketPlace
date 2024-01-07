@@ -1,0 +1,66 @@
+body.config-body{
+  background-color: #E63946;
+  font-family: arvo;
+  margin: 0;
+  padding: 0;
+}
+
+.mainConfig {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+h1.config-title{
+  text-align: center;
+  text-transform: uppercase;
+  color: #F1FAEE;
+  font-size: 4rem;
+}
+
+.roller-config {
+  height: 4.125rem;
+  line-height: 4rem;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1D3557;
+}
+
+#spare-time-config {
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 1rem;
+  margin-top: 0;
+  color: #A8DADC;
+}
+
+.roller-config #rolltext-config {
+  position: absolute;
+  top: 0;
+  animation: slide-config 5s infinite;
+}
+
+@keyframes slide-config {
+  0% {
+    top: 0;
+  }
+
+  25% {
+    top: -4rem;
+  }
+
+  50% {
+    top: -8rem;
+  }
+
+  72.5% {
+    top: -12.25rem;
+  }
+}

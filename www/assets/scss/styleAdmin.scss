@@ -1,0 +1,257 @@
+.bodyAdmin {
+  background-color: #F1F1F1;
+}
+
+.nav_admin {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #F7F7F7;
+  padding: 20px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+  }
+
+  a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+
+    &.active, &:hover {
+      border: 2px solid black;
+      padding: 8px;
+      border-radius: 12px;
+    }
+  }
+}
+
+.mainAdmin {
+  margin-left: 300px;
+}
+
+button {
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    transition: transform 0.1s ease-in-out;
+  }
+}
+
+/* CSS Tableau de bord */
+
+.adminMenu-msg {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+}
+
+.chart-container {
+  width: 600px;
+  height: 1200px;
+}
+
+.navAdmin {
+  margin-left: 270px;
+
+  li {
+    display: inline-block;
+    right: 0;
+  }
+
+  ul {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 40px;
+  }
+
+  a {
+    color: #CD403D;
+    padding: 10px 5px;
+    text-decoration: none;
+    font-size: 1.3rem;
+    display: block;
+    font-family: 'Poppins', sans-serif;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+#sectionTopAdmin {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* CSS Pages et Produits */
+
+.searchBarAdmin {
+  border-color: #2A4D73;
+  border-radius: 42px;
+  border-width: 1px;
+  width: 180px;
+  padding-left: 30px;
+}
+
+
+
+/* CSS Pages */
+
+.allPages {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.viewPage {
+  background-color: white;
+  border-radius: 8px;
+  width: 300px;
+  padding-bottom: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-8px);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  hr {
+    color: #E3E3E3;
+    width: 80%;
+  }
+}
+
+.iconPage {
+  font-size: 150px;
+  color: #045a7c;
+  margin-left: 30%;
+}
+
+/* BTN Pages et Produits */
+
+
+
+/* CSS Produits */
+
+.allProductsAdmin {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.viewProductAdmin {
+  background-color: white;
+  border-radius: 12px;
+  width: 350px;
+  padding-bottom: 30px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: translateY(-8px);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 1.25rem;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+  }
+
+  hr {
+    color: #E3E3E3;
+    width: 80%;
+  }
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px 12px 0px 0px;
+  }
+
+  p {
+    margin: 10px;
+    color: #2F567E;
+  }
+}
+
+
+
+.priceAdmin {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  text-align: center;
+  font-size: 1.25rem;
+}
+
+/* CSS Profile */
+
+.profileContentAdmin {
+  display: flex;
+}
+
+.imageProfileAdmin {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+}
+
+.profileFormAdmin {
+  display: flex;
+  margin-top: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.columnAdmin {
+  margin-right: 40px;
+}
+
+.profileFormAdmin input {
+  border-color: #2F567E;
+  border-width: 1px;
+  width: 335px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: white;
+  color: #1E3050;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.profileTitleAdmin {
+  font-size: 2rem;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+}
+
