@@ -25,4 +25,4 @@ RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - \
 WORKDIR /var/www/html
 
 # Install dependencies
-CMD service apache2 start && yarn install && yarn build --watch
+CMD service apache2 start && yarn install && yarn build

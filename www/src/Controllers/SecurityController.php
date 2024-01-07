@@ -39,6 +39,8 @@ class SecurityController
             $exist = (new User())->getOneBy(["email" => $_POST["email"]]);
 
             if ($exist) {
+                $formConfig["config"]["errorMessage"] = "Cet email est déjà utilisé";
+                $view->assign("form", $formConfig);
                 return http_response_code(409);
             }
 

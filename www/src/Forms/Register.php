@@ -27,7 +27,6 @@ class Register
                     "id" => "form-register-name",
                     "required" => true,
                     "placeholder" => "Votre prénom",
-                    "class" => "form-input",
                 ],
                 "lastname" => [
                     "label" => "Nom",
@@ -35,7 +34,6 @@ class Register
                     "id" => "form-register-lastname",
                     "required" => true,
                     "placeholder" => "Votre nom",
-                    "class" => "form-input",
                 ],
                 "email" => [
                     "label" => "email",
@@ -43,7 +41,6 @@ class Register
                     "id" => "form-register-email",
                     "required" => true,
                     "placeholder" => "Votre email",
-                    "class" => "form-input",
                 ],
                 "pwd" => [
                     "label" => "Mot de passe",
@@ -51,7 +48,6 @@ class Register
                     "id" => "form-register-pwd",
                     "required" => true,
                     "placeholder" => "Password...",
-                    "class" => "form-input",
                 ],
                 "pwdConfirm" => [
                     "label" => "Confirmer votre mot de passe",
@@ -59,7 +55,6 @@ class Register
                     "id" => "form-register-passwordconfirm",
                     "required" => true,
                     "placeholder" => "Retapez votre mot de passe...",
-                    "class" => "form-input",
                 ]
             ]
         ];

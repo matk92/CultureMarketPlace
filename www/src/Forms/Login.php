@@ -25,7 +25,6 @@ class Login
                     "id"=>"form-login-email",
                     "required"=>true,
                     "placeholder"=>"Votre email",
-                    "class"=>"form-input",
                 ],
                 "pwd"=>[
                     "label" => "Mot de passe",
@@ -33,8 +32,15 @@ class Login
                     "id"=>"form-login-pwd",
                     "required"=>true,
                     "placeholder"=>"Votre mot de passe",
-                    "class"=>"form-input",
-                ]
+                ],
+                "remember"=>[
+                    "label" => "Rester connecté",
+                    "type"=>"checkbox",
+                    "id"=>"form-login-remember",
+                    "required"=>false,
+                    "placeholder"=>"",
+                    "class"=>"rememberme-security",
+                ],
             ]
         ];
     }

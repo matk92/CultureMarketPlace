@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/scss/style.css">
+<link rel="stylesheet" href="dist/css/style.css">
 <div class="homepage-content">
     <h1 class="homepage" id="title-homepage">Découvrez qui nous sommes</h1>
         <div class="homepage-content-text">

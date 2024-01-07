@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CuluturalMarketPlace - Error 404</title>
-    <link rel="stylesheet" href="/assets/scss/style.css">
+    <link rel="stylesheet" href="/dist/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body class="error">
