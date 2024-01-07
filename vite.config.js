@@ -4,10 +4,11 @@ import path from "path";
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, "./assets/js/main.js"),
+      entry: path.resolve(__dirname, "./www/assets/js/main.js"),
       name: "CMP_framework",
       //formats: ["es"],
     },
+    outDir: path.resolve(__dirname, "./www/dist"),
     rollupOptions: {
       output: {
         entryFileNames: "js/[name].js",
