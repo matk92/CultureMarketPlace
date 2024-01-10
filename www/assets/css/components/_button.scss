@@ -27,6 +27,7 @@
 		--button-bg-color: var(--grey);
 		--button-bg-hover-color: var(--grey-darker);
 	}
+	
 	&-danger {
 		--button-bg-color: var(--red);
 		--button-bg-hover-color: var(--red-darker);
@@ -38,6 +39,7 @@
 		--text-hover-color: var(--white);
 		border: solid thin currentColor;
 	}
+	
 
 	// Modificateurs de taille
 	&-lg {
@@ -45,5 +47,17 @@
 	}
 	&-sm {
 		padding: rem(8) rem(12);
+	}
+}
+
+.button-order {
+	&-previous {
+		@extend .button;
+		@extend .button-secondary;
+	}
+
+	&-next {
+		@extend .button;
+		@extend .button-primary;
 	}
 }

@@ -12,5 +12,14 @@ class OrderController
         new View("Order/orders", "front");
     }
 
+    public function paymentInfo(): void
+    {
+        new View("Order/payment-info", "front");
+    }
+
+    public function summary(): void
+    {
+        new View("Order/summary", "front");
+    }
    
 }

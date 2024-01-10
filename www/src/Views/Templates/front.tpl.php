@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CuluturalMarketPlace</title>
-    <link rel="stylesheet" href="dist/css/style.css">
+    <link rel="stylesheet" href="/dist/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
 </head>
@@ -37,9 +37,9 @@
                 <ul>
 					<div class="nav-home">
 						<li><a href="/">Accueil</a></li>
-						<li><a href="products">Produits</a></li>
+						<li><a href="/products">Produits</a></li>
 						<li><a href="#">|</a></li>
-						<li><a href="orders"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
+						<li><a href="/orders/"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
 					</div>	
                 </ul>
             </nav>

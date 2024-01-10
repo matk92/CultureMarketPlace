@@ -1,0 +1,205 @@
+.billing-details {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .section-title {
+        h2.title-order {
+            color: #000;
+            font-family: Poppins;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 110%; /* 44px */ 
+        }
+    }
+
+    hr {
+        width: 1136px;
+        height: 1px;
+        color: #C1C1C1;
+    }
+
+    .stepper-order {
+        display: flex;
+        align-items: center;
+
+        .stepper-wrapper {
+            font-family: Arial;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            .stepper-item {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex: 1;
+                width: 200px;
+              
+                @media (max-width: 768px) {
+                  font-size: 12px;
+                }
+              }
+              
+              .stepper-item::before {
+                position: absolute;
+                content: "";
+                border-bottom: 2px solid #ccc;
+                width: 100%;
+                top: 20px;
+                left: -50%;
+                z-index: 2;
+              }
+              
+              .stepper-item::after {
+                position: absolute;
+                content: "";
+                border-bottom: 2px solid #ccc;
+                width: 100%;
+                top: 20px;
+                left: 50%;
+                z-index: 2;
+              }
+              
+              .stepper-item .step-counter {
+                position: relative;
+                z-index: 5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: #ccc;
+                margin-bottom: 6px;
+              }
+              
+              .stepper-item.active {
+                font-weight: bold;
+              }
+              
+              .stepper-item.completed .step-counter {
+                background-color: #4391b5;
+              }
+              
+              .stepper-item.completed::after {
+                position: absolute;
+                content: "";
+                border-bottom: 2px solid darkgray;
+                width: 100%;
+                top: 20px;
+                left: 50%;
+                z-index: 3;
+              }
+              
+              .stepper-item:first-child::before {
+                content: none;
+              }
+              .stepper-item:last-child::after {
+                content: none;
+              }
+        }
+    }
+}
+main.main-order {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 100px;
+    padding-top: 100px;
+}
+
+.left-order {
+    margin-left: 100px;
+    width: 60%;
+}
+
+.delivery-payment-address-form{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    input {
+        width: 60%;
+        margin-bottom: 20px;
+        background-color: #F0F0F0;
+        border-style: none;
+        border-radius: 10px;
+        height: 40px;
+    }
+
+}
+
+.payment_image {
+    width: 150px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(-5px);
+    }
+}
+
+.order-summary {
+    background-color: #EEEEEE;
+    margin-right: 100px;
+    padding: 20px;
+    border-radius: 15px;
+    width: 40%;
+
+    h2 {
+        text-align: center;
+    }
+
+    img {
+        width: 96px;
+        height: 75px;
+        border-radius: 11px;
+    }
+
+    hr {
+        height: 4px;
+        background-color: #D9D9D9;
+        border-style: none;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+}
+
+.product-order {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+
+    svg {
+        width: 25px;
+    }
+}
+.discount-code {
+    display: flex;
+    justify-content: space-around;
+
+    input {
+        width: 70%;
+        height: 40px;
+    }
+}
+
+.total-order {
+    margin-bottom: 50px;
+}
+
+.main-summary {
+    background-color: white;
+}
+
+.summary-order {
+
+}

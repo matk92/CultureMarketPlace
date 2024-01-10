@@ -26,6 +26,14 @@
   controller: OrderController
   action: index
 
+/orders/payment-info:
+  controller: OrderController
+  action: paymentInfo
+
+/orders/summary:
+  controller: OrderController
+  action: summary
+
 /admin/dashboard:
   controller: AdminController
   action: dashboard
