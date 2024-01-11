@@ -3,11 +3,18 @@
 	border-radius: var(--main-radius);
 	padding: rem(20);
 	background-color: var(--white);
-	border: solid thin lighten($black, 90%);
+	border: solid lighten($black, 20) rem(1);
 	padding-top: rem(200);
 	position: relative;
 	overflow: hidden;
 	display: inline-block;
+	transition: transform 0.3s ease-in-out;
+
+
+	&:hover {
+        transform: scale(1.05);
+    }
+
 	img {
 		position: absolute;
 		top: 0;
@@ -53,5 +60,6 @@
 				transparentize($white, 1) 100%
 			);
 		}
+		
 	}
 }

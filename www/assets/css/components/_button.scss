@@ -35,8 +35,8 @@
 
 	&-outline {
 		--button-bg-color: transparent;
-		--button-bg-hover-color: var(--text-color);
-		--text-hover-color: var(--white);
+		--button-bg-hover-color: rgba(255, 255, 255, 0.4);
+		--text-hover-color: var(--red);
 		border: solid thin currentColor;
 	}
 	
@@ -47,6 +47,10 @@
 	}
 	&-sm {
 		padding: rem(8) rem(12);
+	}
+
+	&-esm {
+		padding: rem(6) rem(4);
 	}
 }
 

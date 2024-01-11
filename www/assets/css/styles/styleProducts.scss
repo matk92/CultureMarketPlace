@@ -1,3 +1,41 @@
-.products-content {
-    background-color: aqua;
+main.main-products {
+    background-color: white;
+}
+
+section.products-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.content-header-products {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+
+    .filter {
+        margin-top: 12px;
+        margin-right: 10px;
+    }
+}
+
+.products-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

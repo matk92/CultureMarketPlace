@@ -20,91 +20,44 @@
         height: 1px;
         color: #C1C1C1;
     }
+}
 
-    .stepper-order {
+.stepper-order {
+    display: flex;
+    justify-content: space-around;
+
+    .step {
+        color: black;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        width: 300px;
 
-        .stepper-wrapper {
-            font-family: Arial;
-            margin-top: 50px;
+        .step-number {
+            background-color: #F0F0F0;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
 
-            .stepper-item {
-                position: relative;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                flex: 1;
-                width: 200px;
-              
-                @media (max-width: 768px) {
-                  font-size: 12px;
-                }
-              }
-              
-              .stepper-item::before {
-                position: absolute;
-                content: "";
-                border-bottom: 2px solid #ccc;
-                width: 100%;
-                top: 20px;
-                left: -50%;
-                z-index: 2;
-              }
-              
-              .stepper-item::after {
-                position: absolute;
-                content: "";
-                border-bottom: 2px solid #ccc;
-                width: 100%;
-                top: 20px;
-                left: 50%;
-                z-index: 2;
-              }
-              
-              .stepper-item .step-counter {
-                position: relative;
-                z-index: 5;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background: #ccc;
-                margin-bottom: 6px;
-              }
-              
-              .stepper-item.active {
-                font-weight: bold;
-              }
-              
-              .stepper-item.completed .step-counter {
-                background-color: #4391b5;
-              }
-              
-              .stepper-item.completed::after {
-                position: absolute;
-                content: "";
-                border-bottom: 2px solid darkgray;
-                width: 100%;
-                top: 20px;
-                left: 50%;
-                z-index: 3;
-              }
-              
-              .stepper-item:first-child::before {
-                content: none;
-              }
-              .stepper-item:last-child::after {
-                content: none;
-              }
+             &.active {
+                background-color: #2F567E;
+                color: white;
+             }
+        }
+
+        .step-title {
+            font-family: Poppins;
+            text-align: center;
+            margin-left: 15px;
+            margin-right: 15px;
         }
     }
 }
+
 main.main-order {
     background-color: white;
     display: flex;
@@ -198,8 +151,28 @@ main.main-order {
 
 .main-summary {
     background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
-.summary-order {
+.summary {
+    display: flex;
+    flex-direction: column;
+    border : 1px solid black;
+    border-radius: 12px;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 15px;
 
+    hr {
+        color: lightgray;
+        display: block;
+        width: 100%;
+        height: 1px;
+    }
+
+    button {
+        margin-top: 30px;
+    }
 }
+

@@ -1,10 +1,23 @@
 <section id="sectionTopAdmin">
-    <input class="searchBarAdmin" type="search" placeholder="Rechercher...">
-    <button class="btnAddAdmin"><i class="fa-solid fa-plus"></i> Ajouter un produit</button>
+    <input class="searchbar" type="search" placeholder="Rechercher...">
+    <button class="button button-primary btnAddAdmin"><i class="fa-solid fa-plus"></i> Ajouter un produit</button>
 </section>
 
 <div class="allProductsAdmin">
     
+<article class="viewProductAdmin">
+        <img clas="imgProduct" src='../assets/images/paella.png'>
+        <h3>Titre du produit</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+             when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><br>
+        <hr>
+        <div class="priceAdmin">24.99€</>
+        <div class="btnProductAdmin">
+            <button class="button button-primary button-esm"><i class="fa-solid fa-eye"></i> Visualiser</button>
+            <button class="button button-secondary button-esm"><i class="fa-solid fa-pencil"></i> Editer</button>
+            <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
+        </div>
+    </article>
     <article class="viewProductAdmin">
         <img clas="imgProduct" src='../assets/images/paella.png'>
         <h3>Titre du produit</h3>
@@ -13,55 +26,65 @@
         <hr>
         <div class="priceAdmin">24.99€</>
         <div class="btnProductAdmin">
-            <button class="btnViewAdmin"><i class="fa-solid fa-eye"></i> Visualiser</button>
-            <button class="btnEditAdmin"><i class="fa-solid fa-pencil"></i> Editer</button>
-            <button class="btnDeleteAdmin"><i class="fa-solid fa-trash"></i> Supprimer</button>
+            <button class="button button-primary button-esm"><i class="fa-solid fa-eye"></i> Visualiser</button>
+            <button class="button button-secondary button-esm"><i class="fa-solid fa-pencil"></i> Editer</button>
+            <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
         </div>
     </article>
-
-    <article class="viewProductAdmin">
-        <img clas="imgProduct" src='../assets/images/tortilla.png'>
-        <h3>Titre du produit</h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-             when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><br>
-        <hr>
-        <div class="priceAdmin">24.99€</p>
-        <div class="btnProductAdmin">
-            <button class="btnViewAdmin"><i class="fa-solid fa-eye"></i> Visualiser</button>
-            <button class="btnEditAdmin"><i class="fa-solid fa-pencil"></i> Editer</button>
-            <button class="btnDeleteAdmin"><i class="fa-solid fa-trash"></i> Supprimer</button>
-        </div>
-    </article>
-
-    <article class="viewProductAdmin">
-        <img clas="imgProduct" src='../assets/images/cerveza.png'>
-        <h3>Titre du produit</h3>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-             when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><br>
-        <hr>
-        <div class="priceAdmin">24.99€</p>
-        <div class="btnProductAdmin">
-            <button class="btnViewAdmin"><i class="fa-solid fa-eye"></i> Visualiser</button>
-            <button class="btnEditAdmin"><i class="fa-solid fa-pencil"></i> Editer</button>
-            <button class="btnDeleteAdmin"><i class="fa-solid fa-trash"></i> Supprimer</button>
-        </div>
-    </article>
-
     <article class="viewProductAdmin">
         <img clas="imgProduct" src='../assets/images/paella.png'>
         <h3>Titre du produit</h3>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
              when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><br>
         <hr>
-        <div class="priceAdmin">24.99€</p>
+        <div class="priceAdmin">24.99€</>
         <div class="btnProductAdmin">
-            <button class="btnViewAdmin"><i class="fa-solid fa-eye"></i> Visualiser</button>
-            <button class="btnEditAdmin"><i class="fa-solid fa-pencil"></i> Editer</button>
-            <button class="btnDeleteAdmin"><i class="fa-solid fa-trash"></i> Supprimer</button>
+            <button class="button button-primary button-esm"><i class="fa-solid fa-eye"></i> Visualiser</button>
+            <button class="button button-secondary button-esm"><i class="fa-solid fa-pencil"></i> Editer</button>
+            <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
         </div>
     </article>
-
-
+    <article class="viewProductAdmin">
+        <img clas="imgProduct" src='../assets/images/paella.png'>
+        <h3>Titre du produit</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+             when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><br>
+        <hr>
+        <div class="priceAdmin">24.99€</>
+        <div class="btnProductAdmin">
+            <button class="button button-primary button-esm"><i class="fa-solid fa-eye"></i> Visualiser</button>
+            <button class="button button-secondary button-esm"><i class="fa-solid fa-pencil"></i> Editer</button>
+            <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
+        </div>
+    </article>
+    <article class="viewProductAdmin">
+        <img clas="imgProduct" src='../assets/images/paella.png'>
+        <h3>Titre du produit</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+             when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><br>
+        <hr>
+        <div class="priceAdmin">24.99€</>
+        <div class="btnProductAdmin">
+            <button class="button button-primary button-esm"><i class="fa-solid fa-eye"></i> Visualiser</button>
+            <button class="button button-secondary button-esm"><i class="fa-solid fa-pencil"></i> Editer</button>
+            <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
+        </div>
+    </article>
+    <article class="viewProductAdmin">
+        <img clas="imgProduct" src='../assets/images/paella.png'>
+        <h3>Titre du produit</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+             when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><br>
+        <hr>
+        <div class="priceAdmin">24.99€</>
+        <div class="btnProductAdmin">
+            <button class="button button-primary button-esm"><i class="fa-solid fa-eye"></i> Visualiser</button>
+            <button class="button button-secondary button-esm"><i class="fa-solid fa-pencil"></i> Editer</button>
+            <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
+        </div>
+    </article>
+    
+    
 </div>
 <div id="productForm" class="modal-admin_products">
     <div class="modal-content-admin_products">
@@ -80,7 +103,7 @@
             <input type="text" id="productCategoryid" name="productCategoryid"><br>
             <label for="productImage">Image du produit:</label><br>
             <input type="file" id="productImage" name="productImage" accept="image/*"><br>
-            <input type="submit" value="Submit">
+            <input class="button button-primary" type="submit" value="Submit">
         </form>
     </div>
 </div>

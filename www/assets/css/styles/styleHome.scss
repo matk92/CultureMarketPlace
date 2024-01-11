@@ -36,6 +36,12 @@ body.home-body {
   text-align: center;
 }
 
+.center-home {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .chevron-double-home {
   color: white;
   width: 20%;

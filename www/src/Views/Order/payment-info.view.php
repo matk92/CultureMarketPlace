@@ -5,22 +5,32 @@
     <hr>
     <div class="stepper-order">
         <div class="previous-button">
-            <a href="/orders" class="button-order-previous">Précédent</a>
+            <a href="/orders" class="button-order-previous">Mon panier</a>
         </div>
-            <div class="stepper-wrapper">
-                <div class="stepper-item active">
-                    <div class="step-counter">1</div>
-                    <div class="step-name">Mon panier</div>
-                </div>
-                <div class="stepper-item completed">
-                    <div class="step-counter">2</div>
-                    <div class="step-name">Procédure de paiement</div>
-                </div>
-                <div class="stepper-item active">
-                    <div class="step-counter">3</div>
-                    <div class="step-name">Récapitulatif</div>
-                </div>
+        <div class="step">
+            <div class="step-number">
+                <p>1</p>
             </div>
+            <div class="step-title">
+                <p>Mon panier</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number active">
+                <p>2</p>
+            </div>
+            <div class="step-title">
+                <p>Méthode de paiement</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">
+                <p>3</p>
+            </div>
+            <div class="step-title">
+                <p>Récapitulatif de la commande</p>
+            </div>
+        </div>
         <div class="next-button">
             <a href="/orders/summary" class="button-order-next">Valider la commande</a>
         </div>

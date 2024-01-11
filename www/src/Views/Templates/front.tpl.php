@@ -15,8 +15,8 @@
                 <div class="title-home">Culutural MarketPlace</div><br>
                 <div class="subtitle-home">La boutique en ligne des produits culturels</div>
                 <?php if ($_SERVER['REQUEST_URI'] == "/") : ?>
-                    <div class="discover-button-home">
-                        <a href="products#product">Découvrir</a>
+                    <div class="center-home">
+                        <a href="/products#product" class="button button-outline">Découvrir les produits</a>
                     </div>
                 <?php else : ?>
                     <div class="spacer"></div>
@@ -32,7 +32,7 @@
                 <?php else : ?>
                     <div class="spacer-home"></div>
                 <?php endif; ?>
-            </div>>
+            </div>
             <nav class="container-home">
                 <ul>
 					<div class="nav-home">

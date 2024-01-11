@@ -100,24 +100,14 @@ button {
   justify-content: space-between;
 }
 
-/* CSS Pages et Produits */
-
-.searchBarAdmin {
-  border-color: #2A4D73;
-  border-radius: 42px;
-  border-width: 1px;
-  width: 180px;
-  padding-left: 30px;
-}
-
-
-
 /* CSS Pages */
 
 .allPages {
   margin-top: 40px;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .viewPage {
@@ -160,7 +150,10 @@ button {
 .allProductsAdmin {
   margin-top: 40px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+
 }
 
 .viewProductAdmin {
