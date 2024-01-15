@@ -7,3 +7,15 @@
         <p>Vous avez déjà un compte ?<a href="login" class="btnconfig"> Connectez-vous</a></p>
     </div>
 </div>
+<script>
+    document.getElementById('form-register').addEventListener('submit', function(event) {
+        console.log('test');
+        var password = document.getElementById('form-register-pwd').value;
+        var confirmPassword = document.getElementById('form-register-passwordconfirm').value;
+
+        if (password !== confirmPassword) {
+            alert('Passwords do not match.');
+            event.preventDefault();
+        }
+    });
+</script>

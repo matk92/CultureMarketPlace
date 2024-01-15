@@ -6,14 +6,22 @@ use App\Core\DB;
 
 class User extends DB
 {
+    const _ROLE_NONE = 0;
+    const _ROLE_USER = 1;
+
+    const _STATUS_INACTIVE = 0;
+    const _STATUS_ACTIVE = 1;
+
     protected int $id;
     protected string $firstname;
     protected string $lastname;
     protected string $email;
     protected string $pwd;
-    protected int $status;
+    protected int $status  = self::_STATUS_INACTIVE;
     protected bool $isdeleted;
-    protected string $role;
+    protected int $role = self::_ROLE_NONE;
+    protected ?string $verificationcode;
+
 
     /**
      * @return int
@@ -115,6 +123,11 @@ class User extends DB
      */
     public function setStatus(int $status): void
     {
+        // Si le status passe à activé, on supprime le code de vérification
+        if ($this->status === self::_STATUS_INACTIVE && $status === self::_STATUS_ACTIVE) {
+            $this->verificationcode = null;
+        }
+        
         $this->status = $status;
     }
 
@@ -130,14 +143,14 @@ class User extends DB
      * @param bool $isdeleted
      */
     public function setIsdeleted(bool $isdeleted): void
-    {   
+    {
         $this->isdeleted = $isdeleted;
     }
 
     /**
      * Get the value of role
      */
-    public function getRole(): string
+    public function getRole(): int
     {
         return $this->role;
     }
@@ -147,8 +160,49 @@ class User extends DB
      *
      * @return  void
      */
-    public function setRole(string $role): void
+    public function setRole(int $role): void
     {
         $this->role = $role;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVerificationcode(): string
+    {
+        return $this->verificationcode;
+    }
+
+    public function resetVerificationCode(): void
+    {
+        $this->verificationcode = rand(100000, 999999);
+    }
+
+    /**
+     * Verificate code
+     */
+    public function verificateCode(string $code): bool
+    {
+        return $code === $this->verificationcode;
+    }
+
+    public function valid(): bool|string
+    {
+        if (empty($this->firstname)) {
+            return "Le prénom est obligatoire";
+        }
+        if (empty($this->lastname)) {
+            return "Le nom est obligatoire";
+        }
+        if (empty($this->email)) {
+            return "L'email est obligatoire";
+        }
+        if (empty($this->pwd)) {
+            return "Le mot de passe est obligatoire";
+        }
+        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            return "L'email n'est pas valide";
+        }
+        return true;
     }
 }

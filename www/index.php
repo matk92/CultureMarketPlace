@@ -39,6 +39,9 @@ function loadEnv($path)
 // Usage
 loadEnv(__DIR__ . '/.env');
 
+// On démarre la session
+session_start();
+
 // Recupérer l'URL
 $uri = strtolower($_SERVER['REQUEST_URI']);
 $uri = strtok($uri, '?');
@@ -79,6 +82,18 @@ if (!empty($yaml[$uri])) {
         if (class_exists($controller)) {
             $object = new $controller();
             if (method_exists($object, $action)) {
+
+                if (isset($match["method"])) {
+                    $requestMethod = $_SERVER["REQUEST_METHOD"];
+                    $acceptedMethod = explode("|", $match["method"]);
+                    if (!in_array($requestMethod, $acceptedMethod)) {
+                        // Method Not Allowed
+                        include $controllersPath . "/ErrorController.php";
+                        $controller = new Controllers\ErrorController();
+                        $controller->page405();
+                        die();
+                    }
+                }
                 $object->$action();
             } else {
                 die("L'action " . $action . "n'existe pas");

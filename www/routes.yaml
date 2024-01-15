@@ -4,6 +4,7 @@
 
 /login:
   controller: SecurityController
+  type: GET | POST
   action: login
 
 /logout:
@@ -12,7 +13,18 @@
 
 /register:
   controller: SecurityController
+  type: GET | POST
   action: register
+
+/verification:
+  controller: SecurityController
+  type: GET | POST
+  action: verification
+
+/verification/sendVerificationCode:
+  controller: SecurityController
+  type: GET
+  action: sendVerificationCode
 
 /home:
   controller: MainController

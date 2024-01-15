@@ -17,7 +17,8 @@ CREATE TABLE rbnm_user (
     status SMALLINT NOT NULL DEFAULT 0,
     isDeleted BOOLEAN NOT NULL DEFAULT FALSE,
     inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
-    role SMALLINT NOT NULL DEFAULT 0
+    role SMALLINT NOT NULL DEFAULT 0,
+    verificationcode VARCHAR(255) NULL
 );
 
 CREATE TABLE rbnm_categorie (

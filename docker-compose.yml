@@ -2,7 +2,7 @@ version: "6.1.2"
 
 services:
   web:
-    build: site
+    build: www
     ports:
       - "80:80"
     volumes:

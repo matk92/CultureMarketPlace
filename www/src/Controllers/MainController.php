@@ -10,7 +10,6 @@ class MainController
 
     public function home(): void
     {
-
         new View("Main/home", "front");
     }
 }
