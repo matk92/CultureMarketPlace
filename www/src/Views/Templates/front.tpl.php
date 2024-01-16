@@ -40,6 +40,7 @@
 						<li><a href="/products">Produits</a></li>
 						<li><a href="#">|</a></li>
 						<li><a href="/orders/"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
+                        <button id="toggle-dark-mode">Basculer le mode sombre</button>
 					</div>	
                 </ul>
             </nav>
@@ -67,23 +68,7 @@
         <li><a href="#">Conditions générales de vente</a></li>
     </ul>
 </footer>
-
-<script>
-
-const links = document.querySelectorAll('nav a');
-
-links.forEach(link => {
-  if (link.href === window.location.href) {
-    link.classList.add('active');
-  }
-});
-
-document.querySelector('.chevron-double-home a').addEventListener('click', function(event) {
-  event.preventDefault();
-  document.querySelector('#title-homepage').scrollIntoView({ behavior: 'smooth' });
-});
-
-</script>
-
 </body>
+<script src="../assets/js/components/navbar.js"></script>
+<script src="../assets/js/components/darkmode.js"></script>
 </html>
