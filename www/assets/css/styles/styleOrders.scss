@@ -1,17 +1,17 @@
 .billing-details {
-    background-color: white;
+    background-color: var(--background-color2);
     display: flex;
     flex-direction: column;
     align-items: center;
 
     .section-title {
         h2.title-order {
-            color: #000;
+            color: var(--text-color);
             font-family: Poppins;
             font-size: 40px;
             font-style: normal;
             font-weight: 600;
-            line-height: 110%; /* 44px */ 
+            line-height: 110%;
         }
     }
 
@@ -27,13 +27,14 @@
     justify-content: space-around;
 
     .step {
-        color: black;
+        color: var(--text-color);
         display: flex;
         flex-direction: column;
         align-items: center;
         width: 300px;
 
         .step-number {
+            color: black;
             background-color: #F0F0F0;
             border-radius: 50%;
             width: 50px;
@@ -59,7 +60,7 @@
 }
 
 main.main-order {
-    background-color: white;
+    background-color: var(--background-color2);
     display: flex;
     justify-content: space-between;
     padding-bottom: 100px;
@@ -101,7 +102,7 @@ main.main-order {
 }
 
 .order-summary {
-    background-color: #EEEEEE;
+    background-color: var(--summary-color);
     margin-right: 100px;
     padding: 20px;
     border-radius: 15px;
@@ -150,12 +151,13 @@ main.main-order {
 }
 
 .main-summary {
-    background-color: white;
+    background-color: var(--background-color2);
     padding-top: 50px;
     padding-bottom: 50px;
 }
 
 .summary {
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     border : 1px solid black;
@@ -175,4 +177,3 @@ main.main-order {
         margin-top: 30px;
     }
 }
-

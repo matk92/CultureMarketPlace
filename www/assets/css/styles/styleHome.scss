@@ -1,6 +1,5 @@
 body.home-body {
   margin: 0;
-  background-color: #CD403D;
 }
 
 .bg-img-home {
@@ -12,9 +11,6 @@ body.home-body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 0;
-  padding: 0;
-  position: relative;
 }
 
 .content-header-home {
@@ -23,14 +19,14 @@ body.home-body {
 }
 
 .title-home {
-  color: white;
+  color: var(--title-color);
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 4rem;
 }
 
 .subtitle-home {
-  color: white;
+  color: var(--subtitle-color);
   font-family: 'Raleway', sans-serif;
   font-size: 1.50rem;
   text-align: center;
@@ -71,7 +67,7 @@ body.home-body {
 }
 
 .nav-home {
-  background-color: white;
+  background-color: var(--nav-color);
   border-radius: 20px;
   padding-left: 40px;
   padding-right: 40px;
@@ -96,10 +92,10 @@ body.home-body {
 }
 
 footer.footer-home {
-  background-color: #CD403D;
+  background-color: var(--footer-color);
   padding: 20px;
   text-align: center;
-  margin-top: 100px;
+  padding-top: 50px;
 
   li {
     display: inline;

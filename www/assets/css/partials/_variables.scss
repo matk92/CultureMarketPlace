@@ -2,14 +2,22 @@ $black: #000;
 $white: #fff;
 $blue: #0d6efd;
 $grey: #6c757d;
-$red: #dc3545;
-$darkGrey: #212529;
+$red: #CD403D;
+$darkGrey: #152028;
+$darkBlue: #202945;
 $lightGrey: #f8f9fa;
 
 $md-size: 1024px;
 
 :root {
 	/* Couleurs */
+	--background-color : #{$red};
+	--background-color2 : #{$white};
+	--title-color : #{$white};
+	--subtitle-color : #{$white};
+	--footer-color : #{$red};
+	--nav-color : #{$white};
+	--summary-color: #{darken($lightGrey, 2%)};
 	--white: #{$white};
 	--blue: #{$blue};
 	--blue-darker: #{darken($blue, 10%)};
@@ -18,11 +26,11 @@ $md-size: 1024px;
 	--grey-darker: #{darken($grey, 10%)};
 	--red: #{$red};
 	--red-darker: #{darken($red, 10%)};
-	--text-color: #{$black};
 	--button-bg-color: #{$black};
 	--button-bg-hover-color: #{lighten($black, 10%)};
 
 	--text-color: #{$darkGrey};
+	--text-color2: #{$white};
 	/* Radius */
 	--main-radius: #{rem(6)};
 	/* Fonts */
@@ -30,6 +38,18 @@ $md-size: 1024px;
 	/* Transitions */
 	--transition-duration: 0.3s;
 }
+
+.dark-mode {
+	--background-color: #{$darkBlue};
+	--background-color2: #{$darkBlue};
+	--title-color: #{$white};
+	--subtitle-color: #{$lightGrey};
+	--footer-color: #{$darkGrey};
+	--nav-color: #{$darkBlue};
+	--text-color: #{$white};
+	--summary-color: #{$darkGrey};
+}
+
 
 /* Ecrans */
 $md-size: 1024px;

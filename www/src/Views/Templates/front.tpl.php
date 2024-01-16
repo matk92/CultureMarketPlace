@@ -42,6 +42,7 @@
                         <li><a href="/products">Produits</a></li>
                         <li><a href="#">|</a></li>
                         <li><a href="/orders/"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
+                        <button id="toggle-dark-mode">Basculer le mode sombre</button>
                     </div>
                 </ul>
             </nav>
@@ -88,5 +89,7 @@
     </script>
 
 </body>
+<script src="../assets/js/components/navbar.js"></script>
+<script src="../assets/js/components/darkmode.js"></script>
 
 </html>
