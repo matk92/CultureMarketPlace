@@ -29,6 +29,7 @@
                 <li><a href="notifications"><i class="fas fa-bell"></i></a></li>
                 <li><a>Calvelo Nicolas</a></li>
                 <li><a href="profile"><i class="fa-regular fa-user"></i></a></li>
+                <button id="toggle-dark-mode"><i class="fas fa-sun"></i></button>
             </ul>
             <hr>
         </div>
@@ -39,15 +40,7 @@
         <?php include $this->view; ?>
     </main>
 
-    <script>
-        const links = document.querySelectorAll('nav a');
-
-        links.forEach(link => {
-            if (link.href === window.location.href) {
-                link.classList.add('active');
-            }
-        });
-    </script>
 </body>
-
+<script src="../assets/js/components/navbar.js"></script>
+<script src="../assets/js/components/darkmode.js"></script>
 </html>

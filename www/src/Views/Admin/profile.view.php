@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="btnProfileAdmin">
-            <button class="btnSaveChangeAdmin"><i class="fa-solid fa-check"></i> Sauvegarder les changements</button>
-            <button class="btnCancelChangeAdmin"><i class="fa-solid fa-rotate-left"></i> Annuler les changements</button>
+            <button class="button button-primary"><i class="fa-solid fa-check"></i> Sauvegarder les changements</button>
+            <button class="button button-secondary"><i class="fa-solid fa-rotate-left"></i> Annuler les changements</button>
     </div>
 </section>

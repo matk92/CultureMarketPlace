@@ -37,13 +37,14 @@
             </div>
             <nav class="container-home">
                 <ul>
-                    <div class="nav-home">
-                        <li><a href="/">Accueil</a></li>
-                        <li><a href="/products">Produits</a></li>
-                        <li><a href="#">|</a></li>
-                        <li><a href="/orders/"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
-                        <button id="toggle-dark-mode">Basculer le mode sombre</button>
-                    </div>
+					<div class="nav-home">
+						<li><a href="/">Accueil</a></li>
+						<li><a href="/products">Produits</a></li>
+						<li><a href="#">|</a></li>
+						<li><a href="/orders/"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
+                        <li><a href="/login"><i class="fa-regular fa-user"></i></a></li>
+                        <button id="toggle-dark-mode"><i class="fas fa-sun"></i></button>
+					</div>	
                 </ul>
             </nav>
     </header>

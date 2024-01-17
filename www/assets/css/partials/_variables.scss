@@ -17,7 +17,8 @@ $md-size: 1024px;
 	--subtitle-color : #{$white};
 	--footer-color : #{$red};
 	--nav-color : #{$white};
-	--summary-color: #{darken($lightGrey, 2%)};
+	--summary-color: #{darken($lightGrey, 1%)};
+	--whitebg: #{$white};
 	--white: #{$white};
 	--blue: #{$blue};
 	--blue-darker: #{darken($blue, 10%)};
@@ -48,6 +49,7 @@ $md-size: 1024px;
 	--nav-color: #{$darkBlue};
 	--text-color: #{$white};
 	--summary-color: #{$darkGrey};
+	--whitebg: #{$darkGrey};
 }
 
 
