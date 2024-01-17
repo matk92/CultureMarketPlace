@@ -1,9 +1,9 @@
 .card {
-	color: black;
+	color: var(--text-color);
 	width: rem(320);
 	border-radius: var(--main-radius);
 	padding: rem(20);
-	background-color: var(--white);
+	background-color: var(--whitebg);
 	border: solid lighten($black, 20) rem(1);
 	padding-top: rem(200);
 	position: relative;
@@ -64,3 +64,81 @@
 		
 	}
 }
+
+.card-page {
+	background-color: var(--whitebg);
+	border-radius: 8px;
+	width: 300px;
+	padding-bottom: 30px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease-in-out;
+  
+	&:hover {
+	  transform: translateY(-8px);
+	  transition: transform 0.3s ease-in-out;
+	}
+  
+	h3 {
+	  text-align: center;
+	  color: var(--text-color);
+	}
+  
+	hr {
+	  color: #E3E3E3;
+	  width: 80%;
+	}
+}
+
+.viewProductAdmin {
+	background-color: var(--whitebg);
+	border-radius: 12px;
+	width: 350px;
+	padding-bottom: 30px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease-in-out;
+  
+	&:hover {
+	  transform: translateY(-8px);
+	  transition: transform 0.3s ease-in-out;
+	}
+  
+	h3 {
+	  text-align: center;
+	  font-size: 1.25rem;
+	  font-family: 'Raleway', sans-serif;
+	  font-weight: 800;
+	  color: var(--text-color);
+	}
+  
+	hr {
+	  color: #E3E3E3;
+	  width: 80%;
+	}
+  
+	img {
+	  width: 100%;
+	  height: 200px;
+	  object-fit: cover;
+	  border-radius: 12px 12px 0px 0px;
+	}
+  
+	p {
+	  margin: 10px;
+	  color: var(--text-color);
+	}
+  
+	.priceAdmin {
+	  font-family: 'Raleway', sans-serif;
+	  font-weight: 800;
+	  text-align: center;
+	  font-size: 1.25rem;
+	}
+}
+
+
+
+

@@ -4,7 +4,7 @@
 </section>
 
 <div class="allPages">
-    <article class="viewPage">
+    <article class="card-page">
         <h3>Titre de la page</h3>
         <i class="fa-regular fa-file-lines iconPage"></i>
         <hr>
@@ -14,7 +14,7 @@
             <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
         </div>
     </article>
-    <article class="viewPage">
+    <article class="card-page">
         <h3>Titre de la page</h3>
         <i class="fa-regular fa-file-lines iconPage"></i>
         <hr>
@@ -24,7 +24,7 @@
             <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
         </div>
     </article>
-    <article class="viewPage">
+    <article class="card-page">
         <h3>Titre de la page</h3>
         <i class="fa-regular fa-file-lines iconPage"></i>
         <hr>
@@ -34,7 +34,7 @@
             <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
         </div>
     </article>
-    <article class="viewPage">
+    <article class="card-page">
         <h3>Titre de la page</h3>
         <i class="fa-regular fa-file-lines iconPage"></i>
         <hr>
@@ -44,7 +44,7 @@
             <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
         </div>
     </article>
-    <article class="viewPage">
+    <article class="card-page">
         <h3>Titre de la page</h3>
         <i class="fa-regular fa-file-lines iconPage"></i>
         <hr>
@@ -54,7 +54,7 @@
             <button class="button button-danger button-esm"><i class="fa-solid fa-trash"></i> Supprimer</button>
         </div>
     </article>
-    <article class="viewPage">
+    <article class="card-page">
         <h3>Titre de la page</h3>
         <i class="fa-regular fa-file-lines iconPage"></i>
         <hr>
