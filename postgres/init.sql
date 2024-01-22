@@ -91,7 +91,6 @@ CREATE TABLE rbnm_payment_method (
     cardHolderCity VARCHAR(50) NOT NULL,
     cardHolderCountry VARCHAR(50) NOT NULL,
     cardHolderPhone VARCHAR(10) NOT NULL,
-    cardHolderEmail VARCHAR(320) NOT NULL,
     updated TIMESTAMP NOT NULL DEFAULT current_timestamp,
     FOREIGN KEY (userId) REFERENCES rbnm_user(id),
     FOREIGN KEY (paymentMethodTypeId) REFERENCES rbnm_payement_method_type(id)
@@ -101,7 +100,6 @@ CREATE TABLE rbnm_payment (
     id SERIAL PRIMARY KEY,
     paymentMethodId INT NOT NULL,
     orderId INT NOT NULL,
-    amount INT NOT NULL,
     status SMALLINT NOT NULL DEFAULT 0,
     inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
     FOREIGN KEY (paymentMethodId) REFERENCES rbnm_payment_method(id),

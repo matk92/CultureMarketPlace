@@ -20,7 +20,7 @@ class Mailer
         $this->mail->SMTPAuth   = true;
         $this->mail->Username   = $_ENV['SMTP_USERNAME'];
         $this->mail->Password   = $_ENV['SMTP_PASSWORD'];
-        $this->mail->SMTPSecure = 'tls';
+        $this->mail->SMTPSecure = $_ENV['MAIL_ENCRYPTION'];
         $this->mail->Port       = $_ENV['SMTP_PORT'];
     }
 

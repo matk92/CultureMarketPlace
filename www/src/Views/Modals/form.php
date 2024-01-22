@@ -2,6 +2,13 @@
         <?php foreach ($config["inputs"] as $name => $input) : ?>
                 <div class="<?= $input["class"] ?? "input-box-security" ?>">
                         <label for="<?= $name ?>"><?= $input["label"] ?? "" ?></label>
+                        <?php if ($input["type"] === "select") : ?>
+                        <select name="<?= $name ?>" id="<?= $input["id"] ?? "" ?>" <?= $input["required"] ? "required" : ""  ?>>
+                                <?php foreach ($input["options"] as $value => $option) : ?>
+                                        <option value="<?= $value ?>"><?= $option ?></option>
+                                <?php endforeach; ?>
+                        </select>
+                        <?php else : ?>
                         <input 
                                 name="<?= $name ?>" 
                                 type="<?= $input["type"] ?? "text" ?>" 
@@ -10,6 +17,7 @@
                                 minlength="<?= $input["minlength"] ?? "" ?>"
                                 maxlength="<?= $input["maxlength"] ?? "" ?>"
                         >
+                        <?php endif; ?>
                 </div>
         <?php endforeach; ?>
         <?php if (isset($config["config"]["errorMessage"])) : ?>

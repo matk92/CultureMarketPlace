@@ -45,6 +45,11 @@ class SecurityController
                 "status" => $user->getStatus(),
                 "role" => $user->getRole()
             ];
+
+            if (isset($_POST["remember"])) {
+                setcookie("user", json_encode($_SESSION["user"]), time() + 3600 * 24 * 30, "/");
+            }
+
             http_response_code(204);
             return header("Location: /");
         }
@@ -69,21 +74,21 @@ class SecurityController
             $user = (new User())->getOneBy(["verificationcode" => $_POST["code"], "email" => $_SESSION["email"]], "object");
 
             // Verification si l'utilisateur existe et si le mot de passe est correct
-            if (!$user) {
-                $formConfig["config"]["errorMessage"] = "Code de vérification incorrect";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
             if ($user->getStatus() > User::_STATUS_INACTIVE) {
-                $formConfig["config"]["errorMessage"] = "Ce compte est déjà activé";
+                $formConfig["config"]["errorMessage"] = "Ce compte est déjà activé, veuillez vous connecter.";
                 $view->assign("form", $formConfig);
                 return http_response_code(403);
+            }
+            if (!$user) {
+                $formConfig["config"]["errorMessage"] = "Code de vérification incorrect.";
+                $view->assign("form", $formConfig);
+                return http_response_code(409);
             }
 
             $user->setStatus(User::_STATUS_ACTIVE);
             $user->save();
             http_response_code(204);
-            return header("Location: /");
+            return header("Location: /login");
         }
         return http_response_code(200);
     }

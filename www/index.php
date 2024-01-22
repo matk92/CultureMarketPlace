@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Controllers\ConfigController;
+
 // Fonction que se déclenche quand on instancie une class qui n'existe pas
 spl_autoload_register(function ($class) {
     $file = str_replace("App\\", "", $class);
@@ -14,6 +16,12 @@ spl_autoload_register(function ($class) {
         die("Le fichier " . $file . " n'existe pas");
     }
 });
+
+// Si le fichier .env n'existe pas, on le crée
+if (file_exists('.env') == 0) {
+    file_put_contents('.env', '');
+}
+
 
 // Function pour charger les variables d'environnement
 function loadEnv($path)
@@ -34,6 +42,20 @@ function loadEnv($path)
             $_ENV[$name] = $value;
         }
     }
+
+    // si la config de la BDD n'est pas renseignée, on redirige vers la page de configuration de la BDD
+    if(!array_key_exists('BDD_PREFIX', $_ENV) || !array_key_exists('POSTGRES_PASSWORD', $_ENV) || !array_key_exists('POSTGRES_DB', $_ENV) || !array_key_exists('POSTGRES_USER', $_ENV)){
+        $configController = new ConfigController();
+        $configController->setBDDconfig();
+        exit();
+    }
+
+    // si la config du serveur mail n'est pas renseignée, on redirige vers la page de configuration du serveur mail
+    if(!array_key_exists('SMTP_HOST', $_ENV) || !array_key_exists('SMTP_PORT', $_ENV) || !array_key_exists('SMTP_USERNAME', $_ENV) || !array_key_exists('SMTP_PASSWORD', $_ENV) || !array_key_exists('MAIL_ENCRYPTION', $_ENV)){
+        $configController = new ConfigController();
+        $configController->setMailConfig();
+        exit();
+    }
 }
 
 // Usage
@@ -41,6 +63,10 @@ loadEnv(__DIR__ . '/.env');
 
 // On démarre la session
 session_start();
+// recupérer cookie "user"
+if (isset($_COOKIE["user"])) {
+    $_SESSION["user"] = $_COOKIE["user"];
+}
 
 // Recupérer l'URL
 $uri = strtolower($_SERVER['REQUEST_URI']);

@@ -2,6 +2,26 @@
   controller: MainController
   action: home
 
+/copyright:
+  controller: MainController
+  action: copyright
+
+/legal:
+  controller: MainController
+  action: legal
+
+/privacy:
+  controller: MainController
+  action: privacy
+
+/refund:
+  controller: MainController
+  action: refund
+
+/terms:
+  controller: MainController
+  action: terms
+
 /login:
   controller: SecurityController
   type: GET | POST
