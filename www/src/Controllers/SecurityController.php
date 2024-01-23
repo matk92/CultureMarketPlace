@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Core\Mailer;
+use App\Core\Security;
+use App\Core\Verificator;
 use App\Forms\Login;
 use App\Forms\Register;
 use App\Forms\Verification;
@@ -12,84 +14,102 @@ use App\Models\User;
 class SecurityController
 {
 
-    public function login(): int|bool
+    public function login()
     {
         $form = new Login();
         $formConfig = $form->getConfig();
 
         $view = new View("Security/login", "frontSecurity");
-        $view->assign("form", $formConfig);
 
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $user = (new User())->getOneBy(["email" => $_POST["email"]], "object");
+        if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
 
-            // Verification si l'utilisateur existe et si le mot de passe est correct
-            if (!$user || !password_verify($_POST["pwd"], $user->getPwd())) {
-                $formConfig["config"]["errorMessage"] = "Email ou mot de passe incorrect";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
+            $verificatior = new Verificator();
+            if ($verificatior->checkForm($formConfig, $_POST)) {
+                $security = new Security();
+                $user = null;
+
+                // On verifie si l'utilisateur existe et si le mot de passe est correct
+                if (!$security->login($_POST, $user)) {
+                    $formConfig["config"]["errorMessage"] = "Identifiants incorrects";
+                    $view->assign("form", $formConfig);
+                    return http_response_code(409);
+                } else if ($user->getStatus() === User::_STATUS_INACTIVE) {
+                    // Si l'utilisateur n'a pas activé son compte, on le redirige vers la page de verification
+                    $_SESSION["email"] = $user->getEmail();
+                    http_response_code(200);
+                    return header("Location: /verification");
+                } else {
+                    // L'utilisateur est connecté, on le redirige vers la page d'accueil
+                    $_SESSION["user"] = [
+                        "id" => $user->getId(),
+                        "email" => $user->getEmail(),
+                        "firstname" => $user->getFirstName(),
+                        "lastname" => $user->getLastName(),
+                        "status" => $user->getStatus(),
+                        "role" => $user->getRole()
+                    ];
+
+                    // Si l'utilisateur a coché la case "Rester connecté", on stocke ses informations en cookie
+                    if (isset($_POST["remember"])) {
+                        setcookie("user", json_encode($_SESSION["user"]), time() + 3600 * 24 * 30, "/");
+                    }
+
+                    http_response_code(204);
+                    return header("Location: /");
+                }
             }
 
-            // Verification si le compte est activé
-            if ($user->getStatus() === User::_STATUS_INACTIVE) {
-                $_SESSION["email"] = $user->getEmail();
-                http_response_code(200);
-                return header("Location: /verification");
-            }
-
-            $_SESSION["user"] = [
-                "id" => $user->getId(),
-                "email" => $user->getEmail(),
-                "firstname" => $user->getFirstName(),
-                "lastname" => $user->getLastName(),
-                "status" => $user->getStatus(),
-                "role" => $user->getRole()
-            ];
-
-            if (isset($_POST["remember"])) {
-                setcookie("user", json_encode($_SESSION["user"]), time() + 3600 * 24 * 30, "/");
-            }
-
-            http_response_code(204);
-            return header("Location: /");
+            // Si on arrive ici, c'est que le formulaire n'est pas valide
+            http_response_code(409);
+        } else {
+            http_response_code(200);
         }
 
-        return http_response_code(200);
+        $view->assign("form", $formConfig);
     }
 
     public function verification(): int|bool
     {
         // Si l'email de l'utilisateur n'est pas en session, on le redirige vers la page de connexion pour lui forcer à se connecter
         if (!isset($_SESSION["email"])) {
-            return header("Location: /login");
+            header("Location: /login");
+            exit();
         }
 
         $form = new Verification();
         $formConfig = $form->getConfig();
-
         $view = new View("Security/verification", "frontSecurity");
-        $view->assign("form", $formConfig);
 
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $user = (new User())->getOneBy(["verificationcode" => $_POST["code"], "email" => $_SESSION["email"]], "object");
+        if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
+            $verificatior = new Verificator();
+            if ($verificatior->checkForm($formConfig, $_POST)) {
+                $user = (new User())->getOneBy(["verificationcode" => $_POST["code"], "email" => $_SESSION["email"]], "object");
 
-            // Verification si l'utilisateur existe et si le mot de passe est correct
-            if ($user->getStatus() > User::_STATUS_INACTIVE) {
-                $formConfig["config"]["errorMessage"] = "Ce compte est déjà activé, veuillez vous connecter.";
-                $view->assign("form", $formConfig);
-                return http_response_code(403);
+                // Verification si l'utilisateur existe et si le mot de passe est correct
+                if ($user->getStatus() > User::_STATUS_INACTIVE) {
+                    $formConfig["config"]["errorMessage"] = "Ce compte est déjà activé, veuillez vous connecter.";
+                    $view->assign("form", $formConfig);
+                    return http_response_code(403);
+                }
+                if (!$user) {
+                    $formConfig["config"]["errorMessage"] = "Code de vérification incorrect.";
+                    $view->assign("form", $formConfig);
+                    return http_response_code(409);
+                }
+
+                $user->setStatus(User::_STATUS_ACTIVE);
+                $user->save();
+                http_response_code(204);
+                header("Location: /login");
+                exit();
             }
-            if (!$user) {
-                $formConfig["config"]["errorMessage"] = "Code de vérification incorrect.";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
 
-            $user->setStatus(User::_STATUS_ACTIVE);
-            $user->save();
-            http_response_code(204);
-            return header("Location: /login");
+            // Si on arrive ici, c'est que le formulaire n'est pas valide
+            $view->assign("form", $formConfig);
+            return http_response_code(409);
         }
+
+        $view->assign("form", $formConfig);
         return http_response_code(200);
     }
 
@@ -105,48 +125,41 @@ class SecurityController
         $formConfig = $form->getConfig();
 
         $view = new View("Security/register", "frontSecurity");
-        $view->assign("form", $formConfig);
 
-        if ($_SERVER["REQUEST_METHOD"] === "GET") {
-            // if its method GET
-            return http_response_code(200);
-        } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $exist = (new User())->getOneBy(["email" => $_POST["email"]], "object");
+        if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
+            $verificatior = new Verificator();
 
-            // Verification si l'utilisateur existe et si le compte est activé
-            if ($exist) {
-                $formConfig["config"]["errorMessage"] = "Cet email est déjà utilisé";
+            // On vérifie que le formulaire est valide
+            if ($verificatior->checkForm($formConfig, $_POST) === true) {
+                $newUser = new User();
+                $newUser->setFirstName($_POST["name"]);
+                $newUser->setLastName($_POST["lastname"]);
+                $newUser->setEmail($_POST["email"]);
+                $newUser->setPwd($_POST["pwd"]);
+
+                // On stocke l'email de l'utilisateur en session pour la vérification
+                $newUser->save();
+                $_SESSION["email"] = $newUser->getEmail();
+
+                // On essaie d'envoyer le mail de vérification
+                if (!$this->sendVerificationCode()) {
+                    $formConfig["config"]["errorMessage"] = "Erreur lors de l'envoi du mail de vérification, veuillez réessayer.";
+                } else {
+                    $view->assign("form", $formConfig);
+                    header("Location: /verification");
+                    exit();
+                }
+            } else {
                 $view->assign("form", $formConfig);
                 return http_response_code(409);
             }
-            // Verification si les mots de passe correspondent
-            if ($_POST['pwd'] !== $_POST['pwdConfirm']) {
-                $formConfig["config"]["errorMessage"] = "Les mots de passe ne correspondent pas";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
-
-            // if its method POST && !exist
-            $newUser = new User();
-            $newUser->setFirstName($_POST["name"]);
-            $newUser->setLastName($_POST["lastname"]);
-            $newUser->setEmail($_POST["email"]);
-            $newUser->setPwd($_POST["pwd"]);
-            $newUser->save();
-            $_SESSION["email"] = $newUser->getEmail();
-
-
-            if (!$this->sendVerificationCode()) {
-                $formConfig["config"]["errorMessage"] = "Erreur lors de l'envoi du mail de vérification";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
-
-            header("Location: /verification");
         }
+
+        $view->assign("form", $formConfig);
+        return http_response_code(200);
     }
 
-    public function sendVerificationCode(): int|bool
+    public function sendVerificationCode()
     {
         // Si l'email de l'utilisateur n'est pas en session, on le redirige vers la page de connexion pour lui forcer à se connecter
         if (!isset($_SESSION["email"])) {
@@ -173,6 +186,7 @@ class SecurityController
                 "</b><br><br>Cordialement,<br>L'équipe de Cultural Market Place
                 </body>"
         );
+
 
         http_response_code($succes ? 200 : 409);
         return $succes;

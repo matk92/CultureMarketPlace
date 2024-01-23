@@ -49,6 +49,12 @@ body.security {
       text-decoration: underline;
     }
   }
+  .error{
+    color: red;
+    font-size: 0.9rem;
+    margin: -5px 0 15px;
+    font-weight: 600;
+  }
   .register-link-security {
     font-size: 0.9rem;
     text-align: center;

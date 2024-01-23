@@ -8,6 +8,8 @@ class User extends DB
 {
     const _ROLE_NONE = 0;
     const _ROLE_USER = 1;
+    const _ROLE_MODERATOR = 5;
+    const _ROLE_ADMIN = 10;
 
     const _STATUS_INACTIVE = 0;
     const _STATUS_ACTIVE = 1;

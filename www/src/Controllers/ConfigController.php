@@ -26,8 +26,8 @@ class ConfigController
         if ($_SERVER["REQUEST_METHOD"] === "GET") {
             // if its method GET
             return http_response_code(200);
-        } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $bddPrefix = strtolower($_POST['bddPrefix']);
+        } else if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
+            $bddPrefix = strtolower($_POST['bddPrefix']) . "_";
             $bddPassword = $_POST['bddPassword'];
             $bddName = strtolower($_POST['bddName']);
             $bddUser = $_POST['bddUser'];
@@ -100,7 +100,7 @@ class ConfigController
         if ($_SERVER["REQUEST_METHOD"] === "GET") {
             // if its method GET
             return http_response_code(200);
-        } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        } else if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
             $smtpHost = $_POST['smtpHost'];
             $smtpPort = $_POST['smtpPort'];
             $smtpEncryption = $_POST['smtpEncryption'];

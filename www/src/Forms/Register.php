@@ -41,6 +41,7 @@ class Register
                     "id" => "form-register-email",
                     "required" => true,
                     "placeholder" => "Votre email",
+                    "unicity" => "App\Models\User",
                 ],
                 "pwd" => [
                     "label" => "Mot de passe",
@@ -52,9 +53,10 @@ class Register
                 "pwdConfirm" => [
                     "label" => "Confirmer votre mot de passe",
                     "type" => "password",
-                    "id" => "form-register-passwordconfirm",
+                    "id" => "form-register-password-confirm",
                     "required" => true,
                     "placeholder" => "Retapez votre mot de passe...",
+                    "confirm" => "pwd"
                 ]
             ]
         ];

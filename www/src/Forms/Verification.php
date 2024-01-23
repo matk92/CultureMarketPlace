@@ -27,8 +27,8 @@ class Verification
                     "id" => "form-verification-code",
                     "required" => true,
                     "placeholder" => "xxx - xxx",
-                    "minlength" => "6",
-                    "maxlength" => "6",
+                    "minLength" => "6",
+                    "maxLength" => "6",
                 ],
             ]
         ];
