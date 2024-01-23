@@ -19,7 +19,9 @@ spl_autoload_register(function ($class) {
 
 // Si le fichier .env n'existe pas, on le crée
 if (file_exists('.env') == 0) {
-    file_put_contents('.env', '');
+    $configController = new ConfigController();
+    $configController->welcome();
+    exit();
 }
 
 

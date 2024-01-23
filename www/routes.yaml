@@ -89,7 +89,3 @@
 /admin/notifications:
   controller: AdminController
   action: notifications
-
-/welcome:
-  controller: ConfigController
-  action: welcome
