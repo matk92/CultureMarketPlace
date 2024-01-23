@@ -8,6 +8,12 @@ RUN apt-get install -y libpq-dev \
 
 RUN apt-get update -y && apt-get install -y libpng-dev libfreetype6-dev libyaml-dev
 
+# Install unzip and libzip-dev
+RUN apt-get update && apt-get install -y unzip libzip-dev
+
+# Install zip extension
+RUN docker-php-ext-install zip
+
 RUN  docker-php-ext-configure gd --with-freetype
 RUN  docker-php-ext-install gd
 
