@@ -42,6 +42,10 @@
 						<li><a href="/products">Produits</a></li>
 						<li><a href="#">|</a></li>
 						<li><a href="/orders/"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
+                        <?php print_r($_SESSION) ?>
+                        <!-- TODO : Si l'utilisateur est connecté, afficher son nom et prénom dans le header
+                        Sinon afficher un bouton "Se connecter".
+                        Faire peut-etre un menu (navbar) à part comme ça ce n'est pas tout collé  -->
                         <li><a href="/login"><i class="fa-regular fa-user"></i></a></li>
                         <button id="toggle-dark-mode"><i class="fas fa-sun"></i></button>
 					</div>	

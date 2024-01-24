@@ -7,6 +7,7 @@ use App\Core\Mailer;
 use App\Core\Security;
 use App\Core\Verificator;
 use App\Forms\Login;
+use App\Forms\PasswordReset;
 use App\Forms\Register;
 use App\Forms\Verification;
 use App\Models\User;
@@ -29,7 +30,7 @@ class SecurityController
                 $user = null;
 
                 // On verifie si l'utilisateur existe et si le mot de passe est correct
-                if (!$security->login($_POST, $user)) {
+                if ($security->authenticate($_POST, $user) == false) {
                     $formConfig["config"]["errorMessage"] = "Identifiants incorrects";
                     $view->assign("form", $formConfig);
                     return http_response_code(409);
@@ -38,25 +39,11 @@ class SecurityController
                     $_SESSION["email"] = $user->getEmail();
                     http_response_code(200);
                     return header("Location: /verification");
-                } else {
-                    // L'utilisateur est connecté, on le redirige vers la page d'accueil
-                    $_SESSION["user"] = [
-                        "id" => $user->getId(),
-                        "email" => $user->getEmail(),
-                        "firstname" => $user->getFirstName(),
-                        "lastname" => $user->getLastName(),
-                        "status" => $user->getStatus(),
-                        "role" => $user->getRole()
-                    ];
-
-                    // Si l'utilisateur a coché la case "Rester connecté", on stocke ses informations en cookie
-                    if (isset($_POST["remember"])) {
-                        setcookie("user", json_encode($_SESSION["user"]), time() + 3600 * 24 * 30, "/");
-                    }
-
-                    http_response_code(204);
-                    return header("Location: /");
                 }
+
+                http_response_code(204);
+                header("Location: /");
+                exit();
             }
 
             // Si on arrive ici, c'est que le formulaire n'est pas valide
@@ -116,6 +103,7 @@ class SecurityController
     public function logout(): void
     {
         session_destroy();
+        setcookie("user", "", time() - 3600, "/");
         new View("Security/logout", "frontSecurity");
     }
 
@@ -190,5 +178,41 @@ class SecurityController
 
         http_response_code($succes ? 200 : 409);
         return $succes;
+    }
+
+    public function passwordReset(): int|bool
+    {
+        $form = new PasswordReset();
+        $formConfig = $form->getConfig();
+        $view = new View("Security/reset-password", "frontSecurity");
+
+        if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
+            $verificatior = new Verificator();
+            if ($verificatior->checkForm($formConfig, $_POST)) {
+                $user = (new User())->getOneBy(["email" => $_POST["email"]], "object");
+
+                $newPwd = $user->resetPassword();
+                $user->save();
+                $mailer = new Mailer();
+                // Envoyer code de verification pour l'activation du compte
+                $succes = $mailer->sendMail(
+                    $user->getEmail(),
+                    "Réinitialisation de votre mot de passe",
+                    "<body>Bonjour " . $user->getFirstName() . " " . $user->getLastName() .
+                        ",<br><br>Voici votre nouveau mot de passe : <b>" . $newPwd .
+                        "</b><br><br>Cordialement,<br>L'équipe de Cultural Market Place
+                        </body>"
+                );
+
+                return http_response_code($succes ? 200 : 409);
+            }
+
+            // Si on arrive ici, c'est que le formulaire n'est pas valide
+            $view->assign("form", $formConfig);
+            return http_response_code(409);
+        }
+
+        $view->assign("form", $formConfig);
+        return http_response_code(200);
     }
 }

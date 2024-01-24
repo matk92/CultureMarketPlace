@@ -112,6 +112,16 @@ class User extends DB
         $this->pwd = $pwd;
     }
 
+    // On génère un nouveau mot de passe
+    public function resetPassword(): string
+    {
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $pwd = substr(str_shuffle($chars), 0, 8);
+
+        $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);
+        return $pwd;
+    }
+
     /**
      * @return int
      */
@@ -129,7 +139,7 @@ class User extends DB
         if ($this->status === self::_STATUS_INACTIVE && $status === self::_STATUS_ACTIVE) {
             $this->verificationcode = null;
         }
-        
+
         $this->status = $status;
     }
 
