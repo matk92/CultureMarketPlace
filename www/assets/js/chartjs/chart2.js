@@ -1,11 +1,21 @@
+const salesData = [
+  { month: 'January', sales: 120 },
+  { month: 'February', sales: 150 },
+  { month: 'March', sales: 170 },
+  { month: 'April', sales: 180 },
+  { month: 'May', sales: 200 },
+  { month: 'June', sales: 220 },
+  { month: 'July', sales: 210 },
+];
+
 const ctx2 = document.getElementById('myChart2').getContext('2d');
 const chart2 = new Chart(ctx2, {
   type: 'line',
   data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: salesData.map(data => data.month),
     datasets: [{
-      label: 'My First Dataset',
-      data: [65, 59, 80, 81, 56, 55, 40],
+      label: 'Ventes par mois',
+      data: salesData.map(data => data.sales),
       fill: false,
       borderColor: 'rgb(75, 192, 192)',
       tension: 0.1

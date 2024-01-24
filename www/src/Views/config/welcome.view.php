@@ -1,4 +1,4 @@
-<body class="config-body">
+<body class="installer">
 	<div class="mainConfig">
 		<h1 class="config-title">Cultural MarketPlace
 			<div class="roller-config">
