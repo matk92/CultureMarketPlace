@@ -41,6 +41,11 @@
   type: GET | POST
   action: verification
 
+/reset-password:
+  controller: SecurityController
+  type: GET | POST
+  action: passwordReset
+
 /verification/sendVerificationCode:
   controller: SecurityController
   type: GET
@@ -89,7 +94,3 @@
 /admin/notifications:
   controller: AdminController
   action: notifications
-
-/welcome:
-  controller: ConfigController
-  action: welcome

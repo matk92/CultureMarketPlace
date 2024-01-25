@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body style="background-color: black;">
+<body class="installer">
   <main style="display: flex;justify-content: center;align-items: center;height: 100vh;">
     <?php include $this->view; ?>
   </main>

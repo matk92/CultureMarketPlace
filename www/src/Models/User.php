@@ -8,6 +8,8 @@ class User extends DB
 {
     const _ROLE_NONE = 0;
     const _ROLE_USER = 1;
+    const _ROLE_MODERATOR = 5;
+    const _ROLE_ADMIN = 10;
 
     const _STATUS_INACTIVE = 0;
     const _STATUS_ACTIVE = 1;
@@ -110,6 +112,16 @@ class User extends DB
         $this->pwd = $pwd;
     }
 
+    // On génère un nouveau mot de passe
+    public function resetPassword(): string
+    {
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $pwd = substr(str_shuffle($chars), 0, 8);
+
+        $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);
+        return $pwd;
+    }
+
     /**
      * @return int
      */
@@ -127,7 +139,7 @@ class User extends DB
         if ($this->status === self::_STATUS_INACTIVE && $status === self::_STATUS_ACTIVE) {
             $this->verificationcode = null;
         }
-        
+
         $this->status = $status;
     }
 

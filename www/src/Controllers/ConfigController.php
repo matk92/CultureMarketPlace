@@ -9,9 +9,18 @@ use App\Forms\EmailServerConfig;
 class ConfigController
 {
 
-    public function Welcome(): void
+    public function welcome(): int|bool
     {
         new View("Config/welcome", "frontConfig");
+
+        if ($_GET["start"] == "true") {
+            file_put_contents('.env', '');
+            http_response_code(204);
+            header("Location: /");
+            exit();
+        }
+
+        return http_response_code(200);
     }
 
     // Set bdd configuration in .env based on user input
@@ -26,8 +35,8 @@ class ConfigController
         if ($_SERVER["REQUEST_METHOD"] === "GET") {
             // if its method GET
             return http_response_code(200);
-        } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $bddPrefix = strtolower($_POST['bddPrefix']);
+        } else if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
+            $bddPrefix = strtolower($_POST['bddPrefix']) . "_";
             $bddPassword = $_POST['bddPassword'];
             $bddName = strtolower($_POST['bddName']);
             $bddUser = $_POST['bddUser'];
@@ -100,7 +109,7 @@ class ConfigController
         if ($_SERVER["REQUEST_METHOD"] === "GET") {
             // if its method GET
             return http_response_code(200);
-        } else if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        } else if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
             $smtpHost = $_POST['smtpHost'];
             $smtpPort = $_POST['smtpPort'];
             $smtpEncryption = $_POST['smtpEncryption'];
@@ -125,7 +134,7 @@ class ConfigController
                 return http_response_code(409);
             }
 
-            $mailConfig = "\n\nSMTP_HOST=$smtpHost\nSMTP_PORT=$smtpPort\nMAIL_ENCRYPTION=$smtpEncryption\nSMTP_USERNAME=$smtpUsername\nSMTP_PASSWORD=$smtpPassword";
+            $mailConfig = "\n\nSMTP_HOST=$smtpHost\nSMTP_PORT=$smtpPort\nSMTP_ENCRYPTION=$smtpEncryption\nSMTP_USERNAME=$smtpUsername\nSMTP_PASSWORD=$smtpPassword";
 
             file_put_contents('.env', $mailConfig, FILE_APPEND);
             http_response_code(204);

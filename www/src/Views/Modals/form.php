@@ -3,20 +3,16 @@
                 <div class="<?= $input["class"] ?? "input-box-security" ?>">
                         <label for="<?= $name ?>"><?= $input["label"] ?? "" ?></label>
                         <?php if ($input["type"] === "select") : ?>
-                        <select name="<?= $name ?>" id="<?= $input["id"] ?? "" ?>" <?= $input["required"] ? "required" : ""  ?>>
-                                <?php foreach ($input["options"] as $value => $option) : ?>
-                                        <option value="<?= $value ?>"><?= $option ?></option>
-                                <?php endforeach; ?>
-                        </select>
+                                <select name="<?= $name ?>" id="<?= $input["id"] ?? "" ?>" <?= $input["required"] ? "required" : ""  ?>>
+                                        <?php foreach ($input["options"] as $value => $option) : ?>
+                                                <option value="<?= $value ?>"><?= $option ?></option>
+                                        <?php endforeach; ?>
+                                </select>
                         <?php else : ?>
-                        <input 
-                                name="<?= $name ?>" 
-                                type="<?= $input["type"] ?? "text" ?>" 
-                                id="<?= $input["id"] ?? "" ?>" 
-                                placeholder="<?= $input["placeholder"] ?? "" ?>" <?= $input["required"] ? "required" : ""  ?>
-                                minlength="<?= $input["minlength"] ?? "" ?>"
-                                maxlength="<?= $input["maxlength"] ?? "" ?>"
-                        >
+                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" <?= $input["required"] ? "required" : ""  ?> minlength="<?= $input["minlength"] ?? "" ?>" maxlength="<?= $input["maxlength"] ?? "" ?>">
+                        <?php endif; ?>
+                        <?php if (isset($config["errors"]) && array_key_exists($name, $config["errors"])) : ?>
+                                <p class="error"><?= $config["errors"][$name] ?></p>
                         <?php endif; ?>
                 </div>
         <?php endforeach; ?>

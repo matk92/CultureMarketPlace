@@ -20,7 +20,7 @@ class Mailer
         $this->mail->SMTPAuth   = true;
         $this->mail->Username   = $_ENV['SMTP_USERNAME'];
         $this->mail->Password   = $_ENV['SMTP_PASSWORD'];
-        $this->mail->SMTPSecure = $_ENV['MAIL_ENCRYPTION'];
+        $this->mail->SMTPSecure = $_ENV['SMTP_ENCRYPTION'];
         $this->mail->Port       = $_ENV['SMTP_PORT'];
     }
 
@@ -41,6 +41,7 @@ class Mailer
             $this->mail->send();
             return true;
         } catch (Exception $e) {
+            echo $e->getMessage();
             return false;
         }
     }

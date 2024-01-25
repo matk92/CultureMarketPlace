@@ -19,7 +19,9 @@ spl_autoload_register(function ($class) {
 
 // Si le fichier .env n'existe pas, on le crée
 if (file_exists('.env') == 0) {
-    file_put_contents('.env', '');
+    $configController = new ConfigController();
+    $configController->welcome();
+    exit();
 }
 
 
@@ -51,7 +53,7 @@ function loadEnv($path)
     }
 
     // si la config du serveur mail n'est pas renseignée, on redirige vers la page de configuration du serveur mail
-    if(!array_key_exists('SMTP_HOST', $_ENV) || !array_key_exists('SMTP_PORT', $_ENV) || !array_key_exists('SMTP_USERNAME', $_ENV) || !array_key_exists('SMTP_PASSWORD', $_ENV) || !array_key_exists('MAIL_ENCRYPTION', $_ENV)){
+    if(!array_key_exists('SMTP_HOST', $_ENV) || !array_key_exists('SMTP_PORT', $_ENV) || !array_key_exists('SMTP_USERNAME', $_ENV) || !array_key_exists('SMTP_PASSWORD', $_ENV) || !array_key_exists('SMTP_ENCRYPTION', $_ENV)){
         $configController = new ConfigController();
         $configController->setMailConfig();
         exit();
