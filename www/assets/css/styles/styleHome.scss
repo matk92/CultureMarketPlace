@@ -72,19 +72,24 @@ body.home-body {
 
 .container-home {
   position: absolute;
-  top: 40px;
-  right: 150px;
+  top: 5%;
   margin: auto;
+ 
 }
 
 .nav-home {
   background-color: var(--nav-color);
   border-radius: 20px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 0%;
+  padding-right: 0%;
+  width: auto;
+  height: auto;
 
   li {
     display: inline-block;
+    width: auto;
+    height: auto;
+    
   }
 
   a {
@@ -92,7 +97,7 @@ body.home-body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 100%;
     display: block;
     font-family: 'Poppins', sans-serif;
 
