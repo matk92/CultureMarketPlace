@@ -177,3 +177,41 @@ main.main-order {
         margin-top: 30px;
     }
 }
+table {
+    width: 80%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 3px solid #000000;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+
+    thead {
+        background-color: #F0F0F0;
+        color: var(--text-color);
+    }
+
+    th, td {
+        text-align: left;
+        padding: auto;
+        border: 3px solid #000000;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    svg {
+        width: 25px;
+    }
+    button {
+        margin-left: 20%;
+    }
+    img {
+        margin-left: 2%;
+        width: 96px;
+        height: 75px;
+        border-radius: 11px;
+    }
+
+}
