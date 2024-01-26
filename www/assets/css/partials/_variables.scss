@@ -11,14 +11,6 @@ $md-size: 1024px;
 
 :root {
 	/* Couleurs */
-	--background-color : #{$red};
-	--background-color2 : #{$white};
-	--title-color : #{$white};
-	--subtitle-color : #{$white};
-	--footer-color : #{$red};
-	--nav-color : #{$white};
-	--summary-color: #{darken($lightGrey, 1%)};
-	--whitebg: #{$white};
 	--white: #{$white};
 	--blue: #{$blue};
 	--blue-darker: #{darken($blue, 10%)};

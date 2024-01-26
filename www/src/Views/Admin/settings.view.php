@@ -1,3 +1,8 @@
+<?php
+$json = file_get_contents(__DIR__ . '/../Main/home.json');
+$data = json_decode($json, true);
+?>
+
 <h1>settings</h1>
 
 <form action="path_to_your_controller_method" method="post" enctype="multipart/form-data">
@@ -5,7 +10,11 @@
         <legend>Informations générales</legend>
 
         <label for="site-name">Nom du site :</label>
-        <input type="text" id="site-name" name="site-name" value="Nom actuel du site">
+        <input type="text" id="site-name" name="site-name" value="<?php echo $data['site-name']; ?>">
+
+
+    <input type="submit" class="button button-primary" value="Enregistrer">
+</form>
 
         <label for="header-image">Image du header :</label>
         <input type="file" id="header-image" name="header-image">
