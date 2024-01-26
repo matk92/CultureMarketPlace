@@ -1,8 +1,10 @@
+<?php $json = file_get_contents(__DIR__ . '/../Main/home.json');
+$data = json_decode($json, true); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>CuluturalMarketPlace - Error 404</title>
+    <title><?php echo $data['site-name']?> - Error 404</title>
     <link rel="stylesheet" href="/dist/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>

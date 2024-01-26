@@ -5,7 +5,7 @@ $data = json_decode($json, true); ?>
 
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $data['site-name']; ?></title>
+    <title><?php echo $data['site-name']?></title>
     <link rel="stylesheet" href="/dist/css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
@@ -16,8 +16,8 @@ $data = json_decode($json, true); ?>
     <header>
         <div class="bg-img-home">
             <div class="content-header-home">
-                <div class="title-home"><?php echo $data['site-name']; ?></div><br>
-                <div class="subtitle-home">La boutique en ligne des produits culturels</div>
+                <div class="title-home"><?php echo $data['site-name']?></div><br>
+                <div class="subtitle-home"><?php echo $data['site-subtitle']?></div>
                 <?php if ($_SERVER['REQUEST_URI'] == "/") : ?>
                     <div class="center-home">
                         <a href="/products" class="button button-outline">Découvrir les produits</a>
@@ -61,13 +61,11 @@ $data = json_decode($json, true); ?>
 
     <footer class="footer-home">
         <hr>
-        <p>Avez-vous des préoccupations ou des questions? Soyez assuré(e) que nous sommes là pour vous aider.<br />
-            N'hésitez pas à nous contacter à l'adresse adressemail@blabla.fr, nous sommes déterminés à vous fournir une assistance rapide
-            et efficace. Votre satisfaction est notre priorité absolue.</p>
+        <p><?php echo $data['footer-text']; ?></p>
         <div class="social-media-home">
-            <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="<?php echo $data['footer-facebook']?>"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="<?php echo $data['footer-twitter']?>"><i class="fa-brands fa-twitter"></i></a>
+            <a href<?php echo $data['footer-instagram']?>"><i class="fa-brands fa-instagram"></i></a>
         </div>
         <ul>
             <li><a href="/copyright">© Copyright 2023 Cultural MarketPlace</a></li>

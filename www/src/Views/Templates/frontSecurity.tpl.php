@@ -1,9 +1,11 @@
+<?php $json = file_get_contents(__DIR__ . '/../Main/home.json');
+$data = json_decode($json, true); ?>
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
   <meta charset="UTF-8">
-  <title>CulturalMarketPlace - Security</title>
+  <title><?php echo $data['site-name']?> - Security</title>
   <link rel="stylesheet" href="/dist/css/style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
