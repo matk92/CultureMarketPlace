@@ -38,7 +38,8 @@ class SecurityController
                     // Si l'utilisateur n'a pas activé son compte, on le redirige vers la page de verification
                     $_SESSION["email"] = $user->getEmail();
                     http_response_code(200);
-                    return header("Location: /verification");
+                    header("Location: /verification");
+                    exit();
                 }
 
                 http_response_code(204);
