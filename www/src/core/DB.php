@@ -19,7 +19,7 @@ class DB
             echo "Erreur de connexion : " . $th->getMessage();
         }
 
-        $this->tableName = $_ENV["BDD_PREFIX"] . strtolower(str_replace("App\\Models\\", "", get_called_class()));
+        $this->tableName = $_ENV["BDD_PREFIX"] . "_" . strtolower(str_replace("App\\Models\\", "", get_called_class()));
     }
 
     public function getChlidVars(): array

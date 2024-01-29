@@ -9,7 +9,16 @@
                                         <?php endforeach; ?>
                                 </select>
                         <?php else : ?>
-                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" <?= $input["required"] ? "required" : ""  ?> minlength="<?= $input["minlength"] ?? "" ?>" maxlength="<?= $input["maxlength"] ?? "" ?>">
+                                <input 
+                                        name="<?= $name ?>" 
+                                        type="<?= $input["type"] ?? "text" ?>" 
+                                        id="<?= $input["id"] ?? "" ?>" 
+                                        placeholder="<?= $input["placeholder"] ?? "" ?>"
+                                        value="<?= $input["defaultValue"] ?? "" ?>" 
+                                        <?= $input["required"] ? "required" : ""  ?> 
+                                        minLength="<?= $input["minLength"] ?? "" ?>" 
+                                        maxLength="<?= $input["maxLength"] ?? "" ?>"
+                                >
                         <?php endif; ?>
                         <?php if (isset($config["errors"]) && array_key_exists($name, $config["errors"])) : ?>
                                 <p class="error"><?= $config["errors"][$name] ?></p>

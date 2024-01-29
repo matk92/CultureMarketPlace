@@ -45,10 +45,10 @@ class Verificator
             }
 
             // Si le champ est de type string, on vérifie la longueur
-            if ($input["type"] == "text" && (isset($input["minLength"]) || isset($input["maxLength"])) && !self::checkStringLenght($data[$key], $input["minLength"], $input["maxLength"])) {
-                if (isset($input["minLength"]) && !isset($input["maxLength"]))
+            if ($input["type"] == "text" && (array_key_exists("minLength", $input) || array_key_exists("maxLength", $input)) && !self::checkStringLenght($data[$key], $input["minLength"] ?? null, $input["maxLength"] ?? null)) {
+                if (array_key_exists("minLength", $input) && !array_key_exists("maxLength", $input))
                     $errors[$key] = "Le champ " . $input["label"] . " doit contenir au moins " . $input["minLength"] . " caractères";
-                else if (isset($input["maxLength"]) && !isset($input["minLength"]))
+                else if (array_key_exists("maxLength", $input) && !array_key_exists("minLength", $input))
                     $errors[$key] = "Le champ " . $input["label"] . " doit contenir au plus " . $input["maxLength"] . " caractères";
                 else
                     $errors[$key] = "Le champ " . $input["label"] . " doit contenir entre " . $input["minLength"] . " et " . $input["maxLength"] . " caractères";
