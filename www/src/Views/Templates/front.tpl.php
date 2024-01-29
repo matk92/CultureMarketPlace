@@ -49,6 +49,8 @@ $data = json_decode($json, true); ?>
                         Sinon afficher un bouton "Se connecter".
                         Faire peut-etre un menu (navbar) à part comme ça ce n'est pas tout collé  -->
                         <li><a href="/login"><i class="fa-regular fa-user"></i></a></li>
+                        <!-- TODO : Si l'utilisateur est connecté et admin, afficher l'icone pour accéder à /admin -->
+                        <li><a href="/admin/dashboard"><i class="fa-solid fa-screwdriver-wrench"></i></a></li>
                         <button id="toggle-dark-mode"><i class="fas fa-sun"></i></button>
 					</div>	
                 </ul>
