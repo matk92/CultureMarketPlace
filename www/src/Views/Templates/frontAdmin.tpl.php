@@ -8,6 +8,7 @@ $data = json_decode($json, true); ?>
     <title><?php echo $data['site-name']?> - Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/dist/css/style.css">
+    <link rel="icon" href="/assets/images/<?php echo $data['site-favicon']; ?>">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>

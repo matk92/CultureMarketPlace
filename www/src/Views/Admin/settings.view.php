@@ -1,78 +1,74 @@
 <h1>settings</h1>
 
-<form action="path_to_your_controller_method" method="post" enctype="multipart/form-data">
-    <fieldset>
-        <legend>Informations générales</legend>
+<form action="frameworksettings" method="post" enctype="multipart/form-data" class="form-settings">
+    <h2>Informations générales</h2>
 
-        <label for="site-name">Nom du site :</label>
-        <input type="text" id="site-name" name="site-name" value="<?php echo $data['site-name']?>">
+    <label for="site-name">Nom du site</label>
+    <input type="text" id="site-name" name="site-name" class="input" value="<?php echo $data['site-name']?>">
 
-        <label for="header-image">Image du header :</label>
-        <input type="file" id="header-image" name="header-image">
-    </fieldset>
+    <label for="site-favicon">Favicon</label>
+    <img src="/assets/images/<?php echo $data['site-favicon']; ?>" alt="Image" style="max-width: 50px; height: auto; margin-bottom: 5px;">
+    <input type="file" id="site-favicon" name="site-favicon" accept=".ico, .png, .jpg, .jpeg">
 
-    <fieldset>
-        <legend>Couleurs</legend>
+    <label for="site-background-image">Image du header</label>
+    <img src="/assets/images/<?php echo $data['site-background-image']; ?>" alt="Image" style="max-width: 300px; height: auto; margin-bottom: 5px;">
+    <input type="file" id="site-background-image" name="site-background-image" accept=".png, .jpg, .jpeg">
+    
+    <h2>Couleurs</h2>
 
-        <label for="primary-color">Couleur principale :</label>
-        <input type="color" id="primary-color" name="primary-color" value="#000000">
+    <label for="primary-color">Couleur principale</label>
+    <input type="color" id="primary-color" name="primary-color" value="#000000">
 
-        <label for="secondary-color">Couleur secondaire :</label>
-        <input type="color" id="secondary-color" name="secondary-color" value="#000000">
+    <label for="secondary-color">Couleur secondaire</label>
+    <input type="color" id="secondary-color" name="secondary-color" value="#000000">
 
-        <label for="title-color">Couleur du titre home :</label>
-        <input type="color" id="title-color" name="title-color" value="#000000">
+    <label for="title-color">Couleur du titre home</label>
+    <input type="color" id="title-color" name="title-color" value="#000000">
 
-        <label for="subtitle-color">Couleur du sous-titre home :</label>
-        <input type="color" id="subtitle-color" name="subtitle-color" value="#000000">
+    <label for="subtitle-color">Couleur du sous-titre home</label>
+    <input type="color" id="subtitle-color" name="subtitle-color" value="#000000">
 
+    <label for="nav-color">Couleur de la navbar</label>
+    <input type="color" id="nav-color" name="nav-color" value="#000000">
 
-    </fieldset>
+    <h2>Footer</h2>
 
-    <fieldset>
-        <legend>Footer</legend>
-
-        <label for="footer-text">Texte du footer :</label>
-        <textarea id="footer-text" name="footer-text"><?php echo $data['footer-text']?></textarea>
+    <label for="footer-text">Texte du footer</label>
+    <textarea id="footer-text" name="footer-text"><?php echo $data['footer-text']?></textarea>
         
-        <label for="footer-color">Couleur du footer :</label>
-        <input type="color" id="footer-color" name="footer-color" value="#000000">
+    <label for="footer-color">Couleur du footer</label>
+    <input type="color" id="footer-color" name="footer-color" value="#000000">
     
-    </fieldset>
+    <h2>Réseaux sociaux</h2>
 
-    <fieldset>
-        <legend>Réseaux sociaux</legend>
+    <label for="facebook-url">URL de Facebook</label>
+    <input type="url" id="facebook-url" name="facebook-url" class="input" value="<?php echo $data['footer-facebook']?>">
 
-        <label for="facebook-url">URL de Facebook :</label>
-        <input type="url" id="facebook-url" name="facebook-url" value="<?php echo $data['footer-facebook']?>">
+    <label for="twitter-url">URL de Twitter</label>
+    <input type="url" id="twitter-url" name="twitter-url" class="input" value="<?php echo $data['footer-twitter']?>">
 
-        <label for="twitter-url">URL de Twitter :</label>
-        <input type="url" id="twitter-url" name="twitter-url" value="<?php echo $data['footer-twitter']?>">
+    <label for="instagram-url">URL de Instagram</label>
+    <input type="url" id="instagram-url" name="instagram-url" class="input" value="<?php echo $data['footer-facebook']?>">
 
-        <label for="instagram-url">URL de Instagram :</label>
-        <input type="url" id="instagram-url" name="instagram-url" value="<?php echo $data['footer-facebook']?>">
+    <h2>Page home</h2>
 
-    </fieldset>
+    <label for="home-text1">Texte image "Passez votre commande"</label>
+    <textarea id="home-text1" name="home-text1"><?php echo $data['home-text1']?></textarea>
+
+    <label for="home-text2">Texte image "Faites vous livrez"</label>
+    <textarea id="home-text2" name="home-text2"><?php echo $data['home-text2']?></textarea>
+
+    <label for="home-text3">Texte image "Recevez votre commande"</label>
+    <textarea id="home-text3" name="home-text3"><?php echo $data['home-text3']?></textarea>
     
-    <fieldset>
-        <legend>Page home</legend>
+    <label for="home-discover-image">Image "Decouvrir"</label>
+    <img src="/assets/images/<?php echo $data['home-discover-image']; ?>" alt="Image" style="max-width: 300px; height: auto; margin-bottom: 5px;">
+    <input type="file" id="home-discover-image" name="home-discover-image" accept=".ico, .png, .jpg, .jpeg">
+    
+    <label for="home-discover-text">Texte image "Decouvrir"</label>
+    <textarea id="home-discover-text" name="home-discover-text"><?php echo $data['home-discover-text']?></textarea>
 
-        <label for="home-text1">Texte image "Passez votre commande" :</label>
-        <textarea id="home-text1" name="home-text1"><?php echo $data['home-text1']?></textarea><br />
 
-        <label for="home-text2">Texte image "Passez votre commande" :</label>
-        <textarea id="home-text2" name="home-text2"><?php echo $data['home-text2']?></textarea><br />
 
-        <label for="home-text3">Texte image "Passez votre commande" :</label>
-        <textarea id="home-text3" name="home-text3"><?php echo $data['home-text3']?></textarea><br />
-
-        <label for="home-discover-image">Image du header :</label>
-        <input type="file" id="home-discover-image" name="home-discover-image"><br />
-
-        <label for="home-discover-text">Texte image "Passez votre commande" :</label>
-        <textarea id="home-discover-text" name="home-discover-text"><?php echo $data['home-discover-text']?></textarea><br />
-
-    </fieldset>
-
-    <input type="submit" class="button button-primary" value="Enregistrer">
+    <input type="submit" class="button button-primary" style="width: 200px" value="Enregistrer">
 </form>

@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="discover-products">
-        <img src="<?php echo $data['home-discover-image']?>" alt="discover products">
+        <img src="assets/images/<?php echo $data['home-discover-image']; ?>" alt="discover products">
         <div class="discover-products-text">
             <h2>Découvrez nos produits</h2>
             <p><?php echo $data['home-discover-text']?></p>

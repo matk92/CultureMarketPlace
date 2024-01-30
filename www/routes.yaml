@@ -87,6 +87,11 @@
   controller: AdminController
   action: settings
 
+/admin/frameworksettings:
+  controller: AdminController
+  type: GET | POST
+  action: frameworksettings
+
 /admin/profile:
   controller: AdminController
   action: profile

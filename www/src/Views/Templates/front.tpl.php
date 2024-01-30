@@ -7,14 +7,15 @@ $data = json_decode($json, true); ?>
     <meta charset="UTF-8">
     <title><?php echo $data['site-name']?></title>
     <link rel="stylesheet" href="/dist/css/style.css">
+    <link rel="icon" href="/assets/images/<?php echo $data['site-favicon']; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
 </head>
-
 <body class="home-body">
 
     <header>
         <div class="bg-img-home">
+        <img src="/assets/images/<?php echo $data['site-background-image']; ?>" alt="Image">
             <div class="content-header-home">
                 <div class="title-home"><?php echo $data['site-name']?></div><br>
                 <div class="subtitle-home"><?php echo $data['site-subtitle']?></div>
@@ -45,7 +46,7 @@ $data = json_decode($json, true); ?>
 						<li><a href="#">|</a></li>
 						<li><a href="/orders/"><i class="fa-solid fa-cart-shopping"></i> Mon Panier</a></li>
                         <!--<?php print_r($_SESSION) ?> -->
-                        <!-- TODO : Si l'utilisateur est connecté, afficher son nom et prénom dans le header
+                        <!-- TODO : Si l'utilisateur est connecté, afficher son nom et prénom dans le header + deconnexion dans le menu.
                         Sinon afficher un bouton "Se connecter".
                         Faire peut-etre un menu (navbar) à part comme ça ce n'est pas tout collé  -->
                         <li><a href="/login"><i class="fa-regular fa-user"></i></a></li>
