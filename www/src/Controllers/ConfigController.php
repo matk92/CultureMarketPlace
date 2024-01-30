@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Forms\BDDconfig;
+use App\Core\Verificator;
 use App\Forms\EmailServerConfig;
 
 class ConfigController
@@ -36,64 +37,63 @@ class ConfigController
             // if its method GET
             return http_response_code(200);
         } else if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $bddPrefix = strtolower($_POST['bddPrefix']) . "_";
-            $bddPassword = $_POST['bddPassword'];
-            $bddName = strtolower($_POST['bddName']);
-            $bddUser = $_POST['bddUser'];
+            $verificatior = new Verificator();
+            if ($verificatior->checkForm($formConfig, $_POST)) {
+                $bddPrefix = strtolower($_POST['bddPrefix']);
+                $bddPassword = $_POST['bddPassword'];
+                $bddName = strtolower($_POST['bddName']);
+                $bddUser = $_POST['bddUser'];
 
-            if (empty($bddPrefix) || empty($bddPassword) || empty($bddName) || empty($bddUser)) {
-                $formConfig["config"]["errorMessage"] = "Veuillez remplir tous les champs";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
+                $bddConfig = "BDD_PREFIX=$bddPrefix\nPOSTGRES_PASSWORD=$bddPassword\nPOSTGRES_DB=$bddName\nPOSTGRES_USER=$bddUser";
+
+                $connection = new \PDO(
+                    "pgsql:host=postgres;port=5432;dbname=cmp;user=root;password=123456"
+                );
+
+                $connection->exec("ALTER TABLE IF EXISTS rbnm_review RENAME TO " . $bddPrefix . "_review;");
+                $connection->exec("ALTER TABLE IF EXISTS rbnm_user RENAME TO " . $bddPrefix . "_user;");
+                $connection->exec("ALTER TABLE IF EXISTS rbnm_categorie RENAME TO " . $bddPrefix . "_categorie;");
+                $connection->exec("ALTER TABLE IF EXISTS rbnm_product RENAME TO " . $bddPrefix . "_product;");
+                $connection->exec("ALTER TABLE IF EXISTS rbnm_order_slot RENAME TO " . $bddPrefix . "_order_slot;");
+                $connection->exec("ALTER TABLE IF EXISTS rbnm_order RENAME TO " . $bddPrefix . "_order;");
+                $connection->exec("ALTER TABLE IF EXISTS rbnm_payement_method_type RENAME TO " . $bddPrefix . "_payement_method_type;");
+                $connection->exec("ALTER TABLE IF EXISTS rbnm_payment_method RENAME TO " . $bddPrefix . "_payment_method;");
+                $connection->exec("ALTER TABLE IF EXISTS rbnm_payment RENAME TO " . $bddPrefix . "_payment;");
+                $connection = null; // Close the existing database connection
+
+                $connection = new \PDO(
+                    "pgsql:host=postgres;port=5432;dbname=cmp;user=root;password=123456"
+                );
+
+                // $connection->exec("ALTER DATABASE cmp RENAME TO " . $bddName . ";");
+                // $connection = null; // Close the existing database connection
+                // $connection = new \PDO(
+                //     "pgsql:host=postgres;port=5432;dbname=" . $bddName . ";user=root;password=123456"
+                // );
+                // $connection->exec("CREATE USER " . $bddUser . " WITH ENCRYPTED PASSWORD '" . $bddPassword . "';");
+                $connection->exec("GRANT ALL PRIVILEGES ON DATABASE cmp TO " . $bddUser . ";");
+                $connection->exec("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO " . $bddUser . ";");
+                $connection->exec("GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO " . $bddUser . ";");
+                $connection->exec("GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO " . $bddUser . ";");
+                $connection = null; // Close the existing database connection
+                $connection = new \PDO(
+                    "pgsql:host=postgres;port=5432;dbname=cmp;user=" . $bddUser . ";password=" . $bddPassword . ""
+                );
+
+                $connection->exec("REVOKE ALL PRIVILEGES ON DATABASE cmp FROM root;");
+                $connection->exec("REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM root;");
+                $connection->exec("REVOKE ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public FROM root;");
+                $connection->exec("REVOKE ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public FROM root;");
+
+                file_put_contents('.env', $bddConfig);
+                http_response_code(204);
+                header("Location: /");
+                exit();
             }
 
-            if (!preg_match('/^[a-z0-9_]+$/', $bddPrefix)) {
-                $formConfig["config"]["errorMessage"] = "Le prefix de la base de données ne doit contenir que des lettres minuscules, des chiffres et des underscores";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
-
-            if (!preg_match('/^[a-z0-9_]+$/', $bddName)) {
-                $formConfig["config"]["errorMessage"] = "Le nom de la base de données ne doit contenir que des lettres minuscules, des chiffres et des underscores";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
-
-            if (!preg_match('/^[a-z0-9_]+$/', $bddUser)) {
-                $formConfig["config"]["errorMessage"] = "Le nom de l'utilisateur ne doit contenir que des lettres minuscules, des chiffres et des underscores";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
-
-            if (strlen($bddPrefix) > 10) {
-                $formConfig["config"]["errorMessage"] = "Le prefix de la base de données ne doit pas dépasser 10 caractères";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
-
-            if (strlen($bddName) > 10) {
-                $formConfig["config"]["errorMessage"] = "Le nom de la base de données ne doit pas dépasser 10 caractères";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
-
-            if (strlen($bddPrefix) < 3) {
-                $formConfig["config"]["errorMessage"] = "Le prefix de la base de données doit contenir au moins 3 caractères";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
-
-            if (strlen($bddName) < 3) {
-                $formConfig["config"]["errorMessage"] = "Le nom de la base de données doit contenir au moins 3 caractères";
-                $view->assign("form", $formConfig);
-                return http_response_code(409);
-            }
-
-            $bddConfig = "BDD_PREFIX=$bddPrefix\nPOSTGRES_PASSWORD=$bddPassword\nPOSTGRES_DB=$bddName\nPOSTGRES_USER=$bddUser";
-
-            file_put_contents('.env', $bddConfig);
-            http_response_code(204);
-            return header("Location: /");
+            // Si on arrive ici, c'est que le formulaire n'est pas valide
+            $view->assign("form", $formConfig);
+            return http_response_code(409);
         }
     }
 

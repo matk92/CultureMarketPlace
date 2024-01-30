@@ -30,6 +30,11 @@ input {
 	}
 }
 
+input::placeholder {
+	font-style: italic;
+	opacity: 0.7;
+}
+
 
 .menu-svg {
 	// background-image: url('/src/images/menu.svg');
