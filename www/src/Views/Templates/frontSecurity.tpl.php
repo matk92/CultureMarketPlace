@@ -7,7 +7,7 @@ $data = json_decode($json, true); ?>
   <meta charset="UTF-8">
   <title><?php echo $data['site-name']?> - Security</title>
   <link rel="stylesheet" href="/dist/css/style.css">
-  <link rel="icon" href="/assets/images/<?php echo $data['site-favicon']; ?>">
+  <link rel="icon" href="/assets/images/<?php echo htmlspecialchars($data['site-favicon'])?>">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

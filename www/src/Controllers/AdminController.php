@@ -44,15 +44,16 @@ class AdminController
 
             $data = json_decode($json, true);
 
-            $data['site-name'] = $_POST['site-name'];
-            $data['footer-text'] = $_POST['footer-text'];
-            $data['footer-facebook'] = $_POST['facebook-url'];
-            $data['footer-twitter'] = $_POST['twitter-url'];
-            $data['footer-instagram'] = $_POST['instagram-url'];
-            $data['home-text1'] = $_POST['home-text1'];
-            $data['home-text2'] = $_POST['home-text2'];
-            $data['home-text3'] = $_POST['home-text3'];
-            $data['home-discover-text'] = $_POST['home-discover-text'];
+            $data['site-name'] = htmlspecialchars($_POST['site-name']);
+            $data['site-subtitle'] = htmlspecialchars($_POST['site-subtitle']);
+            $data['footer-text'] = htmlspecialchars($_POST['footer-text']);
+            $data['footer-facebook'] = htmlspecialchars($_POST['facebook-url']);
+            $data['footer-twitter'] = htmlspecialchars($_POST['twitter-url']);
+            $data['footer-instagram'] = htmlspecialchars($_POST['instagram-url']);
+            $data['home-text1'] = htmlspecialchars($_POST['home-text1']);
+            $data['home-text2'] = htmlspecialchars($_POST['home-text2']);
+            $data['home-text3'] = htmlspecialchars($_POST['home-text3']);
+            $data['home-discover-text'] = htmlspecialchars($_POST['home-discover-text']);
 
                 //background image + favicon
                 if (isset($_FILES['site-background-image']) && $_FILES['site-background-image']['error'] === 0) {

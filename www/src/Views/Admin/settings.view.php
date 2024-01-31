@@ -6,6 +6,9 @@
     <label for="site-name">Nom du site</label>
     <input type="text" id="site-name" name="site-name" class="input" value="<?php echo $data['site-name']?>">
 
+    <label for="site-subtitle">Sous-titre du site</label>
+    <input type="text" id="site-subtitle" name="site-subtitle" class="input" value="<?php echo $data['site-subtitle']?>">
+
     <label for="site-favicon">Favicon</label>
     <img src="/assets/images/<?php echo $data['site-favicon']; ?>" alt="Image" style="max-width: 50px; height: auto; margin-bottom: 5px;">
     <input type="file" id="site-favicon" name="site-favicon" accept=".ico, .png, .jpg, .jpeg">
@@ -16,11 +19,11 @@
     
     <h2>Couleurs</h2>
 
-    <label for="primary-color">Couleur principale</label>
-    <input type="color" id="primary-color" name="primary-color" value="#000000">
+    <label for="background-color">Couleur principale</label>
+    <input type="color" id="background-color" name="background-color" value="#000000">
 
-    <label for="secondary-color">Couleur secondaire</label>
-    <input type="color" id="secondary-color" name="secondary-color" value="#000000">
+    <label for="background-color2">Couleur secondaire</label>
+    <input type="color" id="background-color2" name="background-color2" value="#000000">
 
     <label for="title-color">Couleur du titre home</label>
     <input type="color" id="title-color" name="title-color" value="#000000">

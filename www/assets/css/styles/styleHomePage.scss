@@ -23,6 +23,10 @@ h1.homepage {
     padding-right: 5%;
     margin-top: 80px;
 
+    @media (max-width: 600px) {
+        flex-direction: column;
+    }
+
     .img-text {
         display: flex;
         flex-direction: column;
@@ -63,7 +67,12 @@ h1.homepage {
         object-fit: cover;
         margin-left: 50px;
         float: left;
+
+        @media (max-width: 600px) {
+            display: none;
+        }
     }
+
 }
 
 .discover-products-text {

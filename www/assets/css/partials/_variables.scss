@@ -11,6 +11,8 @@ $md-size: 1024px;
 
 :root {
 	/* Couleurs */
+	--summary-color: #{darken($lightGrey, 1%)};
+    --whitebg: #{$white};
 	--white: #{$white};
 	--blue: #{$blue};
 	--blue-darker: #{darken($blue, 10%)};

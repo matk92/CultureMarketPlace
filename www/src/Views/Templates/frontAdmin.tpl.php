@@ -5,10 +5,10 @@ $data = json_decode($json, true); ?>
 
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $data['site-name']?> - Admin</title>
+    <title><?php echo htmlspecialchars($data['site-name'])?> - Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/dist/css/style.css">
-    <link rel="icon" href="/assets/images/<?php echo $data['site-favicon']; ?>">
+    <link rel="icon" href="/assets/images/<?php echo htmlspecialchars($data['site-favicon'])?>">
     <script src="https://kit.fontawesome.com/ba814b6b43.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -18,7 +18,7 @@ $data = json_decode($json, true); ?>
     <header>
         <nav class="nav_admin">
             <ul>
-                <div class="adminMenu-msg"><a href="/"><?php echo $data['site-name']?></a></div>
+                <div class="adminMenu-msg"><a href="/"><?php echo htmlspecialchars($data['site-name'])?></a></div>
                 <li><a href="dashboard"><i class="fa-solid fa-store"></i> Tableau de bord</a></li>
                 <li><a href="pages"><i class="fa-regular fa-file-lines"></i> Pages</a></li>
                 <li><a href="products"><i class="fa-solid fa-bag-shopping"></i> Produits</a></li>
