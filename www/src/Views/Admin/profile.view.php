@@ -7,6 +7,8 @@
                 <div class="columnAdmin">
                     <label for="name">Nom</label><br />
                     <input type="text" id="name" name="name" value="Bryan"><br />
+                    <label for="prenom">Prénom</label><br />
+                    <input type="text" id="name" name="name" value="Dencil"><br />
                     <label for="email">Email</label><br />
                     <input type="email" id="email" name="email" value="BryanSIUUUUUUU@CR7.com"><br />
                     <label for="phone">Numéro de téléphone</label><br />

@@ -71,7 +71,7 @@
     <label for="home-discover-text">Texte image "Découvrir"</label>
     <textarea id="home-discover-text" name="home-discover-text"><?php echo $data['home-discover-text']?></textarea>
 
-
+    <label for="home-discover-color">Couleur du texte "Découvrir"</label>
 
     <input type="submit" class="button button-primary" style="width: 200px" value="Enregistrer">
 </form>
