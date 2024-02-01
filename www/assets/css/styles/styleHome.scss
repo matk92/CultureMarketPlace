@@ -113,6 +113,10 @@ body.home-body {
     &.active, &:hover {
       text-decoration: underline #CD403D 3px; 
     }
+
+    @media (max-width: 600px) {
+      padding: 0;
+    }
   }
 }
 
@@ -146,6 +150,11 @@ footer.footer-home {
 
   a {
     margin: 10px;
+  }
+
+  @media (max-width: 600px) {
+    text-align: center;
+    right: 0;
   }
 }
 

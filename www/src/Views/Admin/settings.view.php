@@ -64,11 +64,11 @@
     <label for="home-text3">Texte image "Recevez votre commande"</label>
     <textarea id="home-text3" name="home-text3"><?php echo $data['home-text3']?></textarea>
     
-    <label for="home-discover-image">Image "Decouvrir"</label>
+    <label for="home-discover-image">Image "Découvrir"</label>
     <img src="/assets/images/<?php echo $data['home-discover-image']; ?>" alt="Image" style="max-width: 300px; height: auto; margin-bottom: 5px;">
     <input type="file" id="home-discover-image" name="home-discover-image" accept=".ico, .png, .jpg, .jpeg">
     
-    <label for="home-discover-text">Texte image "Decouvrir"</label>
+    <label for="home-discover-text">Texte image "Découvrir"</label>
     <textarea id="home-discover-text" name="home-discover-text"><?php echo $data['home-discover-text']?></textarea>
 
 
