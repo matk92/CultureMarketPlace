@@ -10,10 +10,16 @@ section.products-header {
     @media (max-width: 600px) {
         flex-direction: column;
       }
+    & h1{
+        flex-grow: 1;
+        font-size: rem(36);
+        margin: 0;
+    }
 }
 
 .content-header-products {
     display: flex;
+    width: fit-content;
     justify-content: space-between;
     height: 50px;
 

@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS rbnm_user CASCADE;
 DROP TABLE IF EXISTS rbnm_review CASCADE;
-DROP TABLE IF EXISTS rbnm_categorie CASCADE;
+DROP TABLE IF EXISTS rbnm_category CASCADE;
 DROP TABLE IF EXISTS rbnm_product CASCADE;
 DROP TABLE IF EXISTS rbnm_order_slot CASCADE;
 DROP TABLE IF EXISTS rbnm_order CASCADE;
@@ -21,7 +21,7 @@ CREATE TABLE rbnm_user (
     verificationcode VARCHAR(255) NULL
 );
 
-CREATE TABLE rbnm_categorie (
+CREATE TABLE rbnm_category (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     amount INT NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE rbnm_product (
     categoryId INT NOT NULL,
     inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
     updated TIMESTAMP NULL,
-    FOREIGN KEY (categoryId) REFERENCES rbnm_categorie(id)
+    FOREIGN KEY (categoryId) REFERENCES rbnm_category(id)
 );
 
 CREATE TABLE rbnm_review (

@@ -23,27 +23,17 @@ class EmailServerConfig
             "inputs" => [
                 "smtpHost" => [
                     "label" => "Hôte SMTP",
-                    "type" => "text",
+                    "type" => "select",
                     "id" => "form-config-smtpHost",
                     "required" => true,
                     "placeholder" => "smtp.example.com",
-                ],
-                "smtpPort" => [
-                    "label" => "Port SMTP",
-                    "type" => "text",
-                    "id" => "form-config-smtpPort",
-                    "required" => true,
-                    "placeholder" => "587",
-                ],
-                "smtpEncryption" => [
-                    "label" => "Type d'encryption SMTP",
-                    "type" => "select",
-                    "id" => "form-config-smtpEncryption",
-                    "required" => true,
-                    "placeholder" => "tls",
                     "options" => [
-                        "tls" => "TLS",
-                        "ssl" => "SSL",
+                        "smtp.office365.com,587,TLS" => "smtp.office365.com - TLS",
+                        "smtp-mail.outlook.com,587,TLS" => "smtp-mail.outlook.com - TLS",
+                        "smtp.gmail.com,587,TLS" => "smtp.gmail.com - TLS",
+                        "smtp.gmail.com,465,SSL" => "smtp.gmail.com - SSL",
+                        "smtp.mail.yahoo.com,587,TLS" => "smtp.mail.yahoo.com - TLS",
+                        "smtp.mail.yahoo.com,465,TLS" => "smtp.mail.yahoo.com - TLS",
                     ]
                 ],
                 "smtpUsername" => [

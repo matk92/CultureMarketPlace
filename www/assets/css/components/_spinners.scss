@@ -1,0 +1,22 @@
+.spinner{
+    height: rem(24);
+    width: rem(24);
+    margin: rem(40) auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 1000;
+    animation: spin 1s infinite linear;
+    border-radius: 50%;
+    border-top: 2px solid rgb(94, 137, 255);
+    border-right: 2px solid rgb(94, 137, 255);
+    border-bottom: 2px solid rgb(94, 137, 255);
+    border-left: 2px solid rgba(94, 137, 255, 0.2);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

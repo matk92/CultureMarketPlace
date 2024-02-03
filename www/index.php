@@ -24,6 +24,9 @@ if (file_exists('.env') == 0) {
     exit();
 }
 
+// On démarre la session
+session_start();
+
 
 // Function pour charger les variables d'environnement
 function loadEnv($path)
@@ -46,25 +49,29 @@ function loadEnv($path)
     }
 
     // si la config de la BDD n'est pas renseignée, on redirige vers la page de configuration de la BDD
-    if(!array_key_exists('BDD_PREFIX', $_ENV) || !array_key_exists('POSTGRES_PASSWORD', $_ENV) || !array_key_exists('POSTGRES_DB', $_ENV) || !array_key_exists('POSTGRES_USER', $_ENV)){
+    if (!array_key_exists('BDD_PREFIX', $_ENV) || !array_key_exists('POSTGRES_PASSWORD', $_ENV) || !array_key_exists('POSTGRES_DB', $_ENV) || !array_key_exists('POSTGRES_USER', $_ENV)) {
         $configController = new ConfigController();
         $configController->setBDDconfig();
         exit();
     }
 
     // si la config du serveur mail n'est pas renseignée, on redirige vers la page de configuration du serveur mail
-    if(!array_key_exists('SMTP_HOST', $_ENV) || !array_key_exists('SMTP_PORT', $_ENV) || !array_key_exists('SMTP_USERNAME', $_ENV) || !array_key_exists('SMTP_PASSWORD', $_ENV) || !array_key_exists('SMTP_ENCRYPTION', $_ENV)){
+    if (!array_key_exists('SMTP_HOST', $_ENV) || !array_key_exists('SMTP_PORT', $_ENV) || !array_key_exists('SMTP_USERNAME', $_ENV) || !array_key_exists('SMTP_PASSWORD', $_ENV) || !array_key_exists('SMTP_ENCRYPTION', $_ENV)) {
         $configController = new ConfigController();
         $configController->setMailConfig();
+        exit();
+    }
+
+    // si la config de l'admin n'est pas renseignée, on redirige vers la page de configuration de l'admin
+    if (!array_key_exists('ADMIN_FIRSTNAME', $_ENV) || !array_key_exists('ADMIN_LASTNAME', $_ENV) || !array_key_exists('ADMIN_EMAIL', $_ENV)) {
+        $configController = new ConfigController();
+        $configController->setAdminConfig();
         exit();
     }
 }
 
 // Usage
 loadEnv(__DIR__ . '/.env');
-
-// On démarre la session
-session_start();
 // recupérer cookie "user"
 if (isset($_COOKIE["user"])) {
     $_SESSION["user"] = $_COOKIE["user"];

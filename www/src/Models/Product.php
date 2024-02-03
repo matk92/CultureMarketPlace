@@ -14,6 +14,7 @@ class Product extends DB
     protected int $stock;
     protected int $categoryid;
     protected string $updated;
+    protected float $rating;
 
     /**
      * Get the value of id
@@ -151,5 +152,25 @@ class Product extends DB
     public function getUpdatedAt(): string
     {
         return $this->updated;
+    }
+
+    /**
+     * Get the value of rating
+     * 
+     * @return  int
+     */
+    public function getRating(): int
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Set the value of rating
+     * 
+     * @return  void
+     */
+    public function setRating(int $rating): void
+    {
+        $this->rating = $rating;
     }
 }
