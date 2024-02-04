@@ -1,6 +1,34 @@
+<script>
+    function deleteProduct(id) {
+        if (confirm("Voulez-vous vraiment supprimer ce produit ?")) {
+            document.getElementById('spinner').classList.remove('hidden');
+            document.getElementById('product_section').classList.remove('allProductsAdmin');
+            document.getElementById('product_section').classList.add('hidden');
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('DELETE', "/admin/products/delete?id=" + id, true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    window.location.reload();
+                } else {
+                    alert("Une erreur est survenue lors de la suppression du produit");
+                }
+            };
+            xhr.send();
+        }
+    }
+
+    function editProduct(id) {
+            document.getElementById('spinner').classList.remove('hidden');
+        window.location.href = "/admin/product/edit?id=" + id;
+    }
+</script>
 <section id="sectionTopAdmin">
     <input class="searchbar" id="search_products" type="search" placeholder="Rechercher...">
-    <button class="button button-primary btnAddAdmin"><i class="fa-solid fa-plus"></i> Ajouter un produit</button>
+    <button class="button button-primary btnAddAdmin">
+        <i class="fa-solid fa-plus"></i>
+        Ajouter un produit
+    </button>
 </section>
 <div class="spinner hidden" id="spinner"></div>
 <div class="allProductsAdmin" id="product_section">
@@ -16,7 +44,7 @@
                     <i class="fa-solid fa-eye"></i>
                     Visualiser
                 </button>
-                <button class="button button-secondary button-esm">
+                <button class="button button-secondary button-esm" onclick="editProduct(<?= $product->getId() ?>)">
                     <i class="fa-solid fa-pencil"></i>
                     Editer
                 </button>
@@ -28,25 +56,13 @@
         </article>
     <?php endforeach; ?>
 </div>
-<div id="productForm" class="modal-admin_products">
+<div id="productForm" class="modal-admin_products" <?= (isset($_GET['id']) || isset($form["errors"]))  ? 'style="display: block;"' : '' ?>>
     <div class="modal-content-admin_products">
-        <span class="close">&times;</span>
-        <form enctype="multipart/form-data">
-            <h2>Ajouter un nouveau produit</h2>
-            <label for="productName">Nom du produit:</label><br>
-            <input type="text" id="productName" name="productName"><br>
-            <label for="productPrice">Prix du produit:</label><br>
-            <input type="text" id="productPrice" name="productPrice"><br>
-            <label for="productDescription">Description du produit:</label><br>
-            <input type="text" id="productDescription" name="productDescription"><br>
-            <label for="productStock">Quantité du produit:</label><br>
-            <input type="text" id="productStock" name="productStock"><br>
-            <label for="productCategoryid">Catégorie du produit:</label><br>
-            <input type="text" id="productCategoryid" name="productCategoryid"><br>
-            <label for="productImage">Image du produit:</label><br>
-            <input type="file" id="productImage" name="productImage" accept="image/*"><br>
-            <input class="button button-primary" type="submit" value="Submit">
-        </form>
+        <div class="row">
+            <h2><?= isset($_GET['id']) ? "Edition d'un produit" : "Ajouter un nouveau produit" ?></h2>
+            <span class="close">&times;</span>
+        </div>
+        <?php $this->modal("form", $form) ?>
     </div>
 </div>
 <script src="../assets/js/admin.js"></script>
@@ -69,23 +85,4 @@
             });
         });
     });
-
-    function deleteProduct(id) {
-        if (confirm("Voulez-vous vraiment supprimer ce produit ?")) {
-            document.getElementById('spinner').classList.remove('hidden');
-            document.getElementById('product_section').classList.remove('allProductsAdmin');
-            document.getElementById('product_section').classList.add('hidden');
-            
-            var xhr = new XMLHttpRequest();
-            xhr.open('DELETE', "/admin/products/delete?id=" + id, true);
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    window.location.reload();
-                } else {
-                    alert("Une erreur est survenue lors de la suppression du produit");
-                }
-            };
-            xhr.send();
-        }
-    }
 </script>

@@ -14,7 +14,7 @@ class Product extends DB
     protected int $stock;
     protected int $categoryid;
     protected bool $archive;
-    protected string $updated;
+    protected ?string $updated;
     protected float $rating;
 
     /**
@@ -52,7 +52,6 @@ class Product extends DB
      */
     public function setName(string $name): void
     {
-        $name = ucwords(strtolower(trim($name)));
         $this->name = $name;
     }
 

@@ -20,7 +20,7 @@ class Verificator
                 die("Le champ $key n'existe pas");
 
             // Si le champ est requis, on vérifie qu'il n'est pas vide
-            if ($input["required"] === true && empty($data[$key])) {
+            if (isset($input["required"]) && $input["required"] === true && empty($data[$key])) {
                 $errors[$key] = "Le champ " . $input["label"] . " est requis";
             }
 
@@ -40,7 +40,7 @@ class Verificator
             }
 
             // Si le champ est unique, on vérifie qu'il n'existe pas déjà
-            if (isset($input["unicity"]) && !self::checkUnicity($input["unicity"], $data[$key])) {
+            if (isset($input["unicity"]) && !self::checkUnicity($key, $input["unicity"], $data[$key])) {
                 $errors[$key] = "Le champ " . $input["label"] . " est déjà utilisé";
             }
 
@@ -55,7 +55,7 @@ class Verificator
             }
 
             // Si le champ est de type number, on vérifie la valeur
-            if ($input["type"] == "number" && !self::checkNumber($data[$key], $input["min"], $input["max"])) {
+            if ($input["type"] == "number" && !self::checkNumber($data[$key], $input["min"] ?? null, $input["max"] ?? null)) {
                 if (isset($input["min"]) && !isset($input["max"]))
                     $errors[$key] = "Le champ " . $input["label"] . " doit être supérieur à " . $input["min"];
                 else if (isset($input["max"]) && !isset($input["min"]))
@@ -63,6 +63,9 @@ class Verificator
                 else
                     $errors[$key] = "Le champ " . $input["label"] . " doit être compris entre " . $input["min"] . " et " . $input["max"];
             }
+
+            if (empty($errors[$key]))
+                $config["inputs"][$key]["defaultValue"] = $data[$key];
         }
 
         $config["errors"] = $errors;
@@ -121,10 +124,10 @@ class Verificator
         return true;
     }
 
-    public static function checkUnicity(string $model, string $value): bool
+    public static function checkUnicity(string $colName, string $model, string $value): bool
     {
         $model = new $model();
-        $model = $model->getOneBy(["email" => $value], "object");
+        $model = $model->getOneBy([$colName => $value], "object");
 
         if ($model) {
             return false;

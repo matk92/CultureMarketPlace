@@ -97,9 +97,13 @@ class DB
     {
         $sql = "SELECT * FROM $this->tableName WHERE ";
         $execute = [];
-        
+
         foreach ($data as $key => $value) {
-            $sql .= $key . "=:" . $key . " AND ";
+            if (is_string($value)) {
+                $sql .= $key . " ILIKE :" . $key . " AND ";
+            } else {
+                $sql .= $key . "=:" . $key . " AND ";
+            }
             $execute[":" . $key] = $value;
         }
         $sql = substr($sql, 0, -5);

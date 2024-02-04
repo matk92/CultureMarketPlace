@@ -492,7 +492,8 @@ input.connection-in {
 .btnProductAdmin {
   margin-top: 20px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
 }
 
 .btnSaveChangeAdmin, .btnCancelChangeAdmin {

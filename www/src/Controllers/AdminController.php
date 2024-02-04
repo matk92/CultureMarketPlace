@@ -3,7 +3,12 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\Verificator;
+use App\Forms\AddProduct;
+use App\Forms\EditProduct;
+use App\Models\Product;
 use App\Repository\ProductRepository;
+use App\Repository\CategoryRepository;
 
 class AdminController
 {
@@ -12,19 +17,55 @@ class AdminController
     {
         new View("Admin/dashboard", "frontAdmin");
     }
-    
+
     public function pages(): void
     {
         new View("Admin/pages", "frontAdmin");
     }
 
-    public function products(): int
+    public function products()
     {
-        $view =   new View("Admin/products", "frontAdmin");
-        $products = (new ProductRepository())->getAll();
+        $view = new View("Admin/products", "frontAdmin");
+        $categories = (new CategoryRepository())->getAll();
+        $form = new AddProduct($categories);
+        $formConfig = $form->getConfig();
 
+        if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
+            $verificatior = new Verificator();
+            // On vérifie que le formulaire est valide
+            if ($verificatior->checkForm($formConfig, array_merge($_POST, $_FILES)) === true) {
+                $newProduct = new Product();
+                $newProduct->setName($_POST["name"]);
+                $newProduct->setDescription($_POST["description"]);
+                $newProduct->setPrice($_POST["price"]);
+                $newProduct->setStock($_POST["stock"]);
+                $newProduct->setCategoryId($_POST["category"]);
+
+                // Save image into folder "documents/product"
+                $imageFolder = "documents/products/";
+                $imageName = $newProduct->getName() . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+                $imagePath = $imageFolder . $imageName;
+                $destination = __DIR__ . "/../../" . $imagePath;
+                move_uploaded_file($_FILES['image']['tmp_name'], $destination);
+
+                // Save path in $newProduct->setImage()
+                $newProduct->setImage($imagePath);
+
+                // Save product in database
+                $newProduct->save();
+
+                http_response_code(201);
+            } else {
+                $view->assign("form", $formConfig);
+                http_response_code(409);
+            }
+        } else {
+            http_response_code(200);
+        }
+
+        $view->assign("form", $formConfig);
+        $products = (new ProductRepository())->getAll();
         $view->assign("products", $products);
-        return http_response_code(200);
     }
 
     public function settings(): void
@@ -60,42 +101,42 @@ class AdminController
             $data['home-text3'] = htmlspecialchars($_POST['home-text3']);
             $data['home-discover-text'] = htmlspecialchars($_POST['home-discover-text']);
 
-                //background image + favicon
-                if (isset($_FILES['site-background-image']) && $_FILES['site-background-image']['error'] === 0) {
-                    $tmp_name = $_FILES['site-background-image']['tmp_name'];
-                    $name = 'background_img';
-                    $ext = pathinfo($_FILES['site-background-image']['name'], PATHINFO_EXTENSION);
-                    $new_name = $name . '.' . $ext;
-                    $destination = __DIR__ . '/../../assets/images/' . $new_name;
+            //background image + favicon
+            if (isset($_FILES['site-background-image']) && $_FILES['site-background-image']['error'] === 0) {
+                $tmp_name = $_FILES['site-background-image']['tmp_name'];
+                $name = 'background_img';
+                $ext = pathinfo($_FILES['site-background-image']['name'], PATHINFO_EXTENSION);
+                $new_name = $name . '.' . $ext;
+                $destination = __DIR__ . '/../../assets/images/' . $new_name;
 
-                    move_uploaded_file($tmp_name, $destination);
-        
-                    $data['site-background-image'] = $new_name . '?' . time();
-                }
+                move_uploaded_file($tmp_name, $destination);
 
-                if (isset($_FILES['site-favicon']) && $_FILES['site-favicon']['error'] === 0) {
-                    $tmp_name = $_FILES['site-favicon']['tmp_name'];
-                    $name = 'favicon';
-                    $ext = pathinfo($_FILES['site-favicon']['name'], PATHINFO_EXTENSION);
-                    $new_name = $name . '.' . $ext;
-                    $destination = __DIR__ . '/../../assets/images/' . $new_name;
+                $data['site-background-image'] = $new_name . '?' . time();
+            }
 
-                    move_uploaded_file($tmp_name, $destination);
+            if (isset($_FILES['site-favicon']) && $_FILES['site-favicon']['error'] === 0) {
+                $tmp_name = $_FILES['site-favicon']['tmp_name'];
+                $name = 'favicon';
+                $ext = pathinfo($_FILES['site-favicon']['name'], PATHINFO_EXTENSION);
+                $new_name = $name . '.' . $ext;
+                $destination = __DIR__ . '/../../assets/images/' . $new_name;
 
-                    $data['site-favicon'] = $new_name . '?' . time();
-                }
+                move_uploaded_file($tmp_name, $destination);
 
-                if (isset($_FILES['home-discover-image']) && $_FILES['home-discover-image']['error'] === 0) {
-                    $tmp_name = $_FILES['home-discover-image']['tmp_name'];
-                    $name = 'home_discover_img';
-                    $ext = pathinfo($_FILES['home-discover-image']['name'], PATHINFO_EXTENSION);
-                    $new_name = $name . '.' . $ext;
-                    $destination = __DIR__ . '/../../assets/images/' . $new_name;
+                $data['site-favicon'] = $new_name . '?' . time();
+            }
 
-                    move_uploaded_file($tmp_name, $destination);
+            if (isset($_FILES['home-discover-image']) && $_FILES['home-discover-image']['error'] === 0) {
+                $tmp_name = $_FILES['home-discover-image']['tmp_name'];
+                $name = 'home_discover_img';
+                $ext = pathinfo($_FILES['home-discover-image']['name'], PATHINFO_EXTENSION);
+                $new_name = $name . '.' . $ext;
+                $destination = __DIR__ . '/../../assets/images/' . $new_name;
 
-                    $data['home-discover-image'] = $new_name . '?' . time();
-                }
+                move_uploaded_file($tmp_name, $destination);
+
+                $data['home-discover-image'] = $new_name . '?' . time();
+            }
 
             $json = json_encode($data, JSON_PRETTY_PRINT);
 
@@ -108,5 +149,4 @@ class AdminController
             new View("Admin/frameworksettings", "frontAdmin");
         }
     }
-
 }

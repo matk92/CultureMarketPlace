@@ -58,6 +58,7 @@
 /products:
   controller: ProductController
   action: index
+  method: GET
 
 /orders:
   controller: OrderController
@@ -82,6 +83,14 @@
 /admin/products:
   controller: AdminController
   action: products
+  role: 10
+  method: POST | GET
+
+/admin/product/edit:
+  controller: ProductController
+  action: edit
+  role: 10
+  method: GET | POST
 
 /admin/products/delete:
   controller: ProductController

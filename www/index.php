@@ -121,8 +121,8 @@ if (!empty($yaml[$uri])) {
                 // On verifie la methode de la requete
                 if (isset($match["method"])) {
                     $requestMethod = $_SERVER["REQUEST_METHOD"];
-                    $acceptedMethod = explode("|", $match["method"]);
-                    if (!in_array($requestMethod, $acceptedMethod)) {
+                    $acceptedMethod = explode(" | ", $match["method"]);
+                    if (in_array($requestMethod, $acceptedMethod) === false) {
                         // Method Not Allowed
                         include $controllersPath . "/ErrorController.php";
                         $controller = new Controllers\ErrorController();
