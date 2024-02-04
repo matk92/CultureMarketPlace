@@ -64,7 +64,7 @@ class DB
 
             foreach ($attributes as $key => $value) {
                 if (is_bool($value)) {
-                    $value = $value ? 't' : 'f';
+                    $value = ($value == true ? 't' : 'f');
                 }
                 $sql .= ":$key, ";
                 $execute[":$key"] = $value;
@@ -74,7 +74,6 @@ class DB
             $sql = substr($sql, 0, -2);
             $sql .= ");";
         }
-
 
         // on prepare la requete
         $stmt = $this->connection->prepare($sql);

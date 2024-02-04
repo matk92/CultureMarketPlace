@@ -111,6 +111,12 @@
   controller: AdminController
   action: profile
 
-/admin/notifications:
+/admin/comments:
   controller: AdminController
-  action: notifications
+  action: comments
+
+/admin/comments/evaluate:
+  controller: ReviewController
+  action: evaluate
+  method: GET
+  role: 5

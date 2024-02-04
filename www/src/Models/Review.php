@@ -11,8 +11,8 @@ class Review extends DB
     protected int $productid;
     protected string $comment;
     protected int $rating;
-    protected bool $isapproved;
-    protected string $updated;
+    protected ?bool $isapproved;
+    protected ?string $updated;
 
     /**
      * @return int
@@ -111,6 +111,7 @@ class Review extends DB
      */
     public function getIsApproved(): bool
     {
+
         return $this->isapproved;
     }
 
@@ -121,6 +122,7 @@ class Review extends DB
      */
     public function setIsApproved(bool $isapproved): void
     {
+        var_dump($isapproved);
         $this->isapproved = $isapproved;
     }
 

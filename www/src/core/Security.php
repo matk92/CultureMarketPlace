@@ -10,7 +10,10 @@ class Security
     public function authenticate($data, &$user)
     {
         $user = (new User())->getOneBy(["email" => $data["email"]], "object");
-
+        if($user == 0){
+            return false;
+        }
+        
         if ($user->getStatus() !== User::_STATUS_INACTIVE) {
             // L'utilisateur est connecté, on le redirige vers la page d'accueil
             $_SESSION["user"] = [

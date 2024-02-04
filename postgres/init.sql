@@ -48,7 +48,7 @@ CREATE TABLE rbnm_review (
     productId INT NOT NULL,
     rating INT NOT NULL,
     comment VARCHAR(255) NOT NULL,
-    isApproved BOOLEAN NOT NULL DEFAULT FALSE,
+    isApproved BOOLEAN DEFAULT NULL,
     inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
     updated TIMESTAMP NULL,
     FOREIGN KEY (userId) REFERENCES rbnm_user(id),

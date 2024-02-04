@@ -3,10 +3,11 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Models\Product;
 use App\Core\Verificator;
 use App\Forms\AddProduct;
 use App\Forms\EditProduct;
-use App\Models\Product;
+use App\Repository\ReviewRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 
@@ -78,9 +79,11 @@ class AdminController
         new View("Admin/profile", "frontAdmin");
     }
 
-    public function notifications(): void
+    public function comments(): void
     {
-        new View("Admin/notifications", "frontAdmin");
+        $view =  new View("Admin/comments", "frontAdmin");
+        $comments = (new ReviewRepository())->getNonEvaluated();
+        $view->assign("comments", $comments);
     }
 
     public function frameworksettings(): void
