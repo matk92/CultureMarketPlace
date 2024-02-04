@@ -83,6 +83,12 @@
   controller: AdminController
   action: products
 
+/admin/products/delete:
+  controller: ProductController
+  action: delete
+  role: 10
+  method: DELETE
+
 /admin/settings:
   controller: AdminController
   action: settings

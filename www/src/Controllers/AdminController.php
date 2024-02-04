@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Repository\ProductRepository;
 
 class AdminController
 {
@@ -17,9 +18,13 @@ class AdminController
         new View("Admin/pages", "frontAdmin");
     }
 
-    public function products(): void
+    public function products(): int
     {
-        new View("Admin/products", "frontAdmin");
+        $view =   new View("Admin/products", "frontAdmin");
+        $products = (new ProductRepository())->getAll();
+
+        $view->assign("products", $products);
+        return http_response_code(200);
     }
 
     public function settings(): void

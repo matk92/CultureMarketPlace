@@ -20,7 +20,7 @@
     <div class="products-section" id="product_section">
         <?php foreach ($products as $key => $product) : ?>
             <div class="card">
-                <img src=<?= $product->getImage() ?> alt="Image de <?= $product->getName() ?>">
+                <img src="/<?= $product->getImage() ?>" alt="Image de <?= $product->getName() ?>">
                 <div class="card-header">
                     <h2><?= $product->getName() ?></h2>
                     <div class="row">

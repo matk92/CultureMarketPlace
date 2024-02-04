@@ -21,4 +21,24 @@ class ProductController
         $view->assign("filters", $filters);
         return http_response_code(200);
     }
+
+    public function delete(): void
+    {
+        $id = $_GET['id'];
+
+        if (empty($id)) {
+            http_response_code(400);
+            header('Location: /admin/products');
+            exit();
+        }
+
+        if(!(new ProductRepository())->delete($id)) {
+            http_response_code(500);
+            header('Location: /admin/products');
+            exit();
+        }
+
+        header('Location: /admin/products');
+        http_response_code(200);
+    }
 }

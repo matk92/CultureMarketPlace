@@ -38,6 +38,7 @@ CREATE TABLE rbnm_product (
     categoryId INT NOT NULL,
     inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
     updated TIMESTAMP NULL,
+    archived BOOLEAN NOT NULL DEFAULT FALSE,
     FOREIGN KEY (categoryId) REFERENCES rbnm_category(id)
 );
 

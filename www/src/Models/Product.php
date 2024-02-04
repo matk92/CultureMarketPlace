@@ -13,6 +13,7 @@ class Product extends DB
     protected float $price;
     protected int $stock;
     protected int $categoryid;
+    protected bool $archive;
     protected string $updated;
     protected float $rating;
 
@@ -145,6 +146,25 @@ class Product extends DB
     {
         $this->categoryid = $categoryid;
     }
+
+    /**
+     * Get the value of archive
+     */
+    public function getArchive(): bool
+    {
+        return $this->archive;
+    }
+
+    /**
+     * Set the value of archive
+     *
+     * @return  void
+     */
+    public function setArchive(bool $archive): void
+    {
+        $this->archive = $archive;
+    }
+    
 
     /**
      * Get the value of updated

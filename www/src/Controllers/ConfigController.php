@@ -165,6 +165,7 @@ class ConfigController
                 $newUser->setLastName($_POST["lastname"]);
                 $newUser->setEmail($_POST["email"]);
                 $newUser->setPwd($_POST["pwd"]);
+                $newUser->setRole(10);
                 $newUser->save();
                 $_SESSION["email"] = $_POST["email"];
                 $adminConfig = "\n\nADMIN_FIRSTNAME=" . $_POST['firstName'] . "\nADMIN_LASTNAME=" . $_POST['lastname'] . "\nADMIN_EMAIL=" . $_POST['email'];

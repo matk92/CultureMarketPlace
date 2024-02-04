@@ -1,41 +1,38 @@
 -------- INSERTS --------
 
 INSERT INTO rbnm_user (firstName, lastName, email, pwd, status, role) VALUES
-    ('John', 'Doe', 'john.doe@example.com', 'password1', 1, 1),
-    ('Jane', 'Smith', 'jane.smith@example.com', 'password2', 1, 1),
-    ('Michael', 'Johnson', 'michael.johnson@example.com', 'password3', 1, 1),
-    ('Emily', 'Brown', 'emily.brown@example.com', 'password4', 1, 1),
-    ('Daniel', 'Davis', 'daniel.davis@example.com', 'password5', 1, 1),
-    ('Olivia', 'Miller', 'olivia.miller@example.com', 'password6', 1, 1),
-    ('William', 'Wilson', 'william.wilson@example.com', 'password7', 1, 1),
-    ('Sophia', 'Anderson', 'sophia.anderson@example.com', 'password8', 1, 1),
-    ('James', 'Taylor', 'james.taylor@example.com', 'password9', 1, 1),
-    ('Emma', 'Thomas', 'emma.thomas@example.com', 'password10', 1, 1);
+    ('John', 'Doe', 'john.doe@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1),
+    ('Jane', 'Smith', 'jane.smith@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1),
+    ('Michael', 'Johnson', 'michael.johnson@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1),
+    ('Emily', 'Brown', 'emily.brown@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1),
+    ('Daniel', 'Davis', 'daniel.davis@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1),
+    ('Olivia', 'Miller', 'olivia.miller@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1),
+    ('William', 'Wilson', 'william.wilson@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1),
+    ('Sophia', 'Anderson', 'sophia.anderson@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1),
+    ('James', 'Taylor', 'james.taylor@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1),
+    ('Emma', 'Thomas', 'emma.thomas@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 1);
 
 INSERT INTO rbnm_user (firstName, lastName, email, pwd, status, role) VALUES
-    ('Alex', 'Clark', 'alex.clark@example.com', 'password1', 1, 5),
-    ('Grace', 'Walker', 'grace.walker@example.com', 'password2', 1, 5),
-    ('Benjamin', 'Harris', 'benjamin.harris@example.com', 'password3', 1, 5),
-    ('Lily', 'Lewis', 'lily.lewis@example.com', 'password4', 1, 5),
-    ('Henry', 'Martin', 'henry.martin@example.com', 'password5', 1, 5);
+    ('Alex', 'Clark', 'alex.clark@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 5),
+    ('Grace', 'Walker', 'grace.walker@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 5),
+    ('Benjamin', 'Harris', 'benjamin.harris@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 5),
+    ('Lily', 'Lewis', 'lily.lewis@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 5),
+    ('Henry', 'Martin', 'henry.martin@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 5);
 
 INSERT INTO rbnm_user (firstName, lastName, email, pwd, status, role) VALUES
-    ('Adam', 'White', 'adam.white@example.com', 'password1', 1, 10),
-    ('Ella', 'Jones', 'ella.jones@example.com', 'password2', 1, 10);
+    ('Adam', 'White', 'adam.white@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 10),
+    ('Ella', 'Jones', 'ella.jones@example.com', '$2y$10$K.opOJbgF69Ma7PTdS9rReooHAWeXLJ6CdASD0As6jnd7PYNSuS', 1, 10);
 
 INSERT INTO rbnm_category (name, amount, unit) VALUES 
     ('Fruits', 1, 'kg'),
     ('Légumes', 1, 'kg'),
     ('Viandes', 1, 'kg'),
     ('Poissons', 1, 'kg'),
-    ('Produits laitiers', 1, 'kg'),
+    ('Produits laitiers', 1, 'l'),
     ('Boissons', 1, 'l'),
-    ('Epicerie', 1, 'kg'),
+    ('Epicerie', 1, 'g'),
     ('Boulangerie', 1, 'kg'),
-    ('Patisserie', 1, 'kg'),
-    ('Surgelés', 1, 'kg'),
-    ('Hygiène', 1, 'kg'),
-    ('Entretien', 1, 'kg');
+    ('Patisserie', 1, 'kg');
 
 INSERT INTO rbnm_product (name, image, description, price, stock, categoryId) VALUES
     ('Pommes', 'documents/products/pommes.jpg', 'Les pommes sont des fruits délicieux et croquants, parfaits pour une collation saine et rafraîchissante. Elles sont riches en fibres et en vitamines, et sont cultivées avec soin pour garantir une qualité optimale.', 2, 10, 1),

@@ -74,7 +74,7 @@ function loadEnv($path)
 loadEnv(__DIR__ . '/.env');
 // recupérer cookie "user"
 if (isset($_COOKIE["user"])) {
-    $_SESSION["user"] = $_COOKIE["user"];
+    $_SESSION["user"] = json_decode ($_COOKIE["user"], true);
 }
 
 // Recupérer l'URL
@@ -118,6 +118,7 @@ if (!empty($yaml[$uri])) {
             $object = new $controller();
             if (method_exists($object, $action)) {
 
+                // On verifie la methode de la requete
                 if (isset($match["method"])) {
                     $requestMethod = $_SERVER["REQUEST_METHOD"];
                     $acceptedMethod = explode("|", $match["method"]);
@@ -129,12 +130,22 @@ if (!empty($yaml[$uri])) {
                         die();
                     }
                 }
+                // On verifie le role de l'utilisateur
+                if (isset($match["role"])) {
+                    if (!isset($_SESSION["user"]) || (int) $_SESSION["user"]["role"] < (int) $match["role"]) {
+                        include $controllersPath . "/ErrorController.php";
+                        $controller = new Controllers\ErrorController();
+                        $controller->page403();
+                        die();
+                    }
+                }
+
                 $object->$action();
             } else {
-                die("L'action " . $action . "n'existe pas");
+                die("L'action " . $action . " n'existe pas");
             }
         } else {
-            die("La class controller " . $controller . "n'existe pas");
+            die("La class controller " . $controller . " n'existe pas");
         }
     } else {
         die("Le fichier controller " . $controller . " n'existe pas");
