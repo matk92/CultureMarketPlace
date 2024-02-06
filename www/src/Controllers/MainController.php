@@ -10,7 +10,7 @@ class MainController
 
     public function home(): void
     {
-        new View("Main/home", "front");
+        new View("Main/home");
     }
 
     public function copyright(): void
@@ -20,21 +20,21 @@ class MainController
 
     public function legal(): void
     {
-        new View("legal/legal");
+        new View("legal/legalTerms");
     }
 
     public function privacy(): void
     {
-        new View("legal/privacy");
+        new View("legal/privacyPolicy");
     }
 
     public function refund(): void
     {
-        new View("legal/refund");
+        new View("legal/refundPolicy");
     }
 
     public function terms(): void
     {
-        new View("legal/terms");
+        new View("legal/termsConditionsSales");
     }
 }
