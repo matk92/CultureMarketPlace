@@ -1,6 +1,6 @@
 <main class="main-products">
     <section class="products-header">
-        <h1>Produits</h1>
+        <h1 id="products_title">Produits</h1>
         <div class="content-header-products">
             <div class="filter">
                 <label for="filter">Filtrer</label>
@@ -60,7 +60,7 @@
         $('#category_filter').change(function() {
             var selectedValue = $(this).val();
             var url = window.location.href.split('?')[0]; // remove existing query parameters
-            window.location.href = url + '?filter=' + selectedValue;
+            window.location.href = url + '?filter=' + selectedValue + '#products_title';
             document.getElementById('spinner').classList.remove('hidden');
             document.getElementById('product_section').classList.remove('products-section');
             document.getElementById('product_section').classList.add('hidden');
