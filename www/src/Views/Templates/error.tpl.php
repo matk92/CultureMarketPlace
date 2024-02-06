@@ -12,10 +12,10 @@ $data = json_decode($json, true); ?>
 <body class="error">
     <main>
         <section>
-	        <div class="content-error">
-		        <h2>404</h2>
-		        <h2>404</h2>
-	        </div>
+            <div class="content-error">
+                <h2><?php echo $errorCode; ?></h2>
+                <h2><?php echo $errorCode; ?></h2>
+            </div>
         </section>
     </main>
 </body>

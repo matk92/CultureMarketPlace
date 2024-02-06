@@ -4,4 +4,8 @@
     border-width: 1px;
     width: 320px;
     padding-left: 30px;
+
+    @media (max-width: 600px) {
+      max-width: 200px;
+    }
   }
