@@ -15,26 +15,26 @@ class MainController
 
     public function copyright(): void
     {
-        new View("Main/copyright");
+        new View("legal/copyright");
     }
 
     public function legal(): void
     {
-        new View("Main/legal");
+        new View("legal/legal");
     }
 
     public function privacy(): void
     {
-        new View("Main/privacy");
+        new View("legal/privacy");
     }
 
     public function refund(): void
     {
-        new View("Main/refund");
+        new View("legal/refund");
     }
 
     public function terms(): void
     {
-        new View("Main/terms");
+        new View("legal/terms");
     }
 }
