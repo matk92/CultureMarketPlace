@@ -75,10 +75,12 @@
 /admin/dashboard:
   controller: AdminController
   action: dashboard
+  role: 10
 
 /admin/pages:
   controller: AdminController
   action: pages
+  role: 10
 
 /admin/products:
   controller: AdminController
@@ -101,11 +103,13 @@
 /admin/settings:
   controller: AdminController
   action: settings
+  role: 10
 
 /admin/frameworksettings:
   controller: AdminController
   type: GET | POST
   action: frameworksettings
+  role: 10
 
 /admin/profile:
   controller: AdminController
@@ -114,12 +118,18 @@
 /admin/comments:
   controller: AdminController
   action: comments
+  role: 5
 
 /admin/comments/evaluate:
   controller: ReviewController
   action: evaluate
   method: GET
   role: 5
+
+/admin/users:
+  controller: AdminController
+  action: users
+  role: 10
 
 /admin/designguide:
   controller: AdminController

@@ -1,32 +1,49 @@
+<?php
+    $role = $_SESSION['user']['role'];
+
+    $roles = [
+        1 => 'Utilisateur',
+        5 => 'Modérateur',
+        10 => 'Admin'
+    ];
+
+    $roleName = isset($roles[$role]) ? $roles[$role] : '';
+?>
 <section class="profile">
     <h1 class="profileTitleAdmin">Informations du compte</h1>
+    <h3>Rôle - <?= $roleName ?></h3>
     <div class="profileContentAdmin">
-        <img src="../assets/images/bryan.jpg" class="imageProfileAdmin" />
+        <img src="../assets/images/bryan.jpg" class="imageProfileAdmin" id="profileImage" />
         <div class="profileForm">
-            <form class="profileFormAdmin">
+            <form class="profileFormAdmin" id="profileForm" enctype="multipart/form-data">
                 <div class="columnAdmin">
+                    <label for="profileImage">Image de profil</label><br />
+                    <input type="file" id="profileImage" name="profileImage" accept=".png, .jpg, .jpeg" style="height: 50px;"><br />
                     <label for="name">Nom</label><br />
-                    <input type="text" id="name" name="name" value="Bryan"><br />
+                    <input type="text" id="name" name="name" value="<?= $_SESSION['user']['firstname'] ?>"><br />
                     <label for="prenom">Prénom</label><br />
-                    <input type="text" id="name" name="name" value="Dencil"><br />
+                    <input type="text" id="name" name="name" value="<?= $_SESSION['user']['lastname'] ?>"><br />
                     <label for="email">Email</label><br />
-                    <input type="email" id="email" name="email" value="BryanSIUUUUUUU@CR7.com"><br />
-                    <label for="phone">Numéro de téléphone</label><br />
-                    <input type="tel" id="phone" name="phone" value="1234567890">
+                    <input type="email" id="email" name="email" value="<?= $_SESSION['user']['email'] ?>"><br />
                 </div>    
                 <div class="columnAdmin">
-                    <label for="country">Pays</label><br />
-                    <input type="text" id="country" name="country" value="Portugal"><br />
                     <label for="password">Mot de passe</label><br />
                     <input type="password" id="password" name="password" value="******************"><br />
-                    <label for="address">Adresse</label><br />
-                    <input type="address" id="address" name="address" value="Maison de cr7, Lisbonne">
+                    <label for="confirmPassword">Confirmer le mot de passe</label><br />
+                    <input type="password" id="confirmPassword" name="confirmPassword" value="******************"><br />
                 </div>    
             </form>
         </div>
     </div>
     <div class="btnProfileAdmin">
             <button class="button button-primary"><i class="fa-solid fa-check"></i> Sauvegarder les changements</button>
-            <button class="button button-secondary"><i class="fa-solid fa-rotate-left"></i> Annuler les changements</button>
+            <button class="button button-secondary" id="cancelButton"><i class="fa-solid fa-rotate-left"></i> Annuler les changements</button>
     </div>
 </section>
+
+<script>
+    document.getElementById('cancelButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('profileForm').reset();
+    });
+</script>

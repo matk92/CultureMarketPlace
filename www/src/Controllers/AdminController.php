@@ -86,8 +86,15 @@ class AdminController
         $view->assign("comments", $comments);
     }
 
+    public function users(): void
+    {
+        new View("Admin/users", "frontAdmin");
+    }
+
     public function frameworksettings(): void
     {
+        $_SESSION['settings_success'] = "Les modifications ont été appliquées avec succès.";
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $json = file_get_contents(__DIR__ . '/../Views/Main/home.json');
 

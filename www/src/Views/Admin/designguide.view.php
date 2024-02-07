@@ -1,4 +1,4 @@
-<h1>Guide de design</h1>
+<h1>Design Guide</h1>
 
 <section>
     <h2>Boutons</h2>

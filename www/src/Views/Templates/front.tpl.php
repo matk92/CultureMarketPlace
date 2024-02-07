@@ -16,6 +16,14 @@ $data = json_decode($json, true); ?>
 
     <header>
         <div class="bg-img-home">
+            <?php if (isset($_SESSION['alert']) && $_SESSION['alert'] == 'success'): ?>
+                <div id="success-alert" class="alert alert-success" style="position: fixed; top: 0;">
+                    <p>Connexion réussie. Bienvenue !</p>
+                </div>
+                <?php 
+                    unset($_SESSION['alert']); 
+                ?>
+            <?php endif; ?>
             <img src="/assets/images/<?php echo htmlspecialchars($data['site-background-image']) ?>" alt="Image">
             <div class="content-header-home">
                 <div class="title-home"><?php echo htmlspecialchars($data['site-name']) ?></div><br>
@@ -51,12 +59,15 @@ $data = json_decode($json, true); ?>
                         </li>
                         <li><a href="#">|</a></li>
                         <?php if (isset($_SESSION['user'])) : ?>
-                            <li>
-                                <a href="/logout">
+                            <li class="dropdown">
+                                <a href="#" class="dropbtn">
                                     <i class="fa-regular fa-user"></i>
                                     <?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['lastname'] ?>
-                                    <i class="fa-solid fa-right-from-bracket"></i>
                                 </a>
+                                <div class="dropdown-content" id="userDropdown">
+                                    <a href="/admin/profile">Profil</a>
+                                    <a href="/logout">Déconnexion<i class="fa-solid fa-right-from-bracket"></i></a>
+                                </div>
                             </li>
                         <?php else : ?>
                             <li>
@@ -119,6 +130,17 @@ $data = json_decode($json, true); ?>
     </script>
 
 </body>
+<script>
+    setTimeout(function() {
+        var alert = document.getElementById('success-alert');
+        if(alert) alert.style.display = 'none';
+    }, 5000);
+
+    document.querySelector('.dropbtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('userDropdown').classList.toggle('show');
+    });
+</script>
 <script src="../assets/js/components/navbar.js"></script>
 <script src="../assets/js/components/darkmode.js"></script>
 

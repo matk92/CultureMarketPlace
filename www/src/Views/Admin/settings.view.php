@@ -1,6 +1,13 @@
+<?php if (isset($_SESSION['settings_success'])): ?>
+    <div id="alert" class="alert alert-success">
+        <p><?php echo $_SESSION['settings_success']; ?></p>
+    </div>
+    <?php unset($_SESSION['settings_success']); ?>
+<?php endif; ?>
+
 <h1>settings</h1>
 
-<form action="frameworksettings" method="post" enctype="multipart/form-data" class="form-settings">
+<form action="frameworksettings" method="post" id="settingsForm" enctype="multipart/form-data" class="form-settings">
     <h2>Informations générales</h2>
 
     <label for="site-name">Nom du site</label>
@@ -10,7 +17,7 @@
     <input type="text" id="site-subtitle" name="site-subtitle" class="input" value="<?php echo $data['site-subtitle']?>">
 
     <label for="site-favicon">Favicon</label>
-    <img src="/assets/images/<?php echo $data['site-favicon']; ?>" alt="Image" style="max-width: 50px; height: auto; margin-bottom: 5px;">
+    <img id="faviconPreview" src="/assets/images/<?php echo $data['site-favicon']; ?>" alt="Image" style="max-width: 50px; height: auto; margin-bottom: 5px;">
     <input type="file" id="site-favicon" name="site-favicon" accept=".ico, .png, .jpg, .jpeg">
 
     <label for="site-background-image">Image du header</label>
@@ -74,5 +81,18 @@
     <label for="home-discover-color">Couleur du texte "Découvrir"</label>
     <input type="color" id="home-discover-color" name="home-discover-color" value="#000000">
 
-    <input type="submit" class="button button-primary" style="width: 200px" value="Enregistrer">
+    <input type="submit" class="button button-primary" style="width: 250px;" value="Enregistrer">
+    <button class="button button-secondary" id="cancelButton" style="width: 250px; margin-top: 10px;"><i class="fa-solid fa-rotate-left"></i> Annuler les changements</button>
 </form>
+
+<script>
+    document.getElementById('cancelButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('settingsForm').reset();
+    });
+    
+    setTimeout(function() {
+        var alert = document.getElementById('alert');
+        if (alert) alert.parentNode.removeChild(alert);
+    }, 5000);
+</script>
