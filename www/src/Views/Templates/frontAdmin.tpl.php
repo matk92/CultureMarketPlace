@@ -25,6 +25,7 @@ $data = json_decode($json, true); ?>
                 <li><a href="comments"><i class="fa-solid fa-comment"></i> Commentaires</a></li>
                 <hr>
                 <li><a href="settings"><i class="fa-solid fa-gear"></i> Paramètres</a></li>
+                <li><a href="designguide"><i class="fa-brands fa-figma"></i> Design Guide</a></li>
             </ul>
         </nav>
 

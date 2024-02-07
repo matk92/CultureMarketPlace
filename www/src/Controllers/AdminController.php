@@ -152,4 +152,9 @@ class AdminController
             new View("Admin/frameworksettings", "frontAdmin");
         }
     }
+
+    public function designGuide(): void
+    {
+        new View("Admin/designguide", "frontAdmin");
+    }
 }

@@ -120,3 +120,7 @@
   action: evaluate
   method: GET
   role: 5
+
+/admin/designguide:
+  controller: AdminController
+  action: designguide

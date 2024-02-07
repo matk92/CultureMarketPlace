@@ -72,6 +72,7 @@
     <textarea id="home-discover-text" name="home-discover-text"><?php echo $data['home-discover-text']?></textarea>
 
     <label for="home-discover-color">Couleur du texte "Découvrir"</label>
+    <input type="color" id="home-discover-color" name="home-discover-color" value="#000000">
 
     <input type="submit" class="button button-primary" style="width: 200px" value="Enregistrer">
 </form>
