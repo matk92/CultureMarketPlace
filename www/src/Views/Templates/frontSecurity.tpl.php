@@ -17,14 +17,4 @@ $data = json_decode($json, true); ?>
   <main>
     <?php include $this->view; ?>
   </main>
-
-  <script>
-    const links = document.querySelectorAll('nav a');
-
-    links.forEach(link => {
-      if (link.href === window.location.href) {
-        link.classList.add('active');
-      }
-    });
-  </script>
 </body>
