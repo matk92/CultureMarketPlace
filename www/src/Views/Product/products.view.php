@@ -49,6 +49,14 @@
                 <div class="card-bottom">
                     <p><?= $product->getPrice() ?>€</p>
                     <a href="" id="bouton">Voir plus</a>
+
+</div>
+</div>
+
+        <?php endforeach; ?>
+    </div>
+</main>
+
 <div id="fond" class="fond">
     <div class="popup">
         <h2>Popup</h2>
@@ -80,11 +88,6 @@
         }
     }
 </script>
-</div>
-</div>
-        <?php endforeach; ?>
-    </div>
-</main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
