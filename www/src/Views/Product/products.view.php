@@ -48,12 +48,44 @@
                 <p><?= $product->getDescription() ?></p>
                 <div class="card-bottom">
                     <p><?= $product->getPrice() ?>€</p>
-                    <a href="#">Voir plus</a>
-                </div>
-            </div>
+                    <a href="" id="bouton">Voir plus</a>
+<div id="fond" class="fond">
+    <div class="popup">
+        <h2>Popup</h2>
+        <p>Ceci est une popup simple.</p>
+        <button id="fermer">Fermer</button>
+    </div>
+</div>
+
+<script>
+    // Obtenir les éléments
+    var bouton = document.getElementById('bouton');
+    var fond = document.getElementById('fond');
+    var fermer = document.getElementById('fermer');
+
+    // Ouvrir la popup quand on clique sur le bouton
+    bouton.onclick = function() {
+        fond.style.display = 'block';
+    }
+
+    // Fermer la popup quand on clique sur le bouton "fermer"
+    fermer.onclick = function() {
+        fond.style.display = 'none';
+    }
+
+    // Fermer la popup quand on clique en dehors de la popup
+    window.onclick = function(event) {
+        if (event.target == fond) {
+            fond.style.display = 'none';
+        }
+    }
+</script>
+</div>
+</div>
         <?php endforeach; ?>
     </div>
 </main>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
