@@ -65,3 +65,26 @@
 		@extend .button-primary;
 	}
 }
+
+.floating-action-btn{
+	@extend .button;
+	position: fixed;
+	bottom: rem(20);
+	right: rem(20);
+	border-radius: 100rem;
+	cursor: pointer;
+	background-color: var(--blue);
+	&:hover {
+		background-color: var(--background-color2);
+		color: var(--blue);
+	}
+	color: var(--white);
+	z-index: 5;
+	
+	&-lg {
+		padding: rem(16) rem(24);
+	}
+	&-sm {
+		padding: rem(8) rem(12);
+	}
+}

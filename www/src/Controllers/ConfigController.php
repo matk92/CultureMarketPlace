@@ -14,7 +14,7 @@ class ConfigController
 
     public function welcome(): int|bool
     {
-        new View("Config/welcome", "frontConfig");
+        new View("Config/welcome", "frontInstaller");
 
         if (isset(($_GET["start"])) && $_GET["start"] == "true") {
             file_put_contents('.env', '');
@@ -74,28 +74,30 @@ class ConfigController
                 // $connection = new \PDO(
                 //     "pgsql:host=postgres;port=5432;dbname=" . $bddName . ";user=root;password=123456"
                 // );
-                $checkUserQuery = "SELECT 1 FROM pg_roles WHERE rolname = :username";
-                $checkUserStatement = $connection->prepare($checkUserQuery);
-                $checkUserStatement->bindValue(':username', $bddUser);
-                $checkUserStatement->execute();
+                if ($bddUser !== "root") {
+                    $checkUserQuery = "SELECT 1 FROM pg_roles WHERE rolname = :username";
+                    $checkUserStatement = $connection->prepare($checkUserQuery);
+                    $checkUserStatement->bindValue(':username', $bddUser);
+                    $checkUserStatement->execute();
 
-                if (!$checkUserStatement->fetchColumn()) {
-                    $createUserQuery = "CREATE USER " . $bddUser . " WITH ENCRYPTED PASSWORD '" . $bddPassword . "';";
-                    $connection->exec($createUserQuery);
+                    if (!$checkUserStatement->fetchColumn()) {
+                        $createUserQuery = "CREATE USER " . $bddUser . " WITH ENCRYPTED PASSWORD '" . $bddPassword . "';";
+                        $connection->exec($createUserQuery);
+                    }
+                    $connection->exec("GRANT ALL PRIVILEGES ON DATABASE cmp TO " . $bddUser . ";");
+                    $connection->exec("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO " . $bddUser . ";");
+                    $connection->exec("GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO " . $bddUser . ";");
+                    $connection->exec("GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO " . $bddUser . ";");
+                    $connection = null; // Close the existing database connection
+                    $connection = new \PDO(
+                        "pgsql:host=postgres;port=5432;dbname=cmp;user=" . $bddUser . ";password=" . $bddPassword . ""
+                    );
+                    $connection->exec("REVOKE ALL PRIVILEGES ON DATABASE cmp FROM root;");
+                    $connection->exec("REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM root;");
+                    $connection->exec("REVOKE ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public FROM root;");
+                    $connection->exec("REVOKE ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public FROM root;");
                 }
-                $connection->exec("GRANT ALL PRIVILEGES ON DATABASE cmp TO " . $bddUser . ";");
-                $connection->exec("GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO " . $bddUser . ";");
-                $connection->exec("GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO " . $bddUser . ";");
-                $connection->exec("GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO " . $bddUser . ";");
-                $connection = null; // Close the existing database connection
-                $connection = new \PDO(
-                    "pgsql:host=postgres;port=5432;dbname=cmp;user=" . $bddUser . ";password=" . $bddPassword . ""
-                );
 
-                $connection->exec("REVOKE ALL PRIVILEGES ON DATABASE cmp FROM root;");
-                $connection->exec("REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM root;");
-                $connection->exec("REVOKE ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public FROM root;");
-                $connection->exec("REVOKE ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public FROM root;");
 
                 file_put_contents('.env', $bddConfig);
                 http_response_code(204);

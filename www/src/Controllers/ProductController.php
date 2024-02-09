@@ -3,12 +3,15 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Models\Product;
+use App\Models\Category;
 use App\Core\Verificator;
 use App\Forms\AddProduct;
 use App\Forms\EditProduct;
+use App\Forms\AddProductToCart;
+use App\Repository\ReviewRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
-use App\Models\Product;
 
 class ProductController
 {
@@ -20,6 +23,18 @@ class ProductController
         $view = new View("Product/products", "front");
         $products = (new ProductRepository())->getAllByCategory($_GET['filter']);
         $filters = (new CategoryRepository())->getAll();
+
+        if (isset($_GET['pid']) && $_GET['pid'] != "") {
+            $displayProduct = (new Product())->populate((int) $_GET['pid']);
+            $category = (new Category())->populate($displayProduct->getCategoryId());
+            $comments = (new ReviewRepository())->getProductComments($displayProduct->getId());
+
+            $form = new AddProductToCart($displayProduct, $category);
+            $formConfig = $form->getConfig();
+            $view->assign("form", $formConfig);
+            $view->assign("displayProduct", $displayProduct);
+            $view->assign("comments", $comments);
+        }
 
         $view->assign("products", $products);
         $view->assign("filters", $filters);

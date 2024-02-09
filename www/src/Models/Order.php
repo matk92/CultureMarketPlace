@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use App\Core\DB;
+use DateTime;
 
 class Order extends DB
 {
     protected int $id;
     protected int $userid;
     protected int $status;
-    protected string $updated;
+    protected ?string $updated;
+    protected array $orderSlots = [];
 
     /**
      * Get the value of id
@@ -73,5 +75,32 @@ class Order extends DB
     public function getUpdatedAt(): string
     {
         return $this->updated;
+    }
+
+    public function getOrderSlots(): array
+    {
+        return $this->orderSlots;
+    }
+
+    public function addOrderSlot(Product $product, int $quantity): OrderSlot
+    {
+        $newOrderSlot = (new OrderSlot());
+        $newOrderSlot->setOrderId($this->getId());
+        $newOrderSlot->setProductId($product->getId());
+        $newOrderSlot->setQuantity($quantity);
+        $newOrderSlot->save();
+
+        $this->orderSlots[] = $newOrderSlot;
+        $this->updated = (new DateTime())->format('Y-m-d H:i:s');
+        $this->save();
+        return $newOrderSlot;
+    }
+
+    public function removeOrderSlot(OrderSlot $orderSlot): void
+    {
+        $this->orderSlots = array_filter($this->orderSlots, function ($slot) use ($orderSlot) {
+            return $slot->getId() !== $orderSlot->getId();
+        });
+        $orderSlot->delete(true);
     }
 }

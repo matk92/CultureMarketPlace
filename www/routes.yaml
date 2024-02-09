@@ -72,6 +72,11 @@
   controller: OrderController
   action: summary
 
+/orders/add_product:
+  controller: OrderController
+  action: addProduct
+  method: POST
+
 /admin/dashboard:
   controller: AdminController
   action: dashboard

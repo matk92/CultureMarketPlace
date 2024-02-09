@@ -82,22 +82,21 @@ body.home-body {
   margin-top: 320px;
 }
 
-.container-home {
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  margin: auto;
- 
-}
-
 .nav-home {
+  position: absolute;
+  top: 5vh;
+  right: 5vh;
+  margin: auto;
   background-color: var(--nav-color);
   border-radius: 20px;
-  padding-left: 0%;
-  padding-right: 0%;
-  width: auto;
-  height: auto;
   text-align: center;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0 rem(24);
+    overflow: hidden;
+  }
 
   li {
     display: inline-block;
@@ -168,7 +167,6 @@ footer.footer-home {
 }
 
 .social-media-home {
-  position: relative;
   font-size: 2em;
   text-align: right;
   right: 80px;

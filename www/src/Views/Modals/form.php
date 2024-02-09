@@ -13,7 +13,7 @@
                                         <?php endforeach; ?>
                                 </select>
                         <?php else : ?>
-                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" value="<?= $input["defaultValue"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>" <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?>>
+                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" value="<?= $input["defaultValue"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>" min="<?= $input["min"] ?? "" ?>" max="<?= $input["max"] ?? "" ?>" <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?>>
                         <?php endif; ?>
                         <?php if (isset($config["errors"]) && array_key_exists($name, $config["errors"])) : ?>
                                 <p class="error"><?= $config["errors"][$name] ?></p>

@@ -19,7 +19,11 @@ class DB
             echo "Erreur de connexion : " . $th->getMessage();
         }
 
-        $this->tableName = $_ENV["BDD_PREFIX"] . "_" . strtolower(str_replace("App\\Models\\", "", get_called_class()));
+        $name = str_replace("App\\Models\\", "", get_called_class());
+        $normalizeName = strtolower($name[0]) . substr($name, 1);
+        $normalizedName = preg_replace('/(?<!^)([A-Z])/', '_$1', $normalizeName);
+        $normalizedName = strtolower($normalizedName);
+        $this->tableName = $_ENV["BDD_PREFIX"] . "_" . strtolower( $normalizedName);
     }
 
     public function getChlidVars(): array
@@ -42,6 +46,9 @@ class DB
         if ($isUpdate) {
             $sql = "UPDATE $this->tableName SET ";
             foreach ($attributes as $key => $value) {
+                if(is_array($value)) {
+                    continue;
+                }
                 if (is_bool($value)) {
                     $value = $value ? 't' : 'f';
                 }
@@ -74,7 +81,7 @@ class DB
             $sql = substr($sql, 0, -2);
             $sql .= ");";
         }
-
+        
         // on prepare la requete
         $stmt = $this->connection->prepare($sql);
 
@@ -87,7 +94,29 @@ class DB
         }
     }
 
-    public static function populate($id): object|int
+    // Permets de supprimer un objet soft ou hard
+    public function delete($hardDelete = false): void
+    {
+        if ($hardDelete) {
+            $sql = "DELETE FROM $this->tableName WHERE id = :id";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute([":id" => $this->getId()]);
+        } else {
+            $attributes = $this->getChlidVars();
+            foreach ($attributes as $key => $value) {
+                if ($key !== 'id') {
+                    if (is_string($value))
+                        $attributes[$key] = $key . "_deleted";
+                }
+            }
+            if (method_exists($this, "isDeleted"))
+                $this->setIsDeleted(true);
+
+            $this->save();
+        }
+    }
+
+    public static function populate(int $id): object|int
     {
         return (new static())->getOneBy(["id" => $id], "object");
     }

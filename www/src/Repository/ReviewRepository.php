@@ -44,4 +44,17 @@ class ReviewRepository
 
         return $stmt->fetchAll();
     }
+
+    public function getProductComments($productId)
+    {
+        $sql = "SELECT c.id, c.isapproved, c.inserted, c.comment, c.rating, u.firstname, u.lastname FROM $this->tableName c
+                LEFT JOIN " . $_ENV["BDD_PREFIX"] . "_user u ON c.userid = u.id 
+                WHERE productid = :productid AND isapproved = true";
+
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([":productid" => $productId]);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, "App\Models\Review");
+
+        return $stmt->fetchAll();
+    }
 }
