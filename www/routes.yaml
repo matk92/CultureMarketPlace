@@ -77,6 +77,11 @@
   action: addProduct
   method: POST
 
+/order-slot:
+  controller: OrderController
+  action: updateOrderSlot
+  method: POST | DELETE
+
 /admin/dashboard:
   controller: AdminController
   action: dashboard

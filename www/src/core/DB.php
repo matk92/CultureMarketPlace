@@ -24,6 +24,11 @@ class DB
         $normalizedName = preg_replace('/(?<!^)([A-Z])/', '_$1', $normalizeName);
         $normalizedName = strtolower($normalizedName);
         $this->tableName = $_ENV["BDD_PREFIX"] . "_" . strtolower( $normalizedName);
+
+        // Serialization de l'objet
+        if(method_exists($this, "serialize")) {
+            $this->serialize();
+        }
     }
 
     public function getChlidVars(): array

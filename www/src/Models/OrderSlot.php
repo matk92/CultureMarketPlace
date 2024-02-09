@@ -10,6 +10,16 @@ class OrderSlot extends DB
     protected int $orderid;
     protected int $productid;
     protected int $quantity;
+    protected ?Product $product = null;
+
+
+    protected function serialize(): self
+    {
+        if (is_null($this->product)) {
+            $this->product = (new Product())->populate($this->productid);
+        }
+        return $this;
+    }
 
 
     /**
@@ -84,5 +94,19 @@ class OrderSlot extends DB
     public function setQuantity(int $quantity): void
     {
         $this->quantity = $quantity;
+    }
+
+    public function getTotal(): float
+    {
+        if(empty($this->product)){
+            return 0;
+        }
+        
+        return $this->product->getPrice() * $this->quantity;
+    }
+
+    public function getProduct(): Product
+    {
+        return $this->product;
     }
 }

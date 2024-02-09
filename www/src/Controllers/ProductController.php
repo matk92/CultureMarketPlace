@@ -21,7 +21,11 @@ class ProductController
         $_GET['filter'] = $_GET['filter'] ?? 0;
 
         $view = new View("Product/products", "front");
-        $products = (new ProductRepository())->getAllByCategory($_GET['filter']);
+        if(isset($_GET['filter']) && $_GET['filter'] != 0){
+            $products = (new ProductRepository())->getAllByCategory($_GET['filter']);
+        } else {
+            $products = (new ProductRepository())->getAll();
+        }
         $filters = (new CategoryRepository())->getAll();
 
         if (isset($_GET['pid']) && $_GET['pid'] != "") {

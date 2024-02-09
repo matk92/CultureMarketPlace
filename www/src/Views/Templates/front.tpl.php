@@ -24,29 +24,6 @@ $data = json_decode($json, true); ?>
                 ?>
             <?php endif; ?>
             <img src="/assets/images/<?php echo htmlspecialchars($data['site-background-image']) ?>" alt="Image">
-            <div class="content-header-home">
-                <div class="title-home"><?php echo htmlspecialchars($data['site-name']) ?></div>
-                <br />
-                <div class="subtitle-home"><?php echo htmlspecialchars($data['site-subtitle']) ?></div>
-                <?php if ($_SERVER['REQUEST_URI'] == "/") : ?>
-                    <div class="center-home">
-                        <a href="/products" class="button button-outline">Découvrir les produits</a>
-                    </div>
-                <?php else : ?>
-                    <div class="spacer"></div>
-                <?php endif; ?>
-                <?php if ($_SERVER['REQUEST_URI'] == "/") : ?>
-                    <div class="chevron-double-home">
-                        <a href="#title-homepage">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="36" height="36">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
-                            </svg>
-                        </a>
-                    </div>
-                <?php else : ?>
-                    <div class="spacer-home"></div>
-                <?php endif; ?>
-            </div>
             <nav class="nav-home">
                 <ul>
                     <li><a href="/">Accueil</a></li>
@@ -83,6 +60,23 @@ $data = json_decode($json, true); ?>
                     </li>
                 </ul>
             </nav>
+            <div class="content-header-home">
+                <?php if ($_SERVER['REQUEST_URI'] == "/") : ?>
+                    <div class="title-home"><?php echo htmlspecialchars($data['site-name']) ?></div>
+                    <br />
+                    <div class="subtitle-home"><?php echo htmlspecialchars($data['site-subtitle']) ?></div>
+                    <div class="center-home">
+                        <a href="/products" class="button button-outline">Découvrir les produits</a>
+                    </div>
+                    <div class="chevron-double-home">
+                        <a href="#title-homepage">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="36" height="36">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 5.25 7.5 7.5 7.5-7.5m-15 6 7.5 7.5 7.5-7.5" />
+                            </svg>
+                        </a>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
     </header>
     <main>

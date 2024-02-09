@@ -82,6 +82,11 @@ class Order extends DB
         return $this->orderSlots;
     }
 
+    public function setOrderSlots(array $orderSlots): void
+    {
+        $this->orderSlots = $orderSlots;
+    }
+
     public function addOrderSlot(Product $product, int $quantity): OrderSlot
     {
         $newOrderSlot = (new OrderSlot());
@@ -102,5 +107,14 @@ class Order extends DB
             return $slot->getId() !== $orderSlot->getId();
         });
         $orderSlot->delete(true);
+    }
+
+    public function getTotal(): float
+    {
+        $total = 0;
+        foreach ($this->orderSlots as $orderSlot) {
+            $total += $orderSlot->getTotal();
+        }
+        return $total;
     }
 }
