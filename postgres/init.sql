@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS rbnm_category CASCADE;
 DROP TABLE IF EXISTS rbnm_product CASCADE;
 DROP TABLE IF EXISTS rbnm_order_slot CASCADE;
 DROP TABLE IF EXISTS rbnm_order CASCADE;
-DROP TABLE IF EXISTS rbnm_payement_method_type CASCADE;
+DROP TABLE IF EXISTS rbnm_payment_method_type CASCADE;
 DROP TABLE IF EXISTS rbnm_payment_method CASCADE;
 DROP TABLE IF EXISTS rbnm_payment CASCADE;
 
@@ -73,7 +73,7 @@ CREATE TABLE rbnm_order_slot (
     FOREIGN KEY (productId) REFERENCES rbnm_product(id)
 );
 
-CREATE TABLE rbnm_payement_method_type (
+CREATE TABLE rbnm_payment_method_type (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(255) NOT NULL
@@ -91,10 +91,9 @@ CREATE TABLE rbnm_payment_method (
     cardHolderZipCode VARCHAR(5) NOT NULL,
     cardHolderCity VARCHAR(50) NOT NULL,
     cardHolderCountry VARCHAR(50) NOT NULL,
-    cardHolderPhone VARCHAR(10) NOT NULL,
     updated TIMESTAMP NOT NULL DEFAULT current_timestamp,
     FOREIGN KEY (userId) REFERENCES rbnm_user(id),
-    FOREIGN KEY (paymentMethodTypeId) REFERENCES rbnm_payement_method_type(id)
+    FOREIGN KEY (paymentMethodTypeId) REFERENCES rbnm_payment_method_type(id)
 );
 
 CREATE TABLE rbnm_payment (

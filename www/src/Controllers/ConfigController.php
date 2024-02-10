@@ -43,7 +43,8 @@ class ConfigController
             if ($verificatior->checkForm($formConfig, $_POST)) {
                 $bddPrefix = strtolower($_POST['bddPrefix']);
                 $bddPassword = $_POST['bddPassword'];
-                $bddName = strtolower($_POST['bddName']);
+                // $bddName = strtolower($_POST['bddName']);
+                $bddName = "cmp";
                 $bddUser = $_POST['bddUser'];
 
                 $bddConfig = "BDD_PREFIX=$bddPrefix\nPOSTGRES_PASSWORD=$bddPassword\nPOSTGRES_DB=$bddName\nPOSTGRES_USER=$bddUser";
@@ -59,7 +60,7 @@ class ConfigController
                     $connection->exec("ALTER TABLE IF EXISTS rbnm_product RENAME TO " . $bddPrefix . "_product;");
                     $connection->exec("ALTER TABLE IF EXISTS rbnm_order_slot RENAME TO " . $bddPrefix . "_order_slot;");
                     $connection->exec("ALTER TABLE IF EXISTS rbnm_order RENAME TO " . $bddPrefix . "_order;");
-                    $connection->exec("ALTER TABLE IF EXISTS rbnm_payement_method_type RENAME TO " . $bddPrefix . "_payement_method_type;");
+                    $connection->exec("ALTER TABLE IF EXISTS rbnm_payment_method_type RENAME TO " . $bddPrefix . "_payment_method_type;");
                     $connection->exec("ALTER TABLE IF EXISTS rbnm_payment_method RENAME TO " . $bddPrefix . "_payment_method;");
                     $connection->exec("ALTER TABLE IF EXISTS rbnm_payment RENAME TO " . $bddPrefix . "_payment;");
                     $connection = null; // Close the existing database connection
@@ -69,11 +70,6 @@ class ConfigController
                     "pgsql:host=postgres;port=5432;dbname=cmp;user=root;password=123456"
                 );
 
-                // $connection->exec("ALTER DATABASE cmp RENAME TO " . $bddName . ";");
-                // $connection = null; // Close the existing database connection
-                // $connection = new \PDO(
-                //     "pgsql:host=postgres;port=5432;dbname=" . $bddName . ";user=root;password=123456"
-                // );
                 if ($bddUser !== "root") {
                     $checkUserQuery = "SELECT 1 FROM pg_roles WHERE rolname = :username";
                     $checkUserStatement = $connection->prepare($checkUserQuery);
@@ -99,7 +95,7 @@ class ConfigController
                 }
 
 
-                file_put_contents('.env', $bddConfig);
+                file_put_contents('.env', $bddConfig . "\n", FILE_APPEND);
                 http_response_code(204);
                 header("Location: /");
                 exit();
@@ -132,9 +128,9 @@ class ConfigController
                 $smtpUsername = $_POST['smtpUsername'];
                 $smtpPassword = $_POST['smtpPassword'];
 
-                $mailConfig = "\n\nSMTP_HOST=$smtpHost\nSMTP_PORT=$smtpPort\nSMTP_ENCRYPTION=$smtpEncryption\nSMTP_USERNAME=$smtpUsername\nSMTP_PASSWORD=$smtpPassword";
+                $mailConfig = "SMTP_HOST=$smtpHost\nSMTP_PORT=$smtpPort\nSMTP_ENCRYPTION=$smtpEncryption\nSMTP_USERNAME=$smtpUsername\nSMTP_PASSWORD=$smtpPassword";
 
-                file_put_contents('.env', $mailConfig, FILE_APPEND);
+                file_put_contents('.env', "\n" . $mailConfig . "\n", FILE_APPEND);
                 http_response_code(204);
                 return header("Location: /");
             }
@@ -170,8 +166,8 @@ class ConfigController
                 $newUser->setRole(10);
                 $newUser->save();
                 $_SESSION["email"] = $_POST["email"];
-                $adminConfig = "\n\nADMIN_FIRSTNAME=" . $_POST['firstName'] . "\nADMIN_LASTNAME=" . $_POST['lastname'] . "\nADMIN_EMAIL=" . $_POST['email'];
-                file_put_contents('.env', $adminConfig, FILE_APPEND);
+                $adminConfig = "ADMIN_FIRSTNAME=" . $_POST['firstName'] . "\nADMIN_LASTNAME=" . $_POST['lastname'] . "\nADMIN_EMAIL=" . $_POST['email'];
+                file_put_contents('.env',  "\n" . $adminConfig . "\n", FILE_APPEND);
 
 
                 // On essaie d'envoyer le mail de vérification

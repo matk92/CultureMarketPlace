@@ -12,10 +12,25 @@ class Product extends DB
     protected string $description;
     protected float $price;
     protected int $stock;
-    protected int $categoryid;
+    protected ?int $categoryid = null;
     protected bool $archive;
     protected ?string $updated;
     protected float $rating;
+
+    private ?Category $category = null;
+
+     /**
+     * Permet de faire le lien entre les objets
+     * 
+     * @return self
+     */
+    protected function populateRelations(): self
+    {
+        if (is_null($this->category) && !is_null($this->categoryid)) {
+            $this->category = (new Category())->populate($this->categoryid);
+        }
+        return $this;
+    }
 
     /**
      * Get the value of id
@@ -24,7 +39,7 @@ class Product extends DB
     {
         return $this->id;
     }
-    
+
     /**
      * Set the value of id
      * @return  void
@@ -137,6 +152,14 @@ class Product extends DB
     }
 
     /**
+     * Get the value of category
+     */
+    public function getCategory(): Category
+    {
+        return $this->category;
+    }
+
+    /**
      * Set the value of categoryid
      *
      * @return  void
@@ -163,7 +186,7 @@ class Product extends DB
     {
         $this->archive = $archive;
     }
-    
+
 
     /**
      * Get the value of updated

@@ -67,6 +67,8 @@
 /orders/payment-info:
   controller: OrderController
   action: paymentInfo
+  method: GET | POST
+  role: 1
 
 /orders/summary:
   controller: OrderController

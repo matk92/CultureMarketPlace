@@ -7,7 +7,9 @@ class Verificator
 
     public function checkForm(&$config, $data): bool
     {
-        if (count($config["inputs"]) !== count($data)) {
+        $nbInputsMin = count(array_filter($config["inputs"], fn ($input) => isset($input["required"]) && $input["required"] === true));
+        $nbInputsMax = count($config["inputs"]);
+        if (count($data) < $nbInputsMin || count($data) > $nbInputsMax) {
             die("Le nombre de champs ne correspond pas");
         }
 
@@ -16,8 +18,10 @@ class Verificator
         $errors = [];
         foreach ($config["inputs"] as $key => $input) {
             // Si le champ n'existe pas, on arrête tout, c'est une tentative de hack
-            if (!isset($data[$key]))
+            if (!isset($data[$key]) && $input["required"])
                 die("Le champ $key n'existe pas");
+            else if (!isset($data[$key]))
+                continue;
 
             // Si le champ est requis, on vérifie qu'il n'est pas vide
             if (isset($input["required"]) && $input["required"] === true && empty($data[$key])) {
@@ -42,6 +46,11 @@ class Verificator
             // Si le champ est unique, on vérifie qu'il n'existe pas déjà
             if (isset($input["unicity"]) && !self::checkUnicity($key, $input["unicity"], $data[$key])) {
                 $errors[$key] = "Le champ " . $input["label"] . " est déjà utilisé";
+            }
+
+            // Si à un pattern, on vérifie qu'il correspond
+            if (isset($input["pattern"]) && !preg_match("#" . $input["pattern"] . "#", $data[$key])) {
+                $errors[$key] = "Le champ " . $input["label"] . " ne correspond pas au format attendu";
             }
 
             // Si le champ est de type string, on vérifie la longueur

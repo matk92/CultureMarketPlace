@@ -104,9 +104,6 @@
 
 main.main-order {
   background-color: var(--background-color2);
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 100px;
   padding-top: 100px;
 
   @media (max-width: 600px) {
@@ -125,12 +122,16 @@ main.main-order {
   align-items: start;
 
   input {
-    width: 60%;
     margin-bottom: 20px;
     background-color: #f0f0f0;
     border-style: none;
     border-radius: 10px;
-    height: 40px;
+    color: #000;
+  }
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
   }
 }
 
@@ -149,10 +150,9 @@ main.main-order {
 
 .order-summary {
   background-color: var(--summary-color);
-  margin-right: 100px;
-  padding: 20px;
-  border-radius: 15px;
-  width: 40%;
+  padding: rem(24);
+  border-radius: rem(15);
+  width: 60%;
 
   @media (max-width: 600px) {
     width: 100%;
@@ -202,19 +202,20 @@ main.main-order {
 
 .main-summary {
   background-color: var(--background-color2);
-  padding-top: 50px;
-  padding-bottom: 50px;
+  display: flex;
+  justify-content: space-center;
+  width: 100%;
+  padding: rem(64) rem(24);
 }
 
 .summary {
   color: var(--text-color);
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   border-radius: 12px;
-  margin-left: 15%;
-  margin-right: 15%;
-  padding: 15px;
+  margin-right: rem(16);
+  padding: rem(24);
 
   hr {
     color: lightgray;

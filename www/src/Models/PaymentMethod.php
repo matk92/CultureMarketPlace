@@ -6,9 +6,10 @@ use App\Core\DB;
 
 class PaymentMethod extends DB
 {
+
     protected int $id;
-    protected int $userid;
-    protected int $paymentmethodtypeid;
+    protected ?int $userid = null;
+    protected ?int $paymentmethodtypeid = null;
     protected string $cardnumber;
     protected string $expirationdate;
     protected string $securitycode;
@@ -16,10 +17,27 @@ class PaymentMethod extends DB
     protected string $cardholderaddress;
     protected string $cardholderzipcode;
     protected string $cardholdercity;
-    protected string $cardHolderCountry;
-    protected string $cardHolderPhone;
-    protected string $cardHolderEmail;
+    protected string $cardholdercountry;
     protected string $updated;
+
+    private ?User $user = null;
+    private ?PaymentMethodType $paymentMethodType = null;
+
+    /**
+     * Permet de faire le lien entre les objets
+     * 
+     * @return self
+     */
+    protected function populateRelations(): self
+    {
+        if (is_null($this->paymentMethodType) && !is_null($this->paymentmethodtypeid)) {
+            $this->paymentMethodType = (new PaymentMethodType())->populate($this->paymentmethodtypeid);
+        }
+        if (is_null($this->user) && !is_null($this->userid)) {
+            $this->user = (new User())->populate($this->userid);
+        }
+        return $this;
+    }
 
     /**
      * Get the value of id
@@ -28,7 +46,7 @@ class PaymentMethod extends DB
     {
         return $this->id;
     }
-    
+
     /**
      * Set the value of id
      * @return  void
@@ -92,7 +110,7 @@ class PaymentMethod extends DB
      */
     public function setCardNumber(string $cardnumber): void
     {
-        $this->cardnumber = $cardnumber;
+        $this->cardnumber = str_replace(" ", "", $cardnumber);
     }
 
     /**
@@ -204,57 +222,21 @@ class PaymentMethod extends DB
     }
 
     /**
-     * Get the value of cardHolderCountry
+     * Get the value of cardholdercountry
      */
     public function getCardHolderCountry(): string
     {
-        return $this->cardHolderCountry;
+        return $this->cardholdercountry;
     }
 
     /**
-     * Set the value of cardHolderCountry
+     * Set the value of cardholdercountry
      *
      * @return  void
      */
-    public function setCardHolderCountry(string $cardHolderCountry): void
+    public function setCardHolderCountry(string $cardholdercountry): void
     {
-        $this->cardHolderCountry = $cardHolderCountry;
-    }
-
-    /**
-     * Get the value of cardHolderPhone
-     */
-    public function getCardHolderPhone(): string
-    {
-        return $this->cardHolderPhone;
-    }
-
-    /**
-     * Set the value of cardHolderPhone
-     *
-     * @return  void
-     */
-    public function setCardHolderPhone(string $cardHolderPhone): void
-    {
-        $this->cardHolderPhone = $cardHolderPhone;
-    }
-
-    /**
-     * Get the value of cardHolderEmail
-     */
-    public function getCardHolderEmail(): string
-    {
-        return $this->cardHolderEmail;
-    }
-
-    /**
-     * Set the value of cardHolderEmail
-     *
-     * @return  void
-     */
-    public function setCardHolderEmail(string $cardHolderEmail): void
-    {
-        $this->cardHolderEmail = $cardHolderEmail;
+        $this->cardholdercountry = $cardholdercountry;
     }
 
     /**
@@ -263,5 +245,15 @@ class PaymentMethod extends DB
     public function getUpdatedAt(): string
     {
         return $this->updated;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function getPaymentMethodType(): ?PaymentMethodType
+    {
+        return $this->paymentMethodType;
     }
 }

@@ -7,10 +7,28 @@ use App\Core\DB;
 class Payment extends DB
 {
     protected int $id;
-    protected int $paymentMethodId;
-    protected int $orderid;
-    protected int $amount;
+    protected ?int $paymentmethodid = null;
+    protected ?int $orderid = null;
     protected string $status;
+
+    private ?PaymentMethod $paymentMethod = null;
+    private ?Order $order = null;
+
+    /**
+     * Permet de faire le lien entre les objets
+     * 
+     * @return self
+     */
+    protected function populateRelations(): self
+    {
+        if (is_null($this->paymentMethod) && !is_null($this->paymentmethodid)) {
+            $this->paymentMethod = (new PaymentMethod())->populate($this->paymentmethodid);
+        }
+        if (is_null($this->order) && !is_null($this->orderid)) {
+            $this->order = (new Order())->populate($this->orderid);
+        }
+        return $this;
+    }
 
     /**
      * Get the value of id
@@ -33,21 +51,21 @@ class Payment extends DB
     }
 
     /**
-     * Get the value of paymentMethodId
+     * Get the value of paymentmethodid
      */
     public function getPaymentMethodId(): int
     {
-        return $this->paymentMethodId;
+        return $this->paymentmethodid;
     }
 
     /**
-     * Set the value of paymentMethodId
+     * Set the value of paymentmethodid
      *
      * @return  void
      */
-    public function setPaymentMethodId(int $paymentMethodId): void
+    public function setPaymentMethodId(int $paymentmethodid): void
     {
-        $this->paymentMethodId = $paymentMethodId;
+        $this->paymentmethodid = $paymentmethodid;
     }
 
     /**
@@ -69,24 +87,6 @@ class Payment extends DB
     }
 
     /**
-     * Get the value of amount
-     */
-    public function getAmount(): int
-    {
-        return $this->amount;
-    }
-
-    /**
-     * Set the value of amount
-     *
-     * @return  void
-     */
-    public function setAmount(int $amount): void
-    {
-        $this->amount = $amount;
-    }
-
-    /**
      * Get the value of status
      */
     public function getStatus(): string
@@ -102,5 +102,25 @@ class Payment extends DB
     public function setStatus(string $status): void
     {
         $this->status = $status;
+    }
+
+    /**
+     * Get the value of paymentMethod
+     * 
+     * @return PaymentMethod
+     */
+    public function getPaymentMethod(): ?PaymentMethod
+    {
+        return $this->paymentMethod;
+    }
+
+    /**
+     * Set the value of paymentMethod
+     * 
+     * @return  void
+     */
+    public function setPaymentMethod(PaymentMethod $paymentMethod): void
+    {
+        $this->paymentMethod = $paymentMethod;
     }
 }

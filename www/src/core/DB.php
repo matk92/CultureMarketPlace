@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use function PHPSTORM_META\type;
+
 class DB
 {
 
@@ -25,9 +27,8 @@ class DB
         $normalizedName = strtolower($normalizedName);
         $this->tableName = $_ENV["BDD_PREFIX"] . "_" . strtolower( $normalizedName);
 
-        // Serialization de l'objet
-        if(method_exists($this, "serialize")) {
-            $this->serialize();
+        if(method_exists($this, "populateRelations")) {
+            $this->populateRelations();
         }
     }
 
@@ -51,9 +52,6 @@ class DB
         if ($isUpdate) {
             $sql = "UPDATE $this->tableName SET ";
             foreach ($attributes as $key => $value) {
-                if(is_array($value)) {
-                    continue;
-                }
                 if (is_bool($value)) {
                     $value = $value ? 't' : 'f';
                 }
@@ -67,6 +65,10 @@ class DB
         } else {
             $sql = "INSERT INTO $this->tableName (";
             foreach ($attributes as $key => $value) {
+                if(is_array($value) || is_object($value)) {
+                    continue;
+                }
+                
                 $sql .= "$key, ";
             }
 

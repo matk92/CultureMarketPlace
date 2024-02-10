@@ -172,22 +172,24 @@ INSERT INTO rbnm_order_slot (orderId, productId, quantity) VALUES
     (15, 10, 3),
     (15, 13, 3);
 
-INSERT INTO rbnm_payement_method_type (name, description) VALUES
+INSERT INTO rbnm_payment_method_type (name, description) VALUES
     ('Carte bancaire', 'Paiement par carte bancaire'),
     ('PayPal', 'Paiement par PayPal'),
-    ('Chèque', 'Paiement par chèque');
+    ('Chèque', 'Paiement par chèque'),
+    ('Apple Pay', 'Paiement par Apple Pay'),
+    ('Eshop Pay', 'Paiement par Eshop Pay');
 
-INSERT INTO rbnm_payment_method (userId, paymentMethodTypeId, cardNumber, expirationDate, securityCode, cardHolderName, cardHolderAddress, cardHolderZipCode, cardHolderCity, cardHolderCountry, cardHolderPhone) VALUES
-    (1, 1, '1234567890123456', '12/23', '123', 'John Doe', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789'),
-    (2, 2, '1234567890123456', '12/23', '123', 'Jane Smith', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789'),
-    (3, 3, '1234567890123456', '12/23', '123', 'Michael Johnson', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789'),
-    (4, 1, '1234567890123456', '12/23', '123', 'Emily Brown', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789'),
-    (5, 2, '1234567890123456', '12/23', '123', 'Daniel Davis', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789'),
-    (6, 3, '1234567890123456', '12/23', '123', 'Olivia Miller', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789'),
-    (7, 1, '1234567890123456', '12/23', '123', 'William Wilson', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789'),
-    (8, 2, '1234567890123456', '12/23', '123', 'Sophia Anderson', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789'),
-    (9, 3, '1234567890123456', '12/23', '123', 'James Taylor', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789'),
-    (10, 1, '1234567890123456', '12/23', '123', 'Emma Thomas', '1 rue de la Paix', '75000', 'Paris', 'France', '0123456789');
+INSERT INTO rbnm_payment_method (userId, paymentMethodTypeId, cardNumber, expirationDate, securityCode, cardHolderName, cardHolderAddress, cardHolderZipCode, cardHolderCity, cardHolderCountry) VALUES
+    (1, 1, '1234567890123456', '12/23', '123', 'John Doe', '1 rue de la Paix', '75000', 'Paris', 'France'),
+    (2, 2, '1234567890123456', '12/23', '123', 'Jane Smith', '1 rue de la Paix', '75000', 'Paris', 'France'),
+    (3, 3, '1234567890123456', '12/23', '123', 'Michael Johnson', '1 rue de la Paix', '75000', 'Paris', 'France'),
+    (4, 1, '1234567890123456', '12/23', '123', 'Emily Brown', '1 rue de la Paix', '75000', 'Paris', 'France'),
+    (5, 2, '1234567890123456', '12/23', '123', 'Daniel Davis', '1 rue de la Paix', '75000', 'Paris', 'France'),
+    (6, 3, '1234567890123456', '12/23', '123', 'Olivia Miller', '1 rue de la Paix', '75000', 'Paris', 'France'),
+    (7, 1, '1234567890123456', '12/23', '123', 'William Wilson', '1 rue de la Paix', '75000', 'Paris', 'France'),
+    (8, 2, '1234567890123456', '12/23', '123', 'Sophia Anderson', '1 rue de la Paix', '75000', 'Paris', 'France'),
+    (9, 3, '1234567890123456', '12/23', '123', 'James Taylor', '1 rue de la Paix', '75000', 'Paris', 'France'),
+    (10, 1, '1234567890123456', '12/23', '123', 'Emma Thomas', '1 rue de la Paix', '75000', 'Paris', 'France');
 
 INSERT INTO rbnm_payment (paymentMethodId, orderId, status) VALUES
     (1, 1, 0),

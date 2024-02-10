@@ -11,8 +11,9 @@ class Order extends DB
     protected int $userid;
     protected int $status;
     protected ?string $updated;
-    protected array $orderSlots = [];
-
+    
+    private array $orderSlots = [];
+    
     /**
      * Get the value of id
      */

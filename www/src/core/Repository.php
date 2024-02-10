@@ -50,4 +50,12 @@ class Repository
         $stmt = $this->connection->prepare($sql);
         return $stmt->execute($execute);
     }
+
+    public function find(int $id): ?object
+    {
+        $sql = "SELECT * FROM " . $this->tableName . " WHERE id = :id";
+        $execute = ["id" => $id];
+    
+        return $this->fetch($sql, $execute)[0] ?? null;
+    }
 }

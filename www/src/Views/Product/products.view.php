@@ -69,7 +69,7 @@
                         </svg>
                     </button>
                 </div>
-                <p>Stock disponible : <?= $displayProduct->getStock() ?></p>
+                <p>Stock disponible : <?= $displayProduct->getStock() ?><?= $displayProduct->getCategory()->getUnit() ?></p>
                 <img src="/<?= $displayProduct->getImage() ?>" alt="Image de <?= $displayProduct->getName() ?>">
                 <div class="row">
                     <p><?= $displayProduct->getDescription() ?></p>
@@ -145,7 +145,6 @@
     }
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#category_filter').change(function() {

@@ -73,7 +73,7 @@ function loadEnv($path)
 // Usage
 loadEnv(__DIR__ . '/.env');
 // recupérer cookie "user"
-if (isset($_COOKIE["user"])) {
+if (isset($_COOKIE["user"]) && !isset($_SESSION["user"])) {
     $_SESSION["user"] = json_decode ($_COOKIE["user"], true);
 }
 

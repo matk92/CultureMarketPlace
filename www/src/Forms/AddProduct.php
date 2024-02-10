@@ -7,7 +7,7 @@ class AddProduct
 
     private $categories = [];
 
-    public function __construct($categories)
+    public function __construct(array $categories)
     {
         foreach ($categories as $category) {
             $this->categories[$category->getId()] = $category->getName() . " - " . $category->getUnit();

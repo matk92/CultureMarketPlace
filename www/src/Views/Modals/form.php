@@ -13,7 +13,7 @@
                                         <?php endforeach; ?>
                                 </select>
                         <?php else : ?>
-                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" value="<?= $input["defaultValue"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>" min="<?= $input["min"] ?? "" ?>" max="<?= $input["max"] ?? "" ?>" <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?>>
+                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" value="<?= $input["defaultValue"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>" min="<?= $input["min"] ?? "" ?>" max="<?= $input["max"] ?? "" ?>" <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?> <?= $input["type"] === "checkbox" && isset($input["checked"]) && $input["checked"] ? "checked" : "" ?>>
                         <?php endif; ?>
                         <?php if (isset($config["errors"]) && array_key_exists($name, $config["errors"])) : ?>
                                 <p class="error"><?= $config["errors"][$name] ?></p>
@@ -28,5 +28,30 @@
                         <p><?= $config["config"]["errorMessage"] ?></p>
                 </div>
         <?php endif; ?>
-        <input type="submit" class="btn-security" value="<?= $config["config"]["submit"] ?? "Envoyer" ?>">
+        <input type="submit" class="btn-security" value="<?= $config["config"]["submit"] ?? "Envoyer" ?>" id="form_submit">
+        <div class="spinner hidden" id="spinner_form"></div>
 </form>
+
+<script>
+        $(document).ready(function() {
+                if (document.getElementsByName('cardNumber').length > 0) {
+                        var cardNumberInput = document.getElementsByName('cardNumber')[0];
+                        cardNumberInput.addEventListener('input', function() {
+                                var cardNumber = this.value;
+                                // Remove any existing spaces
+                                cardNumber = cardNumber.replace(/\s/g, '');
+                                // Add a space every 4 digits
+                                cardNumber = cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');
+                                // Update the input value
+                                this.value = cardNumber;
+                        });
+                }
+                
+                if (document.getElementById("<?= $config["config"]["id"] ?>") != undefined) {
+                        document.getElementById("<?= $config["config"]["id"] ?>").addEventListener('submit', function() {
+                                document.getElementById('form_submit').classList.add('hidden');
+                                document.getElementById('spinner_form').classList.remove('hidden');
+                        });
+                }
+        });
+</script>

@@ -7,16 +7,25 @@ use App\Core\DB;
 class OrderSlot extends DB
 {
     protected int $id;
-    protected int $orderid;
-    protected int $productid;
+    protected ?int $orderid = null;
+    protected ?int $productid = null;
     protected int $quantity;
-    protected ?Product $product = null;
 
+    private ?Product $product = null;
+    private ?Order $order = null;
 
-    protected function serialize(): self
+    /**
+     * Permet de faire le lien entre les objets
+     * 
+     * @return self
+     */
+    protected function populateRelations(): self
     {
-        if (is_null($this->product)) {
+        if (is_null($this->product) && !is_null($this->productid)) {
             $this->product = (new Product())->populate($this->productid);
+        }
+        if (is_null($this->order) && !is_null($this->orderid)) {
+            $this->order = (new Order())->populate($this->orderid);
         }
         return $this;
     }
@@ -98,15 +107,20 @@ class OrderSlot extends DB
 
     public function getTotal(): float
     {
-        if(empty($this->product)){
+        if (empty($this->product)) {
             return 0;
         }
-        
+
         return $this->product->getPrice() * $this->quantity;
     }
 
     public function getProduct(): Product
     {
         return $this->product;
+    }
+
+    public function getOrder(): Order
+    {
+        return $this->order;
     }
 }
