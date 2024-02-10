@@ -7,6 +7,11 @@ use DateTime;
 
 class Order extends DB
 {
+    public const STATUS_PENDING = 0;
+    public const STATUS_PAID = 1;
+    public const STATUS_SHIPPED = 2;
+    public const STATUS_DELIVERED = 3;
+
     protected int $id;
     protected int $userid;
     protected int $status;

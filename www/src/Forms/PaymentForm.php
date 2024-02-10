@@ -2,63 +2,68 @@
 
 namespace App\Forms;
 
+use App\Models\Payment;
+use App\Models\PaymentMethod;
 
 class PaymentForm
 {
     private $countries = [
-        "FR" => "France",
-        "BE" => "Belgique",
-        "LU" => "Luxembourg",
-        "DE" => "Allemagne",
-        "IT" => "Italie",
-        "ES" => "Espagne",
-        "PT" => "Portugal",
-        "GB" => "Royaume-Uni",
-        "IE" => "Irlande",
-        "NL" => "Pays-Bas",
-        "DK" => "Danemark",
-        "SE" => "Suède",
-        "FI" => "Finlande",
-        "NO" => "Norvège",
-        "CH" => "Suisse",
-        "AT" => "Autriche",
-        "GR" => "Grèce",
-        "PL" => "Pologne",
-        "CZ" => "République Tchèque",
-        "SK" => "Slovaquie",
-        "HU" => "Hongrie",
-        "RO" => "Roumanie",
-        "BG" => "Bulgarie",
-        "HR" => "Croatie",
-        "SI" => "Slovénie",
-        "RS" => "Serbie",
-        "BA" => "Bosnie-Herzégovine",
-        "ME" => "Monténégro",
-        "MK" => "Macédoine du Nord",
-        "AL" => "Albanie",
-        "XK" => "Kosovo",
-        "TR" => "Turquie",
-        "RU" => "Russie",
-        "UA" => "Ukraine",
-        "BY" => "Biélorussie",
-        "MD" => "Moldavie",
-        "LV" => "Lettonie",
-        "LT" => "Lituanie",
-        "EE" => "Estonie",
-        "IS" => "Islande",
-        "FO" => "Îles Féroé",
-        "GL" => "Groenland",
-        "US" => "États-Unis",
-        "CA" => "Canada",
-        "MX" => "Mexique",
-        "BR" => "Brésil",
-        "AR" => "Argentine",
-        "CL" => "Chili",
-        "CO" => "Colombie"
+        "France" => "France",
+        "Belgique" => "Belgique",
+        "Luxembourg" => "Luxembourg",
+        "Allemagne" => "Allemagne",
+        "Italie" => "Italie",
+        "Espagne" => "Espagne",
+        "Portugal" => "Portugal",
+        "Royaume-Uni" => "Royaume-Uni",
+        "Irlande" => "Irlande",
+        "Pays-Bas" => "Pays-Bas",
+        "Danemark" => "Danemark",
+        "Suède" => "Suède",
+        "Finlande" => "Finlande",
+        "Norvège" => "Norvège",
+        "Suisse" => "Suisse",
+        "Autriche" => "Autriche",
+        "Grèce" => "Grèce",
+        "Pologne" => "Pologne",
+        "République Tchèque" => "République Tchèque",
+        "Slovaquie" => "Slovaquie",
+        "Hongrie" => "Hongrie",
+        "Roumanie" => "Roumanie",
+        "Bulgarie" => "Bulgarie",
+        "Croatie" => "Croatie",
+        "Slovénie" => "Slovénie",
+        "Serbie" => "Serbie",
+        "Bosnie-Herzégovine" => "Bosnie-Herzégovine",
+        "Monténégro" => "Monténégro",
+        "Macédoine du Nord" => "Macédoine du Nord",
+        "Albanie" => "Albanie",
+        "Kosovo" => "Kosovo",
+        "Turquie" => "Turquie",
+        "Russie" => "Russie",
+        "Ukraine" => "Ukraine",
+        "Biélorussie" => "Biélorussie",
+        "Moldavie" => "Moldavie",
+        "Lettonie" => "Lettonie",
+        "Lituanie" => "Lituanie",
+        "Estonie" => "Estonie",
+        "Islande" => "Islande",
+        "Îles Féroé" => "Îles Féroé",
+        "Groenland" => "Groenland",
+        "États-Unis" => "États-Unis",
+        "Canada" => "Canada",
+        "Mexique" => "Mexique",
+        "Brésil" => "Brésil",
+        "Argentine" => "Argentine",
+        "Chili" => "Chili",
+        "Colombie" => "Colombie"
     ];
+    private ?PaymentMethod $paymentMethod;
 
-    public function __construct()
+
+    public function __construct(PaymentMethod $paymentMethod = null)
     {
+        $this->paymentMethod = $paymentMethod;
     }
 
     public function getConfig(): array
@@ -80,6 +85,7 @@ class PaymentForm
                     "placeholder" => "Jean Dupont",
                     "id" => "form-payment-cardHolderName",
                     "label" => "Nom du titulaire de la carte",
+                    "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderName() : "",
                 ],
                 "cardHolderAddress" => [
                     "class" => "",
@@ -89,6 +95,7 @@ class PaymentForm
                     "label" => "Adresse de facturation",
                     "placeholder" => "15 rue des lilas",
                     "pattern" => "[0-9]+[a-zA-Z ]+",
+                    "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderAddress() : "",
                 ],
                 "cardHolderZipCode" => [
                     "class" => "",
@@ -99,6 +106,7 @@ class PaymentForm
                     "label" => "Code postal",
                     "placeholder" => "75000",
                     "id" => "form-payment-zipCode",
+                    "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderZipCode() : "",
                 ],
                 "cardHolderCity" => [
                     "class" => "",
@@ -107,6 +115,7 @@ class PaymentForm
                     "label" => "Ville",
                     "placeholder" => "Paris",
                     "id" => "form-payment-city",
+                    "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderCity() : "",
                 ],
                 "cardHolderCountry" => [
                     "class" => "",
@@ -115,6 +124,7 @@ class PaymentForm
                     "required" => true,
                     "options" => $this->countries,
                     "id" => "form-payment-country",
+                    "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderCountry() : "",
                 ],
                 "cardNumber" => [
                     "class" => "",
@@ -126,6 +136,7 @@ class PaymentForm
                     "label" => "Numéro de carte",
                     "id" => "form-payment-cardNumber",
                     "placeholder" => "1234 5678 1234 5678",
+                    "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardNumber() : "",
                 ],
                 "expirationDate" => [
                     "class" => "",
@@ -135,6 +146,7 @@ class PaymentForm
                     "label" => "Date d'expiration",
                     "pattern" => "[0-9]{2}/[0-9]{2}",
                     "id" => "form-payment-expirationDate",
+                    "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getExpirationDate() : "",
                 ],
                 "securityCode" => [
                     "class" => "",
@@ -145,11 +157,13 @@ class PaymentForm
                     "placeholder" => "123",
                     "label" => "Cryptogramme visuel",
                     "id" => "form-payment-securityCode",
+                    "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getSecurityCode() : "",
                 ],
                 "savePaymentMethod" => [
                     "class" => "checkbox",
                     "type" => "checkbox",
                     "label" => "Enregistrer cette carte pour mes prochains achats",
+                    "checked" => $this->paymentMethod ? $this->paymentMethod->getId() : "",
                     "id" => "form-payment-savePaymentMethod",
                 ],
             ]

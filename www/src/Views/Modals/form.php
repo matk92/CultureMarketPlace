@@ -12,8 +12,10 @@
                                                 </option>
                                         <?php endforeach; ?>
                                 </select>
+                        <?php elseif ($input["type"] === "checkbox") : ?>
+                                <input name="<?= $name ?>" type="checkbox" id="<?= $input["id"] ?? "" ?>" <?= isset($input["checked"]) && $input["checked"] ? "checked" : "" ?>>
                         <?php else : ?>
-                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" value="<?= $input["defaultValue"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>" min="<?= $input["min"] ?? "" ?>" max="<?= $input["max"] ?? "" ?>" <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?> <?= $input["type"] === "checkbox" && isset($input["checked"]) && $input["checked"] ? "checked" : "" ?>>
+                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" value="<?= $input["defaultValue"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>" min="<?= $input["min"] ?? "" ?>" max="<?= $input["max"] ?? "" ?>" <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?>>
                         <?php endif; ?>
                         <?php if (isset($config["errors"]) && array_key_exists($name, $config["errors"])) : ?>
                                 <p class="error"><?= $config["errors"][$name] ?></p>
@@ -46,7 +48,7 @@
                                 this.value = cardNumber;
                         });
                 }
-                
+
                 if (document.getElementById("<?= $config["config"]["id"] ?>") != undefined) {
                         document.getElementById("<?= $config["config"]["id"] ?>").addEventListener('submit', function() {
                                 document.getElementById('form_submit').classList.add('hidden');

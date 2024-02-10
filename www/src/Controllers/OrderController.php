@@ -14,7 +14,10 @@ use App\Forms\PaymentForm;
 use App\Models\PaymentMethod;
 use App\Forms\AddProductToCart;
 use App\Models\PaymentMethodType;
+use App\Forms\ValidatePaymentForm;
+use App\Repository\OrderRepository;
 use App\Repository\OrderSlotRepository;
+use App\Repository\PaymentRepository;
 
 class OrderController
 {
@@ -39,13 +42,23 @@ class OrderController
 
     public function paymentInfo(): void
     {
+        if (empty($_SESSION['user'])) {
+            http_response_code(401);
+            header('Location: /login');
+            exit();
+        }
         if (!array_key_exists('order_id', $_SESSION)) {
             http_response_code(400);
             header('Location: /orders');
             exit();
         }
+
+        if (isset($_SESSION['payment_id']) || isset($_SESSION['paymentMethodId'])) {
+            $paymentMethod = (new Payment())->populate($_SESSION['payment_id'] ?? $_SESSION['paymentMethodId'])->getPaymentMethod();
+        }
+
         $view = new View("Order/payment-info", "front");
-        $form = new PaymentForm();
+        $form = new PaymentForm($paymentMethod);
         $formConfig = $form->getConfig();
 
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
@@ -59,15 +72,23 @@ class OrderController
                     $paymentMethod->setPaymentMethodTypeId((new PaymentMethodType())->getOneBy(["name" => "Carte bancaire"])["id"]);
                     $paymentMethod->save();
 
+                    if ($_POST['savePaymentMethod'] === "on") {
+                        $_SESSION['paymentMethodId'] = $paymentMethod->getId();
+                    }else {
+                        unset($_SESSION['paymentMethodId']);
+                    }
+
                     $payment = new Payment();
                     $payment->setOrderId($order->getId());
                     $payment->setPaymentMethodId($paymentMethod->getId());
                     $payment->setStatus(0);
                     $payment->save();
-                    
+
+                    $_SESSION['payment_id'] = $payment->getId();
+
 
                     http_response_code(204);
-                    header('Location: /order/summary');
+                    header('Location: /orders/summary');
                     exit();
                 } else {
                     http_response_code(400);
@@ -84,7 +105,69 @@ class OrderController
 
     public function summary(): void
     {
-        new View("Order/summary", "front");
+        if (empty($_SESSION['user'])) {
+            http_response_code(401);
+            header('Location: /login');
+            exit();
+        }
+        if (!array_key_exists('order_id', $_SESSION) || !array_key_exists('payment_id', $_SESSION)) {
+            http_response_code(400);
+            header('Location: /orders');
+            exit();
+        }
+
+        $order = (new OrderRepository())->find($_SESSION['order_id']);
+        $payment = (new PaymentRepository())->find($_SESSION['payment_id']);
+        $order->setOrderSlots((new OrderSlotRepository())->getOrderSlots($order->getId()));
+
+        if (empty($order) || empty($payment)) {
+            http_response_code(400);
+            header('Location: /orders');
+            exit();
+        }
+
+        $view = new View("Order/summary", "front");
+        $form = new ValidatePaymentForm();
+        $formConfig = $form->getConfig();
+
+
+        if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
+            $verificatior = new Verificator();
+            // On vérifie que le formulaire est valide
+            if ($verificatior->checkForm($formConfig, $_POST)) {
+                $payment->setStatus(Payment::STATUS_PAID);
+                $payment->save();
+                $order->setStatus(Order::STATUS_PAID);
+                $order->save();
+
+                unset($_SESSION['order_id']);
+                unset($_SESSION['payment_id']);
+
+                http_response_code(204);
+                header('Location: /orders/completed');
+                exit();
+            } else {
+                http_response_code(400);
+            }
+        } else {
+            http_response_code(200);
+        }
+
+        $view->assign("form", $formConfig);
+        $view->assign("order", $order);
+        $view->assign("payment", $payment);
+    }
+
+    public function completed(): void
+    {
+        if (empty($_SESSION['user'])) {
+            http_response_code(401);
+            header('Location: /login');
+            exit();
+        }
+
+        $view = new View("Order/completed", "front");
+        http_response_code(200);
     }
 
 

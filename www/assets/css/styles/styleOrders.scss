@@ -102,7 +102,8 @@
   }
 }
 
-main.main-order {
+.main-order {
+  margin-bottom: rem(40);
   background-color: var(--background-color2);
   padding-top: 100px;
 
@@ -178,12 +179,31 @@ main.main-order {
 }
 
 .product-order {
-  margin-top: 50px;
+  border-bottom: 1px solid #d9d9d9;
   display: flex;
-  justify-content: space-around;
+  padding: rem(12);
+  gap: rem(24);
+
+  .product-img {
+    width: 40%;
+    height: rem(128);
+    border-radius: rem(12);
+    object-fit: cover;
+  }
+
+  & p {
+    margin: 0;
+    font-size: rem(14);
+  }
 
   svg {
     width: 25px;
+  }
+  h3 {
+    margin: 0 0 rem(5) 0;
+  }
+  & div {
+    flex-grow: 1;
   }
 }
 .discount-code {
@@ -203,6 +223,7 @@ main.main-order {
 .main-summary {
   background-color: var(--background-color2);
   display: flex;
+  margin-bottom: rem(40);
   justify-content: space-center;
   width: 100%;
   padding: rem(64) rem(24);
@@ -212,6 +233,7 @@ main.main-order {
   color: var(--text-color);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border: 1px solid lightgray;
   border-radius: 12px;
   margin-right: rem(16);
@@ -224,19 +246,31 @@ main.main-order {
     height: 1px;
   }
 
+  .adress-recap {
+    display: flex;
+    background-color: white;
+    padding: rem(16) rem(36);
+    border-radius: rem(12);
+    box-shadow: rem(-2) rem(1) rem(6) 0 rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    margin-bottom: 20px;
+    & p {
+      margin: 0 0 rem(4) 0;
+      font-size: rem(12);
+      font-weight: 600;
+    }
+  }
+
   button {
     margin-top: 30px;
   }
 }
 table {
   width: 80%;
+  margin: rem(40) auto;
   border-collapse: collapse;
   border-spacing: 0;
   border: 3px solid #000000;
-  margin-bottom: 30px;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
 
   thead {
     background-color: #f0f0f0;

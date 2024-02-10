@@ -4,41 +4,35 @@
     </div>
     <hr>
     <div class="stepper-order">
-        <div class="previous-button">
-            <a href="/orders" class="button-order-previous">Mon panier</a>
-        </div>
-        <div class="step">
+        <a href="/orders" class="step">
             <div class="step-number">
                 <p>1</p>
             </div>
             <div class="step-title">
-                <p>Mon panier</p>
+                <p>Adresse de livraison</p>
             </div>
-        </div>
-        <div class="step">
+        </a>
+        <a href="/orders/payment-info" class="step">
             <div class="step-number active">
                 <p>2</p>
             </div>
             <div class="step-title">
                 <p>Méthode de paiement</p>
             </div>
-        </div>
-        <div class="step">
+        </a>
+        <a href="/orders/summary" class="step">
             <div class="step-number">
                 <p>3</p>
             </div>
             <div class="step-title">
                 <p>Récapitulatif de la commande</p>
             </div>
-        </div>
-        <div class="next-button">
-            <a href="/orders/summary" class="button-order-next">Valider la commande</a>
-        </div>
+        </a>
     </div>
 </div>
-<main class="main-order">
+<div class="main-order">
     <div class="left-order">
-        <?php $this->modal("form", $form) ?>
+        <?php isset($form) && $this->modal("form", $form) ?>
 
         <div class="fast-payment">
             <h2>Paiement rapide</h2>
@@ -48,4 +42,14 @@
         </div>
     </div>
 
-</main>
+</div>
+
+<hr />
+<div class="row">
+    <a href="/orders">
+        Précédent
+    </a>
+    <a href="/orders/payment-info">
+        Suivant
+    </a>
+</div>

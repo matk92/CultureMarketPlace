@@ -6,6 +6,10 @@ use App\Core\DB;
 
 class Payment extends DB
 {
+    public const STATUS_PENDING = 0;
+    public const STATUS_PAID = 1;
+    public const STATUS_CANCELED = 2;
+
     protected int $id;
     protected ?int $paymentmethodid = null;
     protected ?int $orderid = null;

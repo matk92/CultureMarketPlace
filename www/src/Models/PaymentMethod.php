@@ -100,7 +100,7 @@ class PaymentMethod extends DB
      */
     public function getCardNumber(): string
     {
-        return $this->cardnumber;
+        return trim(preg_replace('/(.{4})/', '$1 ', $this->cardnumber));
     }
 
     /**

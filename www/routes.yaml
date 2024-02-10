@@ -73,6 +73,14 @@
 /orders/summary:
   controller: OrderController
   action: summary
+  method: GET | POST
+  role: 1
+
+/orders/completed:
+  controller: OrderController
+  action: completed
+  method: GET
+  role: 1
 
 /orders/add_product:
   controller: OrderController
