@@ -2,6 +2,7 @@
     $role = $_SESSION['user']['role'];
 
     $roles = [
+        0 => 'Inconnu',
         1 => 'Utilisateur',
         5 => 'Modérateur',
         10 => 'Admin'
