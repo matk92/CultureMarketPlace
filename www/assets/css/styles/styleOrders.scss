@@ -51,7 +51,7 @@
 }
 .row {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   gap: rem(10);
 }
@@ -113,26 +113,34 @@
 }
 
 .left-order {
-  margin-left: 100px;
-  width: 60%;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .delivery-payment-address-form {
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
+  background-color: var(--summary-color);
+  border-radius: 10px;
+  padding: 30px;
 
   input {
     margin-bottom: 20px;
     background-color: #f0f0f0;
     border-style: none;
-    border-radius: 10px;
     color: #000;
+    border: 1px solid black;
   }
-  .checkbox {
-    display: flex;
-    align-items: center;
+
+  select {
+    height: 35px;
     margin-bottom: 20px;
+  }
+
+  .btn-security {
+    width: 50%;
+    border: 1px solid black;
   }
 }
 
@@ -270,7 +278,8 @@ table {
   margin: rem(40) auto;
   border-collapse: collapse;
   border-spacing: 0;
-  border: 3px solid #000000;
+  border: 2px solid black;
+  font-family: poppins;
 
   thead {
     background-color: #f0f0f0;
@@ -290,8 +299,18 @@ table {
   svg {
     width: 25px;
   }
+  .btn-minus-add {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+    gap: 10px;
+  }
+
   button {
-    margin-left: 20%;
+    border: none;
+    background-color: transparent;
   }
   img {
     margin-left: 2%;
@@ -299,4 +318,14 @@ table {
     height: 75px;
     border-radius: 11px;
   }
+}
+
+.fast-payment{
+  text-align: center;
+}
+
+.step-titles {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }

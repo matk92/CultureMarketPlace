@@ -30,7 +30,7 @@
                         <p><?= $config["config"]["errorMessage"] ?></p>
                 </div>
         <?php endif; ?>
-        <input type="submit" class="btn-security" value="<?= $config["config"]["submit"] ?? "Envoyer" ?>" id="form_submit">
+        <input type="submit" class="button btn-security" value="<?= $config["config"]["submit"] ?? "Envoyer" ?>" id="form_submit">
         <div class="spinner hidden" id="spinner_form"></div>
 </form>
 

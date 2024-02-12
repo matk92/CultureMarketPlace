@@ -177,6 +177,11 @@ class User extends DB
         $this->role = $role;
     }
 
+    public function getInserted(): string
+    {
+        return $this->inserted;
+    }
+
     /**
      * @return string
      */

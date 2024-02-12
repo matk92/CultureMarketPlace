@@ -9,7 +9,7 @@
                 <p>1</p>
             </div>
             <div class="step-title">
-                <p>Adresse de livraison</p>
+                <p>Mon panier</p>
             </div>
         </a>
         <a href="/orders/payment-info" class="step">
@@ -75,7 +75,7 @@
 
 <hr />
 <div class="row">
-    <a href="/orders">
+    <a class="button button-secondary" href="/orders">
         Précédent
     </a>
 </div>

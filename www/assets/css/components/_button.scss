@@ -39,6 +39,12 @@
 		--text-hover-color: var(--white);
 		border: solid thin currentColor;
 	}
+
+	&-delete {
+		--button-bg-color: transparent;
+		border: 1px solid black;
+		color: black;
+	}
 	
 
 	// Modificateurs de taille

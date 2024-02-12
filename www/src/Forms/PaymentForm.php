@@ -79,7 +79,7 @@ class PaymentForm
             ],
             "inputs" => [
                 "cardHolderName" => [
-                    "class" => "",
+                    "class" => "step-titles",
                     "required" => true,
                     "type" => "text",
                     "placeholder" => "Jean Dupont",
@@ -88,7 +88,7 @@ class PaymentForm
                     "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderName() : "",
                 ],
                 "cardHolderAddress" => [
-                    "class" => "",
+                    "class" => "step-titles",
                     "required" => true,
                     "type" => "address",
                     "id" => "form-payment-address",
@@ -98,7 +98,7 @@ class PaymentForm
                     "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderAddress() : "",
                 ],
                 "cardHolderZipCode" => [
-                    "class" => "",
+                    "class" => "step-titles",
                     "minLength" => 5,
                     "maxLength" => 5,
                     "type" => "number",
@@ -109,7 +109,7 @@ class PaymentForm
                     "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderZipCode() : "",
                 ],
                 "cardHolderCity" => [
-                    "class" => "",
+                    "class" => "step-titles",
                     "type" => "text",
                     "required" => true,
                     "label" => "Ville",
@@ -118,7 +118,7 @@ class PaymentForm
                     "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderCity() : "",
                 ],
                 "cardHolderCountry" => [
-                    "class" => "",
+                    "class" => "step-titles",
                     "label" => "Pays",
                     "type" => "select",
                     "required" => true,
@@ -127,7 +127,7 @@ class PaymentForm
                     "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardHolderCountry() : "",
                 ],
                 "cardNumber" => [
-                    "class" => "",
+                    "class" => "step-titles",
                     "type" => "text",
                     "minLength" => 19,
                     "maxLength" => 19,
@@ -139,7 +139,7 @@ class PaymentForm
                     "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getCardNumber() : "",
                 ],
                 "expirationDate" => [
-                    "class" => "",
+                    "class" => "step-titles",
                     "type" => "text",
                     "required" => true,
                     "placeholder" => "MM/AA",
@@ -149,7 +149,7 @@ class PaymentForm
                     "defaultValue" => $this->paymentMethod ? $this->paymentMethod->getExpirationDate() : "",
                 ],
                 "securityCode" => [
-                    "class" => "",
+                    "class" => "step-titles",
                     "minLength" => 3,
                     "maxLength" => 3,
                     "required" => true,

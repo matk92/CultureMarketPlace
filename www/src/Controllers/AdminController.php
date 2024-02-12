@@ -10,6 +10,7 @@ use App\Forms\EditProduct;
 use App\Repository\ReviewRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\UserRepository;
 
 class AdminController
 {
@@ -88,7 +89,9 @@ class AdminController
 
     public function users(): void
     {
-        new View("Admin/users", "frontAdmin");
+        $view = new View("Admin/users", "frontAdmin");
+        $users = (new UserRepository())->getAll();
+        $view->assign("users", $users);
     }
 
     public function frameworksettings(): void
