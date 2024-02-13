@@ -9,7 +9,7 @@ $roles = [
 
 <h1>Liste des utilisateurs inscrits sur le site</h1>
 
-<table>
+<table class="table-users-list">
     <thead>
         <tr>
             <th>ID</th>
@@ -26,7 +26,18 @@ $roles = [
         <?php foreach ($users as $user): ?>
             <tr>
                 <td><?= $user->getId() ?></td>
-                <td><?= $user->getFirstname() ?></td>
+                <td>
+                    <?php if ($user->getRole() == 10): ?>
+                        <i class="fa-solid fa-crown" style="color: #d4af37;"></i>
+                    <?php elseif ($user->getRole() == 5): ?>
+                        <i class="fa-solid fa-shield-halved" style="color: #258ffa;"></i>
+                    <?php elseif ($user->getRole() == 1): ?>
+                        <i class="fa-solid fa-user" style="color: #5d5d5d;"></i>
+                    <?php elseif ($user->getRole() == 0): ?>
+                        <i class="fa-solid fa-clock" style="color: #e76730;"></i>
+                    <?php endif; ?>
+                    <?= $user->getFirstname() ?>
+                </td>
                 <td><?= $user->getLastname() ?></td>
                 <td><?= $user->getEmail() ?></td>
                 <td><?= $user->getStatus() ?></td>
@@ -40,7 +51,8 @@ $roles = [
                                 <option value="1" <?= $user->getRole() == 1 ? 'selected' : '' ?>>Utilisateur</option>
                                 <option value="5" <?= $user->getRole() == 5 ? 'selected' : '' ?>>Modérateur</option>
                             </select>
-                            <input class="button button-esm" type="submit" value="Changer le rôle">
+                            <input class="button button-primary" id="changerole" type="submit" value="Changer le rôle">
+                            <input class="button button-danger" id="deleteuser" type="submit" value="Supprimer">
                         </form>
                     <?php else: ?>
                         Admin
