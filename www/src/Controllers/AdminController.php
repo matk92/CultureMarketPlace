@@ -94,6 +94,38 @@ class AdminController
         $view->assign("users", $users);
     }
 
+    public function changeUserRole(): void
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $userId = $_POST["id"];
+            $newRole = $_POST["role"];
+
+            $userRepository = new UserRepository();
+            $user = $userRepository->getById($userId);
+
+            if ($user) {
+                $user->setRole($newRole);
+                $userRepository->update($user);
+            }
+        }
+
+        header('Location: /admin/users');
+        exit;
+    }
+
+    public function deleteUser(): void
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $userId = $_POST["delete_id"];
+
+            $userRepository = new UserRepository();
+            $userRepository->delete($userId);
+        }
+
+        header('Location: /admin/users');
+        exit;
+    }
+
     public function frameworksettings(): void
     {
         $_SESSION['settings_success'] = "Les modifications ont été appliquées avec succès.";

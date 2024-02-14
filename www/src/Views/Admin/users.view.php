@@ -45,14 +45,13 @@ $roles = [
                 <td><?= $user->getInserted() ?></td>
                 <td>
                     <?php if ($user->getRole() != 10): ?>
-                        <form action="changerole.php" method="post">
+                        <form action="/admin/changerole" method="post">
                             <input type="hidden" name="id" value="<?= $user->getId() ?>">
                             <select name="role">
                                 <option value="1" <?= $user->getRole() == 1 ? 'selected' : '' ?>>Utilisateur</option>
                                 <option value="5" <?= $user->getRole() == 5 ? 'selected' : '' ?>>Modérateur</option>
                             </select>
                             <input class="button button-primary" id="changerole" type="submit" value="Changer le rôle">
-                            <input class="button button-danger" id="deleteuser" type="submit" value="Supprimer">
                         </form>
                     <?php else: ?>
                         Admin

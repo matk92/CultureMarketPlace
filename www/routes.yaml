@@ -151,6 +151,12 @@
   action: users
   role: 10
 
+/admin/changerole:
+  controller: AdminController
+  type: POST
+  action: changeUserRole
+  role: 10
+
 /admin/designguide:
   controller: AdminController
   action: designguide
