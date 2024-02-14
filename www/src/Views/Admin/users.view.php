@@ -51,7 +51,7 @@ $roles = [
                                 <option value="1" <?= $user->getRole() == 1 ? 'selected' : '' ?>>Utilisateur</option>
                                 <option value="5" <?= $user->getRole() == 5 ? 'selected' : '' ?>>Modérateur</option>
                             </select>
-                            <input class="button button-primary" id="changerole" type="submit" value="Changer le rôle">
+                            <input class="button button-primary" style="width: 100%; margin-top: 10px;" id="changerole" type="submit" value="Changer le rôle">
                         </form>
                     <?php else: ?>
                         Admin

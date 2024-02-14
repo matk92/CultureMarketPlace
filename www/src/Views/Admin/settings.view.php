@@ -27,19 +27,19 @@
     <h2>Couleurs</h2>
 
     <label for="background-color">Couleur principale</label>
-    <input type="color" id="background-color" name="background-color" value="#000000">
+    <input type="color" id="background-color" name="background-color" value="<?php echo $data['background-color']?>">
 
     <label for="background-color2">Couleur secondaire</label>
-    <input type="color" id="background-color2" name="background-color2" value="#000000">
+    <input type="color" id="background-color2" name="background-color2" value="<?php echo $data['background-color2']?>">
 
     <label for="title-color">Couleur du titre home</label>
-    <input type="color" id="title-color" name="title-color" value="#000000">
+    <input type="color" id="title-color" name="title-color" value="<?php echo $data['title-color']?>">
 
     <label for="subtitle-color">Couleur du sous-titre home</label>
-    <input type="color" id="subtitle-color" name="subtitle-color" value="#000000">
+    <input type="color" id="subtitle-color" name="subtitle-color" value="<?php echo $data['subtitle-color']?>">
 
     <label for="nav-color">Couleur de la navbar</label>
-    <input type="color" id="nav-color" name="nav-color" value="#000000">
+    <input type="color" id="nav-color" name="nav-color" value="<?php echo $data['nav-color']?>">
 
     <h2>Footer</h2>
 
@@ -47,7 +47,7 @@
     <textarea id="footer-text" name="footer-text"><?php echo $data['footer-text']?></textarea>
         
     <label for="footer-color">Couleur du footer</label>
-    <input type="color" id="footer-color" name="footer-color" value="#000000">
+    <input type="color" id="footer-color" name="footer-color" value="<?php echo $data['footer-color']?>">
     
     <h2>Réseaux sociaux</h2>
 
@@ -79,7 +79,7 @@
     <textarea id="home-discover-text" name="home-discover-text"><?php echo $data['home-discover-text']?></textarea>
 
     <label for="home-discover-color">Couleur du texte "Découvrir"</label>
-    <input type="color" id="home-discover-color" name="home-discover-color" value="#000000">
+    <input type="color" id="home-discover-color" name="home-discover-color" value="<?php echo $data['home-discover-color']?>">
 
     <input type="submit" class="button button-primary" style="width: 250px;" value="Enregistrer">
     <button class="button button-secondary" id="cancelButton" style="width: 250px; margin-top: 10px;"><i class="fa-solid fa-rotate-left"></i> Annuler les changements</button>

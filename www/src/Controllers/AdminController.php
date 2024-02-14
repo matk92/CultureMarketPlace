@@ -146,6 +146,14 @@ class AdminController
             $data['home-text3'] = htmlspecialchars($_POST['home-text3']);
             $data['home-discover-text'] = htmlspecialchars($_POST['home-discover-text']);
 
+            $data['background-color'] = htmlspecialchars($_POST['background-color']);
+            $data['background-color2'] = htmlspecialchars($_POST['background-color2']);
+            $data['title-color'] = htmlspecialchars($_POST['title-color']);
+            $data['subtitle-color'] = htmlspecialchars($_POST['subtitle-color']);
+            $data['nav-color'] = htmlspecialchars($_POST['nav-color']);
+            $data['footer-color'] = htmlspecialchars($_POST['footer-color']);
+            $data['home-discover-color'] = htmlspecialchars($_POST['home-discover-color']);
+
             //background image + favicon
             if (isset($_FILES['site-background-image']) && $_FILES['site-background-image']['error'] === 0) {
                 $tmp_name = $_FILES['site-background-image']['tmp_name'];
@@ -186,6 +194,25 @@ class AdminController
             $json = json_encode($data, JSON_PRETTY_PRINT);
 
             file_put_contents(__DIR__ . '/../Views/Main/home.json', $json);
+
+            // Générer le fichier SCSS avec les valeurs des variables
+            $colors = [
+                'background-color' => $data['background-color'],
+                'background-color2' => $data['background-color2'],
+                'title-color' => $data['title-color'],
+                'subtitle-color' => $data['subtitle-color'],
+                'nav-color' => $data['nav-color'],
+                'footer-color' => $data['footer-color'],
+                'home-discover-color' => $data['home-discover-color'],
+            ];
+
+            $scss = ":root {\n";
+            foreach ($colors as $name => $value) {
+                $scss .= "  --$name: {$value};\n";
+            }
+            $scss .= "}";
+
+            file_put_contents(__DIR__ . '/../../assets/css/partials/_colors_pallet.scss', $scss);
 
             header('Location: /admin/settings');
             exit;

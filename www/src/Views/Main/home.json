@@ -11,5 +11,12 @@
     "home-discover-text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     "site-background-image": "background_img.png?1706703295",
     "site-favicon": "favicon.png?1706692499",
-    "home-discover-image": "home_discover_img.jpg?1706631393"
+    "home-discover-image": "home_discover_img.jpg?1706631393",
+    "background-color": "#CD403D",
+    "background-color2": "#FFFFFF",
+    "title-color": "#FFFFFF",
+    "subtitle-color": "#FFFFFF",
+    "nav-color": "#FFFFFF",
+    "footer-color": "#CD403D",
+    "home-discover-color": "#FFFFFF"
 }

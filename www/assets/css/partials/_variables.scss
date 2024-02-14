@@ -11,6 +11,7 @@ $md-size: 1024px;
 
 :root {
 	/* Couleurs */
+	--background-admin-color: #{$white};
 	--summary-color: #{darken($lightGrey, 1%)};
     --whitebg: #{$white};
 	--white: #{$white};
@@ -37,6 +38,7 @@ $md-size: 1024px;
 .dark-mode {
 	--background-color: #{$darkBlue};
 	--background-color2: #{$darkBlue};
+	--background-admin-color: #{$darkBlue};
 	--title-color: #{$white};
 	--subtitle-color: #{$lightGrey};
 	--footer-color: #{$darkGrey};

@@ -40,9 +40,26 @@
             <button class="button button-primary"><i class="fa-solid fa-check"></i> Sauvegarder les changements</button>
             <button class="button button-secondary" id="cancelButton"><i class="fa-solid fa-rotate-left"></i> Annuler les changements</button>
     </div>
+    <h2>Supprimer le compte</h2>
+    <div class="btnProfileAdmin">
+        <button class="button button-danger" onclick="confirmDelete()"><i class="fa-solid fa-trash"></i> Supprimer mon compte</button>
+        <button class="button button-danger" onclick="confirmDelete()"><i class="fa-solid fa-trash"></i> Supprimer mon compte et ses données</button>
+    </div>
 </section>
 
 <script>
+    document.getElementById('cancelButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('profileForm').reset();
+    });
+</script>
+<script>
+    function confirmDelete() {
+        if (confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.")) {
+            // Ajoutez ici le code pour supprimer le compte
+        }
+    }
+
     document.getElementById('cancelButton').addEventListener('click', function(e) {
         e.preventDefault();
         document.getElementById('profileForm').reset();
