@@ -13,7 +13,8 @@ class Verificator
             die("Le nombre de champs ne correspond pas");
         }
 
-        // TODO Token CSRF
+        if(!isset($data["crsf_token"]) || $data["crsf_token"] !== $_SESSION["crsf_token"])
+            die("Token CSRF invalide");
 
         $errors = [];
         foreach ($config["inputs"] as $key => $input) {
@@ -73,7 +74,7 @@ class Verificator
                     $errors[$key] = "Le champ " . $input["label"] . " doit être compris entre " . $input["min"] . " et " . $input["max"];
             }
 
-            if (empty($errors[$key]))
+            if (empty($errors[$key]) && !isset($input["dismissible"]))
                 $config["inputs"][$key]["defaultValue"] = $data[$key];
         }
 

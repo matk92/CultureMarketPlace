@@ -72,33 +72,39 @@ class SecurityController
             $verificatior = new Verificator();
             if ($verificatior->checkForm($formConfig, $_POST)) {
                 $user = (new User())->getOneBy(["verificationcode" => $_POST["code"], "email" => $_SESSION["email"]], "object");
+                if ($user != 0) {
+                    // Verification si l'utilisateur existe et si le mot de passe est correct
+                    if ($user->getStatus() > User::_STATUS_INACTIVE) {
+                        $formConfig["config"]["errorMessage"] = "Ce compte est déjà activé, veuillez vous connecter.";
+                        $view->assign("form", $formConfig);
+                        return http_response_code(403);
+                    }
+                    if (!$user) {
+                        $formConfig["config"]["errorMessage"] = "Code de vérification incorrect.";
+                        $view->assign("form", $formConfig);
+                        return http_response_code(409);
+                    }
 
-                // Verification si l'utilisateur existe et si le mot de passe est correct
-                if ($user->getStatus() > User::_STATUS_INACTIVE) {
-                    $formConfig["config"]["errorMessage"] = "Ce compte est déjà activé, veuillez vous connecter.";
-                    $view->assign("form", $formConfig);
-                    return http_response_code(403);
-                }
-                if (!$user) {
+                    $user->setStatus(User::_STATUS_ACTIVE);
+                    $user->save();
+                    http_response_code(204);
+                    header("Location: /login");
+                    exit();
+                } else {
                     $formConfig["config"]["errorMessage"] = "Code de vérification incorrect.";
-                    $view->assign("form", $formConfig);
-                    return http_response_code(409);
+                    http_response_code(409);
                 }
-
-                $user->setStatus(User::_STATUS_ACTIVE);
-                $user->save();
-                http_response_code(204);
-                header("Location: /login");
-                exit();
             }
 
             // Si on arrive ici, c'est que le formulaire n'est pas valide
             $view->assign("form", $formConfig);
-            return http_response_code(409);
+            http_response_code(409);
+        } else {
+            http_response_code(200);
         }
 
         $view->assign("form", $formConfig);
-        return http_response_code(200);
+        return true;
     }
 
     public function logout(): void

@@ -19,11 +19,4 @@ class UserRepository extends Repository
         $result = $this->fetch($sql, $params);
         return $result ? $result[0] : null;
     }
-
-    public function update($user)
-    {
-        $sql = "UPDATE $this->tableName SET role = :role WHERE id = :id";
-        $params = ['role' => $user->getRole(), 'id' => $user->getId()];
-        $this->execute($sql, $params);
-    }
 }

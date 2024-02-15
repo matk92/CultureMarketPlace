@@ -2,47 +2,42 @@
 
 namespace App\Forms;
 
+use App\Core\Form;
+use App\Models\Category;
 use App\Models\Product;
 
-class AddProductToCart
+class AddProductToCart extends Form
 {
 
-    private $product;
-    private $category;
 
-    public function __construct($product,$category)
+    public function __construct(Product $product, Category $category)
     {
-        $this->product = $product;
-        $this->category = $category;
-    }
+        parent::__construct();
 
-    public function getConfig(): array
-    {
-        return [
-            "config" => [
-                "method" => "POST",
-                "action" => "/orders/add_product",
-                "class" => "form",
-                "id" => "form-oreder-add-product",
-                "submit" => "Ajouter au panier",
-                "error" => "Erreur lors de l'ajout du produit au panier"
+        $this->config = [
+            "method" => "POST",
+            "action" => "/orders/add_product",
+            "class" => "form",
+            "id" => "form-oreder-add-product",
+            "submit" => "Ajouter au panier",
+            "error" => "Erreur lors de l'ajout du produit au panier"
+        ];
+        
+        $this->inputs = [
+            "productid" => [
+                "type" => "hidden",
+                "defaultValue" => $product->getId()
             ],
-            "inputs" => [
-                "productid" => [
-                    "type" => "hidden",
-                    "defaultValue" => $this->product->getId()
-                ],
-                "quantity" => [
-                    "label" => "Quantité (" . $this->category->getUnit() . ")",
-                    "type" => "number",
-                    "class" => "input-admin_products",
-                    "min" => "1",
-                    "max" => $this->product->getStock(),
-                    "id" => "form-oreder-add-product-quantity",
-                    "required" => true,
-                    "placeholder" => "1" . $this->category->getUnit()
-                ],
-            ]
+            "quantity" => [
+                "label" => "Quantité (" . $category->getUnit() . ")",
+                "type" => "number",
+                "class" => "input-admin_products",
+                "min" => "1",
+                "max" => $product->getStock(),
+                "id" => "form-oreder-add-product-quantity",
+                "required" => true,
+                "placeholder" => "1" . $category->getUnit()
+            ],
         ];
     }
 }

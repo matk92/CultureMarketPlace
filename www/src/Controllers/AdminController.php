@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Core\Verificator;
 use App\Forms\AddProduct;
 use App\Forms\EditProduct;
+use App\Models\User;
 use App\Repository\ReviewRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
@@ -97,15 +98,11 @@ class AdminController
     public function changeUserRole(): void
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $userId = $_POST["id"];
-            $newRole = $_POST["role"];
-
-            $userRepository = new UserRepository();
-            $user = $userRepository->getById($userId);
+            $user = (new User())->populate($_POST["id"]);
 
             if ($user) {
-                $user->setRole($newRole);
-                $userRepository->update($user);
+                $user->setRole($_POST["role"]);
+                $user->save();
             }
         }
 
@@ -116,10 +113,8 @@ class AdminController
     public function deleteUser(): void
     {
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $userId = $_POST["delete_id"];
-
-            $userRepository = new UserRepository();
-            $userRepository->delete($userId);
+            $user = (new User())->populate($_POST["delete_id"]);
+            $user->delete();
         }
 
         header('Location: /admin/users');
@@ -129,7 +124,7 @@ class AdminController
     public function frameworksettings(): void
     {
         $_SESSION['settings_success'] = "Les modifications ont été appliquées avec succès.";
-        
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $json = file_get_contents(__DIR__ . '/../Views/Main/home.json');
 
