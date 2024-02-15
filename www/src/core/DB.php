@@ -25,9 +25,9 @@ class DB
         $normalizeName = strtolower($name[0]) . substr($name, 1);
         $normalizedName = preg_replace('/(?<!^)([A-Z])/', '_$1', $normalizeName);
         $normalizedName = strtolower($normalizedName);
-        $this->tableName = $_ENV["BDD_PREFIX"] . "_" . strtolower( $normalizedName);
+        $this->tableName = $_ENV["BDD_PREFIX"] . "_" . strtolower($normalizedName);
 
-        if(method_exists($this, "populateRelations")) {
+        if (method_exists($this, "populateRelations")) {
             $this->populateRelations();
         }
     }
@@ -65,10 +65,10 @@ class DB
         } else {
             $sql = "INSERT INTO $this->tableName (";
             foreach ($attributes as $key => $value) {
-                if(is_array($value) || is_object($value)) {
+                if (is_array($value) || is_object($value)) {
                     continue;
                 }
-                
+
                 $sql .= "$key, ";
             }
 
@@ -88,7 +88,7 @@ class DB
             $sql = substr($sql, 0, -2);
             $sql .= ");";
         }
-        
+
         // on prepare la requete
         $stmt = $this->connection->prepare($sql);
 
@@ -102,21 +102,30 @@ class DB
     }
 
     // Permets de supprimer un objet soft ou hard
-    public function delete($hardDelete = false): void
+    public function delete($hardDelete = false, $replace = true): void
     {
         if ($hardDelete) {
-            $sql = "DELETE FROM $this->tableName WHERE id = :id";
-            $stmt = $this->connection->prepare($sql);
-            $stmt->execute([":id" => $this->getId()]);
-        } else {
-            $attributes = $this->getChlidVars();
-            foreach ($attributes as $key => $value) {
-                if ($key !== 'id') {
-                    if (is_string($value))
-                        $attributes[$key] = $key . "_deleted";
+            if ($replace) {
+                $attributes = $this->getChlidVars();
+                foreach ($attributes as $key => $value) {
+                    if ($key !== 'id' && is_string($value)) {
+                        $method = "set" . ucfirst($key);
+                        if (method_exists($this, $method))
+                            $this->$method($key . "_deleted");
+                    }
                 }
+
+                if (method_exists($this, "setIsDeleted"))
+                    $this->setIsDeleted(true);
+
+                $this->save();
+            } else {
+                $sql = "DELETE FROM $this->tableName WHERE id = :id";
+                $stmt = $this->connection->prepare($sql);
+                $stmt->execute([":id" => $this->getId()]);
             }
-            if (method_exists($this, "isDeleted"))
+        } else {
+            if (method_exists($this, "setIsDeleted"))
                 $this->setIsDeleted(true);
 
             $this->save();

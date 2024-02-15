@@ -188,3 +188,25 @@ footer.footer-home {
   cursor: pointer;
   margin-right: 10px;
 }
+
+.legal_section{
+  padding: rem(48);
+  max-width: 800px;
+  margin-inline: auto;
+  margin-top: rem(20);
+  margin-bottom: 20vh;
+  text-align: justify;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    gap: rem(5);
+    border-bottom: 1px solid #ccc;
+    margin-bottom: rem(20);
+  }
+
+  & li {
+    list-style: none;
+    margin-bottom: rem(10)
+  }
+}

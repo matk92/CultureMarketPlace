@@ -3,15 +3,18 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Models\User;
+use App\Core\Security;
 use App\Models\Product;
 use App\Core\Verificator;
 use App\Forms\AddProduct;
 use App\Forms\EditProduct;
-use App\Models\User;
+use App\Forms\AccountRecover;
+use App\Forms\UserInformation;
+use App\Repository\UserRepository;
 use App\Repository\ReviewRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
-use App\Repository\UserRepository;
 
 class AdminController
 {
@@ -87,7 +90,35 @@ class AdminController
 
     public function profile(): void
     {
-        new View("Admin/profile", "frontAdmin");
+        if ($_SESSION["user"]["id"] == null) {
+            header('Location: /login');
+            exit();
+        }
+        $view = new View("Admin/profile", "frontAdmin");
+        $user = (new User())->populate($_SESSION["user"]["id"]);
+        $form = new UserInformation($user);
+        $formConfig = $form->getConfig();
+
+        if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
+            $verificator = new Verificator();
+            if ($verificator->checkForm($formConfig, $_POST) === true) {
+                $user->setFirstname($_POST["name"]);
+                $user->setLastname($_POST["lastname"]);
+                $user->save();
+
+                $_SESSION["user"]["firstname"] = $user->getFirstname();
+                $_SESSION["user"]["lastname"] = $user->getLastname();
+
+                http_response_code(200);
+            } else {
+                http_response_code(409);
+            }
+        } else {
+            http_response_code(200);
+        }
+
+        $view->assign("form", $formConfig);
+        $view->assign("user", $user);
     }
 
     public function comments(): void
@@ -121,13 +152,62 @@ class AdminController
 
     public function deleteUser(): void
     {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $user = (new User())->populate($_POST["delete_id"]);
-            $user->delete();
-        }
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
 
-        header('Location: /admin/users');
-        exit;
+            $id = $_GET['id'];
+            $hardDelete = $_GET['hardDelete'] == 'true' ? true : false;
+
+            if (empty($id)) {
+                http_response_code(400);
+                header('Location: /profile');
+                exit();
+            }
+
+            $user = (new User())->populate((int) $id);
+            if (is_int($user) &&  $user == 0) {
+                http_response_code(404);
+                header('Location: /profile');
+                exit();
+            }
+
+            //Check that user is the current user or current user is admin
+            $isSameUser = $user->getId() == $_SESSION['user']['id'];
+            $isAdmin = $_SESSION['user']['role'] == 10;
+            if ($isSameUser == false && $isAdmin == false) {
+                http_response_code(403);
+                header('Location: /profile');
+                exit();
+            }
+
+            $user->delete($hardDelete);
+            if ($isSameUser) {
+                (new Security())->logout();
+                header('Location: /user/delete');
+                exit();
+            }
+
+            http_response_code(200);
+        } else {
+            $view = (new View("User/accountDeleted", "adveritsement"));
+            if (array_key_exists('user', $_SESSION)) {
+                $user = (new User())->populate($_SESSION['user']['id']);
+                $form = new AccountRecover($user);
+                $formConfig = $form->getConfig();
+
+                if ($_SERVER['REQUEST_METHOD'] === $formConfig['config']['method']) {
+                    $verificator = new Verificator();
+                    if ($verificator->checkForm($formConfig, $_POST)) {
+                        $user->setIsdeleted(false);
+                        $user->save();
+                        header('Location: /');
+                        exit();
+                    } else
+                        http_response_code(409);
+                }
+
+                $view->assign("form", $formConfig);
+            }
+        }
     }
 
     public function frameworksettings(): void

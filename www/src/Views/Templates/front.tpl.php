@@ -37,7 +37,7 @@ $data = json_decode($json, true); ?>
                                 <?= $_SESSION['user']['firstname'] ?> <?= $_SESSION['user']['lastname'] ?>
                             </a>
                             <div class="dropdown-content" id="userDropdown">
-                                <a href="/admin/profile">Profil</a>
+                                <a href="/profile">Profil</a>
                                 <a href="/logout">Déconnexion<i class="fa-solid fa-right-from-bracket"></i></a>
                             </div>
                         </li>

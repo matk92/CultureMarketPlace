@@ -34,9 +34,14 @@ class Security
             }
 
             return true;
-        }else{
+        } else {
             return false;
         }
+    }
 
+    public function logout(): void
+    {
+        session_destroy();
+        setcookie("user", "", time() - 3600, "/");
     }
 }

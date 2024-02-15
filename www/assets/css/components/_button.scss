@@ -94,3 +94,32 @@
 		padding: rem(8) rem(12);
 	}
 }
+
+.button-outlined{
+	@extend .button;
+	background-color: transparent;
+	border: 1px solid var(--blue);
+	color: var(--blue);
+	&:hover {
+		background-color: var(--blue);
+		color: var(--white);
+	}
+
+	&-secondary {
+		border-color: var(--grey);
+		color: var(--grey);
+		&:hover {
+			background-color: var(--grey);
+			color: var(--white);
+		}
+	}
+	
+	&-danger {
+		border-color: var(--red);
+		color: var(--red);
+		&:hover {
+			background-color: var(--red);
+			color: var(--white);
+		}
+	}
+}

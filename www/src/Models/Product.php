@@ -13,7 +13,7 @@ class Product extends DB
     protected float $price;
     protected int $stock;
     protected ?int $categoryid = null;
-    protected bool $archive;
+    protected bool $isdeleted;
     protected ?string $updated;
     protected float $rating;
 
@@ -170,21 +170,21 @@ class Product extends DB
     }
 
     /**
-     * Get the value of archive
+     * Get the value of isdeleted
      */
-    public function getArchive(): bool
+    public function getIsDeleted(): bool
     {
-        return $this->archive;
+        return $this->isdeleted;
     }
 
     /**
-     * Set the value of archive
+     * Set the value of isdeleted
      *
      * @return  void
      */
-    public function setArchive(bool $archive): void
+    public function setIsDeleted(bool $isdeleted): void
     {
-        $this->archive = $archive;
+        $this->isdeleted = $isdeleted;
     }
 
 

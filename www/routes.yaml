@@ -131,9 +131,14 @@
   action: frameworksettings
   role: 10
 
-/admin/profile:
+/profile:
   controller: AdminController
   action: profile
+
+/user/delete:
+  controller: AdminController
+  action: deleteUser
+  method: GET | DELETE | POST
 
 /admin/comments:
   controller: AdminController

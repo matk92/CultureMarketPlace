@@ -124,11 +124,14 @@ class ProductController
             exit();
         }
 
-        if (!(new ProductRepository())->delete($id)) {
-            http_response_code(500);
+        $product = (new Product())->populate((int) $id);
+        if($product == 0){
+            http_response_code(404);
             header('Location: /admin/products');
             exit();
         }
+
+        $product->delete();
 
         header('Location: /admin/products');
         http_response_code(200);

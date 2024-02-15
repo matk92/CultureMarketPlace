@@ -40,6 +40,11 @@ class SecurityController
                     http_response_code(200);
                     header("Location: /verification");
                     exit();
+                }else if ($user->isDeleted() == true){
+                    // Si l'utilisateur a supprimé son compte, on le redirige vers la page de confirmation
+                    http_response_code(200);
+                    header("Location: /user/delete");
+                    exit();
                 }
 
                 http_response_code(204);
@@ -109,8 +114,7 @@ class SecurityController
 
     public function logout(): void
     {
-        session_destroy();
-        setcookie("user", "", time() - 3600, "/");
+        (new Security())->logout();
         new View("Security/logout", "frontSecurity");
     }
 
