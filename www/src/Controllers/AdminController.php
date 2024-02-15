@@ -18,7 +18,16 @@ class AdminController
 
     public function dashboard(): void
     {
-        new View("Admin/dashboard", "frontAdmin");
+        $view = new View("Admin/dashboard", "frontAdmin");
+        $productRepository = new ProductRepository();
+        $productsSales = $productRepository->getSalesStats();
+        $salesByMonth = $productRepository->getSalesByMonthStats();
+        $salesByCategory = $productRepository->getSalesByCategoryStats();
+
+        $view->assign("productsSales", json_encode($productsSales));
+        $view->assign("salesByMonth", json_encode($salesByMonth));
+        $view->assign("salesByCategory", json_encode($salesByCategory));
+        http_response_code(200);
     }
 
     public function pages(): void

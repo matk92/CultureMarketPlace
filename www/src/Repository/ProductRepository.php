@@ -54,4 +54,60 @@ class ProductRepository extends Repository
 
         return $this->execute($sql, $execute);
     }
+
+    public function getSalesStats(): array
+    {
+        $sql = "SELECT 
+                    p.name AS product, 
+                    SUM(os.quantity) AS sales
+                FROM " . $_ENV["BDD_PREFIX"] . "_order_slot os
+                LEFT JOIN " . $_ENV["BDD_PREFIX"] . "_product p ON os.productId = p.id
+                GROUP BY 
+                    p.name
+                ORDER BY 
+                    sales DESC
+                LIMIT 6;";
+
+        return $this->fetch($sql, null, \PDO::FETCH_ASSOC);
+    }
+
+    public function getSalesByMonthStats(): array
+    {
+        $sql = "SELECT 
+                    DATE_TRUNC('month', o.inserted) AS month_date, 
+                    TO_CHAR(o.inserted, 'Month') AS month,
+                    SUM(os.quantity) AS sales
+                FROM 
+                    " . $_ENV["BDD_PREFIX"] . "_order o
+                LEFT JOIN 
+                    " . $_ENV["BDD_PREFIX"] . "_order_slot os ON o.id = os.orderId
+                WHERE 
+                    o.inserted <= NOW() - INTERVAL '6 months'
+                GROUP BY 
+                    month,
+                    month_date
+                ORDER BY 
+                    month_date ASC;";
+
+        return $this->fetch($sql, null, \PDO::FETCH_ASSOC);
+    }
+
+    public function getSalesByCategoryStats(): array
+    {
+        $sql = "SELECT 
+                    c.name AS category, 
+                    SUM(os.quantity) AS sales
+                FROM 
+                    rbnm_order_slot os
+                LEFT JOIN 
+                    rbnm_product p ON os.productId = p.id
+                LEFT JOIN 
+                    rbnm_category c ON p.categoryId = c.id
+                GROUP BY 
+                    category
+                ORDER BY 
+                    sales DESC;";
+
+        return $this->fetch($sql, null, \PDO::FETCH_ASSOC);
+    }
 }

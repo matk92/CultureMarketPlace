@@ -118,22 +118,22 @@ INSERT INTO rbnm_review (userId, productId, rating, comment, isApproved) VALUES
     (7, 21, 3, 'Cette huile d''olive est vraiment délicieuse. Elle a une saveur intense et ajoute une touche de richesse à mes plats. Je l''achète régulièrement.', NULL),
     (8, 21, 4, 'Cette huile d''olive est incroyablement savoureuse. Elle a une saveur intense et ajoute une touche de richesse à mes plats. Je la recommande vivement !', TRUE);
 
-INSERT INTO rbnm_order (userId, status) VALUES
-    (1, 0),
-    (2, 0),
-    (6, 0),
-    (7, 0),
-    (10, 0),
-    (10, 1),
-    (1, 2),
-    (2, 2),
-    (10, 2),
-    (1, 3),
-    (6, 3),
-    (7, 3),
-    (1, 0),
-    (2, 0),
-    (10, 0);
+INSERT INTO rbnm_order (userId, status, inserted) VALUES
+    (1, 0, TO_TIMESTAMP('2024-02-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (2, 0,  TO_TIMESTAMP('24-02-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (6, 0,  TO_TIMESTAMP('24-01-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (7, 0,  TO_TIMESTAMP('24-01-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (10, 0,  TO_TIMESTAMP('24-01-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (10, 1,  TO_TIMESTAMP('23-12-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (1, 2,  TO_TIMESTAMP('23-12-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (2, 2,  TO_TIMESTAMP('23-12-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (10, 2,  TO_TIMESTAMP('23-11-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (1, 3,  TO_TIMESTAMP('23-11-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (6, 3,  TO_TIMESTAMP('23-10-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (7, 3,  TO_TIMESTAMP('23-10-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (1, 0,  TO_TIMESTAMP('23-10-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (2, 0,  TO_TIMESTAMP('23-09-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS')),
+    (10, 0,  TO_TIMESTAMP('23-09-02 00:00:00', 'YYYY-MM-DD HH24:MI:SS'));
 
 INSERT INTO rbnm_order_slot (orderId, productId, quantity) VALUES
     (1, 1, 2),

@@ -37,11 +37,15 @@ class Repository
         $this->tableName = $_ENV["BDD_PREFIX"] . "_" . strtolower($normalizedName);
     }
 
-    protected function fetch($sql, $execute = null): array
+    protected function fetch($sql, $execute = null, $fetchMode = PDO::FETCH_CLASS): array
     {
         $stmt = $this->connection->prepare($sql);
         $stmt->execute($execute);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, $this->modelName);
+        if ($fetchMode === PDO::FETCH_CLASS) {
+            $stmt->setFetchMode($fetchMode, $this->modelName);
+        }else{
+            $stmt->setFetchMode($fetchMode);
+        }
         return $stmt->fetchAll();
     }
 
@@ -55,7 +59,7 @@ class Repository
     {
         $sql = "SELECT * FROM " . $this->tableName . " WHERE id = :id";
         $execute = ["id" => $id];
-    
+
         return $this->fetch($sql, $execute)[0] ?? null;
     }
 }
