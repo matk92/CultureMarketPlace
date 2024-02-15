@@ -10,7 +10,6 @@ class UserInformation extends Form
 
     public function __construct(User $user)
     {
-        parent::__construct();
 
         $this->config = [
             "method" => "POST",
@@ -40,5 +39,6 @@ class UserInformation extends Form
                 "placeholder" => "Votre nom",
             ],
         ];
+        parent::__construct();
     }
 }

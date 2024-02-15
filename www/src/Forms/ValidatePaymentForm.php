@@ -8,7 +8,6 @@ class ValidatePaymentForm extends Form
 {
     public function __construct()
     {
-        parent::__construct();
         $this->config = [
             "method" => "POST",
             "action" => "",
@@ -33,5 +32,6 @@ class ValidatePaymentForm extends Form
                 "label" => "J’a lu et j’accepte les conditions générales de vente",
             ],
         ];
+        parent::__construct();
     }
 }

@@ -9,7 +9,6 @@ class BDDconfig extends Form
 
     public function __construct()
     {
-        parent::__construct();
         $this->config = [
             "method" => "POST",
             "action" => "/configuration/bdd",
@@ -55,5 +54,6 @@ class BDDconfig extends Form
                 "placeholder" => "********",
             ],
         ];
+        parent::__construct();
     }
 }

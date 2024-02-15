@@ -9,7 +9,6 @@ class Register extends Form
 
     public function __construct()
     {
-        parent::__construct();
         $this->config = [
             "method" => "POST",
             "action" => "",
@@ -58,5 +57,6 @@ class Register extends Form
                 "confirm" => "pwd"
             ]
         ];
+        parent::__construct();
     }
 }

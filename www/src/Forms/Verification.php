@@ -9,7 +9,6 @@ class Verification extends Form
 
     public function __construct()
     {
-        parent::__construct();
         $this->config = [
             "method" => "POST",
             "action" => "/verification",
@@ -30,5 +29,6 @@ class Verification extends Form
                 "dismissible" => "true",
             ],
         ];
+        parent::__construct();
     }
 }

@@ -9,7 +9,6 @@ class PasswordReset extends Form
 
     public function __construct()
     {
-        parent::__construct();
         $this->config = [
             "method" => "POST",
             "action" => "",
@@ -26,5 +25,6 @@ class PasswordReset extends Form
                 "placeholder" => "Votre email",
             ],
         ];
+        parent::__construct();
     }
 }

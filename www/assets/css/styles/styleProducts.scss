@@ -42,6 +42,23 @@ section.products-header {
       }
 }
 
+.input-comment-product{
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+
+    & textarea{
+        padding: rem(10);
+        border: 1px solid #ccc;
+        border-radius: rem(5);
+        ::placeholder{
+            font-style: italic;
+        }
+    }
+    & label {
+        font-weight: bold;
+    }
+}
 
 .card-bottom {
     display: flex;

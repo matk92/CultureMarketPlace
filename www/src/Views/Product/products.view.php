@@ -1,3 +1,9 @@
+<?php if (array_key_exists('errorComment', $_GET) && $_GET['errorComment'] === 'true') : ?>
+    <div id="danger-alert" class="alert alert-danger" style="position: fixed; top: 0;">
+        <p>Erreur lors de l'ajout du commentaire</p>
+    </div>
+<?php endif; ?>
+
 <div class="main-products">
     <section class="products-header">
         <h1 id="products_title">Produits</h1>
@@ -106,6 +112,10 @@
                             <p>Par <?= $comment->firstname ?> <?= $comment->lastname ?></p>
                         </div>
                     <?php endforeach; ?>
+                    <?php if (isset($_SESSION['user']) && isset($formComment)) : ?>
+                        <hr />
+                        <?= $this->modal("form", $formComment) ?>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?>

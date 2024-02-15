@@ -12,6 +12,7 @@ use App\Forms\AddProductToCart;
 use App\Repository\ReviewRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
+use App\Forms\CommentProduct;
 
 class ProductController
 {
@@ -35,7 +36,11 @@ class ProductController
 
             $form = new AddProductToCart($displayProduct, $category);
             $formConfig = $form->getConfig();
+
+            $formComment = new CommentProduct($displayProduct);
+            $formCommentConfig = $formComment->getConfig();
             $view->assign("form", $formConfig);
+            $view->assign("formComment", $formCommentConfig);
             $view->assign("displayProduct", $displayProduct);
             $view->assign("comments", $comments);
         }

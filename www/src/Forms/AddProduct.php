@@ -9,8 +9,6 @@ class AddProduct extends Form
 
     public function __construct(array $categories)
     {
-        parent::__construct();
-        
         $categoriesOptions = [];
         foreach ($categories as $category) {
             $categoriesOptions[$category->getId()] = $category->getName() . " - " . $category->getUnit();
@@ -77,5 +75,7 @@ class AddProduct extends Form
                 "placeholder" => "Description du produit",
             ],
         ];
+        parent::__construct();
+        
     }
 }

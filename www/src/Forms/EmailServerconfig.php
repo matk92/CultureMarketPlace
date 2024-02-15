@@ -9,7 +9,6 @@ class EmailServerConfig extends Form
 
     public function __construct()
     {
-        parent::__construct();
         $this->config = [
             "method" => "POST",
             "action" => "/configuration/email",
@@ -49,5 +48,6 @@ class EmailServerConfig extends Form
                 "placeholder" => "password",
             ],
         ];
+        parent::__construct();
     }
 }

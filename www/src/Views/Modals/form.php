@@ -31,7 +31,7 @@
                 </div>
         <?php endif; ?>
         <input type="submit" class="button btn-security" value="<?= $config["config"]["submit"] ?? "Envoyer" ?>" id="form_submit">
-        <div class="spinner hidden" id="spinner_form"></div>
+        <div class="spinner hidden" id="spinner_form_<?= $config["config"]["id"] ?>"></div>
 </form>
 
 <script>
@@ -52,7 +52,7 @@
                 if (document.getElementById("<?= $config["config"]["id"] ?>") != undefined) {
                         document.getElementById("<?= $config["config"]["id"] ?>").addEventListener('submit', function() {
                                 document.getElementById('form_submit').classList.add('hidden');
-                                document.getElementById('spinner_form').classList.remove('hidden');
+                                document.getElementById('spinner_form_' + <?= $config["config"]["id"] ?>).classList.remove('hidden');
                         });
                 }
         });

@@ -15,6 +15,8 @@ class Verificator
 
         if(!isset($data["crsf_token"]) || $data["crsf_token"] !== $_SESSION["crsf_token"])
             die("Token CSRF invalide");
+        else
+            unset($data["crsf_token"]);
 
         $errors = [];
         foreach ($config["inputs"] as $key => $input) {

@@ -11,8 +11,6 @@ class AccountRecover extends Form
 
     public function __construct(User $user)
     {
-        parent::__construct();
-
         $this->config = [
             "method" => "POST",
             "action" => "",
@@ -28,5 +26,6 @@ class AccountRecover extends Form
                 "defaultValue" => $user->getId()
             ],
         ];
+        parent::__construct();
     }
 }

@@ -9,7 +9,6 @@ class Login extends Form
 
     public function __construct()
     {
-        parent::__construct();
         $this->config = [
             "method" => "POST",
             "action" => "",
@@ -42,5 +41,6 @@ class Login extends Form
                 "class" => "rememberme-security",
             ],
         ];
+        parent::__construct();
     }
 }

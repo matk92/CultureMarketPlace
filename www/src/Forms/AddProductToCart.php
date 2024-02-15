@@ -12,8 +12,6 @@ class AddProductToCart extends Form
 
     public function __construct(Product $product, Category $category)
     {
-        parent::__construct();
-
         $this->config = [
             "method" => "POST",
             "action" => "/orders/add_product",
@@ -39,5 +37,7 @@ class AddProductToCart extends Form
                 "placeholder" => "1" . $category->getUnit()
             ],
         ];
+        parent::__construct();
+
     }
 }

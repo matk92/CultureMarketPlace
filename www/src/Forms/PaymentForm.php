@@ -62,7 +62,6 @@ class PaymentForm extends Form
 
     public function __construct(?PaymentMethod $paymentMethod = null)
     {
-        parent::__construct();
         $this->config = [
             "method" => "POST",
             "action" => "",
@@ -161,5 +160,6 @@ class PaymentForm extends Form
                 "id" => "form-payment-savePaymentMethod",
             ],
         ];
+        parent::__construct();
     }
 }

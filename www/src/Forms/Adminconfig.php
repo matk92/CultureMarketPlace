@@ -9,7 +9,6 @@ class Adminconfig extends Form
 
     public function __construct()
     {
-        parent::__construct();
         $this->config = [
             "method" => "POST",
             "action" => "/configuration/admin",
@@ -67,5 +66,6 @@ class Adminconfig extends Form
                 "confirm" => "pwd"
             ]
         ];
+        parent::__construct();
     }
 }
