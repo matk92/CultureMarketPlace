@@ -140,12 +140,12 @@
   role: 5
 
 /profile:
-  controller: AdminController
+  controller: UserController
   action: profile
   role: 1
 
 /user/delete:
-  controller: AdminController
+  controller: UserController
   action: deleteUser
   method: GET | DELETE | POST
   role: 1
@@ -167,7 +167,7 @@
   role: 10
 
 /admin/changerole:
-  controller: AdminController
+  controller: UserController
   type: POST
   action: changeUserRole
   role: 10

@@ -3,22 +3,18 @@
 namespace App\Controllers;
 
 use App\Core\View;
-use App\Models\User;
-use App\Core\Security;
 use App\Models\Product;
-use App\Core\Verificator;
+use App\Core\Controller;
 use App\Forms\AddProduct;
-use App\Forms\EditProduct;
-use App\Forms\AccountRecover;
-use App\Forms\UserInformation;
 use App\Repository\UserRepository;
 use App\Repository\ReviewRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 
-class AdminController
+class AdminController extends Controller
 {
 
+    // page Dashboard permettant de visualiser les statistiques de vente
     public function dashboard(): void
     {
         $view = new View("Admin/dashboard", "frontAdmin");
@@ -46,15 +42,9 @@ class AdminController
         $formConfig = $form->getConfig();
 
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificatior = new Verificator();
             // On vérifie que le formulaire est valide
-            if ($verificatior->checkForm($formConfig, array_merge($_POST, $_FILES)) === true) {
-                $newProduct = new Product();
-                $newProduct->setName($_POST["name"]);
-                $newProduct->setDescription($_POST["description"]);
-                $newProduct->setPrice($_POST["price"]);
-                $newProduct->setStock($_POST["stock"]);
-                $newProduct->setCategoryId($_POST["category"]);
+            if ($this->verificator->checkForm($formConfig, array_merge($_POST, $_FILES)) === true) {
+                $newProduct = $this->serializer->serialize($_POST, Product::class);
 
                 // Save image into folder "documents/product"
                 $imageFolder = "documents/products/";
@@ -78,11 +68,7 @@ class AdminController
             http_response_code(200);
         }
 
-        try {
-            $products = (new ProductRepository())->getAll();
-        } catch (\Exception $e) {
-            var_dump($e);
-        }
+        $products = (new ProductRepository())->getAll();
         $view->assign("products", $products);
         $view->assign("form", $formConfig);
     }
@@ -90,39 +76,6 @@ class AdminController
     public function settings(): void
     {
         new View("Admin/settings", "frontAdmin");
-    }
-
-    public function profile(): void
-    {
-        if ($_SESSION["user"]["id"] == null) {
-            header('Location: /login');
-            exit();
-        }
-        $view = new View("Admin/profile", "frontAdmin");
-        $user = (new User())->populate($_SESSION["user"]["id"]);
-        $form = new UserInformation($user);
-        $formConfig = $form->getConfig();
-
-        if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificator = new Verificator();
-            if ($verificator->checkForm($formConfig, $_POST) === true) {
-                $user->setFirstname($_POST["name"]);
-                $user->setLastname($_POST["lastname"]);
-                $user->save();
-
-                $_SESSION["user"]["firstname"] = $user->getFirstname();
-                $_SESSION["user"]["lastname"] = $user->getLastname();
-
-                http_response_code(200);
-            } else {
-                http_response_code(409);
-            }
-        } else {
-            http_response_code(200);
-        }
-
-        $view->assign("form", $formConfig);
-        $view->assign("user", $user);
     }
 
     public function comments(): void
@@ -137,83 +90,6 @@ class AdminController
         $view = new View("Admin/users", "frontAdmin");
         $users = (new UserRepository())->getAll();
         $view->assign("users", $users);
-    }
-
-    public function changeUserRole(): void
-    {
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $user = (new User())->populate($_POST["id"]);
-
-            if ($user) {
-                $user->setRole($_POST["role"]);
-                $user->save();
-            }
-        }
-
-        header('Location: /admin/users');
-        exit;
-    }
-
-    public function deleteUser(): void
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-
-            $id = $_GET['id'];
-            $hardDelete = $_GET['hardDelete'] == 'true' ? true : false;
-
-            if (empty($id)) {
-                http_response_code(400);
-                header('Location: /profile');
-                exit();
-            }
-
-            $user = (new User())->populate((int) $id);
-            if (is_int($user) &&  $user == 0) {
-                http_response_code(404);
-                header('Location: /profile');
-                exit();
-            }
-
-            //Check that user is the current user or current user is admin
-            $isSameUser = $user->getId() == $_SESSION['user']['id'];
-            $isAdmin = $_SESSION['user']['role'] == 10;
-            if ($isSameUser == false && $isAdmin == false) {
-                http_response_code(403);
-                header('Location: /profile');
-                exit();
-            }
-
-            $user->setStatus(User::_STATUS_INACTIVE);
-            $user->setRole(User::_ROLE_NONE);
-            $user->delete($hardDelete);
-            if ($isSameUser) {
-                (new Security())->logout();
-                header('Location: /user/delete');
-                exit();
-            }
-
-            http_response_code(200);
-        } else {
-            $view = (new View("User/accountDeleted", "adveritsement"));
-            if (array_key_exists('user', $_SESSION)) {
-                $user = (new User())->populate($_SESSION['user']['id']);
-                $form = new AccountRecover($user);
-                $formConfig = $form->getConfig();
-
-                if ($_SERVER['REQUEST_METHOD'] === $formConfig['config']['method']) {
-                    $verificator = new Verificator();
-                    if ($verificator->checkForm($formConfig, $_POST)) {
-                        $user->setIsdeleted(false);
-                        $user->save();
-                        header('Location: /');
-                        exit();
-                    } else
-                        http_response_code(409);
-                }
-
-                $view->assign("form", $formConfig);
-            }
-        }
     }
 
     public function frameworksettings(): void

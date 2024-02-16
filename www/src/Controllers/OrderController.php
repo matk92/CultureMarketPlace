@@ -3,38 +3,67 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Payment;
-use App\Models\Product;
-use App\Core\Serializer;
-use App\Models\Category;
-use App\Core\Verificator;
-use App\Models\OrderSlot;
+use App\Core\Controller;
 use App\Forms\PaymentForm;
 use App\Models\PaymentMethod;
 use App\Forms\AddProductToCart;
 use App\Models\PaymentMethodType;
 use App\Forms\ValidatePaymentForm;
 use App\Repository\OrderRepository;
-use App\Repository\OrderSlotRepository;
 use App\Repository\PaymentRepository;
+use App\Repository\ProductRepository;
+use App\Repository\OrderSlotRepository;
+use App\Repository\PaymentMethodRepository;
 
-class OrderController
+class OrderController extends Controller
 {
+    protected OrderRepository $orderRepository;
+    protected ?Order $order = null;
+    protected ?Payment $payment = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->orderRepository = new OrderRepository();
+
+        // Si l'utilisateur a une commande en cours, on la récupère
+        if (array_key_exists('order_id', $_SESSION)) {
+            $this->order = $this->orderRepository->find((int) $_SESSION['order_id']);
+            if (is_int($this->order) && $this->order === 0) {
+                unset($_SESSION['order_id']);
+            }
+            // On verifie que la commande correspond bien à l'utilisateur
+            if ($this->order->getUserId() !== $this->user->getId()) {
+                unset($_SESSION['order_id']);
+                $this->order = null;
+            }
+        }
+
+        // Si l'utilisateur a un paiement en cours, on le récupère
+        if (array_key_exists('payment_id', $_SESSION)) {
+            $this->payment = (new PaymentRepository())->find($_SESSION['payment_id']);
+            if (is_int($this->payment) && $this->payment === 0) {
+                unset($_SESSION['payment_id']);
+            }
+            // On verifie que le paiement correspond bien à l'utilisateur
+            if ($this->payment->getOrder()->getUserId() !== $this->user->getId()) {
+                unset($_SESSION['payment_id']);
+                $this->payment = null;
+            }
+        }
+    }
 
     public function index(): int
     {
         $view = new View("Order/orders", "front");
 
-        if (array_key_exists('order_id', $_SESSION)) {
-            $order = (new Order())->populate($_SESSION['order_id']);
-            if (!empty($order)) {
-                $orderSlots = (new OrderSlotRepository())->getOrderSlots($order->getId());
-                $order->setOrderSlots($orderSlots);
-                $view->assign("order", $order);
-            } else {
-                unset($_SESSION['order_id']);
-            }
+        if (!empty($this->order)) {
+            $orderSlots = (new OrderSlotRepository())->getOrderSlots($this->order->getId());
+            $this->order->setOrderSlots($orderSlots);
+            $view->assign("order", $this->order);
         }
 
         return http_response_code(200);
@@ -42,12 +71,14 @@ class OrderController
 
     public function paymentInfo(): void
     {
-        if (empty($_SESSION['user'])) {
-            http_response_code(401);
-            header('Location: /login');
+        if ($this->checkRole(User::_ROLE_USER) === false) {
+            http_response_code(403);
+            if ($this->user === null)
+                header('Location: /login');
             exit();
         }
-        if (!array_key_exists('order_id', $_SESSION)) {
+
+        if (empty($this->order)) {
             http_response_code(400);
             header('Location: /orders');
             exit();
@@ -55,9 +86,9 @@ class OrderController
 
         $paymentMethod = null;
         if (!isset($_SESSION['payment_id']) && isset($_SESSION['paymentMethodId'])) {
-            $paymentMethod = (new PaymentMethod())->populate($_SESSION['paymentMethodId']);
-        }else if (isset($_SESSION['payment_id'])){
-            $paymentMethod = (new Payment())->populate($_SESSION['payment_id'])->getPaymentMethod();
+            $paymentMethod = (new PaymentMethodRepository())->find((int) $_SESSION['paymentMethodId']);
+        } else if (isset($_SESSION['payment_id'])) {
+            $paymentMethod = (new PaymentRepository())->find($_SESSION['payment_id'])->getPaymentMethod();
         }
 
         $view = new View("Order/payment-info", "front");
@@ -65,37 +96,31 @@ class OrderController
         $formConfig = $form->getConfig();
 
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $order = (new Order())->populate($_SESSION['order_id']);
-            if (!empty($order)) {
-                $verificatior = new Verificator();
-                // On vérifie que le formulaire est valide
-                if ($verificatior->checkForm($formConfig, $_POST)) {
-                    $paymentMethod  = (new Serializer())->serialize($_POST, PaymentMethod::class);
-                    $paymentMethod->setUserId($_SESSION['user']['id']);
-                    $paymentMethod->setPaymentMethodTypeId((new PaymentMethodType())->getOneBy(["name" => "Carte bancaire"])["id"]);
-                    $paymentMethod->save();
+            // On vérifie que le formulaire est valide
+            if ($this->verificator->checkForm($formConfig, $_POST)) {
+                $paymentMethod  = $this->serializer->serialize($_POST, PaymentMethod::class);
+                $paymentMethod->setUserId($this->user->getId());
+                $paymentMethod->setPaymentMethodTypeId((new PaymentMethodType())->getOneBy(["name" => "Carte bancaire"])["id"]);
+                $paymentMethod->save();
 
-                    if ($_POST['savePaymentMethod'] === "on") {
-                        $_SESSION['paymentMethodId'] = $paymentMethod->getId();
-                    } else {
-                        unset($_SESSION['paymentMethodId']);
-                    }
-
-                    $payment = new Payment();
-                    $payment->setOrderId($order->getId());
-                    $payment->setPaymentMethodId($paymentMethod->getId());
-                    $payment->setStatus(0);
-                    $payment->save();
-
-                    $_SESSION['payment_id'] = $payment->getId();
-
-
-                    http_response_code(204);
-                    header('Location: /orders/summary');
-                    exit();
+                if ($_POST['savePaymentMethod'] === "on") {
+                    $_SESSION['paymentMethodId'] = $paymentMethod->getId();
                 } else {
-                    http_response_code(400);
+                    unset($_SESSION['paymentMethodId']);
                 }
+
+                $payment = new Payment();
+                $payment->setOrderId($this->order->getId());
+                $payment->setPaymentMethodId($paymentMethod->getId());
+                $payment->setStatus(0);
+                $payment->save();
+
+                $_SESSION['payment_id'] = $payment->getId();
+
+
+                http_response_code(204);
+                header('Location: /orders/summary');
+                exit();
             } else {
                 http_response_code(400);
             }
@@ -108,26 +133,20 @@ class OrderController
 
     public function summary(): void
     {
-        if (empty($_SESSION['user'])) {
-            http_response_code(401);
-            header('Location: /login');
+        if ($this->checkRole(User::_ROLE_USER) === false) {
+            http_response_code(403);
+            if ($this->user === null)
+                header('Location: /login');
             exit();
         }
-        if (!array_key_exists('order_id', $_SESSION) || !array_key_exists('payment_id', $_SESSION)) {
+        if (empty($this->order) || empty($this->payment)) {
             http_response_code(400);
             header('Location: /orders');
             exit();
         }
 
-        $order = (new OrderRepository())->find($_SESSION['order_id']);
-        $payment = (new PaymentRepository())->find($_SESSION['payment_id']);
-        $order->setOrderSlots((new OrderSlotRepository())->getOrderSlots($order->getId()));
-
-        if (empty($order) || empty($payment)) {
-            http_response_code(400);
-            header('Location: /orders');
-            exit();
-        }
+        $orderSlots = (new OrderSlotRepository())->getOrderSlots($this->order->getId());
+        $this->order->setOrderSlots($orderSlots);
 
         $view = new View("Order/summary", "front");
         $form = new ValidatePaymentForm();
@@ -135,13 +154,12 @@ class OrderController
 
 
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificatior = new Verificator();
             // On vérifie que le formulaire est valide
-            if ($verificatior->checkForm($formConfig, $_POST)) {
-                $payment->setStatus(Payment::STATUS_PAID);
-                $payment->save();
-                $order->setStatus(Order::STATUS_PAID);
-                $order->save();
+            if ($this->verificator->checkForm($formConfig, $_POST)) {
+                $this->payment->setStatus(Payment::STATUS_PAID);
+                $this->payment->save();
+                $this->order->setStatus(Order::STATUS_PAID);
+                $this->order->save();
 
                 unset($_SESSION['order_id']);
                 unset($_SESSION['payment_id']);
@@ -157,53 +175,61 @@ class OrderController
         }
 
         $view->assign("form", $formConfig);
-        $view->assign("order", $order);
-        $view->assign("payment", $payment);
+        $view->assign("order", $this->order);
+        $view->assign("payment", $this->payment);
     }
 
     public function completed(): void
     {
-        if (empty($_SESSION['user'])) {
-            http_response_code(401);
-            header('Location: /login');
+        if ($this->checkRole(User::_ROLE_USER) === false) {
+            http_response_code(403);
+            if ($this->user === null)
+                header('Location: /login');
             exit();
         }
 
-        $view = new View("Order/completed", "front");
+        new View("Order/completed", "front");
         http_response_code(200);
     }
 
 
     public function addProduct(): void
     {
-        if (empty($_SESSION['user'])) {
-            http_response_code(401);
-            header('Location: /login');
+        if (!array_key_exists('productid', $_POST) || !array_key_exists('quantity', $_POST)) {
+            http_response_code(400);
+            exit();
+        }
+        if ($this->checkRole(User::_ROLE_USER) === false) {
+            http_response_code(403);
+            if ($this->user === null)
+                header('Location: /login');
             exit();
         }
 
-        $displayProduct = (new Product())->populate((int) $_POST['productid']);
-        $category = (new Category())->populate($displayProduct->getCategoryId());
-        $form = new AddProductToCart($displayProduct, $category);
+        $displayProduct = (new ProductRepository())->find((int) $_POST['productid']);
+        if (is_int($displayProduct) && $displayProduct === 0) {
+            http_response_code(404);
+            header('Location: /products');
+            exit();
+        }
+
+        $form = new AddProductToCart($displayProduct);
         $formConfig = $form->getConfig();
 
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
 
-            $verificatior = new Verificator();
             // On vérifie que le formulaire est valide
-            if ($verificatior->checkForm($formConfig, $_POST)) {
+            if ($this->verificator->checkForm($formConfig, $_POST)) {
 
-                if (array_key_exists('order_id', $_SESSION)) {
-                    $order = (new Order())->populate($_SESSION['order_id']);
-                } else {
-                    $order = new Order();
-                    $order->setUserId($_SESSION['user']['id']);
-                    $order->setStatus(0);
-                    $order->save();
-                    $_SESSION['order_id'] = $order->getId();
+                if (empty($this->order)) {
+                    $this->order = new Order();
+                    $this->order->setUserId($this->user->getId());
+                    $this->order->setStatus(0);
+                    $this->order->save();
+                    $_SESSION['order_id'] = $this->order->getId();
                 }
 
-                $order->addOrderSlot($displayProduct, $_POST['quantity']);
+                $this->order->addOrderSlot($displayProduct, $_POST['quantity']);
             }
         }
 
@@ -214,29 +240,26 @@ class OrderController
 
     public function updateOrderSlot()
     {
-        if (empty($_SESSION['user'])) {
-            http_response_code(401);
-            header('Location: /login');
+        if ($this->checkRole(User::_ROLE_USER) === false) {
+            http_response_code(403);
+            if ($this->user === null)
+                header('Location: /login');
             exit();
         }
-        if (empty($_SESSION['order_id'])) {
+        if (empty($this->order)) {
             http_response_code(400);
             exit();
         }
-        $orderSlotRepository = new OrderSlotRepository();
-        $order = (new Order())->populate($_SESSION['order_id']);
-        if (empty($order)) {
-            http_response_code(400);
-            exit();
-        }
-        if ($order->getStatus() !== 0) {
+        // On vérifie que la commande n'est pas déjà payée
+        if ($this->order->getStatus() !== 0) {
             http_response_code(400);
             echo "La commande ne peut plus être modifiée";
             exit();
         }
 
+        $orderSlotRepository = new OrderSlotRepository();
         if (isset($_GET['id']) && $_SERVER["REQUEST_METHOD"] === "DELETE") {
-            $activeOrderSlots = $orderSlotRepository->getOrderSlots($_SESSION['order_id']);
+            $activeOrderSlots = $orderSlotRepository->getOrderSlots($this->order->getId());
             $ids = array_map(function ($orderSlot) {
                 return $orderSlot->getId();
             }, $activeOrderSlots);

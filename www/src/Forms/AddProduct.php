@@ -51,7 +51,7 @@ class AddProduct extends Form
                 "required" => true,
                 "placeholder" => "€ 29,99",
             ],
-            "category" => [
+            "categoryid" => [
                 "label" => "Catégorie du produit",
                 "type" => "select",
                 "class" => "input-admin_products",

@@ -26,7 +26,7 @@ class Adminconfig extends Form
                 "id" => "form-config-pageTitle",
                 "placeholder" => "Cultural Market Place",
             ],
-            "firstName" => [
+            "firstname" => [
                 "label" => "Votre prénom",
                 "type" => "text",
                 "id" => "form-config-firstName",

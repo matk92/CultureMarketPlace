@@ -4,44 +4,56 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Models\Product;
-use App\Models\Category;
-use App\Core\Verificator;
-use App\Forms\AddProduct;
+use App\Core\Controller;
 use App\Forms\EditProduct;
+use App\Forms\CommentProduct;
 use App\Forms\AddProductToCart;
 use App\Repository\ReviewRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
-use App\Forms\CommentProduct;
 
-class ProductController
+class ProductController extends Controller
 {
+
+    protected ProductRepository $productRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->productRepository = new ProductRepository();
+    }
 
     public function index(): int
     {
         $_GET['filter'] = $_GET['filter'] ?? 0;
+        $categoryRepository = new CategoryRepository();
 
         $view = new View("Product/products", "front");
         if (isset($_GET['filter']) && $_GET['filter'] != 0) {
-            $products = (new ProductRepository())->getAllByCategory($_GET['filter']);
+            $products = $this->productRepository->getAllByCategory($_GET['filter']);
         } else {
-            $products = (new ProductRepository())->getAll();
+            $products = $this->productRepository->getAll();
         }
-        $filters = (new CategoryRepository())->getAll();
+        $filters = $categoryRepository->getAll();
 
         if (isset($_GET['pid']) && $_GET['pid'] != "") {
-            $displayProduct = (new Product())->populate((int) $_GET['pid']);
-            $category = (new Category())->populate($displayProduct->getCategoryId());
-            $comments = (new ReviewRepository())->getProductComments($displayProduct->getId());
+            $displayProduct = $this->productRepository->find((int) $_GET['pid']);
+            if (is_int($displayProduct) && $displayProduct == 0) {
+                http_response_code(404);
+                header('Location: /products');
+                exit();
+            }
+            $view->assign("displayProduct", $displayProduct);
 
-            $form = new AddProductToCart($displayProduct, $category);
+            $form = new AddProductToCart($displayProduct);
             $formConfig = $form->getConfig();
+            $view->assign("form", $formConfig);
 
             $formComment = new CommentProduct($displayProduct);
             $formCommentConfig = $formComment->getConfig();
-            $view->assign("form", $formConfig);
             $view->assign("formComment", $formCommentConfig);
-            $view->assign("displayProduct", $displayProduct);
+
+            $comments = (new ReviewRepository())->getProductComments($displayProduct->getId());
             $view->assign("comments", $comments);
         }
 
@@ -54,8 +66,6 @@ class ProductController
     {
         $view = new View("Admin/products", "frontAdmin");
         $categories = (new CategoryRepository())->getAll();
-        $form = new EditProduct($categories);
-        $formConfig = $form->getConfig();
 
         if (!isset($_GET['id'])) {
             http_response_code(400);
@@ -63,22 +73,20 @@ class ProductController
             exit();
         }
 
-        $editProduct = (new Product())->populate((int) $_GET['id']);
-        if (!$editProduct) {
+        $editProduct = $this->productRepository->find((int) $_GET['id']);
+        if (is_int($editProduct) && $editProduct == 0) {
             http_response_code(404);
             header('Location: /admin/products');
             exit();
         }
 
+        $form = new EditProduct($editProduct, $categories);
+        $formConfig = $form->getConfig();
+
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificatior = new Verificator();
             // On vérifie que le formulaire est valide
-            if ($verificatior->checkForm($formConfig, array_merge($_POST, $_FILES)) === true) {
-                $editProduct->setName($_POST["name"]);
-                $editProduct->setDescription($_POST["description"]);
-                $editProduct->setPrice($_POST["price"]);
-                $editProduct->setStock($_POST["stock"]);
-                $editProduct->setCategoryId($_POST["category"]);
+            if ($this->verificator->checkForm($formConfig, array_merge($_POST, $_FILES)) === true) {
+                $editProduct = $this->serializer->serialize($_POST, Product::class, $editProduct);
 
                 if (!empty($_FILES['image']['name'])) {
                     // Save image into folder "documents/product"
@@ -101,19 +109,13 @@ class ProductController
                 http_response_code(409);
             }
         } else {
-            $formConfig['inputs']['name']['defaultValue'] = $editProduct->getName();
-            $formConfig['inputs']['description']['defaultValue'] = $editProduct->getDescription();
-            $formConfig['inputs']['price']['defaultValue'] = $editProduct->getPrice();
-            $formConfig['inputs']['stock']['defaultValue'] = $editProduct->getStock();
-            $formConfig['inputs']['category']['defaultValue'] = $editProduct->getCategoryId();
-            $formConfig['inputs']['image']['defaultValue'] = $editProduct->getImage();
 
             http_response_code(200);
         }
 
 
         $view->assign("form", $formConfig);
-        $products = (new ProductRepository())->getAll();
+        $products = $this->productRepository->getAll();
         $view->assign("products", $products);
     }
 
@@ -127,7 +129,7 @@ class ProductController
             exit();
         }
 
-        $product = (new Product())->populate((int) $id);
+        $product = $this->productRepository->find((int) $id);
         if ($product == 0) {
             http_response_code(404);
             header('Location: /admin/products');

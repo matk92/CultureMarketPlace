@@ -19,7 +19,7 @@ class Register extends Form
         ];
 
         $this->inputs = [
-            "name" => [
+            "firstname" => [
                 "label" => "Prénom",
                 "type" => "text",
                 "id" => "form-register-name",

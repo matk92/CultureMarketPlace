@@ -2,7 +2,10 @@
 
 namespace App\Controllers;
 
-class ErrorController {
+use App\Core\Controller;
+
+class ErrorController extends Controller
+{
 
     public function page404(): void
     {
@@ -25,4 +28,3 @@ class ErrorController {
         include "src/Views/Templates/error.tpl.php";
     }
 }
-?>

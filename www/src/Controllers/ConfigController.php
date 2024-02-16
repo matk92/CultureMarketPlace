@@ -5,11 +5,11 @@ namespace App\Controllers;
 use App\Core\View;
 use App\Models\User;
 use App\Forms\BDDconfig;
-use App\Core\Verificator;
+use App\Core\Controller;
 use App\Forms\Adminconfig;
 use App\Forms\EmailServerConfig;
 
-class ConfigController
+class ConfigController extends Controller
 {
 
     public function welcome(): int|bool
@@ -39,8 +39,7 @@ class ConfigController
             // if its method GET
             return http_response_code(200);
         } else if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificatior = new Verificator();
-            if ($verificatior->checkForm($formConfig, $_POST)) {
+            if ($this->verificator->checkForm($formConfig, $_POST)) {
                 $bddPrefix = strtolower($_POST['bddPrefix']);
                 $bddPassword = $_POST['bddPassword'];
                 // $bddName = strtolower($_POST['bddName']);
@@ -120,8 +119,7 @@ class ConfigController
             // if its method GET
             return http_response_code(200);
         } else if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificatior = new Verificator();
-            if ($verificatior->checkForm($formConfig, $_POST)) {
+            if ($this->verificator->checkForm($formConfig, $_POST)) {
                 $smtpHost = explode(",", $_POST['smtpHost'])[0];
                 $smtpPort = explode(",", $_POST['smtpHost'])[1];
                 $smtpEncryption = explode(",", $_POST['smtpHost'])[2];
@@ -153,20 +151,15 @@ class ConfigController
             // if its method GET
             return http_response_code(200);
         } else if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificatior = new Verificator();
-            if ($verificatior->checkForm($formConfig, $_POST)) {
+            if ($this->verificator->checkForm($formConfig, $_POST)) {
                 $pageTitle = $_POST['pageTitle'];
                 // TODO : change site title in config
 
-                $newUser = new User();
-                $newUser->setFirstName($_POST["firstName"]);
-                $newUser->setLastName($_POST["lastname"]);
-                $newUser->setEmail($_POST["email"]);
-                $newUser->setPwd($_POST["pwd"]);
+                $newUser = $this->serializer->serialize($_POST, User::class);
                 $newUser->setRole(10);
                 $newUser->save();
-                $_SESSION["email"] = $_POST["email"];
-                $adminConfig = "ADMIN_FIRSTNAME=" . $_POST['firstName'] . "\nADMIN_LASTNAME=" . $_POST['lastname'] . "\nADMIN_EMAIL=" . $_POST['email'];
+                $_SESSION["email"] = $newUser->getEmail();
+                $adminConfig = "ADMIN_FIRSTNAME=" . $newUser->getFirstname() . "\nADMIN_LASTNAME=" . $newUser->getLastname() . "\nADMIN_EMAIL=" . $newUser->getEmail();
                 file_put_contents('.env',  "\n" . $adminConfig . "\n", FILE_APPEND);
 
 

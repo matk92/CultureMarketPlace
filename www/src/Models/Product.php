@@ -146,7 +146,7 @@ class Product extends DB
     /**
      * Get the value of categoryid
      */
-    public function getCategoryId(): int
+    public function getCategoryid(): int
     {
         return $this->categoryid;
     }
@@ -164,7 +164,7 @@ class Product extends DB
      *
      * @return  void
      */
-    public function setCategoryId(int $categoryid): void
+    public function setCategoryid(int $categoryid): void
     {
         $this->categoryid = $categoryid;
     }

@@ -25,14 +25,14 @@ class CommentProduct extends Form
                 "type" => "hidden",
                 "defaultValue" => $product->getId()
             ],
-            "stars" => [
+            "rating" => [
                 "required" => true,
                 "label" => "Note (sur 5)",
                 "type" => "number",
                 "class" => "input-comment-product",
                 "min" => 0,
                 "max" => 5,
-                "id" => "form-comment-product-stars",
+                "id" => "form-comment-product-rating",
                 "placeholder" => "Notez le produit"
             ],
             "comment" => [

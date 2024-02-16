@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Core\View;
-use App\Models\User;
+use App\Core\Controller;
 
-class MainController
+class MainController extends Controller
 {
 
     public function home(): void

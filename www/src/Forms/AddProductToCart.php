@@ -10,7 +10,7 @@ class AddProductToCart extends Form
 {
 
 
-    public function __construct(Product $product, Category $category)
+    public function __construct(Product $product)
     {
         $this->config = [
             "method" => "POST",
@@ -20,24 +20,23 @@ class AddProductToCart extends Form
             "submit" => "Ajouter au panier",
             "error" => "Erreur lors de l'ajout du produit au panier"
         ];
-        
+
         $this->inputs = [
             "productid" => [
                 "type" => "hidden",
                 "defaultValue" => $product->getId()
             ],
             "quantity" => [
-                "label" => "Quantité (" . $category->getUnit() . ")",
+                "label" => "Quantité (" . $product->getCategory()->getUnit() . ")",
                 "type" => "number",
                 "class" => "input-admin_products",
                 "min" => "1",
                 "max" => $product->getStock(),
                 "id" => "form-oreder-add-product-quantity",
                 "required" => true,
-                "placeholder" => "1" . $category->getUnit()
+                "placeholder" => "1" . $product->getCategory()->getUnit()
             ],
         ];
         parent::__construct();
-
     }
 }

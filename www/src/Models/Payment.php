@@ -90,6 +90,11 @@ class Payment extends DB
         $this->orderid = $orderid;
     }
 
+    public function getOrder(): ?Order
+    {
+        return $this->order;
+    }
+
     /**
      * Get the value of status
      */

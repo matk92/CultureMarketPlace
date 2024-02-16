@@ -4,15 +4,14 @@ namespace App\Controllers;
 
 use App\Core\View;
 use App\Core\Mailer;
-use App\Core\Security;
-use App\Core\Verificator;
 use App\Forms\Login;
-use App\Forms\PasswordReset;
-use App\Forms\Register;
-use App\Forms\Verification;
 use App\Models\User;
+use App\Forms\Register;
+use App\Core\Controller;
+use App\Forms\PasswordReset;
+use App\Forms\Verification;
 
-class SecurityController
+class SecurityController extends Controller
 {
 
     public function login()
@@ -24,13 +23,11 @@ class SecurityController
 
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
 
-            $verificatior = new Verificator();
-            if ($verificatior->checkForm($formConfig, $_POST)) {
-                $security = new Security();
+            if ($this->verificator->checkForm($formConfig, $_POST)) {
                 $user = null;
 
                 // On verifie si l'utilisateur existe et si le mot de passe est correct
-                if ($security->authenticate($_POST, $user) == false) {
+                if ($this->security->authenticate($_POST, $user) == false) {
                     $formConfig["config"]["errorMessage"] = "Identifiants incorrects";
                     $view->assign("form", $formConfig);
                     return http_response_code(409);
@@ -74,8 +71,7 @@ class SecurityController
         $view = new View("Security/verification", "frontSecurity");
 
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificatior = new Verificator();
-            if ($verificatior->checkForm($formConfig, $_POST)) {
+            if ($this->verificator->checkForm($formConfig, $_POST)) {
                 $user = (new User())->getOneBy(["verificationcode" => $_POST["code"], "email" => $_SESSION["email"]], "object");
                 if ($user != 0) {
                     // Verification si l'utilisateur existe et si le mot de passe est correct
@@ -91,7 +87,7 @@ class SecurityController
                     }
 
                     $user->setStatus(User::_STATUS_ACTIVE);
-                    if ($user->getRole() == User::_ROLE_NONE)
+                    if ($user->getRole() === User::_ROLE_NONE)
                         $user->setRole(User::_ROLE_USER);
                     $user->save();
                     http_response_code(204);
@@ -116,7 +112,7 @@ class SecurityController
 
     public function logout(): void
     {
-        (new Security())->logout();
+        $this->security->logout();
         new View("Security/logout", "frontSecurity");
     }
 
@@ -128,15 +124,9 @@ class SecurityController
         $view = new View("Security/register", "frontSecurity");
 
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificatior = new Verificator();
-
             // On vérifie que le formulaire est valide
-            if ($verificatior->checkForm($formConfig, $_POST) === true) {
-                $newUser = new User();
-                $newUser->setFirstName($_POST["name"]);
-                $newUser->setLastName($_POST["lastname"]);
-                $newUser->setEmail($_POST["email"]);
-                $newUser->setPwd($_POST["pwd"]);
+            if ($this->verificator->checkForm($formConfig, $_POST) === true) {
+                $newUser = $this->serializer->serialize($_POST, User::class);
 
                 // On stocke l'email de l'utilisateur en session pour la vérification
                 $newUser->save();
@@ -200,8 +190,7 @@ class SecurityController
         $view = new View("Security/reset-password", "frontSecurity");
 
         if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
-            $verificatior = new Verificator();
-            if ($verificatior->checkForm($formConfig, $_POST)) {
+            if ($this->verificator->checkForm($formConfig, $_POST)) {
                 $user = (new User())->getOneBy(["email" => $_POST["email"]], "object");
 
                 $newPwd = $user->resetPassword();

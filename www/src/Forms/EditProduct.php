@@ -3,13 +3,18 @@
 namespace App\Forms;
 
 use App\Core\Form;
+use App\Models\Product;
 
 class EditProduct extends Form
 {
 
 
-    public function __construct($categories)
+    public function __construct(Product $product, $categories)
     {
+        if(!isset($product) || !isset($categories)){
+            throw new \Exception("Erreur lors de la création du formulaire de modification de produit, veuillez renseigner un produit et une liste de catégories");
+        }
+
         $categoriesOptions = [];
         foreach ($categories as $category) {
             $categoriesOptions[$category->getId()] = $category->getName() . " - " . $category->getUnit();
@@ -31,6 +36,7 @@ class EditProduct extends Form
                 "class" => "input-admin_products",
                 "id" => "form-edit-product-name",
                 "required" => true,
+                "defaultValue" => $product->getName(),
                 "placeholder" => "Pommes de terre",
             ],
             "image" => [
@@ -39,6 +45,7 @@ class EditProduct extends Form
                 "class" => "input-admin_products",
                 "id" => "form-edit-product-image",
                 "placeholder" => "Image du produit",
+                "defaultValue" => $product->getImage(),
                 "accept" => "image/*"
             ],
             "price" => [
@@ -47,14 +54,16 @@ class EditProduct extends Form
                 "class" => "input-admin_products",
                 "id" => "form-edit-product-price",
                 "required" => true,
+                "defaultValue" => $product->getPrice(),
                 "placeholder" => "€ 29,99",
             ],
-            "category" => [
+            "categoryid" => [
                 "label" => "Catégorie du produit",
                 "type" => "select",
                 "class" => "input-admin_products",
                 "id" => "form-config-category",
                 "required" => true,
+                "defaultValue" => $product->getCategoryid(),
                 "options" => $categoriesOptions,
             ],
             "stock" => [
@@ -63,6 +72,7 @@ class EditProduct extends Form
                 "class" => "input-admin_products",
                 "id" => "form-edit-product-stock",
                 "required" => true,
+                "defaultValue" => $product->getStock(),
                 "placeholder" => "20",
             ],
             "description" => [
@@ -71,6 +81,7 @@ class EditProduct extends Form
                 "class" => "input-admin_products",
                 "id" => "form-edit-product-description",
                 "required" => true,
+                "defaultValue" => $product->getDescription(),
                 "placeholder" => "Description du produit",
             ],
         ];
