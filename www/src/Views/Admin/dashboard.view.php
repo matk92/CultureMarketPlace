@@ -1,7 +1,11 @@
-<div class="chart-container">
-    <canvas id="myChart1"></canvas>
-    <canvas id="myChart2"></canvas>
-    <canvas id="myChart3"></canvas>
+<div class="chart-container row row-between">
+    <div class="column">
+        <canvas id="myChart1"></canvas>
+        <canvas id="myChart2"></canvas>
+    </div>
+    <div class="column">
+        <canvas id="myChart3"></canvas>
+    </div>
 </div>
 
 

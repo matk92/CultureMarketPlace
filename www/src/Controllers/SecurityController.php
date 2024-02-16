@@ -40,7 +40,7 @@ class SecurityController
                     http_response_code(200);
                     header("Location: /verification");
                     exit();
-                }else if ($user->isDeleted() == true){
+                } else if ($user->isDeleted() == true) {
                     // Si l'utilisateur a supprimé son compte, on le redirige vers la page de confirmation
                     http_response_code(200);
                     header("Location: /user/delete");
@@ -91,6 +91,8 @@ class SecurityController
                     }
 
                     $user->setStatus(User::_STATUS_ACTIVE);
+                    if ($user->getRole() == User::_ROLE_NONE)
+                        $user->setRole(User::_ROLE_USER);
                     $user->save();
                     http_response_code(204);
                     header("Location: /login");

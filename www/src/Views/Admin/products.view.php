@@ -1,3 +1,8 @@
+<?php if (isset($added) && $added == true) : ?>
+    <div id="success-alert" class="alert alert-success" style="position: fixed; top: 0;">
+        <p>Produit ajouté avec succès !</p>
+    </div>
+<?php endif; ?>
 <script>
     function deleteProduct(id) {
         if (confirm("Voulez-vous vraiment supprimer ce produit ?")) {
@@ -9,7 +14,10 @@
             xhr.open('DELETE', "/admin/products/delete?id=" + id, true);
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    window.location.reload();
+                    document.getElementById('spinner').classList.add('hidden');
+                    document.getElementById('product_section').classList.add('allProductsAdmin');
+                    document.getElementById('product_section').classList.remove('hidden');
+                    document.getElementById('product_' + id).remove();
                 } else {
                     alert("Une erreur est survenue lors de la suppression du produit");
                 }
@@ -19,16 +27,19 @@
     }
 
     function editProduct(id) {
-            document.getElementById('spinner').classList.remove('hidden');
+        document.getElementById('spinner').classList.remove('hidden');
         window.location.href = "/admin/product/edit?id=" + id;
     }
 </script>
 <section id="sectionTopAdmin">
     <input class="searchbar" id="search_products" type="search" placeholder="Rechercher...">
-    <button class="button button-primary btnAddAdmin">
-        <i class="fa-solid fa-plus"></i>
-        Ajouter un produit
-    </button>
+    <?php if ($_SESSION['user']['role'] >= 10) : ?>
+        <button class="button button-primary btnAddAdmin">
+            <i class="fa-solid fa-plus"></i>
+            Ajouter un produit
+        </button>
+
+    <?php endif; ?>
 </section>
 <div class="spinner hidden" id="spinner"></div>
 <div class="allProductsAdmin" id="product_section">
@@ -48,17 +59,19 @@
                     <i class="fa-solid fa-pencil"></i>
                     Editer
                 </button>
-                <button class="button button-danger button-esm" onclick="deleteProduct(<?= $product->getId() ?>)">
-                    <i class="fa-solid fa-trash"></i>
-                    Supprimer
-                </button>
+                <?php if ($_SESSION['user']['role'] >= 10) : ?>
+                    <button class="button button-danger button-esm" onclick="deleteProduct(<?= $product->getId() ?>)">
+                        <i class="fa-solid fa-trash"></i>
+                        Supprimer
+                    </button>
+                <?php endif; ?>
             </div>
         </article>
     <?php endforeach; ?>
 </div>
-<div id="productForm" class="modal-admin_products" <?= (isset($_GET['id']) || isset($form["errors"]))  ? 'style="display: block;"' : '' ?>>
+<div id="productForm" class="modal-admin_products" <?= (isset($_GET['id']) || (isset($form["errors"]) && count($form["errors"]) > 0))  ? 'style="display: block;"' : '' ?>>
     <div class="modal-content-admin_products">
-        <div class="row">
+        <div class="row row-between">
             <h2><?= isset($_GET['id']) ? "Edition d'un produit" : "Ajouter un nouveau produit" ?></h2>
             <span class="close">&times;</span>
         </div>

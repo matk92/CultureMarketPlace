@@ -53,8 +53,10 @@
             <?php foreach ($order->getOrderSlots() as $slot) : ?>
                 <tr>
                     <td>
-                        <img class="image-product-cart" src="/<?= $slot->getProduct()->getImage() ?>" alt="Image de <?= $slot->getProduct()->getName() ?>">
-                        <?= $slot->getProduct()->getName() ?>
+                        <div class="row row-start">
+                            <img class="image-product-cart" src="/<?= $slot->getProduct()->getImage() ?>" alt="Image de <?= $slot->getProduct()->getName() ?>">
+                            <h2><?= $slot->getProduct()->getName() ?></h2>
+                        </div>
                     </td>
                     <td>
                         <div class="row">
@@ -64,7 +66,10 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
                                     </svg>
                                 </button>
-                                <?= $slot->getQuantity() ?>
+                                <strong>
+                                    <?= $slot->getQuantity() ?>
+                                    <?= $slot->getProduct()->getCategory()->getUnit() ?>
+                                </strong>
                                 <button id="btn_increment_<?= $slot->getId() ?>" onclick="modificateQuantity(<?= $slot->getId() ?>, <?= $slot->getQuantity() + 1 ?>)" <?= $slot->getQuantity() >= $slot->getProduct()->getStock() ? 'disabled' : '' ?>>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24px" height="24px">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -88,7 +93,8 @@
         <tr>
             <td colspan="4">
                 <hr />
-                <div class="row">
+                <div class="row row-end">
+                    <p class="text-lg">Total : <strong><?= $order->getTotal() ?></strong>€</p>
                     <a class="button button-primary" href="/orders/payment-info">
                         Suivant
                     </a>
@@ -96,7 +102,7 @@
             </td>
         </tr>
     </table>
-    <?php endif; ?>
+<?php endif; ?>
 
 <script>
     function showSpinner(id, show = true) {

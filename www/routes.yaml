@@ -92,32 +92,34 @@
   controller: OrderController
   action: addProduct
   method: POST
+  role: 1
 
 /order-slot:
   controller: OrderController
   action: updateOrderSlot
   method: POST | DELETE
+  role: 1
 
 /admin/dashboard:
   controller: AdminController
   action: dashboard
-  role: 10
+  role: 5
 
 /admin/pages:
   controller: AdminController
   action: pages
-  role: 10
+  role: 5
 
 /admin/products:
   controller: AdminController
   action: products
-  role: 10
+  role: 5
   method: POST | GET
 
 /admin/product/edit:
   controller: ProductController
   action: edit
-  role: 10
+  role: 5
   method: GET | POST
 
 /admin/products/delete:
@@ -135,16 +137,18 @@
   controller: AdminController
   type: GET | POST
   action: frameworksettings
-  role: 10
+  role: 5
 
 /profile:
   controller: AdminController
   action: profile
+  role: 1
 
 /user/delete:
   controller: AdminController
   action: deleteUser
   method: GET | DELETE | POST
+  role: 1
 
 /admin/comments:
   controller: AdminController
@@ -171,3 +175,4 @@
 /admin/designguide:
   controller: AdminController
   action: designguide
+  role: 5

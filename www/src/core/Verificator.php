@@ -13,7 +13,7 @@ class Verificator
             die("Le nombre de champs ne correspond pas");
         }
 
-        if(!isset($data["crsf_token"]) || $data["crsf_token"] !== $_SESSION["crsf_token"])
+        if (!isset($data["crsf_token"]) || $data["crsf_token"] !== $_SESSION["crsf_token"])
             die("Token CSRF invalide");
         else
             unset($data["crsf_token"]);
@@ -21,7 +21,7 @@ class Verificator
         $errors = [];
         foreach ($config["inputs"] as $key => $input) {
             // Si le champ n'existe pas, on arrête tout, c'est une tentative de hack
-            if (!isset($data[$key]) && $input["required"])
+            if (!isset($data[$key]) && isset($input["required"]) && $input["required"] == true)
                 die("Le champ $key n'existe pas");
             else if (!isset($data[$key]))
                 continue;

@@ -1,5 +1,6 @@
 .main-products {
     background-color: var(--background-color2);
+    min-height: 60vh;
 }
 
 section.products-header {
@@ -115,15 +116,13 @@ section.products-header {
         height: fit-content;
     }
 
-    .row{
-        display: flex;
-        justify-content: space-between;
-        margin: rem(10) 0;
+}
 
-        @media (max-width: 600px) {
-            flex-direction: column;
-          }
-    }
+.form-comment-product{
+    margin: rem(24);
+    display: flex;
+    flex-direction: column;
+    gap: rem(16);
 }
 
 .comment_card{

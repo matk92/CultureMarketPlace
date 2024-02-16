@@ -49,7 +49,7 @@ $data = json_decode($json, true); ?>
                             </a>
                         </li>
                     <?php endif; ?>
-                    <?php if (isset($_SESSION['user']) && $_SESSION['user']["role"] >= 10) : ?>
+                    <?php if (isset($_SESSION['user']) && $_SESSION['user']["role"] >= 5) : ?>
                         <li>
                             <a href="/admin/dashboard">
                                 <i class="fa-solid fa-screwdriver-wrench"></i>

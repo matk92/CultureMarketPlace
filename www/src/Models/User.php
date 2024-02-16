@@ -143,6 +143,11 @@ class User extends DB
         $this->status = $status;
     }
 
+    public function getStatusName(): string
+    {
+        return $this->status === self::_STATUS_ACTIVE ? "Actif" : "Inactif";
+    }
+
     /**
      * @return bool
      */

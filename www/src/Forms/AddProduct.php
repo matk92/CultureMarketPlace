@@ -47,6 +47,7 @@ class AddProduct extends Form
                 "type" => "number",
                 "class" => "input-admin_products",
                 "id" => "form-product-price",
+                "step" => "0.01",
                 "required" => true,
                 "placeholder" => "€ 29,99",
             ],

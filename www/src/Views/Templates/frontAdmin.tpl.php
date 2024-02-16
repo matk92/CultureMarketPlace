@@ -16,27 +16,6 @@ $data = json_decode($json, true); ?>
 <body class="bodyAdmin">
 
     <header>
-        <nav class="nav_admin">
-            <ul>
-                <div class="adminMenu-msg"><a href="/"><?php echo htmlspecialchars($data['site-name']) ?></a></div>
-                <?php if ($_SESSION['user']['role'] == 10) : ?>
-                    <li><a href="/admin/dashboard"><i class="fa-solid fa-store"></i> Tableau de bord</a></li>
-                    <li><a href="/admin/pages"><i class="fa-regular fa-file-lines"></i> Pages</a></li>
-                    <li><a href="/admin/products"><i class="fa-solid fa-bag-shopping"></i> Produits</a></li>
-                <?php endif; ?>
-                <?php if ($_SESSION['user']['role'] == 10 || $_SESSION['user']['role'] == 5) : ?>
-                    <li><a href="/admin/comments"><i class="fa-solid fa-comment"></i> Commentaires</a></li>
-                <?php endif; ?>
-                <?php if ($_SESSION['user']['role'] == 10) : ?>
-                    <li><a href="/admin/users"><i class="fa-solid fa-users"></i> Utilisateurs</a></li>
-                <?php endif; ?>
-                <hr>
-                <?php if ($_SESSION['user']['role'] == 10) : ?>
-                    <li><a href="/admin/settings"><i class="fa-solid fa-gear"></i> Paramètres</a></li>
-                    <li><a href="/admin/designguide"><i class="fa-brands fa-figma"></i> Design Guide</a></li>
-                <?php endif; ?>
-            </ul>
-        </nav>
 
         <div class="navAdmin">
             <ul class="row">
@@ -60,9 +39,33 @@ $data = json_decode($json, true); ?>
 
 
     </header>
-    <main class="mainAdmin">
-        <?php include $this->view; ?>
-    </main>
+    <div class="row row-start">
+        <nav class="nav_admin">
+            <ul>
+                <div class="adminMenu-msg"><a href="/"><?php echo htmlspecialchars($data['site-name']) ?></a></div>
+                <?php if ($_SESSION['user']['role'] >= 5) : ?>
+                    <li><a href="/admin/dashboard"><i class="fa-solid fa-store"></i> Tableau de bord</a></li>
+                    <li><a href="/admin/pages"><i class="fa-regular fa-file-lines"></i> Pages</a></li>
+                    <li><a href="/admin/products"><i class="fa-solid fa-bag-shopping"></i> Produits</a></li>
+                    <li><a href="/admin/comments"><i class="fa-solid fa-comment"></i> Commentaires</a></li>
+                <?php endif; ?>
+                <?php if ($_SESSION['user']['role'] >= 10) : ?>
+                    <li><a href="/admin/users"><i class="fa-solid fa-users"></i> Utilisateurs</a></li>
+                <?php endif; ?>
+                <hr>
+                <?php if ($_SESSION['user']['role'] >= 10) : ?>
+                    <li><a href="/admin/settings"><i class="fa-solid fa-gear"></i> Paramètres</a></li>
+                <?php endif; ?>
+                <?php if ($_SESSION['user']['role'] >= 5) : ?>
+                    <li><a href="/admin/designguide"><i class="fa-brands fa-figma"></i> Design Guide</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+
+        <main class="mainAdmin">
+            <?php include $this->view; ?>
+        </main>
+    </div>
 
 </body>
 <script src="../assets/js/components/navbar.js"></script>

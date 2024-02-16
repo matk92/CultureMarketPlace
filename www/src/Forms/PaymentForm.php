@@ -136,6 +136,8 @@ class PaymentForm extends Form
                 "type" => "text",
                 "required" => true,
                 "placeholder" => "MM/AA",
+                "minLength" => 5,
+                "maxLength" => 5,
                 "label" => "Date d'expiration",
                 "pattern" => "[0-9]{2}/[0-9]{2}",
                 "id" => "form-payment-expirationDate",

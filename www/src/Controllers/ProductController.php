@@ -22,7 +22,7 @@ class ProductController
         $_GET['filter'] = $_GET['filter'] ?? 0;
 
         $view = new View("Product/products", "front");
-        if(isset($_GET['filter']) && $_GET['filter'] != 0){
+        if (isset($_GET['filter']) && $_GET['filter'] != 0) {
             $products = (new ProductRepository())->getAllByCategory($_GET['filter']);
         } else {
             $products = (new ProductRepository())->getAll();
@@ -96,8 +96,6 @@ class ProductController
                 $editProduct->save();
 
                 http_response_code(200);
-                header('Location: /admin/products');
-                exit();
             } else {
                 $view->assign("form", $formConfig);
                 http_response_code(409);
@@ -130,13 +128,13 @@ class ProductController
         }
 
         $product = (new Product())->populate((int) $id);
-        if($product == 0){
+        if ($product == 0) {
             http_response_code(404);
             header('Location: /admin/products');
             exit();
         }
 
-        $product->delete();
+        $product->delete(true);
 
         header('Location: /admin/products');
         http_response_code(200);

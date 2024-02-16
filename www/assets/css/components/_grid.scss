@@ -2,19 +2,72 @@ $guther: rem(30);
 $col: 12;
 
 .grid {
-    @for $i from 1 through $col {
-        .col-#{$i} {
-            width: calc(100% / 12 * $i);
-        }
+  @for $i from 1 through $col {
+    .col-#{$i} {
+      width: calc(100% / 12 * $i);
     }
+  }
 
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 calc(var(--guther) / -2);
-    }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(var(--guther) / -2);
+  }
 
-    [class^="col-"] {
-        padding: 0 calc(var(--guther) / 2);
-    }
+  [class^="col-"] {
+    padding: 0 calc(var(--guther) / 2);
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin: rem(10);
+  gap: rem(10);
+
+  &-start {
+    justify-content: flex-start;
+  }
+
+  &-between {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &-end {
+    justify-content: flex-end;
+  }
+
+  & p {
+    margin: 0;
+  }
+
+  & h1 {
+    margin: 0;
+  }
+
+  & h2 {
+    margin: 0;
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: rem(10);
+  flex: 1;
+  flex-grow: 1;
+  height: 100%;
+
+  &-start {
+    align-items: flex-start;
+  }
+
+  &-center {
+    align-items: center;
+  }
+
+  &-end {
+    align-items: flex-end;
+  }
 }

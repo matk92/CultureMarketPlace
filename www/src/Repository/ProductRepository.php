@@ -90,11 +90,11 @@ class ProductRepository extends Repository
                     c.name AS category, 
                     SUM(os.quantity) AS sales
                 FROM 
-                    rbnm_order_slot os
+                    " . $_ENV["BDD_PREFIX"] . "_order_slot os
                 LEFT JOIN 
-                    rbnm_product p ON os.productId = p.id
+                    " . $_ENV["BDD_PREFIX"] . "_product p ON os.productId = p.id
                 LEFT JOIN 
-                    rbnm_category c ON p.categoryId = c.id
+                    " . $_ENV["BDD_PREFIX"] . "_category c ON p.categoryId = c.id
                 GROUP BY 
                     category
                 ORDER BY 

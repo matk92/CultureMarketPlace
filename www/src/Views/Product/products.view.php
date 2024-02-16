@@ -67,7 +67,7 @@
         <div class="spinner <?= isset($displayProduct) ? 'hidden' : '' ?>" id="spinner_modal"></div>
         <?php if (isset($displayProduct) && $displayProduct->getId()) : ?>
             <div class="" id="modal_content">
-                <div class="row">
+                <div class="row row-between">
                     <h2><?= $displayProduct->getName() ?></h2>
                     <button id="fermer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="24" height="24">
@@ -168,14 +168,14 @@
         $('#search_products').on('input', function() {
             var searchValue = $(this).val().toLowerCase();
             $('.card').each(function() {
-                var productName = $(this).find('.card-header h1').text();
+                var productName = $(this).find('.card-header h2').text();
                 if (productName.toLowerCase().includes(searchValue)) {
                     var regex = new RegExp(searchValue, 'gi');
                     var highlightedText = productName.replace(regex, '<span style="background-color: #80c5ff">$&</span>');
-                    $(this).find('.card-header h1').html(highlightedText);
+                    $(this).find('.card-header h2').html(highlightedText);
                     $(this).removeClass('hidden');
                 } else {
-                    $(this).find('.card-header h1').html(productName);
+                    $(this).find('.card-header h2').html(productName);
                     $(this).addClass('hidden');
                 }
             });

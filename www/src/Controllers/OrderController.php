@@ -53,8 +53,11 @@ class OrderController
             exit();
         }
 
-        if (isset($_SESSION['payment_id']) || isset($_SESSION['paymentMethodId'])) {
-            $paymentMethod = (new Payment())->populate($_SESSION['payment_id'] ?? $_SESSION['paymentMethodId'])->getPaymentMethod();
+        $paymentMethod = null;
+        if (!isset($_SESSION['payment_id']) && isset($_SESSION['paymentMethodId'])) {
+            $paymentMethod = (new PaymentMethod())->populate($_SESSION['paymentMethodId']);
+        }else if (isset($_SESSION['payment_id'])){
+            $paymentMethod = (new Payment())->populate($_SESSION['payment_id'])->getPaymentMethod();
         }
 
         $view = new View("Order/payment-info", "front");
@@ -74,7 +77,7 @@ class OrderController
 
                     if ($_POST['savePaymentMethod'] === "on") {
                         $_SESSION['paymentMethodId'] = $paymentMethod->getId();
-                    }else {
+                    } else {
                         unset($_SESSION['paymentMethodId']);
                     }
 
@@ -232,7 +235,7 @@ class OrderController
             exit();
         }
 
-        if (isset($_GET['id'])) {
+        if (isset($_GET['id']) && $_SERVER["REQUEST_METHOD"] === "DELETE") {
             $activeOrderSlots = $orderSlotRepository->getOrderSlots($_SESSION['order_id']);
             $ids = array_map(function ($orderSlot) {
                 return $orderSlot->getId();
@@ -240,7 +243,7 @@ class OrderController
 
             $orderSlot = $orderSlotRepository->find($_GET['id']);
             if (!empty($orderSlot) && in_array($orderSlot->getId(), $ids)) {
-                $orderSlot->delete(true);
+                $orderSlot->delete(true, false);
                 http_response_code(200);
                 echo "Le produit a bien été supprimé";
                 exit();

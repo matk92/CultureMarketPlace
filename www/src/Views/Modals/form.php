@@ -15,7 +15,7 @@
                         <?php elseif ($input["type"] === "checkbox") : ?>
                                 <input name="<?= $name ?>" type="checkbox" id="<?= $input["id"] ?? "" ?>" <?= isset($input["checked"]) && $input["checked"] ? "checked" : "" ?>>
                         <?php else : ?>
-                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" value="<?= $input["defaultValue"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>" min="<?= $input["min"] ?? "" ?>" max="<?= $input["max"] ?? "" ?>" <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?>>
+                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" value="<?= $input["defaultValue"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>" min="<?= $input["min"] ?? "" ?>" max="<?= $input["max"] ?? "" ?>" <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?> step="<?= $input["step"] ?? "" ?>">
                         <?php endif; ?>
                         <?php if (isset($config["errors"]) && array_key_exists($name, $config["errors"])) : ?>
                                 <p class="error"><?= $config["errors"][$name] ?></p>
@@ -49,10 +49,23 @@
                         });
                 }
 
+                if (document.getElementsByName('expirationDate').length > 0) {
+                        var cardNumberInput = document.getElementsByName('expirationDate')[0];
+                        cardNumberInput.addEventListener('input', function() {
+                                var expirationDate = this.value;
+                                // Remove any existing spaces
+                                expirationDate = expirationDate.replace(/\s/g, '');
+                                // Add a space every 2 digits
+                                expirationDate = expirationDate.replace(/(\d{2})(?=\d)/g, '$1/');
+                                // Update the input value
+                                this.value = expirationDate;
+                        });
+                }
+
                 if (document.getElementById("<?= $config["config"]["id"] ?>") != undefined) {
                         document.getElementById("<?= $config["config"]["id"] ?>").addEventListener('submit', function() {
                                 document.getElementById('form_submit').classList.add('hidden');
-                                document.getElementById('spinner_form_' + <?= $config["config"]["id"] ?>).classList.remove('hidden');
+                                document.getElementById('spinner_form_<?= $config["config"]["id"] ?>').classList.remove('hidden');
                         });
                 }
         });

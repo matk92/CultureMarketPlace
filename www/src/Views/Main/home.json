@@ -12,11 +12,11 @@
     "site-background-image": "background_img.png?1706703295",
     "site-favicon": "favicon.png?1706692499",
     "home-discover-image": "home_discover_img.jpg?1706631393",
-    "background-color": "#CD403D",
-    "background-color2": "#FFFFFF",
-    "title-color": "#FFFFFF",
-    "subtitle-color": "#FFFFFF",
-    "nav-color": "#FFFFFF",
-    "footer-color": "#CD403D",
-    "home-discover-color": "#FFFFFF"
+    "background-color": "#cd403d",
+    "background-color2": "#f5f5f5",
+    "title-color": "#ededed",
+    "subtitle-color": "#ffffff",
+    "nav-color": "#ffffff",
+    "footer-color": "#cd403d",
+    "home-discover-color": "#ffffff"
 }

@@ -14,7 +14,7 @@ class CommentProduct extends Form
         $this->config = [
             "method" => "POST",
             "action" => "/product/comment",
-            "class" => "form",
+            "class" => "form-comment-product",
             "id" => "form-comment-product",
             "submit" => "Commenter",
             "error" => "Erreur lors de l'ajout commentaire"

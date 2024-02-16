@@ -70,17 +70,21 @@ class AdminController
                 $newProduct->save();
 
                 http_response_code(201);
+                $view->assign("added", true);
             } else {
-                $view->assign("form", $formConfig);
                 http_response_code(409);
             }
         } else {
             http_response_code(200);
         }
 
-        $view->assign("form", $formConfig);
-        $products = (new ProductRepository())->getAll();
+        try {
+            $products = (new ProductRepository())->getAll();
+        } catch (\Exception $e) {
+            var_dump($e);
+        }
         $view->assign("products", $products);
+        $view->assign("form", $formConfig);
     }
 
     public function settings(): void
@@ -179,6 +183,8 @@ class AdminController
                 exit();
             }
 
+            $user->setStatus(User::_STATUS_INACTIVE);
+            $user->setRole(User::_ROLE_NONE);
             $user->delete($hardDelete);
             if ($isSameUser) {
                 (new Security())->logout();
