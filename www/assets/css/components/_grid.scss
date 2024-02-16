@@ -25,6 +25,10 @@ $col: 12;
   margin: rem(10);
   gap: rem(10);
 
+  @media (max-width: 600px) {
+    display: block;
+  }
+
   &-start {
     justify-content: flex-start;
   }
