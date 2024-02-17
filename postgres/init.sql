@@ -25,7 +25,8 @@ CREATE TABLE rbnm_category (
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     amount INT NOT NULL,
-    unit VARCHAR(15) NOT NULL
+    unit VARCHAR(15) NOT NULL,
+    isdeleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE rbnm_product (
@@ -38,7 +39,7 @@ CREATE TABLE rbnm_product (
     categoryId INT NOT NULL,
     inserted TIMESTAMP NOT NULL DEFAULT current_timestamp,
     updated TIMESTAMP NULL,
-    isDeleted BOOLEAN NOT NULL DEFAULT FALSE,
+    isdeleted BOOLEAN NOT NULL DEFAULT FALSE,
     FOREIGN KEY (categoryId) REFERENCES rbnm_category(id)
 );
 

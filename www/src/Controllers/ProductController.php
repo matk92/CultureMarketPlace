@@ -16,17 +16,18 @@ class ProductController extends Controller
 {
 
     protected ProductRepository $productRepository;
+    protected CategoryRepository $categoryRepository;
 
     public function __construct()
     {
         parent::__construct();
         $this->productRepository = new ProductRepository();
+        $this->categoryRepository = new CategoryRepository();
     }
 
     public function index(): int
     {
         $_GET['filter'] = $_GET['filter'] ?? 0;
-        $categoryRepository = new CategoryRepository();
 
         $view = new View("Product/products", "front");
         if (isset($_GET['filter']) && $_GET['filter'] != 0) {
@@ -34,7 +35,7 @@ class ProductController extends Controller
         } else {
             $products = $this->productRepository->getAll();
         }
-        $filters = $categoryRepository->getAll();
+        $filters = $this->categoryRepository->getAll();
 
         if (isset($_GET['pid']) && $_GET['pid'] != "") {
             $displayProduct = $this->productRepository->find((int) $_GET['pid']);
@@ -65,7 +66,6 @@ class ProductController extends Controller
     public function edit()
     {
         $view = new View("Admin/products", "frontAdmin");
-        $categories = (new CategoryRepository())->getAll();
 
         if (!isset($_GET['id'])) {
             http_response_code(400);
@@ -80,6 +80,7 @@ class ProductController extends Controller
             exit();
         }
 
+        $categories = $this->categoryRepository->getAll();
         $form = new EditProduct($editProduct, $categories);
         $formConfig = $form->getConfig();
 
@@ -109,7 +110,6 @@ class ProductController extends Controller
                 http_response_code(409);
             }
         } else {
-
             http_response_code(200);
         }
 
@@ -130,7 +130,7 @@ class ProductController extends Controller
         }
 
         $product = $this->productRepository->find((int) $id);
-        if ($product == 0) {
+        if (is_int($product) && $product == 0) {
             http_response_code(404);
             header('Location: /admin/products');
             exit();

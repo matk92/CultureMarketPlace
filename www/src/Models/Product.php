@@ -172,7 +172,7 @@ class Product extends DB
     /**
      * Get the value of isdeleted
      */
-    public function getIsDeleted(): bool
+    public function getIsdeleted(): bool
     {
         return $this->isdeleted;
     }
@@ -182,7 +182,7 @@ class Product extends DB
      *
      * @return  void
      */
-    public function setIsDeleted(bool $isdeleted): void
+    public function setIsdeleted(bool $isdeleted): void
     {
         $this->isdeleted = $isdeleted;
     }

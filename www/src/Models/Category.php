@@ -10,6 +10,7 @@ class Category extends DB
     protected string $name;
     protected int $amount;
     protected string $unit;
+    protected bool $isdeleted;
 
     /**
      * Get the value of id
@@ -83,7 +84,25 @@ class Category extends DB
      */
     public function setUnit(string $unit): void
     {
-        $unit = strtoupper(trim($unit));
+        $unit = ucfirst(strtolower(trim($unit)));
         $this->unit = $unit;
+    }
+
+    /**
+     * Get the value of isdeleted
+     */
+    public function getIsdeleted(): bool
+    {
+        return $this->isdeleted;
+    }
+
+    /**
+     * Set the value of isdeleted
+     *
+     * @return  void
+     */
+    public function setIsdeleted(bool $isdeleted): void
+    {
+        $this->isdeleted = $isdeleted;
     }
 }

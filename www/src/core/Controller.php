@@ -21,7 +21,7 @@ class Controller
         $this->security = new Security();
 
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
-            $this->user = (new UserRepository())->find($_SESSION['user']);
+            $this->user = (new UserRepository())->find($_SESSION['user']['id']);
 
             // Si l'utilisateur n'existe pas, on force la deconnexion
             if (is_int($this->user) && $this->user = 0) {

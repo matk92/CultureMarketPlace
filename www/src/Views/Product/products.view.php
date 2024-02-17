@@ -25,6 +25,9 @@
     <hr />
     <div class="spinner hidden" id="spinner"></div>
     <div class="products-section" id="product_section">
+        <?php if (empty($products)) : ?>
+            <p class="text-not-found">Aucun produit trouvé</p>
+        <?php endif; ?>
         <?php foreach ($products as $key => $product) : ?>
             <div class="card" key="<?= $product->getId() ?>">
                 <img src="/<?= $product->getImage() ?>" alt="Image de <?= $product->getName() ?>">

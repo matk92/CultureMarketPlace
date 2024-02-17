@@ -1,4 +1,9 @@
+# MAIN ROUTES ------------------------------------------------------
 /:
+  controller: MainController
+  action: home
+
+/home:
   controller: MainController
   action: home
 
@@ -22,6 +27,7 @@
   controller: MainController
   action: terms
 
+# SECURITY ROUTES ------------------------------------------------------
 /login:
   controller: SecurityController
   type: GET | POST
@@ -51,21 +57,38 @@
   type: GET
   action: sendVerificationCode
 
-/home:
-  controller: MainController
-  action: home
-
+# PRODUCT ROUTES ------------------------------------------------------
 /products:
   controller: ProductController
   action: index
   method: GET
 
+/admin/product/edit:
+  controller: ProductController
+  action: edit
+  role: 5
+  method: GET | POST
+
+/admin/products/delete:
+  controller: ProductController
+  action: delete
+  role: 10
+  method: DELETE
+
+# REVIEW ROUTES ------------------------------------------------------
 /product/comment:
   controller: ReviewController
   action: addComment
   method: POST
   role: 1
 
+/admin/comments/evaluate:
+  controller: ReviewController
+  action: evaluate
+  method: GET
+  role: 5
+
+# ORDERS ROUTES ------------------------------------------------------
 /orders:
   controller: OrderController
   action: index
@@ -100,6 +123,7 @@
   method: POST | DELETE
   role: 1
 
+# ADMIN ROUTES ------------------------------------------------------
 /admin/dashboard:
   controller: AdminController
   action: dashboard
@@ -116,18 +140,6 @@
   role: 5
   method: POST | GET
 
-/admin/product/edit:
-  controller: ProductController
-  action: edit
-  role: 5
-  method: GET | POST
-
-/admin/products/delete:
-  controller: ProductController
-  action: delete
-  role: 10
-  method: DELETE
-
 /admin/settings:
   controller: AdminController
   action: settings
@@ -139,6 +151,35 @@
   action: frameworksettings
   role: 5
 
+/admin/comments:
+  controller: AdminController
+  action: comments
+  role: 5
+
+/admin/users:
+  controller: AdminController
+  action: users
+  role: 10
+
+/admin/designguide:
+  controller: AdminController
+  action: designguide
+  role: 5
+
+# CATEGORY ROUTES ------------------------------------------------------
+/admin/category:
+  controller: CategoryController
+  action: index
+  role: 5
+  method: GET | POST
+
+/admin/category/delete:
+  controller: CategoryController
+  action: delete
+  role: 5
+  method: DELETE
+
+# USER ROUTES ------------------------------------------------------
 /profile:
   controller: UserController
   action: profile
@@ -150,29 +191,8 @@
   method: GET | DELETE | POST
   role: 1
 
-/admin/comments:
-  controller: AdminController
-  action: comments
-  role: 5
-
-/admin/comments/evaluate:
-  controller: ReviewController
-  action: evaluate
-  method: GET
-  role: 5
-
-/admin/users:
-  controller: AdminController
-  action: users
-  role: 10
-
-/admin/changerole:
+/user/changerole:
   controller: UserController
   type: POST
   action: changeUserRole
   role: 10
-
-/admin/designguide:
-  controller: AdminController
-  action: designguide
-  role: 5

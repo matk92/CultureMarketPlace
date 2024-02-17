@@ -47,6 +47,7 @@ $data = json_decode($json, true); ?>
                     <li><a href="/admin/dashboard"><i class="fa-solid fa-store"></i> Tableau de bord</a></li>
                     <li><a href="/admin/pages"><i class="fa-regular fa-file-lines"></i> Pages</a></li>
                     <li><a href="/admin/products"><i class="fa-solid fa-bag-shopping"></i> Produits</a></li>
+                    <li><a href="/admin/category"><i class="fa-solid fa-list"></i> Categories</a></li>
                     <li><a href="/admin/comments"><i class="fa-solid fa-comment"></i> Commentaires</a></li>
                 <?php endif; ?>
                 <?php if ($_SESSION['user']['role'] >= 10) : ?>

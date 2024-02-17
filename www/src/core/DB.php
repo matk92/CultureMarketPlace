@@ -115,8 +115,8 @@ class DB
                     }
                 }
 
-                if (method_exists($this, "setIsDeleted"))
-                    $this->setIsDeleted(true);
+                if (method_exists($this, "setIsdeleted"))
+                    $this->setIsdeleted(true);
 
                 $this->save();
             } else {
@@ -125,8 +125,8 @@ class DB
                 $stmt->execute([":id" => $this->getId()]);
             }
         } else {
-            if (method_exists($this, "setIsDeleted"))
-                $this->setIsDeleted(true);
+            if (method_exists($this, "setIsdeleted"))
+                $this->setIsdeleted(true);
 
             $this->save();
         }

@@ -10,7 +10,8 @@ class CategoryRepository extends Repository
     public function getAll($limit = null, $offset = null, $return = "object")
     {
         $sql = "SELECT *
-            FROM $this->tableName";
+            FROM $this->tableName
+            WHERE isdeleted = false";
 
         if ($limit > 0) {
             $sql .= " LIMIT $limit";

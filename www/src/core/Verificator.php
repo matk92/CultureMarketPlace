@@ -141,7 +141,7 @@ class Verificator
         $model = new $model();
         $model = $model->getOneBy([$colName => $value], "object");
 
-        if ($model) {
+        if ($model && (!method_exists($model, "getIsdeleted") || $model->getIsdeleted() === false)) {
             return false;
         }
 

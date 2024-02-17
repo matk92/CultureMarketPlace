@@ -45,7 +45,7 @@ $roles = [
                 <td><?= $user->getInserted() ?></td>
                 <td>
                     <?php if ($user->getId() != $_SESSION['user']['id'] && $user->getStatus() > 0) : ?>
-                        <form action="/admin/changerole" method="post">
+                        <form action="/user/changerole" method="post">
                             <input type="hidden" name="id" value="<?= $user->getId() ?>">
                             <select name="role">
                                 <option value="1" <?= $user->getRole() == 1 ? 'selected' : '' ?>>Utilisateur</option>
