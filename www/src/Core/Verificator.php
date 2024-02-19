@@ -7,10 +7,11 @@ class Verificator
 
     public function checkForm(&$config, $data): bool
     {
-        $nbInputsMin = count(array_filter($config["inputs"], fn ($input) => isset($input["required"]) && $input["required"] === true));
+        $nbInputsMin = count(array_filter($config["inputs"], fn ($input) => isset($input["required"]) && $input["required"] == true));
         $nbInputsMax = count($config["inputs"]);
         if (count($data) < $nbInputsMin || count($data) > $nbInputsMax) {
-            die("Le nombre de champs ne correspond pas");
+            $config['config']['error'] = true;
+            return false;
         }
 
         if (!isset($data["crsf_token"]) || $data["crsf_token"] !== $_SESSION["crsf_token"])

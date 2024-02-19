@@ -29,6 +29,7 @@ class SecurityController extends Controller
                 // On verifie si l'utilisateur existe et si le mot de passe est correct
                 if ($this->security->authenticate($_POST, $user) == false) {
                     $formConfig["config"]["errorMessage"] = "Identifiants incorrects";
+                    $formConfig["config"]['error'] = true;
                     $view->assign("form", $formConfig);
                     return http_response_code(409);
                 } else if ($user->getStatus() === User::_STATUS_INACTIVE) {
@@ -77,11 +78,13 @@ class SecurityController extends Controller
                     // Verification si l'utilisateur existe et si le mot de passe est correct
                     if ($user->getStatus() > User::_STATUS_INACTIVE) {
                         $formConfig["config"]["errorMessage"] = "Ce compte est déjà activé, veuillez vous connecter.";
+                        $formConfig["config"]['error'] = true;
                         $view->assign("form", $formConfig);
                         return http_response_code(403);
                     }
                     if (!$user) {
                         $formConfig["config"]["errorMessage"] = "Code de vérification incorrect.";
+                        $formConfig["config"]['error'] = true;
                         $view->assign("form", $formConfig);
                         return http_response_code(409);
                     }
@@ -95,6 +98,7 @@ class SecurityController extends Controller
                     exit();
                 } else {
                     $formConfig["config"]["errorMessage"] = "Code de vérification incorrect.";
+                    $formConfig["config"]['error'] = true;
                     http_response_code(409);
                 }
             }
@@ -135,6 +139,7 @@ class SecurityController extends Controller
                 // On essaie d'envoyer le mail de vérification
                 if (!$this->sendVerificationCode()) {
                     $formConfig["config"]["errorMessage"] = "Erreur lors de l'envoi du mail de vérification, veuillez réessayer.";
+                    $formConfig["config"]['error'] = true;
                 } else {
                     $view->assign("form", $formConfig);
                     header("Location: /verification");

@@ -17,7 +17,7 @@ class UserInformation extends Form
             "class" => "profileFormAdmin",
             "id" => "form-profile",
             "submit" => "Enregistrer les modifications",
-            "error" => "Erreur lors de la modification du profil"
+            "errorMessage" => "Erreur lors de la modification du profil"
         ];
         $this->inputs = [
             "name" => [

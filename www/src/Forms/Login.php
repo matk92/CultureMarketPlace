@@ -15,7 +15,7 @@ class Login extends Form
             "class" => "form",
             "id" => "form-login",
             "submit" => "Connexion",
-            "error" => "Identifiants incorrects"
+            "errorMessage" => "Identifiants incorrects"
         ];
         $this->inputs = [
             "email" => [

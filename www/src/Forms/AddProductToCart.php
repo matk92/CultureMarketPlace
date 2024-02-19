@@ -18,7 +18,7 @@ class AddProductToCart extends Form
             "class" => "form",
             "id" => "form-oreder-add-product",
             "submit" => "Ajouter au panier",
-            "error" => "Erreur lors de l'ajout du produit au panier"
+            "errorMessage" => "Erreur lors de l'ajout du produit au panier"
         ];
 
         $this->inputs = [

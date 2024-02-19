@@ -15,7 +15,7 @@ class Verification extends Form
             "class" => "form",
             "id" => "form-verification",
             "submit" => "Vérifier",
-            "error" => "Erreur lors de la verification du compte"
+            "errorMessage" => "Erreur lors de la verification du compte"
         ];
         $this->inputs = [
             "code" => [

@@ -26,7 +26,7 @@ class Mailer
 
     public function sendMail($to, $subject, $body): bool
     {
-        $json = file_get_contents(__DIR__ . 'src/Views/Main/home.json');
+        $json = file_get_contents(__DIR__ . '/../Views/Main/home.json');
         $data = json_decode($json, true);
         try {
             //Recipients

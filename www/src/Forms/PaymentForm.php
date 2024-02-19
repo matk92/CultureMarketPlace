@@ -68,7 +68,7 @@ class PaymentForm extends Form
             "class" => "delivery-payment-address-form",
             "id" => "form-payment",
             "submit" => "Enregistrer la commande",
-            "error" => "Erreur lors de l'enregistrement de la commande"
+            "errorMessage" => "Erreur lors de l'enregistrement de la commande"
         ];
         $this->inputs = [
             "cardHolderName" => [
