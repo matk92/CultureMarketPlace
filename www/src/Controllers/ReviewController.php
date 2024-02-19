@@ -71,12 +71,15 @@ class ReviewController extends Controller
 
                 // On envoie un mail aux modérateurs pour les prévenir qu'un commentaire a été ajouté
                 $moderateurs = (new UserRepository())->findByRole(User::_ROLE_MODERATOR);
-                
+
                 foreach ($moderateurs as $moderateur) {
                     $this->mailer->sendMail(
                         $moderateur->getEmail(),
                         "Nouveau commentaire ajouté",
-                        "Un nouveau commentaire a été ajouté sur le produit " . $product->getName() . " par " . $this->user->getFirstname() . " " . $this->user->getLastname() . "."
+                        "Un nouveau commentaire a été ajouté sur le produit " . $product->getName() . " par " . $this->user->getFirstname() . " " . $this->user->getLastname() . ".
+                        <br>
+                        Veulliez le verifier à partir de ce lien : 
+                            <br><br><a href='http://" . $_SERVER['HTTP_HOST'] . "/admin/comments'>Commentaires</a>"
                     );
                 }
 
