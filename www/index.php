@@ -9,7 +9,7 @@ spl_autoload_register(function ($class) {
     $file = str_replace("App\\", "", $class);
     $file = str_replace("\\", "/", $file);
     $file = "src/" . $file .  ".php";
-
+    var_dump(file_exists($file));
     if (file_exists($file)) {
         include $file;
     } else {
