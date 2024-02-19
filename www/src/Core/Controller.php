@@ -30,6 +30,17 @@ class Controller
                 $this->security->logout();
                 exit();
             }
+            // On met à jour les informations de l'utilisateur
+            if ($this->user != null) {
+                $_SESSION["user"] = [
+                    "id" => $this->user->getId(),
+                    "email" => $this->user->getEmail(),
+                    "firstname" => $this->user->getFirstName(),
+                    "lastname" => $this->user->getLastName(),
+                    "status" => $this->user->getStatus(),
+                    "role" => $this->user->getRole()
+                ];
+            }
         }
     }
 

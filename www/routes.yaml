@@ -189,7 +189,6 @@
   controller: UserController
   action: deleteUser
   method: GET | DELETE | POST
-  role: 1
 
 /user/changerole:
   controller: UserController

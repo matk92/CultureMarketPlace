@@ -88,26 +88,25 @@ class UserController extends Controller
                 exit();
             }
 
-            $isSameUser = $user->getId() == $this->user->getId();
+            $isSameUser = ($user->getId() === $this->user->getId());
             // Seul un admin peut supprimer un autre utilisateur
-            if ($isSameUser == false && $this->checkRole(User::_ROLE_ADMIN) == false) {
+            if ($isSameUser === false && $this->checkRole(User::_ROLE_ADMIN) === false) {
                 http_response_code(403);
                 header('Location: /profile');
                 exit();
             }
 
-            $user->setStatus(User::_STATUS_INACTIVE);
-            $user->setRole(User::_ROLE_NONE);
             $user->delete($hardDelete);
+
+            // Si c'est l'utilisateur qui supprime son compte
             if ($isSameUser) {
                 $this->security->logout();
-                header('Location: /user/delete');
-                exit();
             }
-
             http_response_code(200);
         } else {
-            $view = (new View("User/accountDeleted", "adveritsement"));
+            $view = (new View("User/accountDeleted", "advertisement"));
+
+            // Si l'utilisateur n'est pas null c'est qu'il essaie de récupérer son compte
             if (!is_null($this->user)) {
                 $user = $this->userRepository->find($this->user->getId());
                 $form = new AccountRecover($user);
@@ -117,6 +116,7 @@ class UserController extends Controller
                     if ($this->verificator->checkForm($formConfig, $_POST)) {
                         $user->setIsdeleted(false);
                         $user->save();
+                        http_response_code(204);
                         header('Location: /');
                         exit();
                     } else

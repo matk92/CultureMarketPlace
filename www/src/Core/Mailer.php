@@ -13,15 +13,17 @@ class Mailer
 
     public function __construct()
     {
-        $this->mail = new PHPMailer(true);
-        //Server settings
-        $this->mail->isSMTP();
-        $this->mail->Host       = $_ENV['SMTP_HOST'];
-        $this->mail->SMTPAuth   = true;
-        $this->mail->Username   = $_ENV['SMTP_USERNAME'];
-        $this->mail->Password   = $_ENV['SMTP_PASSWORD'];
-        $this->mail->SMTPSecure = $_ENV['SMTP_ENCRYPTION'];
-        $this->mail->Port       = $_ENV['SMTP_PORT'];
+        if (isset($_ENV['SMTP_HOST']) && isset($_ENV['SMTP_USERNAME']) && isset($_ENV['SMTP_PASSWORD']) && isset($_ENV['SMTP_ENCRYPTION']) && isset($_ENV['SMTP_PORT'])) {
+            $this->mail = new PHPMailer(true);
+            //Server settings
+            $this->mail->isSMTP();
+            $this->mail->Host       = $_ENV['SMTP_HOST'];
+            $this->mail->SMTPAuth   = true;
+            $this->mail->Username   = $_ENV['SMTP_USERNAME'];
+            $this->mail->Password   = $_ENV['SMTP_PASSWORD'];
+            $this->mail->SMTPSecure = $_ENV['SMTP_ENCRYPTION'];
+            $this->mail->Port       = $_ENV['SMTP_PORT'];
+        }
     }
 
     public function sendMail($to, $subject, $body): bool
