@@ -76,9 +76,9 @@ class ReviewController extends Controller
                     $this->mailer->sendMail(
                         $moderateur->getEmail(),
                         "Nouveau commentaire ajouté",
-                        "Un nouveau commentaire a été ajouté sur le produit " . $product->getName() . " par " . $this->user->getFirstname() . " " . $this->user->getLastname() . ".
-                        <br>
-                        Veulliez le verifier à partir de ce lien : 
+                        "Un nouveau commentaire a été ajouté sur le produit " .
+                            $product->getName() . " par " . $this->user->getFirstname() . " " .
+                            $this->user->getLastname() . ".<br>Veulliez le verifier à partir de ce lien : 
                             <br><br><a href='http://" . $_SERVER['HTTP_HOST'] . "/admin/comments'>Commentaires</a>"
                     );
                 }
