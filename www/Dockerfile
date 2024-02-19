@@ -9,7 +9,13 @@ RUN apt-get install -y libpq-dev \
 RUN apt-get update -y && apt-get install -y libpng-dev libfreetype6-dev libyaml-dev
 
 # Install unzip and libzip-dev
-RUN apt-get update && apt-get install -y unzip libzip-dev
+RUN apt-get update && apt-get install -y \
+    zip \
+    unzip \
+    libzip-dev
+    
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install zip extension
 RUN docker-php-ext-install zip
@@ -28,9 +34,6 @@ WORKDIR /var/www/html/
 
 COPY ./ ./
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-
 # Install dependencies with Composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN composer install
+CMD composer install --no-interaction --no-progress --no-suggest --optimize-autoloader --no-scripts && docker-php-entrypoint apache2-foreground

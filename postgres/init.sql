@@ -106,3 +106,12 @@ CREATE TABLE rbnm_payment (
     FOREIGN KEY (paymentMethodId) REFERENCES rbnm_payment_method(id),
     FOREIGN KEY (orderId) REFERENCES rbnm_order(id)
 );
+
+
+
+INSERT INTO rbnm_payment_method_type (name, description) VALUES
+    ('Carte bancaire', 'Paiement par carte bancaire'),
+    ('PayPal', 'Paiement par PayPal'),
+    ('Chèque', 'Paiement par chèque'),
+    ('Apple Pay', 'Paiement par Apple Pay'),
+    ('Eshop Pay', 'Paiement par Eshop Pay');
