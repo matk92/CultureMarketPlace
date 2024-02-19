@@ -166,6 +166,7 @@ class ConfigController extends Controller
                 // On essaie d'envoyer le mail de vérification
                 if (!(new SecurityController())->sendVerificationCode()) {
                     $formConfig["config"]["errorMessage"] = "Erreur lors de l'envoi du mail de vérification, veuillez réessayer.";
+                    $formConfig["config"]['error'] = true;
                 } else {
                     http_response_code(200);
                     header("Location: /verification");

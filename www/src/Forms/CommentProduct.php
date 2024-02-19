@@ -17,7 +17,7 @@ class CommentProduct extends Form
             "class" => "form-comment-product",
             "id" => "form-comment-product",
             "submit" => "Commenter",
-            "error" => "Erreur lors de l'ajout commentaire"
+            "errorMessage" => "Erreur lors de l'ajout commentaire"
         ];
 
         $this->inputs = [

@@ -169,7 +169,7 @@ class OrderController extends Controller
                 header('Location: /orders/completed');
                 exit();
             } else {
-                http_response_code(400);
+                http_response_code(409);
             }
         } else {
             http_response_code(200);
@@ -189,9 +189,8 @@ class OrderController extends Controller
             exit();
         }
 
-        $mailer = new Mailer();
         // Envoyer mail de confirmation
-        $mailer->sendMail(
+        $this->mailer->sendMail(
             $this->user->getEmail(),
             "Cultural Market Place - Commande validée",
             "<body>Bonjour " . $this->user->getFirstName() . " " . $this->user->getLastName() .

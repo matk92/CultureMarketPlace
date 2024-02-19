@@ -14,7 +14,7 @@ class ValidatePaymentForm extends Form
             "class" => "payment-validate-form",
             "id" => "form-validate",
             "submit" => "Valider la commande",
-            "error" => "Erreur lors de la validation de la commande"
+            "errorMessage" => "Veuillez accepter les conditions de remboursement et de vente",
         ];
         $this->inputs = [
             "refundConditions" => [

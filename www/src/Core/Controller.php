@@ -13,12 +13,14 @@ class Controller
     protected Verificator $verificator;
     protected Security $security;
     protected ?User $user = null;
+    protected Mailer $mailer;
 
     public function __construct()
     {
         $this->serializer = new Serializer();
         $this->verificator = new Verificator();
         $this->security = new Security();
+        $this->mailer = new Mailer();
 
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             $this->user = (new UserRepository())->find($_SESSION['user']['id']);

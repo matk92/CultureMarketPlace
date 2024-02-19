@@ -17,7 +17,7 @@ class AccountRecover extends Form
             "class" => "form",
             "id" => "form-account-recover",
             "submit" => "Recuperer mon compte",
-            "error" => "Erreur lors de la récupération du compte"
+            "errorMessage" => "Erreur lors de la récupération du compte"
         ];
 
         $this->inputs = [

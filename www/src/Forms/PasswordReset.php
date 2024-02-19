@@ -15,6 +15,7 @@ class PasswordReset extends Form
             "class" => "form",
             "id" => "form-login",
             "submit" => "Réinitialiser",
+            "errorMessage" => "Erreur lors de la réinitialisation du mot de passe"
         ];
         $this->inputs = [
             "email" => [

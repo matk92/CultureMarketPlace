@@ -16,7 +16,7 @@ class AddCategory extends Form
             "class" => "form-category",
             "id" => "form-category",
             "submit" => "Ajouter categorie",
-            "error" => "Erreur lors de l'ajout de une categorie"
+            "errorMessage" => "Erreur lors de l'ajout de une categorie"
         ];
         $this->inputs = [
             "name" => [

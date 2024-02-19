@@ -15,7 +15,7 @@ class BDDconfig extends Form
             "class" => "form",
             "id" => "form-config-bdd",
             "submit" => "Sauvegarder",
-            "error" => "Erreur lors de la sauvegarde de la configuration"
+            "errorMessage" => "Erreur lors de la sauvegarde de la configuration"
         ];
         $this->inputs = [
             "bddPrefix" => [

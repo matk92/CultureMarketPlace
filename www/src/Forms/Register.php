@@ -15,7 +15,7 @@ class Register extends Form
             "class" => "form",
             "id" => "form-register",
             "submit" => "Créer compte",
-            "error" => "Erreur lors de la création du compte"
+            "errorMessage" => "Erreur lors de la création du compte"
         ];
 
         $this->inputs = [
