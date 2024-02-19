@@ -205,7 +205,8 @@ class SecurityController extends Controller
                     "Réinitialisation de votre mot de passe",
                     "<body>Bonjour " . $user->getFirstName() . " " . $user->getLastName() .
                         ",<br><br>Voici votre nouveau mot de passe : <b>" . $newPwd .
-                        "</b><br><br>Cordialement,<br>L'équipe de Cultural Market Place
+                        "</b><br><br>Cordialement,<br>Veulliez le verifier à partir de ce lien : <a href='http://" . $_SERVER['HTTP_HOST'] . "/admin/comments'>Commentaires</a>
+                        <br><br>Cordialement,<br>L'équipe de Cultural Market Place
                         </body>"
                 );
 
