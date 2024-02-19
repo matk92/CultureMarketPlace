@@ -32,7 +32,7 @@ class ConfigController extends Controller
         $form = new BDDconfig();
         $formConfig = $form->getConfig();
 
-        $view = new View("Config/BDD_config", "frontInstaller");
+        $view = new View("Config/bdd_config", "frontInstaller");
         $view->assign("form", $formConfig);
 
         if ($_SERVER["REQUEST_METHOD"] === "GET") {
