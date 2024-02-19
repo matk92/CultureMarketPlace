@@ -6,7 +6,7 @@
     <h1 class="profileTitleAdmin">Zone de Danger</h1>
     <hr />
     <div class="sectionProfile">
-        <h3>Deshaibilitation du compte</h3>
+        <h3>Désactivation du compte</h3>
         <p>Votre compte sera désactivé et il ne s'affichera plus sur le site. Vous pouvez toujour récupérer votre compte en vous connectant avec vos identifiants.</p>
         <button class="button-outlined button-outlined-danger" onclick="softDelete()"><i class="fa-solid fa-user-slash"></i> Désactiver mon compte</button>
     </div>
