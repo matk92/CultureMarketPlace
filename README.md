@@ -1,20 +1,20 @@
 # CultureMarketPlace
+## Lien du site :
+vps-356a325d.vps.ovh.net
 
 ## Intégrants : 
 - Nicolas Calvelo
 - Mathieu Keca
-- Bryan Dencil
 - Rémy Saguez 
 
 ## Description du projet
 
-Description courte du projet : Un site web pour gérer vos ventes des produits culturels d’un pays. Il suffit d'installer le projet, le configurer par rapport à votre pays et commencer à charger les produits que vous souhaitez vendre.
+Description courte du projet : Un site web pour gérer vos ventes de produits culturels d’un pays. Ils vous suffit d'installer le projet, le configurer par rapport à votre pays et commencer à charger les produits que vous souhaitez vendre.
 
 ## Fonctionnalités
 
 **Gestion des avis** : ajouter commentaires sur les produits vendus + notationt étoiles(0 à 5), supprimer, signalement
 
-**Gestion des pays** : le site web peut être configuré pour fonctionner avec différents pays. Les utilisateurs peuvent sélectionner leur pays pour afficher les produits disponibles dans leur région.
 
 **Gestion des clients** : les utilisateurs peuvent créer un compte client pour effectuer des achats sur le site web. Les informations des clients sont stockées dans une base de données sécurisée.
 
@@ -28,22 +28,35 @@ Description courte du projet : Un site web pour gérer vos ventes des produits c
 
 **Personnalisation du site web** : les utilisateurs peuvent personnaliser le site web en modifiant les couleurs, les polices et les images. Cette personnalisation est facile à effectuer grâce à un système de thèmes.
 
-**Support multilingue** : le site web est disponible en plusieurs langues (français, anglais, espagnol) pour permettre aux utilisateurs de différents pays de l'utiliser facilement.
 
 
 ## Table des matières :
 
-- [Pays](#pays)
-- [Clients](#clients) -> [Nom](#nomClients), [Prénom](#prénomClients), [Nom](#nomClients), [mail](#mailClients), [Mdp](#mdpClients)
-- [Produits](#produits)
+- [User](#User)-> [id](#id), [firstName](#firstName), [lastName](#lastName), [email](#email), [pwd](#pwd), [status](#status), [isDeleted](#isDeleted), [inserted](#inserted), [role](#role), [verificationcode](#verificationcode)
+- [Category](#Category) -> [id](#id), [name](#name), [amount](#amount), [unit](#unit), [isdeleted](#isdeleted)
+- [Product](#Product) -> [id](#id), [name](#name), [image](#image), [description](#description), [price](#price), [stock](#stock), [categoryId](#categoryId), [inserted](#inserted), [updated](#updated), [isdeleted](#isdeleted)
+- [Review](#Review) -> [id](#id), [userId](#userId), [productId](#productId), [rating](#rating), [comment](#comment), [isApproved](#isApproved), [inserted](#inserted), [updated](#updated)
+- [Order](#Order) -> [id](#id), [userId](#userId), [status](#status), [inserted](#inserted), [updated](#updated)
+- [Order Slot](#Order_Slot) -> [id](#id), [orderId](#orderId), [productId](#productId), [quantity](#quantity)
+- [Payment Method Type](#Payment_Method_Type) -> [id](#id), [name](#name), [description](#description)
+- [Payment Method](#Payment_Method) -> [id](#id), [userId](#userId), [paymentMethodTypeId](#paymentMethodTypeId), [cardNumber](#cardNumber), [expirationDate](#expirationDate), [securityCode](#securityCode), [cardHolderName](#cardHolderName), [cardHolderAddress](#cardHolderAddress), [cardHolderZipCode](#cardHolderZipCode), [cardHolderCity](#cardHolderCity), [cardHolderCountry](#cardHolderCountry), [updated](#updated)
+- [Payment](#Payment) -> [id](#id), [paymentMethodId](#paymentMethodId), [orderId](#orderId), [status](#status), [inserted](#inserted)
+
 
 ## Guide d’installation :
 
-Instructions d'installation du projet.
+Instructions d'installation du projet :
 
-## Utilisation:
+- Cloner le projet
+- Docker-compose up
 
-Instructions d'utilisation du projet.
+## Guide de Modification :
+
+Instructions de modification du projet :
+
+- yarn install ou npm install
+- yarn run build ou npm run build
+
 
 ## Base de données :
 
@@ -51,10 +64,12 @@ BDD utilisée.
 
 ## Outils utilisés
 
-Figma
-Trello
-Discord
-Google Docs
+Figma,
+Trello,
+Discord,
+Bot discord
+## Langages utilisés
+PHP, HTML, SASS, JS, PostgreSQL
 
 ## Logiciels utilisés
 
