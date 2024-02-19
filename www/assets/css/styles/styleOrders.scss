@@ -228,6 +228,10 @@
   justify-content: space-center;
   width: 100%;
   padding: rem(64) rem(24);
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 }
 
 .summary {
