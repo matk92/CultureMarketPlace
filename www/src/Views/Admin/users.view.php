@@ -54,6 +54,14 @@ $roles = [
                             </select>
                             <input class="button button-primary" style="width: 100%; margin-top: 10px;" id="changerole" type="submit" value="Changer le rôle">
                         </form>
+                        <form action="/user/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this account?');">
+                            <input type="hidden" name="id" value="<?= $user->getId() ?>">
+                            <input class="button button-danger" style="width: 100%; margin-top: 10px;" id="deleteaccount" type="submit" value="Supprimer le compte">
+                        </form>
+                        <form action="/user/resendpassword" method="post">
+                            <input type="hidden" name="id" value="<?= $user->getId() ?>">
+                            <input class="button button-secondary" style="width: 100%; margin-top: 10px;" id="resendpassword" type="submit" value="Renvoyer le mot de passe">
+                        </form>
                     <?php else : ?>
                         <?= $user->getRole() == 10 ? 'Administrateur' : ($user->getRole() == 5 ? 'Modérateur' : 'Utilisateur') ?>
                     <?php endif; ?>
