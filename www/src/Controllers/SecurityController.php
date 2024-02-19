@@ -172,9 +172,8 @@ class SecurityController extends Controller
         $user->resetVerificationCode();
         $user->save();
 
-        $mailer = new Mailer();
         // Envoyer code de verification pour l'activation du compte
-        $succes = $mailer->sendMail(
+        $succes = $this->mailer->sendMail(
             $user->getEmail(),
             "Activation de votre compte",
             "<body>Bonjour " . $user->getFirstName() . " " . $user->getLastName() .
@@ -200,9 +199,8 @@ class SecurityController extends Controller
 
                 $newPwd = $user->resetPassword();
                 $user->save();
-                $mailer = new Mailer();
                 // Envoyer code de verification pour l'activation du compte
-                $succes = $mailer->sendMail(
+                $succes = $this->mailer->sendMail(
                     $user->getEmail(),
                     "Réinitialisation de votre mot de passe",
                     "<body>Bonjour " . $user->getFirstName() . " " . $user->getLastName() .

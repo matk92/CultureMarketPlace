@@ -5,9 +5,11 @@ namespace App\Controllers;
 use App\Models\User;
 use App\Models\Review;
 use App\Core\Controller;
+use App\Core\Mailer;
 use App\Forms\CommentProduct;
-use App\Repository\ProductRepository;
+use App\Repository\UserRepository;
 use App\Repository\ReviewRepository;
+use App\Repository\ProductRepository;
 
 class ReviewController extends Controller
 {
@@ -66,6 +68,17 @@ class ReviewController extends Controller
                 $review = $this->serializer->serialize($_POST, Review::class);
                 $review->setUserId($this->user->getId());
                 $review->save();
+
+                // On envoie un mail aux modérateurs pour les prévenir qu'un commentaire a été ajouté
+                $moderateurs = (new UserRepository())->findByRole(User::_ROLE_MODERATOR);
+                
+                foreach ($moderateurs as $moderateur) {
+                    $this->mailer->sendMail(
+                        $moderateur->getEmail(),
+                        "Nouveau commentaire ajouté",
+                        "Un nouveau commentaire a été ajouté sur le produit " . $product->getName() . " par " . $this->user->getFirstname() . " " . $this->user->getLastname() . "."
+                    );
+                }
 
                 header('Location: /products?pid=' . $product->getId() . '&errorComment=false');
                 exit();

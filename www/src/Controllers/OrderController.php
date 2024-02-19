@@ -189,9 +189,8 @@ class OrderController extends Controller
             exit();
         }
 
-        $mailer = new Mailer();
         // Envoyer mail de confirmation
-        $mailer->sendMail(
+        $this->mailer->sendMail(
             $this->user->getEmail(),
             "Cultural Market Place - Commande validée",
             "<body>Bonjour " . $this->user->getFirstName() . " " . $this->user->getLastName() .
