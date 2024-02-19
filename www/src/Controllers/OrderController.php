@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\Mailer;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Payment;
@@ -188,6 +189,14 @@ class OrderController extends Controller
             exit();
         }
 
+        $mailer = new Mailer();
+        // Envoyer mail de confirmation
+        $mailer->sendMail(
+            $this->user->getEmail(),
+            "Cultural Market Place - Commande validée",
+            "<body>Bonjour " . $this->user->getFirstName() . " " . $this->user->getLastName() .
+                ",<br><br>Votre commande a bien été validée.<br><br>Cordialement,<br>L'équipe de Cultural Market Place</body>"
+        );
         new View("Order/completed", "front");
         http_response_code(200);
     }
