@@ -170,6 +170,8 @@ button {
 
 .modal-content-admin_products {
   background-color: var(--whitebg);
+  overflow-y: auto;
+  height: 90%;
   margin: 4% auto;
   padding: 20px;
   border: 1px solid #888;
