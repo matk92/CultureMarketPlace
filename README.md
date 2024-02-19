@@ -71,14 +71,10 @@ Bot discord
 ## Langages utilisés
 PHP, HTML, SASS, JS, PostgreSQL
 
-## Logiciels utilisés
-
-Visual Studio Code
-Ubuntu/Linux
 
 ## 
 
-front= Bryan et Rémy
+front= Rémy
 back = Nicolas et Mathieu
 
 
