@@ -74,8 +74,8 @@ PHP, HTML, SASS, JS, PostgreSQL
 
 ## 
 
-front= Rémy
-back = Nicolas et Mathieu
+- Front= Rémy
+- Back = Nicolas et Mathieu
 
 
 
