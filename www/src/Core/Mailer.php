@@ -26,9 +26,11 @@ class Mailer
 
     public function sendMail($to, $subject, $body): bool
     {
+        $json = file_get_contents(__DIR__ . 'src/Views/Main/home.json');
+        $data = json_decode($json, true);
         try {
             //Recipients
-            $this->mail->setFrom($_ENV['SMTP_USERNAME'], 'Mailer');
+            $this->mail->setFrom($_ENV['SMTP_USERNAME'], $data['site-name']);
             $this->mail->addAddress($to);
 
             //Content
