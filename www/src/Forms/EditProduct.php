@@ -27,7 +27,7 @@ class EditProduct extends Form
             "id" => "form-edit-product",
             "submit" => "Enregistrer les modifications",
             "enctype" => "multipart/form-data",
-            "error" => "Erreur lors de la modification du produit"
+            "errorMessage" => "Erreur lors de la modification du produit"
         ];
         $this->inputs = [
             "name" => [

@@ -21,7 +21,7 @@ class AddProduct extends Form
             "id" => "form-product",
             "submit" => "Ajouter produit",
             "enctype" => "multipart/form-data",
-            "error" => "Erreur lors de l'ajout du produit"
+            "errorMessage" => "Erreur lors de l'ajout du produit"
         ];
         $this->inputs = [
             "name" => [

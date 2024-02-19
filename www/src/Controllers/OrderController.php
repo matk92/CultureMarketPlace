@@ -169,7 +169,7 @@ class OrderController extends Controller
                 header('Location: /orders/completed');
                 exit();
             } else {
-                http_response_code(400);
+                http_response_code(409);
             }
         } else {
             http_response_code(200);
