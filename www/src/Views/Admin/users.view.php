@@ -7,6 +7,10 @@ $roles = [
 ];
 ?>
 
+<div id="success_reset_password" class="alert alert-success hidden" style="position: fixed; top: 0;">
+    <p>Le mot de passe a été regénéré et envoyé par email !</p>
+</div>
+
 <h1>Liste des utilisateurs inscrits sur le site</h1>
 
 <table class="table-users-list">
@@ -24,7 +28,7 @@ $roles = [
     </thead>
     <tbody>
         <?php foreach ($users as $user) : ?>
-            <tr>
+            <tr id="user_<?= $user->getId() ?>">
                 <td><?= $user->getId() ?></td>
                 <td>
                     <?php if ($user->getRole() == 10) : ?>
@@ -54,14 +58,12 @@ $roles = [
                             </select>
                             <input class="button button-primary" style="width: 100%; margin-top: 10px;" id="changerole" type="submit" value="Changer le rôle">
                         </form>
-                        <form action="/user/delete" method="post" onsubmit="return confirm('Are you sure you want to delete this account?');">
-                            <input type="hidden" name="id" value="<?= $user->getId() ?>">
-                            <input class="button button-danger" style="width: 100%; margin-top: 10px;" id="deleteaccount" type="submit" value="Supprimer le compte">
-                        </form>
-                        <form action="/user/resendpassword" method="post">
-                            <input type="hidden" name="id" value="<?= $user->getId() ?>">
-                            <input class="button button-secondary" style="width: 100%; margin-top: 10px;" id="resendpassword" type="submit" value="Renvoyer le mot de passe">
-                        </form>
+                        <button class="button button-danger" style="width: 100%; margin-top: 10px;" onclick="deletUser(<?= $user->getId() ?>)">
+                            Supprimer le compte
+                        </button>
+                        <button class="button button-secondary" style="width: 100%; margin-top: 10px;" onclick="resetUserPassword(<?= $user->getId() ?>)">
+                            Regénérer le mot de passe
+                        </button>
                     <?php else : ?>
                         <?= $user->getRole() == 10 ? 'Administrateur' : ($user->getRole() == 5 ? 'Modérateur' : 'Utilisateur') ?>
                     <?php endif; ?>
@@ -70,3 +72,31 @@ $roles = [
         <?php endforeach; ?>
     </tbody>
 </table>
+
+<script>
+    function deletUser(id) {
+        if (confirm("Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.")) {
+            fetch("/user/delete?id=" + id + "&hardDelete=true", {
+                method: "DELETE",
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById("user_" + id).remove();
+                }
+            });
+        }
+    }
+
+    function resetUserPassword(id) {
+        if (confirm("Êtes-vous sûr de vouloir regénérer le mot de passe de cet utilisateur ?")) {
+            fetch("/admin/resetUserPassword?id=" + id, {
+                method: "GET",
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById("success_reset_password").classList.remove("hidden");
+                } else {
+                    alert("Une erreur est survenue lors de la regénération du mot de passe");
+                }
+            });
+        }
+    }
+</script>

@@ -166,6 +166,11 @@
   action: designguide
   role: 5
 
+/admin/resetUserPassword:
+  controller: AdminController
+  action: resetUserPassword
+  role: 10
+
 # CATEGORY ROUTES ------------------------------------------------------
 /admin/category:
   controller: CategoryController

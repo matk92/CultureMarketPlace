@@ -9,6 +9,7 @@ body.security {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: rem(40);
   background-image :url("../images/flags.jpg");
   background-size: cover;
   background-position: center;
@@ -16,13 +17,14 @@ body.security {
 
 .wrapper-security {
   width: 600px;
-  background: transparent;
+  margin: rem(40) auto;
+  background: rgba(0, 0, 0, 0.35);
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   color: white;
   border-radius: 10px;
-  padding: 30px 40px;
+  padding: rem(30) rem(40);
 
     @media (max-width: 600px) {
       width: 350px;

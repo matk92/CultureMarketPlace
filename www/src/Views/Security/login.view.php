@@ -10,6 +10,6 @@ $_SESSION['alert'] = 'success';
         <p>Mot de passe oublié ? <a href="/reset-password" class="btnconfig">Cliquez ici</a></p>
     </div>
     <div class="register-link-security">
-        <p>Nouveau client ? <a href="register" class="btnconfig">Créer mon compte</a></p>
+        <p>Nouveau client ? <a href="/register" class="btnconfig">Créer mon compte</a></p>
     </div>
 </div>

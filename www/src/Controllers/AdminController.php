@@ -192,4 +192,27 @@ class AdminController extends Controller
     {
         new View("Admin/designguide", "frontAdmin");
     }
+
+    public function resetUserPassword(): int
+    {
+        if (!isset($_GET['id'])) {
+            return http_response_code(400);
+        }
+        
+        $user = (new UserRepository())->find($_GET['id']);
+
+        $newPwd = $user->resetPassword();
+        $user->save();
+        // Envoyer code de verification pour l'activation du compte
+        $succes = $this->mailer->sendMail(
+            $user->getEmail(),
+            "Réinitialisation de votre mot de passe",
+            "<body>Bonjour " . $user->getFirstName() . " " . $user->getLastName() .
+                ",<br><br>Voici votre nouveau mot de passe : <b>" . $newPwd .
+                "</b><br><br>Cordialement,<br>L'équipe de Cultural Market Place
+                        </body>"
+        );
+
+        return http_response_code($succes ? 200 : 409);
+    }
 }

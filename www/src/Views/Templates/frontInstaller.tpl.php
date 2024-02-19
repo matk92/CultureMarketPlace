@@ -11,7 +11,7 @@
 </head>
 
 <body class="installer">
-  <main style="display: flex;justify-content: center;align-items: center;height: 100vh;">
+  <main style="display: flex;justify-content: center;align-items: center;min-height: 100vh;">
     <?php include $this->view; ?>
   </main>
 </body>
