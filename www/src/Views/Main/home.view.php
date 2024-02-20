@@ -1,8 +1,4 @@
-<style> 
-    body {
-        background-color: <?php echo $data['background-color']?>;
-    }
-</style>
+
 
 <div class="homepage-content">
     <h1 class="homepage" id="title-homepage">Découvrez qui nous sommes</h1>
