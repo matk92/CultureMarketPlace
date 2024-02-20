@@ -153,7 +153,11 @@ class ConfigController extends Controller
         } else if ($_SERVER["REQUEST_METHOD"] === $formConfig["config"]["method"]) {
             if ($this->verificator->checkForm($formConfig, $_POST)) {
                 $pageTitle = $_POST['pageTitle'];
-                // TODO : change site title in config
+                $json = file_get_contents(__DIR__ . '/../Views/Main/home.json');
+                $data = json_decode($json, true);
+                $data['site-name'] = $pageTitle;
+                $json = json_encode($data, JSON_PRETTY_PRINT);
+                file_put_contents(__DIR__ . '/../Views/Main/home.json', $json);
 
                 $newUser = $this->serializer->serialize($_POST, User::class);
                 $newUser->setRole(10);
