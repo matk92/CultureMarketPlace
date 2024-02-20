@@ -14,6 +14,7 @@ class Controller
     protected Security $security;
     protected ?User $user = null;
     protected Mailer $mailer;
+    protected string $siteName = "CMP";
 
     public function __construct()
     {
@@ -40,6 +41,14 @@ class Controller
                     "status" => $this->user->getStatus(),
                     "role" => $this->user->getRole()
                 ];
+            }
+        }
+
+        if(file_exists(__DIR__ . '/../Views/Main/home.json')){
+            $json = file_get_contents(__DIR__ . '/../Views/Main/home.json');
+            $data = json_decode($json, true);
+            if($data['site-name'] !== null){
+                $this->siteName = $data['site-name'];
             }
         }
     }

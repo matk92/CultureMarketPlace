@@ -166,10 +166,11 @@
   action: designguide
   role: 5
 
-/admin/resetUserPassword:
+/admin/reset-password:
   controller: AdminController
   action: resetUserPassword
   role: 10
+  method: GET
 
 # CATEGORY ROUTES ------------------------------------------------------
 /admin/category:

@@ -115,7 +115,7 @@ class User extends DB
     // On génère un nouveau mot de passe
     public function resetPassword(): string
     {
-        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        $chars = "abcd1973efghijklmn13987opqrs871240tuvwxyzABCD913703EFGHIJKLMNOPQ130987RSTUVWXYZ0123456789";
         $pwd = substr(str_shuffle($chars), 0, 8);
 
         $this->pwd = password_hash($pwd, PASSWORD_DEFAULT);

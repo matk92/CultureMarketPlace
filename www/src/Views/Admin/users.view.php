@@ -88,7 +88,7 @@ $roles = [
 
     function resetUserPassword(id) {
         if (confirm("Êtes-vous sûr de vouloir regénérer le mot de passe de cet utilisateur ?")) {
-            fetch("/admin/resetUserPassword?id=" + id, {
+            fetch("/admin/reset-password?id=" + id, {
                 method: "GET",
             }).then(response => {
                 if (response.ok) {

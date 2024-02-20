@@ -198,8 +198,11 @@ class AdminController extends Controller
         if (!isset($_GET['id'])) {
             return http_response_code(400);
         }
-        
-        $user = (new UserRepository())->find($_GET['id']);
+
+        $user = (new UserRepository())->find((int) $_GET['id']);
+        if (is_int($user) && $user === 0) {
+            return http_response_code(404);
+        }
 
         $newPwd = $user->resetPassword();
         $user->save();
@@ -207,9 +210,10 @@ class AdminController extends Controller
         $succes = $this->mailer->sendMail(
             $user->getEmail(),
             "Réinitialisation de votre mot de passe",
-            "<body>Bonjour " . $user->getFirstName() . " " . $user->getLastName() .
+            "<body>Bonjour " . $user->getFirstname() . " " . $user->getLastname() .
+                ",<br><br>Vous avez demandé la réinitialisation de votre mot de passe sur notre site." .
                 ",<br><br>Voici votre nouveau mot de passe : <b>" . $newPwd .
-                "</b><br><br>Cordialement,<br>L'équipe de Cultural Market Place
+                "</b><br><br>Cordialement,<br>L'équipe de " . $this->siteName . "
                         </body>"
         );
 
