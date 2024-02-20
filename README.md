@@ -1,15 +1,15 @@
 # CultureMarketPlace
 ## Lien du site :
-vps-356a325d.vps.ovh.net
+[vps-356a325d.vps.ovh.net](http://vps-356a325d.vps.ovh.net/)
 
 ## Intégrants : 
-- Nicolas Calvelo
-- Mathieu Keca
-- Rémy Saguez 
+- [Nicolas Calvelo](https://github.com/NicoCalvelo)
+- [Mathieu Keca](https://github.com/matk92)
+- [Rémy Saguez](https://github.com/RemySaguez)
 
 ## Description du projet
 
-Description courte du projet : Un site web pour gérer vos ventes de produits culturels d’un pays. Ils vous suffit d'installer le projet, le configurer par rapport à votre pays et commencer à charger les produits que vous souhaitez vendre.
+Description courte du projet : Un site web pour gérer vos ventes de produits culturels de votre pays ! Ils vous suffit d'installer le projet, le configurer par rapport à votre style et commencer à charger les produits que vous souhaitez vendre !
 
 ## Fonctionnalités
 
@@ -28,9 +28,37 @@ Description courte du projet : Un site web pour gérer vos ventes de produits cu
 
 **Personnalisation du site web** : les utilisateurs peuvent personnaliser le site web en modifiant les couleurs, les polices et les images. Cette personnalisation est facile à effectuer grâce à un système de thèmes.
 
+## Guide d’installation :
+
+Pour lancer le projet il est necessaire d'avoir docker et docker-compose d'installé sur votre machine.
+
+Instructions d'installation du projet :
+
+- Cloner le projet 
+- Lancer la commande suivante 
+  ```
+  docker compose up
+  ```
+
+## Guide de Modification :
+
+Instructions de modification du projet :
+
+- yarn install ou npm install
+- yarn run build ou npm run build
+
+Pour avoir de données vidons pour realiser des tests, vous pouvez decomenter la ligne 24 du fichier docker-compose.yml
+
+```yml
+    - ./postgres/inserts.sql:/docker-entrypoint-initdb.d/inserts.sql
+```
 
 
-## Table des matières :
+## Base de données :
+
+Pour la base de données, nous avons utilisé PostgreSQL. Vous pouvez trouver le schéma de la base de données dans le fichier BDD_schema.excalidraw qui se trouve à la racine du projet.
+
+Voici les tables de la base de données :
 
 - [User](#User)-> [id](#id), [firstName](#firstName), [lastName](#lastName), [email](#email), [pwd](#pwd), [status](#status), [isDeleted](#isDeleted), [inserted](#inserted), [role](#role), [verificationcode](#verificationcode)
 - [Category](#Category) -> [id](#id), [name](#name), [amount](#amount), [unit](#unit), [isdeleted](#isdeleted)
@@ -42,42 +70,22 @@ Description courte du projet : Un site web pour gérer vos ventes de produits cu
 - [Payment Method](#Payment_Method) -> [id](#id), [userId](#userId), [paymentMethodTypeId](#paymentMethodTypeId), [cardNumber](#cardNumber), [expirationDate](#expirationDate), [securityCode](#securityCode), [cardHolderName](#cardHolderName), [cardHolderAddress](#cardHolderAddress), [cardHolderZipCode](#cardHolderZipCode), [cardHolderCity](#cardHolderCity), [cardHolderCountry](#cardHolderCountry), [updated](#updated)
 - [Payment](#Payment) -> [id](#id), [paymentMethodId](#paymentMethodId), [orderId](#orderId), [status](#status), [inserted](#inserted)
 
-
-## Guide d’installation :
-
-Instructions d'installation du projet :
-
-- Cloner le projet
-- Docker-compose up
-
-## Guide de Modification :
-
-Instructions de modification du projet :
-
-- yarn install ou npm install
-- yarn run build ou npm run build
-
-
-## Base de données :
-
-BDD utilisée.
-
 ## Outils utilisés
 
-Figma,
-Trello,
-Discord,
-Bot discord
-## Langages utilisés
-PHP, HTML, SASS, JS, PostgreSQL
+On a utilise [Figma](https://www.figma.com/file/iBrfxsfLp4shl8cxopUqxX/Cultural-Market-Place?type=design&node-id=0%3A1&mode=design&t=wgcVl0hETZCVDtAX-1) pour le design guide et les differentes pages du site web.
+
+On a utilise [Trello](https://trello.com/b/SBasrghg) pour la gestion des taches et des differentes etapes du projet. (Pour visualizer le projet il faut demander l'acces)
+
+On a utilise Discord pour la communication entre les membres de l'equipe et on a configure un bot pour nous prevenir des commits fait sur le projet.
 
 
-## 
+## Technologies utilisées
 
-- Front= Rémy
-- Back = Nicolas et Mathieu
-
-
+- [Chart.js](https://www.chartjs.org/)
+- [Sass](https://sass-lang.com/)
+- [Vite](https://vitejs.dev/)
+- [PhpMailer](https://packagist.org/packages/phpmailer/phpmailer)
+- [yaml](https://pecl.php.net/package/yaml)
 
 
 
