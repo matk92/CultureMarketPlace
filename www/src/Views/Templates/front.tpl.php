@@ -2,6 +2,31 @@
 $data = json_decode($json, true); ?>
 <!DOCTYPE html>
 <html lang="fr">
+<style>
+    body {
+        background-color: <?php echo $data['background-color']; ?>;
+    }
+    .nav-home {
+        background-color: <?php echo $data['nav-color']; ?>;
+    }
+    .title-home {
+        color: <?php echo $data['title-color']; ?>;
+    }
+    .subtitle-home {
+        color: <?php echo $data['subtitle-color']; ?>;
+    }
+    .footer-home {
+        background-color: <?php echo $data['footer-color']; ?>;
+    }
+    .discover-products-text {
+        h2{
+            color: <?php echo $data['home-discover-color']; ?>;
+        }
+        p { 
+            color: <?php echo $data['home-discover-color']; ?>;
+        }
+    }
+</style>
 
 <head>
     <meta charset="UTF-8">

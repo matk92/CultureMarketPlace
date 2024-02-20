@@ -176,13 +176,6 @@ class AdminController extends Controller
                 'home-discover-color' => $data['home-discover-color'],
             ];
 
-            $scss = ":root {\n";
-            foreach ($colors as $name => $value) {
-                $scss .= "  --$name: {$value};\n";
-            }
-            $scss .= "}";
-
-            file_put_contents(__DIR__ . '/../../assets/css/partials/_colors_pallet.scss', $scss);
 
             header('Location: /admin/settings');
             exit;
