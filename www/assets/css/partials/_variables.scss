@@ -35,19 +35,6 @@ $md-size: 1024px;
 	--transition-duration: 0.3s;
 }
 
-.dark-mode {
-	--background-color: #{$darkBlue};
-	--background-color2: #{$darkBlue};
-	--background-admin-color: #{$darkBlue};
-	--title-color: #{$white};
-	--subtitle-color: #{$lightGrey};
-	--footer-color: #{$darkGrey};
-	--nav-color: #{$darkBlue};
-	--text-color: #{$white};
-	--summary-color: #{$darkGrey};
-	--whitebg: #{$darkGrey};
-}
-
 
 /* Ecrans */
 $md-size: 1024px;

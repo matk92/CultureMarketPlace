@@ -9,6 +9,9 @@ $data = json_decode($json, true); ?>
     .nav-home {
         background-color: <?php echo $data['nav-color']; ?>;
     }
+    .dropdown-content.show {
+        background-color: <?php echo $data['nav-color']; ?>;
+    }
     .title-home {
         color: <?php echo $data['title-color']; ?>;
     }

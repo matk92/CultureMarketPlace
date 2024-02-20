@@ -1,24 +1,25 @@
-const toggleDarkMode = document.querySelector('#toggle-dark-mode');
-const icon = toggleDarkMode.querySelector('i');
+const selectors = ['body', 'footer', 'nav', '.dropdown-content.show, .card'];
 
-
-if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
+function toggleDarkMode() {
+    selectors.forEach((selector) => {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.classList.toggle('dark-mode');
+        }
+    });
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
 }
 
-toggleDarkMode.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-
-
-    if (document.body.classList.contains('dark-mode')) {
-        localStorage.setItem('darkMode', 'enabled');
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-    } else {
-        localStorage.setItem('darkMode', 'disabled');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+function loadDarkMode() {
+    if (localStorage.getItem('darkMode') === 'true') {
+        selectors.forEach((selector) => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.classList.add('dark-mode');
+            }
+        });
     }
-});
+}
+
+document.getElementById('toggle-dark-mode').addEventListener('click', toggleDarkMode);
+window.addEventListener('load', loadDarkMode);
