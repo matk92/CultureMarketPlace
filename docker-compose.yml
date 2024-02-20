@@ -12,7 +12,6 @@ services:
       - ./server/php.ini:/usr/local/etc/php/php.ini
 
   postgres:
-    build: postgres
     image: postgres:16-alpine
     restart: always
     environment:
