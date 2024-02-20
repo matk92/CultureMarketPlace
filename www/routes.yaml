@@ -63,6 +63,11 @@
   action: index
   method: GET
 
+/product/:name:
+  controller: ProductController
+  action: productDetails
+  method: GET
+
 /admin/product/edit:
   controller: ProductController
   action: edit

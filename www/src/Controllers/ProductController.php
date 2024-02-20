@@ -37,26 +37,40 @@ class ProductController extends Controller
         }
         $filters = $this->categoryRepository->getAll();
 
-        if (isset($_GET['pid']) && $_GET['pid'] != "") {
-            $displayProduct = $this->productRepository->find((int) $_GET['pid']);
-            if (is_int($displayProduct) && $displayProduct == 0) {
-                http_response_code(404);
-                header('Location: /products');
-                exit();
-            }
-            $view->assign("displayProduct", $displayProduct);
+        $view->assign("products", $products);
+        $view->assign("filters", $filters);
+        return http_response_code(200);
+    }
 
-            $form = new AddProductToCart($displayProduct);
-            $formConfig = $form->getConfig();
-            $view->assign("form", $formConfig);
-
-            $formComment = new CommentProduct($displayProduct);
-            $formCommentConfig = $formComment->getConfig();
-            $view->assign("formComment", $formCommentConfig);
-
-            $comments = (new ReviewRepository())->getProductComments($displayProduct->getId());
-            $view->assign("comments", $comments);
+    public function productDetails(?Product $displayProduct): int
+    {
+        if (is_null($displayProduct)) {
+            http_response_code(404);
+            header('Location: /products');
+            exit();
         }
+
+        $view = new View("Product/products", "front");
+        $view->assign("displayProduct", $displayProduct);
+
+        // Initilisation du formulaire pour ajouter un produit au panier
+        $form = new AddProductToCart($displayProduct);
+        $formConfig = $form->getConfig();
+        $view->assign("form", $formConfig);
+
+        // Initilisation du formulaire pour ajouter un commentaire à un produit
+        $formComment = new CommentProduct($displayProduct);
+        $formCommentConfig = $formComment->getConfig();
+        $view->assign("formComment", $formCommentConfig);
+
+        // Récupération des commentaires du produit
+        $comments = (new ReviewRepository())->getProductComments($displayProduct->getId());
+        $view->assign("comments", $comments);
+
+        // Récupération de tous les produits
+        $products = $this->productRepository->getAll();
+        // Recupération des filtres
+        $filters = $this->categoryRepository->getAll();
 
         $view->assign("products", $products);
         $view->assign("filters", $filters);

@@ -13,7 +13,7 @@
                 <select id="category_filter" name="filter" id="filter">
                     <option value="0">Tous</option>
                     <?php foreach ($filters as $filter) : ?>
-                        <option value=<?= $filter->getId() ?> <?= $filter->getId() == $_GET['filter'] ? 'selected' : '' ?>>
+                        <option value=<?= $filter->getId() ?> <?= array_key_exists('filter', $_GET) && $filter->getId() == $_GET['filter'] ? 'selected' : '' ?>>
                             <?= $filter->getName() ?>
                         </option>
                     <?php endforeach; ?>
@@ -58,7 +58,7 @@
                 <p><?= $product->getDescription() ?></p>
                 <div class="card-bottom">
                     <p><?= $product->getPrice() ?>€</p>
-                    <a href="?pid=<?= $product->getId() ?>" onclick="displayModal(<?= $product->getId() ?>)">Voir plus</a>
+                    <a href="/product/<?= str_replace(" ", "-", $product->getName()) ?>" onclick="displayModal(<?= $product->getId() ?>)">Voir plus</a>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -162,8 +162,7 @@
     $(document).ready(function() {
         $('#category_filter').change(function() {
             var selectedValue = $(this).val();
-            var url = window.location.href.split('?')[0]; // remove existing query parameters
-            window.location.href = url + '?filter=' + selectedValue + '#products_title';
+            window.location.href = '/products?filter=' + selectedValue;
             document.getElementById('spinner').classList.remove('hidden');
             document.getElementById('product_section').classList.remove('products-section');
             document.getElementById('product_section').classList.add('hidden');
