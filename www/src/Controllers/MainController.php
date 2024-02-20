@@ -70,7 +70,7 @@ class MainController extends Controller
 
         foreach ($routes as $route) {
             $url = $file->createElement("url");
-            $loc = $file->createElement("loc", "https://" . $_SERVER["HTTP_HOST"] . $route["path"]);
+            $loc = $file->createElement("loc", "http://" . $_SERVER["HTTP_HOST"] . $route["path"]);
             $url->appendChild($loc);
             $urlset->appendChild($url);
             if (array_key_exists("lastmod", $route)) {
@@ -80,7 +80,7 @@ class MainController extends Controller
             if (array_key_exists("image", $route)) {
                 $image = $file->createElement("image:image");
                 $url->appendChild($image);
-                $imageLoc = $file->createElement("image:loc", "https://" . $_SERVER["HTTP_HOST"] . "/" . $route["image"]);
+                $imageLoc = $file->createElement("image:loc", "http://" . $_SERVER["HTTP_HOST"] . "/" . $route["image"]);
                 $image->appendChild($imageLoc);
             }
         }
