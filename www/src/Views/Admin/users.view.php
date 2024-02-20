@@ -46,7 +46,7 @@ $roles = [
                 <td><?= $user->getEmail() ?></td>
                 <td><?= $user->getStatusName() ?></td>
                 <td><?= $roles[$user->getRole()] ?></td>
-                <td><?= $user->getInserted() ?></td>
+                <td><?= $user->getInsertedAt() ?></td>
                 <td>
                     <?php if ($user->getId() != $_SESSION['user']['id'] && $user->getStatus() > 0) : ?>
                         <form action="/user/changerole" method="post">

@@ -14,12 +14,13 @@ class Product extends DB
     protected int $stock;
     protected ?int $categoryid = null;
     protected bool $isdeleted;
+    protected string $inserted;
     protected ?string $updated;
     protected float $rating;
 
     private ?Category $category = null;
 
-     /**
+    /**
      * Permet de faire le lien entre les objets
      * 
      * @return self
@@ -186,11 +187,18 @@ class Product extends DB
         $this->isdeleted = $isdeleted;
     }
 
+    /**
+     * Get the value of inserted
+     */
+    public function getInsertedAt(): ?string
+    {
+        return $this->inserted;
+    }
 
     /**
      * Get the value of updated
      */
-    public function getUpdatedAt(): string
+    public function getUpdatedAt(): ?string
     {
         return $this->updated;
     }

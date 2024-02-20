@@ -3,6 +3,10 @@
   controller: MainController
   action: home
 
+/sitemap.xml:
+  controller: MainController
+  action: generateSitemap
+
 /home:
   controller: MainController
   action: home

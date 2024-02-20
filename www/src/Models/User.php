@@ -182,7 +182,7 @@ class User extends DB
         $this->role = $role;
     }
 
-    public function getInserted(): string
+    public function getInsertedAt(): string
     {
         return $this->inserted;
     }

@@ -122,7 +122,6 @@ class Review extends DB
      */
     public function setIsApproved(bool $isapproved): void
     {
-        var_dump($isapproved);
         $this->isapproved = $isapproved;
     }
 

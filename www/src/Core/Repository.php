@@ -79,4 +79,14 @@ class Repository
 
         return $this->fetch($sql, $execute)[0] ?? null;
     }
+
+    public function findAll(): array
+    {
+        if (method_exists((new $this->modelName), "getIsdeleted"))
+            $sql = "SELECT * FROM " . $this->tableName . " WHERE isdeleted = false";
+        else
+            $sql = "SELECT * FROM " . $this->tableName;
+            
+        return $this->fetch($sql);
+    }
 }
