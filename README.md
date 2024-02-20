@@ -42,13 +42,24 @@ Instructions d'installation du projet :
 
 ## Guide de Modification :
 
-Instructions de modification du projet :
+Pour modifier le projet, vous devez avoir Node.js installé sur votre machine et un gestionnaire de paquets comme npm ou yarn.
 
-- yarn install ou npm install
-- yarn run build ou npm run build
+Après avoir cloné le projet et d'avoir lancé la commande docker compose, up lançez les commandes suivantes a la racine du projet pour installer les dépendances et lancer le projet :
+
+```bash
+    yarn install
+ou
+    npm install
+```
+
+```bash
+    yarn watch
+ou
+    npm run watch
+```
+
 
 Pour avoir de données vidons pour realiser des tests, vous pouvez decomenter la ligne 24 du fichier docker-compose.yml
-
 ```yml
     - ./postgres/inserts.sql:/docker-entrypoint-initdb.d/inserts.sql
 ```
@@ -86,7 +97,3 @@ On a utilise Discord pour la communication entre les membres de l'equipe et on a
 - [Vite](https://vitejs.dev/)
 - [PhpMailer](https://packagist.org/packages/phpmailer/phpmailer)
 - [yaml](https://pecl.php.net/package/yaml)
-
-
-
-
