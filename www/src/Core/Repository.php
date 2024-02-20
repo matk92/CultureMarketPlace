@@ -43,7 +43,7 @@ class Repository
         $stmt->execute($execute);
         if ($fetchMode === PDO::FETCH_CLASS) {
             $stmt->setFetchMode($fetchMode, $this->modelName);
-        }else{
+        } else {
             $stmt->setFetchMode($fetchMode);
         }
         return $stmt->fetchAll();
@@ -59,6 +59,23 @@ class Repository
     {
         $sql = "SELECT * FROM " . $this->tableName . " WHERE id = :id";
         $execute = ["id" => $id];
+
+        return $this->fetch($sql, $execute)[0] ?? null;
+    }
+
+    public function findOneBy(array $criteria): ?object
+    {
+        $sql = "SELECT * FROM " . $this->tableName . " WHERE ";
+        $execute = [];
+        foreach ($criteria as $key => $value) {
+            if (is_string($value)) {
+                $sql .= $key . " ILIKE :" . $key . " AND ";
+            } else {
+                $sql .= $key . " = :" . $key . " AND ";
+            }
+            $execute[$key] = $value;
+        }
+        $sql = rtrim($sql, " AND ");
 
         return $this->fetch($sql, $execute)[0] ?? null;
     }
