@@ -19,7 +19,7 @@
         data: {
             labels: productSalesData.map(data => data.product),
             datasets: [{
-                label: 'Meilleurs ventes par produit',
+                label: 'Les produits les plus vendus',
                 data: productSalesData.map(data => data.sales),
                 borderWidth: 1
             }]
@@ -69,7 +69,7 @@
         data: {
             labels: productCategoryData.map(data => data.category),
             datasets: [{
-                label: 'Categories de produits vendus',
+                label: 'Ventes',
                 data: productCategoryData.map(data => data.sales),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
