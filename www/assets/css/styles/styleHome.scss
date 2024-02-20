@@ -40,7 +40,6 @@ body.home-body {
 }
 
 .title-home {
-  color: var(--title-color);
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 4rem;
@@ -49,7 +48,6 @@ body.home-body {
 }
 
 .subtitle-home {
-  color: var(--subtitle-color);
   font-family: 'Raleway', sans-serif;
   font-size: 1.50rem;
   text-align: center;
@@ -87,7 +85,6 @@ body.home-body {
   top: 5vh;
   right: 5vh;
   margin: auto;
-  background-color: var(--nav-color);
   border-radius: 20px;
   text-align: center;
 
@@ -145,7 +142,6 @@ body.home-body {
 
 
 footer.footer-home {
-  background-color: var(--footer-color);
   padding: 20px;
   text-align: center;
   padding-top: 50px;
