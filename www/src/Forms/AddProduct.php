@@ -39,6 +39,7 @@ class AddProduct extends Form
                 "class" => "input-admin_products",
                 "id" => "form-product-image",
                 "required" => true,
+                "maxSize" => 1000000,
                 "placeholder" => "Image du produit",
                 "accept" => "image/*"
             ],
@@ -49,6 +50,8 @@ class AddProduct extends Form
                 "id" => "form-product-price",
                 "step" => "0.01",
                 "required" => true,
+                "min" => "0.01",
+                "max" => "10000",
                 "placeholder" => "€ 29,99",
             ],
             "categoryid" => [
@@ -65,6 +68,8 @@ class AddProduct extends Form
                 "class" => "input-admin_products",
                 "id" => "form-product-stock",
                 "required" => true,
+                "min" => "1",
+                "max" => "10000",
                 "placeholder" => "20",
             ],
             "description" => [
@@ -73,6 +78,8 @@ class AddProduct extends Form
                 "class" => "input-admin_products",
                 "id" => "form-product-description",
                 "required" => true,
+                "minLength" => 10,
+                "maxLength" => 250,
                 "placeholder" => "Description du produit",
             ],
         ];

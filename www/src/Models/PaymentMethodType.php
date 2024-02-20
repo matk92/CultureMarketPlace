@@ -45,7 +45,7 @@ class PaymentMethodType extends DB
      */
     public function setName(string $name): void
     {
-        $name = ucwords(strtolower(trim($name)));
+        $name = strip_tags(ucwords(strtolower(trim($name))));
         $this->name = $name;
     }
 
@@ -64,7 +64,7 @@ class PaymentMethodType extends DB
      */
     public function setDescription(string $description): void
     {
-        $description = ucfirst(strtolower(trim($description)));
+        $description = strip_tags(ucfirst(strtolower(trim($description))));
         $this->description = $description;
     }
 }

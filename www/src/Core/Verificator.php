@@ -58,7 +58,7 @@ class Verificator
             }
 
             // Si le champ est de type string, on vérifie la longueur
-            if ($input["type"] == "text" && (array_key_exists("minLength", $input) || array_key_exists("maxLength", $input)) && !self::checkStringLenght($data[$key], $input["minLength"] ?? null, $input["maxLength"] ?? null)) {
+            if ($input["type"] == "text" && (array_key_exists("minLength", $input) || array_key_exists("maxLength", $input)) && !self::checkStringLenght($data[$key], (int) $input["minLength"] ?? null, (int) $input["maxLength"] ?? null)) {
                 if (array_key_exists("minLength", $input) && !array_key_exists("maxLength", $input))
                     $errors[$key] = "Le champ " . $input["label"] . " doit contenir au moins " . $input["minLength"] . " caractères";
                 else if (array_key_exists("maxLength", $input) && !array_key_exists("minLength", $input))
@@ -76,6 +76,9 @@ class Verificator
                 else
                     $errors[$key] = "Le champ " . $input["label"] . " doit être compris entre " . $input["min"] . " et " . $input["max"];
             }
+
+            if ($input["type"] == "file" && !self::checkFileSize($data[$key], $input))
+                $errors[$key] = "Le fichier est trop volumineux (max: " . $input["maxSize"] . " octets)";
 
             if (empty($errors[$key]) && !isset($input["dismissible"]))
                 $config["inputs"][$key]["defaultValue"] = $data[$key];
@@ -147,5 +150,10 @@ class Verificator
         }
 
         return true;
+    }
+
+    public static function checkFileSize($data, $input): bool
+    {
+        return !empty($data["size"]) && (int) $data["size"] <=  (int) $input["maxSize"];
     }
 }

@@ -25,6 +25,8 @@ class AddCategory extends Form
                 "class" => "input-category",
                 "id" => "form-category-name",
                 "required" => true,
+                "minLength" => 3,
+                "maxLength" => 50,
                 "placeholder" => "Legumes",
                 "unicity" => Category::class,
             ],
@@ -37,6 +39,7 @@ class AddCategory extends Form
                 "defaultValue" => 1,
                 "min" => 1,
                 "placeholder" => "1",
+                "max" => 10000,
             ],
             "unit" => [
                 "label" => "Unité",

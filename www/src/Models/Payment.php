@@ -110,7 +110,7 @@ class Payment extends DB
      */
     public function setStatus(string $status): void
     {
-        $this->status = $status;
+        $this->status = strip_tags($status);
     }
 
     /**

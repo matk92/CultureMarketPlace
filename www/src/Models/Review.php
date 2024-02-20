@@ -85,7 +85,7 @@ class Review extends DB
      */
     public function setComment(string $comment): void
     {
-        $this->comment = $comment;
+        $this->comment = strip_tags(trim($comment));
     }
 
     /**

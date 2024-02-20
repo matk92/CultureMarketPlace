@@ -54,7 +54,7 @@ class AdminController extends Controller
                 $imageName = $newProduct->getName() . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
                 $imagePath = $imageFolder . $imageName;
                 $destination = __DIR__ . "/../../" . $imagePath;
-                
+
                 move_uploaded_file($_FILES['image']['tmp_name'], $destination);
 
                 // Save path in $newProduct->setImage()

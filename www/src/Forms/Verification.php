@@ -24,8 +24,8 @@ class Verification extends Form
                 "id" => "form-verification-code",
                 "required" => true,
                 "placeholder" => "xxx - xxx",
-                "minLength" => "6",
-                "maxLength" => "6",
+                "minLength" => 6,
+                "maxLength" => 6,
                 "dismissible" => "true",
             ],
         ];

@@ -110,7 +110,7 @@ class PaymentMethod extends DB
      */
     public function setCardNumber(string $cardnumber): void
     {
-        $this->cardnumber = str_replace(" ", "", $cardnumber);
+        $this->cardnumber = strip_tags(str_replace(" ", "", $cardnumber));
     }
 
     /**
@@ -128,7 +128,7 @@ class PaymentMethod extends DB
      */
     public function setExpirationDate(string $expirationdate): void
     {
-        $this->expirationdate = $expirationdate;
+        $this->expirationdate = strip_tags($expirationdate);
     }
 
     /**
@@ -146,7 +146,7 @@ class PaymentMethod extends DB
      */
     public function setSecurityCode(string $securitycode): void
     {
-        $this->securitycode = $securitycode;
+        $this->securitycode = strip_tags($securitycode);
     }
 
     /**
@@ -164,7 +164,7 @@ class PaymentMethod extends DB
      */
     public function setCardHolderName(string $cardholdername): void
     {
-        $this->cardholdername = $cardholdername;
+        $this->cardholdername = strip_tags($cardholdername);
     }
 
     /**
@@ -182,7 +182,7 @@ class PaymentMethod extends DB
      */
     public function setCardHolderAddress(string $cardholderaddress): void
     {
-        $this->cardholderaddress = $cardholderaddress;
+        $this->cardholderaddress = strip_tags($cardholderaddress);
     }
 
     /**
@@ -200,7 +200,7 @@ class PaymentMethod extends DB
      */
     public function setCardHolderZipCode(string $cardholderzipcode): void
     {
-        $this->cardholderzipcode = $cardholderzipcode;
+        $this->cardholderzipcode = strip_tags($cardholderzipcode);
     }
 
     /**
@@ -218,7 +218,7 @@ class PaymentMethod extends DB
      */
     public function setCardHolderCity(string $cardholdercity): void
     {
-        $this->cardholdercity = $cardholdercity;
+        $this->cardholdercity = strip_tags($cardholdercity);
     }
 
     /**
@@ -236,7 +236,7 @@ class PaymentMethod extends DB
      */
     public function setCardHolderCountry(string $cardholdercountry): void
     {
-        $this->cardholdercountry = $cardholdercountry;
+        $this->cardholdercountry = strip_tags($cardholdercountry);
     }
 
     /**

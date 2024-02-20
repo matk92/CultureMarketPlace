@@ -67,7 +67,7 @@ class Product extends DB
      */
     public function setName(string $name): void
     {
-        $this->name = $name;
+        $this->name = strip_tags($name);
     }
 
     /**
@@ -85,7 +85,7 @@ class Product extends DB
      */
     public function setImage(string $image): void
     {
-        $this->image = $image;
+        $this->image = strip_tags($image);
     }
 
     /**
@@ -103,8 +103,7 @@ class Product extends DB
      */
     public function setDescription(string $description): void
     {
-        $description = ucfirst(strtolower(trim($description)));
-        $this->description = $description;
+        $this->description = strip_tags(trim($description));
     }
 
     /**

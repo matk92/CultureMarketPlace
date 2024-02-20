@@ -3,7 +3,17 @@
                 <div class="<?= $input["class"] ?? "input-box-security" ?>">
                         <label for="<?= $name ?>"><?= $input["label"] ?? "" ?></label>
                         <?php if ($input["type"] === "textarea") : ?>
-                                <textarea name="<?= $name ?>" id="<?= $input["id"] ?? "" ?>" style="height: 150px;" placeholder="<?= $input["placeholder"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>"><?= $input["defaultValue"] ?? "" ?></textarea>
+                                <textarea 
+                                        name="<?= $name ?>" 
+                                        id="<?= $input["id"] ?? "" ?>" 
+                                        style="height: 150px;" 
+                                        placeholder="<?= $input["placeholder"] ?? "" ?>" 
+                                        <?= isset($input["required"]) ? "required" : ""  ?> 
+                                        minLength="<?= $input["minLength"] ?? "" ?>" 
+                                        maxLength="<?= $input["maxLength"] ?? "" ?>"
+                                >
+                                        <?= $input["defaultValue"] ?? "" ?>
+                                </textarea>
                         <?php elseif ($input["type"] === "select") : ?>
                                 <select name="<?= $name ?>" id="<?= $input["id"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?>>
                                         <?php foreach ($input["options"] as $value => $option) : ?>
@@ -15,7 +25,21 @@
                         <?php elseif ($input["type"] === "checkbox") : ?>
                                 <input name="<?= $name ?>" type="checkbox" id="<?= $input["id"] ?? "" ?>" <?= isset($input["checked"]) && $input["checked"] ? "checked" : "" ?>>
                         <?php else : ?>
-                                <input name="<?= $name ?>" type="<?= $input["type"] ?? "text" ?>" id="<?= $input["id"] ?? "" ?>" placeholder="<?= $input["placeholder"] ?? "" ?>" value="<?= $input["defaultValue"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?> minLength="<?= $input["minLength"] ?? "" ?>" maxLength="<?= $input["maxLength"] ?? "" ?>" min="<?= $input["min"] ?? "" ?>" max="<?= $input["max"] ?? "" ?>" <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?> step="<?= $input["step"] ?? "" ?>">
+                                <input 
+                                        name="<?= $name ?>" 
+                                        type="<?= $input["type"] ?? "text" ?>" 
+                                        id="<?= $input["id"] ?? "" ?>" 
+                                        placeholder="<?= $input["placeholder"] ?? "" ?>" 
+                                        value="<?= $input["defaultValue"] ?? "" ?>" 
+                                        <?= isset($input["required"]) ? "required" : ""  ?> 
+                                        minLength="<?= $input["minLength"] ?? "" ?>" 
+                                        maxLength="<?= $input["maxLength"] ?? "" ?>" 
+                                        min="<?= $input["min"] ?? "" ?>" 
+                                        max="<?= $input["max"] ?? "" ?>" 
+                                        <?= isset($input["accept"]) ? "accept='{$input["accept"]}'" : "" ?> 
+                                        step="<?= $input["step"] ?? "" ?>" 
+                                        <?= isset($input["maxSize"]) ? "max='{$input["maxSize"]}'" : "" ?>
+                                >
                         <?php endif; ?>
                         <?php if (isset($config["errors"]) && array_key_exists($name, $config["errors"])) : ?>
                                 <p class="error"><?= $config["errors"][$name] ?></p>

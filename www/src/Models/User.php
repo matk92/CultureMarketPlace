@@ -57,7 +57,7 @@ class User extends DB
      */
     public function setFirstname(string $firstname): void
     {
-        $firstname = ucwords(strtolower(trim($firstname)));
+        $firstname = strip_tags(ucwords(strtolower(trim($firstname))));
         $this->firstname = $firstname;
     }
 
@@ -74,7 +74,7 @@ class User extends DB
      */
     public function setLastname(string $lastname): void
     {
-        $lastname = strtoupper(trim($lastname));
+        $lastname = strip_tags(strtoupper(trim($lastname)));
         $this->lastname = $lastname;
     }
 
@@ -91,7 +91,7 @@ class User extends DB
      */
     public function setEmail(string $email): void
     {
-        $email = strtolower(trim($email));
+        $email = strip_tags(strtolower(trim($email)));
         $this->email = $email;
     }
 
@@ -206,25 +206,5 @@ class User extends DB
     public function verificateCode(string $code): bool
     {
         return $code === $this->verificationcode;
-    }
-
-    public function valid(): bool|string
-    {
-        if (empty($this->firstname)) {
-            return "Le prénom est obligatoire";
-        }
-        if (empty($this->lastname)) {
-            return "Le nom est obligatoire";
-        }
-        if (empty($this->email)) {
-            return "L'email est obligatoire";
-        }
-        if (empty($this->pwd)) {
-            return "Le mot de passe est obligatoire";
-        }
-        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            return "L'email n'est pas valide";
-        }
-        return true;
     }
 }

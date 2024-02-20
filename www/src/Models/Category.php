@@ -47,7 +47,7 @@ class Category extends DB
      */
     public function setName(string $name): void
     {
-        $name = ucwords(strtolower(trim($name)));
+        $name = strip_tags(ucwords(strtolower(trim($name))));
         $this->name = $name;
     }
 
@@ -84,7 +84,7 @@ class Category extends DB
      */
     public function setUnit(string $unit): void
     {
-        $unit = ucfirst(strtolower(trim($unit)));
+        $unit = strip_tags(ucfirst(strtolower(trim($unit))));
         $this->unit = $unit;
     }
 
