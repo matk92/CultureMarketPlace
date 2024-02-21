@@ -129,6 +129,10 @@ class Verificator
 
     public static function checkNumber(int $number, ?int $min, ?int $max): bool
     {
+        if ($number < 0) {
+            return false;
+        }
+
         if (!empty($min) && $number < $min) {
             return false;
         }
