@@ -33,7 +33,7 @@ $data = json_decode($json, true); ?>
 
 <head>
     <meta charset="UTF-8">
-    <title><?php echo htmlspecialchars($data['site-name']) ?></title>
+    <title><?php echo ($data['site-name']) ?></title>
     <link rel="stylesheet" href="/dist/css/style.css">
     <link rel="icon" href="/assets/images/<?php echo $data['site-favicon']; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,7 +52,7 @@ $data = json_decode($json, true); ?>
                 unset($_SESSION['alert']);
                 ?>
             <?php endif; ?>
-            <img src="/assets/images/<?php echo htmlspecialchars($data['site-background-image']) ?>" alt="Image">
+            <img src="/assets/images/<?php echo ($data['site-background-image']) ?>" alt="Image">
             <nav class="nav-home">
                 <ul>
                     <li><a href="/">Accueil</a></li>
@@ -91,9 +91,9 @@ $data = json_decode($json, true); ?>
             </nav>
             <div class="content-header-home">
                 <?php if ($_SERVER['REQUEST_URI'] == "/") : ?>
-                    <div class="title-home"><?php echo htmlspecialchars($data['site-name']) ?></div>
+                    <div class="title-home"><?php echo ($data['site-name']) ?></div>
                     <br />
-                    <div class="subtitle-home"><?php echo htmlspecialchars($data['site-subtitle']) ?></div>
+                    <div class="subtitle-home"><?php echo ($data['site-subtitle']) ?></div>
                     <div class="center-home">
                         <a href="/products" class="button button-outline">Découvrir les produits</a>
                     </div>
@@ -121,11 +121,11 @@ $data = json_decode($json, true); ?>
 
     <footer class="footer-home">
         <hr />
-        <p><?php echo htmlspecialchars($data['footer-text']) ?></p>
+        <p><?php echo ($data['footer-text']) ?></p>
         <div class="social-media-home">
-            <a href="<?php echo htmlspecialchars($data['footer-facebook']) ?>"><i class="fa-brands fa-square-facebook"></i></a>
-            <a href="<?php echo htmlspecialchars($data['footer-twitter']) ?>"><i class="fa-brands fa-twitter"></i></a>
-            <a href="<?php echo htmlspecialchars($data['footer-instagram']) ?>"><i class="fa-brands fa-instagram"></i></a>
+            <a href="<?php echo ($data['footer-facebook']) ?>"><i class="fa-brands fa-square-facebook"></i></a>
+            <a href="<?php echo ($data['footer-twitter']) ?>"><i class="fa-brands fa-twitter"></i></a>
+            <a href="<?php echo ($data['footer-instagram']) ?>"><i class="fa-brands fa-instagram"></i></a>
         </div>
         <ul>
             <li><a href="/copyright">© Copyright 2023 Cultural MarketPlace</a></li>

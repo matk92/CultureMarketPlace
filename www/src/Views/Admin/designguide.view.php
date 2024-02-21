@@ -11,7 +11,7 @@
 
 <section>
     <h2>Bannières</h2>
-    <div class="banner banner--text" style="background-image: url('../../assets/images/<?php echo htmlspecialchars($data['site-background-image']) ?>')">
+    <div class="banner banner--text" style="background-image: url('../../assets/images/<?php echo ($data['site-background-image']) ?>')">
 	</div>
 </section>
 

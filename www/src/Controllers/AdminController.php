@@ -105,24 +105,24 @@ class AdminController extends Controller
 
             $data = json_decode($json, true);
 
-            $data['site-name'] = htmlspecialchars($_POST['site-name']);
-            $data['site-subtitle'] = htmlspecialchars($_POST['site-subtitle']);
-            $data['footer-text'] = htmlspecialchars($_POST['footer-text']);
-            $data['footer-facebook'] = htmlspecialchars($_POST['facebook-url']);
-            $data['footer-twitter'] = htmlspecialchars($_POST['twitter-url']);
-            $data['footer-instagram'] = htmlspecialchars($_POST['instagram-url']);
-            $data['home-text1'] = htmlspecialchars($_POST['home-text1']);
-            $data['home-text2'] = htmlspecialchars($_POST['home-text2']);
-            $data['home-text3'] = htmlspecialchars($_POST['home-text3']);
-            $data['home-discover-text'] = htmlspecialchars($_POST['home-discover-text']);
+            $data['site-name'] = ($_POST['site-name']);
+            $data['site-subtitle'] = ($_POST['site-subtitle']);
+            $data['footer-text'] = ($_POST['footer-text']);
+            $data['footer-facebook'] = ($_POST['facebook-url']);
+            $data['footer-twitter'] = ($_POST['twitter-url']);
+            $data['footer-instagram'] = ($_POST['instagram-url']);
+            $data['home-text1'] = ($_POST['home-text1']);
+            $data['home-text2'] = ($_POST['home-text2']);
+            $data['home-text3'] = ($_POST['home-text3']);
+            $data['home-discover-text'] = ($_POST['home-discover-text']);
 
-            $data['background-color'] = htmlspecialchars($_POST['background-color']);
-            $data['background-color2'] = htmlspecialchars($_POST['background-color2']);
-            $data['title-color'] = htmlspecialchars($_POST['title-color']);
-            $data['subtitle-color'] = htmlspecialchars($_POST['subtitle-color']);
-            $data['nav-color'] = htmlspecialchars($_POST['nav-color']);
-            $data['footer-color'] = htmlspecialchars($_POST['footer-color']);
-            $data['home-discover-color'] = htmlspecialchars($_POST['home-discover-color']);
+            $data['background-color'] = ($_POST['background-color']);
+            $data['background-color2'] = ($_POST['background-color2']);
+            $data['title-color'] = ($_POST['title-color']);
+            $data['subtitle-color'] = ($_POST['subtitle-color']);
+            $data['nav-color'] = ($_POST['nav-color']);
+            $data['footer-color'] = ($_POST['footer-color']);
+            $data['home-discover-color'] = ($_POST['home-discover-color']);
 
             //background image + favicon
             if (isset($_FILES['site-background-image']) && $_FILES['site-background-image']['error'] === 0) {
