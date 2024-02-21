@@ -31,9 +31,9 @@ class Controller
                 $this->security->logout();
                 exit();
             }
-            
+
             // Si l'utilisateur est supprimer, on force la deconnexion
-            if (!is_null($this->user) && $this->user->getIsdeleted() === true) {
+            if (!is_null($this->user) && $this->user->isDeleted() === true) {
                 $this->security->logout();
                 exit();
             }
