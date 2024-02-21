@@ -20,6 +20,10 @@ nav.dark-mode {
         color: #fff;
     }
 }
+.dropdown-content.dark-mode {
+    background-color: #152028;
+    color: #fff;
+}
 
 .card.dark-mode {
     background-color: #152028;
@@ -67,4 +71,11 @@ nav.dark-mode {
 .comment_card.dark-mode {
     background-color: #152028;
     color: #fff;
+}
+.table-users-list.dark-mode {
+    background-color: #152028;
+}
+
+.table-users-list tr:nth-child(even).dark-mode {
+    background-color: #152028;
 }
