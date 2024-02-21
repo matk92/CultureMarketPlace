@@ -29,13 +29,13 @@ class Controller
             // Si l'utilisateur n'existe pas, on force la deconnexion
             if (is_int($this->user) && $this->user = 0 || is_null($this->user)) {
                 $this->security->logout();
-                exit();
+                $this->user = null;
             }
 
             // Si l'utilisateur est supprimer, on force la deconnexion
             if (!is_null($this->user) && $this->user->isDeleted() === true) {
                 $this->security->logout();
-                exit();
+                $this->user = null;
             }
 
             // On met à jour les informations de l'utilisateur
