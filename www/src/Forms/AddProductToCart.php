@@ -30,7 +30,7 @@ class AddProductToCart extends Form
                 "label" => "Quantité (" . $product->getCategory()->getUnit() . ")",
                 "type" => "number",
                 "class" => "input-admin_products",
-                "min" => "1",
+                "min" => 1,
                 "max" => $product->getStock(),
                 "id" => "form-oreder-add-product-quantity",
                 "required" => true,

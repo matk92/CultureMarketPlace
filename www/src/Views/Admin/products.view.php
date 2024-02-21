@@ -97,5 +97,10 @@
                 }
             });
         });
+
+        // Close the modal when clicking on the cross
+        $('.close').click(function() {
+            $('#productForm').css('display', 'none');
+        });
     });
 </script>

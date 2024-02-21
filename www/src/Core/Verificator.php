@@ -68,16 +68,16 @@ class Verificator
             }
 
             // Si le champ est de type number, on vérifie la valeur
-            if ($input["type"] == "number" && !self::checkNumber($data[$key], $input["min"] ?? null, $input["max"] ?? null)) {
-                if (isset($input["min"]) && !isset($input["max"]))
+            if ($input["type"] == "number" && self::checkNumber($data[$key], ($input["min"] ?? null), ($input["max"] ?? null)) == false) {
+                if (array_key_exists("min", $input) && !array_key_exists("max", $input))
                     $errors[$key] = "Le champ " . $input["label"] . " doit être supérieur à " . $input["min"];
-                else if (isset($input["max"]) && !isset($input["min"]))
+                else if (array_key_exists("max", $input) && !array_key_exists("min", $input))
                     $errors[$key] = "Le champ " . $input["label"] . " doit être inférieur à " . $input["max"];
                 else
                     $errors[$key] = "Le champ " . $input["label"] . " doit être compris entre " . $input["min"] . " et " . $input["max"];
             }
 
-            if ($input["type"] == "file" && !self::checkFileSize($data[$key], $input))
+            if ($input["type"] == "file" && array_key_exists("maxSize", $input) && !self::checkFileSize($data[$key], $input))
                 $errors[$key] = "Le fichier est trop volumineux (max: " . $input["maxSize"] . " octets)";
 
             if (empty($errors[$key]) && !isset($input["dismissible"]))
@@ -129,15 +129,11 @@ class Verificator
 
     public static function checkNumber(int $number, ?int $min, ?int $max): bool
     {
-        if ($number < 0) {
+        if (is_int($min) && $number < $min) {
             return false;
         }
 
-        if (!empty($min) && $number < $min) {
-            return false;
-        }
-
-        if (!empty($max) && $number > $max) {
+        if (is_int($max) && $number > $max) {
             return false;
         }
 
