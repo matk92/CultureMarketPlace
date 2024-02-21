@@ -6,18 +6,19 @@ $data = json_decode($json, true); ?>
     body {
         background-color: <?php echo $data['background-color']; ?>;
     }
+    .homepage-content {
+        color: <?php echo $data['body-font-color']; ?>;
+    }
     .nav-home {
         background-color: <?php echo $data['nav-color']; ?>;
+    }
+    .nav-home a {
+        color: <?php echo $data['font-nav-color']; ?>;
     }
     .dropdown-content.show {
         background-color: <?php echo $data['nav-color']; ?>;
     }
-    .title-home {
-        color: <?php echo $data['title-color']; ?>;
-    }
-    .subtitle-home {
-        color: <?php echo $data['subtitle-color']; ?>;
-    }
+
     .footer-home {
         background-color: <?php echo $data['footer-color']; ?>;
     }
@@ -29,6 +30,18 @@ $data = json_decode($json, true); ?>
             color: <?php echo $data['home-discover-color']; ?>;
         }
     }
+    .footer-home {
+        color: <?php echo $data['footer-font-color']; ?>;
+    }
+
+    .title-home {
+        color: <?php echo $data['title-site-color']; ?>;
+    }
+
+    .subtitle-home {
+        color: <?php echo $data['subtitle-site-color']; ?>;
+    }
+
 </style>
 
 <head>

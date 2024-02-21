@@ -1,4 +1,4 @@
-const selectors = ['body', 'footer', 'nav', '.dropdown-content', '.card','.viewProductAdmin','.comment_card','.table-users-list tr:nth-child(even)'];
+const selectors = ['body', 'footer', 'nav', '.dropdown-content', '.card','.viewProductAdmin','.comment_card','.table-users-list tr:nth-child(even)', '.homepage-content',];
 
 function toggleDarkMode() {
     selectors.forEach((selector) => {

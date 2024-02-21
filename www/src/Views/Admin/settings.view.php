@@ -13,8 +13,14 @@
     <label for="site-name">Nom du site</label>
     <input type="text" id="site-name" name="site-name" class="input" value="<?php echo $data['site-name']?>">
 
+    <label for="title-site-color">Couleur de la police du titre</label>
+    <input type="color" id="title-site-color" name="title-site-color" value="<?php echo $data['title-site-color']?>">
+
     <label for="site-subtitle">Sous-titre du site</label>
     <input type="text" id="site-subtitle" name="site-subtitle" class="input" value="<?php echo $data['site-subtitle']?>">
+
+    <label for="subtitle-site-color">Couleur de la police du sous-titre</label>
+    <input type="color" id="subtitle-site-color" name="subtitle-site-color" value="<?php echo $data['subtitle-site-color']?>">
 
     <label for="site-favicon">Favicon</label>
     <img id="faviconPreview" src="/assets/images/<?php echo $data['site-favicon']; ?>" alt="Image" style="max-width: 50px; height: auto; margin-bottom: 5px;">
@@ -32,19 +38,22 @@
     <label for="background-color2">Couleur secondaire</label>
     <input type="color" id="background-color2" name="background-color2" value="<?php echo $data['background-color2']?>">
 
-    <label for="title-color">Couleur du titre home</label>
-    <input type="color" id="title-color" name="title-color" value="<?php echo $data['title-color']?>">
-
-    <label for="subtitle-color">Couleur du sous-titre home</label>
-    <input type="color" id="subtitle-color" name="subtitle-color" value="<?php echo $data['subtitle-color']?>">
-
     <label for="nav-color">Couleur de la navbar</label>
     <input type="color" id="nav-color" name="nav-color" value="<?php echo $data['nav-color']?>">
+
+    <label for="font-nav-color">Couleur de la police de la navbar</label>
+    <input type="color" id="font-nav-color" name="font-nav-color" value="<?php echo $data['font-nav-color']?>">
+
+    <label for="body-font-color">Couleur de la police du corps</label>
+    <input type="color" id="body-font-color" name="body-font-color" value="<?php echo $data['body-font-color']?>">
 
     <h2>Footer</h2>
 
     <label for="footer-text">Texte du footer</label>
     <textarea id="footer-text" name="footer-text"><?php echo $data['footer-text']?></textarea>
+
+    <label for="footer-font-color">Couleur de la police du footer</label>
+    <input type="color" id="footer-font-color" name="footer-font-color" value="<?php echo $data['footer-font-color']?>">
         
     <label for="footer-color">Couleur du footer</label>
     <input type="color" id="footer-color" name="footer-color" value="<?php echo $data['footer-color']?>">

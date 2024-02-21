@@ -118,11 +118,14 @@ class AdminController extends Controller
 
             $data['background-color'] = ($_POST['background-color']);
             $data['background-color2'] = ($_POST['background-color2']);
-            $data['title-color'] = ($_POST['title-color']);
-            $data['subtitle-color'] = ($_POST['subtitle-color']);
             $data['nav-color'] = ($_POST['nav-color']);
             $data['footer-color'] = ($_POST['footer-color']);
             $data['home-discover-color'] = ($_POST['home-discover-color']);
+            $data['body-font-color'] = ($_POST['body-font-color']);
+            $data['footer-font-color'] = ($_POST['footer-font-color']);
+            $data['title-site-color'] = ($_POST['title-site-color']);
+            $data['subtitle-site-color'] = $_POST['subtitle-site-color'];
+            $data['font-nav-color'] = $_POST['font-nav-color'];
 
             //background image + favicon
             if (isset($_FILES['site-background-image']) && $_FILES['site-background-image']['error'] === 0) {
@@ -165,15 +168,17 @@ class AdminController extends Controller
 
             file_put_contents(__DIR__ . '/../Views/Main/home.json', $json);
 
-            // Générer le fichier SCSS avec les valeurs des variables
             $colors = [
                 'background-color' => $data['background-color'],
                 'background-color2' => $data['background-color2'],
-                'title-color' => $data['title-color'],
-                'subtitle-color' => $data['subtitle-color'],
                 'nav-color' => $data['nav-color'],
                 'footer-color' => $data['footer-color'],
                 'home-discover-color' => $data['home-discover-color'],
+                'body-font-color' => $data['body-font-color'],
+                'footer-font-color' => $data['footer-font-color'],
+                'title-site-color' => $data['title-site-color'],
+                'subtitle-site-color' => $data['subtitle-site-color'],
+                'font-nav-color' => $data['font-nav-color'],
             ];
 
 
