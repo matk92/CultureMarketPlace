@@ -44,7 +44,7 @@
     <label for="font-nav-color">Couleur de la police de la navbar</label>
     <input type="color" id="font-nav-color" name="font-nav-color" value="<?php echo $data['font-nav-color']?>">
 
-    <label for="body-font-color">Couleur de la police du corps</label>
+    <label for="body-font-color">Couleur de la police principale</label>
     <input type="color" id="body-font-color" name="body-font-color" value="<?php echo $data['body-font-color']?>">
 
     <h2>Footer</h2>
