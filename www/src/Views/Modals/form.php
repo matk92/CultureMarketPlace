@@ -11,9 +11,7 @@
                                         <?= isset($input["required"]) ? "required" : ""  ?> 
                                         minLength="<?= $input["minLength"] ?? "" ?>" 
                                         maxLength="<?= $input["maxLength"] ?? "" ?>"
-                                >
-                                        <?= $input["defaultValue"] ?? "" ?>
-                                </textarea>
+                                ><?= $input["defaultValue"] ?? "" ?></textarea>
                         <?php elseif ($input["type"] === "select") : ?>
                                 <select name="<?= $name ?>" id="<?= $input["id"] ?? "" ?>" <?= isset($input["required"]) ? "required" : ""  ?>>
                                         <?php foreach ($input["options"] as $value => $option) : ?>

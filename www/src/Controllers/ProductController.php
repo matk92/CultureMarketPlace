@@ -117,8 +117,9 @@ class ProductController extends Controller
 
                 // Save product in database
                 $editProduct->save();
-
                 http_response_code(200);
+                header('Location: /admin/products');
+                exit();
             } else {
                 $view->assign("form", $formConfig);
                 http_response_code(409);

@@ -55,6 +55,8 @@ class EditProduct extends Form
                 "id" => "form-edit-product-price",
                 "required" => true,
                 "defaultValue" => $product->getPrice(),
+                "min" => 0,
+                "max" => 10000,
                 "placeholder" => "€ 29,99",
             ],
             "categoryid" => [
@@ -72,6 +74,8 @@ class EditProduct extends Form
                 "class" => "input-admin_products",
                 "id" => "form-edit-product-stock",
                 "required" => true,
+                "min" => 1,
+                "max" => 10000,
                 "defaultValue" => $product->getStock(),
                 "placeholder" => "20",
             ],
