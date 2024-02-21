@@ -1,11 +1,11 @@
-const selectors = ['body', 'footer', 'nav', '.dropdown-content.show, .card'];
+const selectors = ['body', 'footer', 'nav', '.dropdown-content.show', '.card','.viewProductAdmin','.comment_card'];
 
 function toggleDarkMode() {
     selectors.forEach((selector) => {
-        const element = document.querySelector(selector);
-        if (element) {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach((element) => {
             element.classList.toggle('dark-mode');
-        }
+        });
     });
     localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
 }
@@ -13,10 +13,10 @@ function toggleDarkMode() {
 function loadDarkMode() {
     if (localStorage.getItem('darkMode') === 'true') {
         selectors.forEach((selector) => {
-            const element = document.querySelector(selector);
-            if (element) {
+            const elements = document.querySelectorAll(selector);
+            elements.forEach((element) => {
                 element.classList.add('dark-mode');
-            }
+            });
         });
     }
 }

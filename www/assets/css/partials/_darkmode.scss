@@ -21,12 +21,50 @@ nav.dark-mode {
     }
 }
 
-.dropdown-content.show {
-    background-color: #202945;
+.card.dark-mode {
+    background-color: #152028;
     color: #fff;
+
+    h1, p {
+        color: #fff;
+    }
+
+    img {
+        filter: brightness(0.8);
+    }
 }
 
-.card {
+.card-page.dark-mode {
+    background-color: #152028;
+    color: #fff;
+
+    h3, p {
+        color: #fff;
+    }
+
+    hr {
+        border-color: #fff;
+    }
+}
+
+.viewProductAdmin.dark-mode {
+    background-color: #152028;
+    color: #fff;
+
+    h3, p {
+        color: #fff;
+    }
+
+    hr {
+        border-color: #fff;
+    }
+
+    img {
+        filter: brightness(0.8);
+    }
+}
+
+.comment_card.dark-mode {
     background-color: #152028;
     color: #fff;
 }
