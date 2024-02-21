@@ -27,10 +27,17 @@ class Controller
             $this->user = (new UserRepository())->find($_SESSION['user']['id']);
 
             // Si l'utilisateur n'existe pas, on force la deconnexion
-            if (is_int($this->user) && $this->user = 0) {
+            if (is_int($this->user) && $this->user = 0 || is_null($this->user)) {
                 $this->security->logout();
                 exit();
             }
+            
+            // Si l'utilisateur est supprimer, on force la deconnexion
+            if (!is_null($this->user) && $this->user->getIsdeleted() === true) {
+                $this->security->logout();
+                exit();
+            }
+
             // On met à jour les informations de l'utilisateur
             if ($this->user != null) {
                 $_SESSION["user"] = [
@@ -44,10 +51,10 @@ class Controller
             }
         }
 
-        if(file_exists(__DIR__ . '/../Views/Main/home.json')){
+        if (file_exists(__DIR__ . '/../Views/Main/home.json')) {
             $json = file_get_contents(__DIR__ . '/../Views/Main/home.json');
             $data = json_decode($json, true);
-            if($data['site-name'] !== null){
+            if ($data['site-name'] !== null) {
                 $this->siteName = $data['site-name'];
             }
         }
