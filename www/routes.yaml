@@ -34,7 +34,7 @@
 # SECURITY ROUTES ------------------------------------------------------
 /login:
   controller: SecurityController
-  type: GET | POST
+  method: GET | POST
   action: login
 
 /logout:
@@ -43,22 +43,22 @@
 
 /register:
   controller: SecurityController
-  type: GET | POST
+  method: GET | POST
   action: register
 
 /verification:
   controller: SecurityController
-  type: GET | POST
+  method: GET | POST
   action: verification
 
 /reset-password:
   controller: SecurityController
-  type: GET | POST
+  method: GET | POST
   action: passwordReset
 
 /verification/sendVerificationCode:
   controller: SecurityController
-  type: GET
+  method: GET
   action: sendVerificationCode
 
 # PRODUCT ROUTES ------------------------------------------------------
@@ -156,7 +156,7 @@
 
 /admin/frameworksettings:
   controller: AdminController
-  type: GET | POST
+  method: GET | POST
   action: frameworksettings
   role: 5
 
@@ -207,6 +207,6 @@
 
 /user/changerole:
   controller: UserController
-  type: POST
+  method: POST
   action: changeUserRole
   role: 10
