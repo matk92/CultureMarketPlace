@@ -56,7 +56,7 @@
                 <img class="product-img" src="/<?= $product->getProduct()->getImage() ?>" alt="Image de <?= $product->getProduct()->getName() ?>">
                 <div>
                     <h3><?= $product->getProduct()->getName() ?></h3>
-                    <p>Quantité : <?= $product->getQuantity() ?></p>
+                    <p>Quantité : <?= $product->getQuantity() ?><?= $product->getProduct()->getCategory()->getUnit() ?></p>
                     <p>Prix unité : <?= round($product->getProduct()->getPrice(), 2) ?>€</p>
                     <p>Prix total : <?= round($product->getTotal(), 2) ?>€</p>
                 </div>
@@ -65,10 +65,9 @@
         <hr>
         <div class="total-order">
             <p>Sous-total : <?= round($order->getTotal(), 2) ?>€</p>
-            <p>Remise : <?= round($order->getTotal() * 0.05, 2) ?>€</p>
             <p>Frais de livraison : <?= round($order->getTotal() * 0.1, 2) ?>€</p>
             <hr>
-            <h3>Montant total : <?= round($order->getTotal() * 1.05 + $order->getTotal() * 0.1, 2) ?>€</h3>
+            <h3>Montant total : <?= round($order->getTotal() + $order->getTotal() * 0.1, 2) ?>€</h3>
         </div>
     </div>
 </div>
