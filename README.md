@@ -1,6 +1,6 @@
 # CultureMarketPlace
 ## Lien du site :
-[vps-356a325d.vps.ovh.net](http://vps-356a325d.vps.ovh.net/)
+[vps-356a325d.vps.ovh.net](http://54.37.70.26/)
 
 ## Intégrants : 
 - [Nicolas Calvelo](https://github.com/NicoCalvelo)
