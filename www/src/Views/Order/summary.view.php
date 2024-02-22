@@ -56,7 +56,7 @@
                 <img class="product-img" src="/<?= $product->getProduct()->getImage() ?>" alt="Image de <?= $product->getProduct()->getName() ?>">
                 <div>
                     <h3><?= $product->getProduct()->getName() ?></h3>
-                    <p>Quantité : <?= $product->getQuantity() ?>€</p>
+                    <p>Quantité : <?= $product->getQuantity() ?></p>
                     <p>Prix unité : <?= round($product->getProduct()->getPrice(), 2) ?>€</p>
                     <p>Prix total : <?= round($product->getTotal(), 2) ?>€</p>
                 </div>
