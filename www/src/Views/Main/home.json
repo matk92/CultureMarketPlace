@@ -1,5 +1,5 @@
 {
-    "site-name": "Nico's Market",
+    "site-name": "Cultural Market Place",
     "site-subtitle": "La boutique en ligne des produits culturels",
     "footer-text": "Avez-vous des pr\u00e9occupations ou des questions? Soyez assur\u00e9(e) que nous sommes l\u00e0 pour vous aider.N'h\u00e9sitez pas \u00e0 nous contacter \u00e0 l'adresse contact@cmp.fr, nous sommes d\u00e9termin\u00e9s \u00e0 vous fournir une assistance rapide et efficace. Votre satisfaction est notre priorit\u00e9 absolue.",
     "footer-facebook": "https:\/\/facebook.com",
@@ -15,10 +15,10 @@
     "background-color": "#df5452",
     "background-color2": "#a957c7",
     "nav-color": "#ffffff",
-    "footer-color": "#cd403d",
+    "footer-color": "#f0f0f0",
     "home-discover-color": "#ffffff",
     "body-font-color": "#ffffff",
-    "footer-font-color": "#ffffff",
+    "footer-font-color": "#3b3847",
     "title-site-color": "#ffffff",
     "subtitle-site-color": "#ffffff",
     "font-nav-color": "#434460"
