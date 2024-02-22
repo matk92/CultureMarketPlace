@@ -12,14 +12,14 @@
     "site-background-image": "background_img.png?1706703295",
     "site-favicon": "favicon.png?1706692499",
     "home-discover-image": "home_discover_img.jpg?1706631393",
-    "background-color": "#b437e1",
-    "background-color2": "#c27070",
+    "background-color": "#df5452",
+    "background-color2": "#a957c7",
     "nav-color": "#ffffff",
     "footer-color": "#cd403d",
-    "home-discover-color": "#a56f6f",
-    "body-font-color": "#bbc624",
-    "footer-font-color": "#1daa68",
-    "title-site-color": "#796be1",
-    "subtitle-site-color": "#696b1a",
-    "font-nav-color": "#3f4064"
+    "home-discover-color": "#ffffff",
+    "body-font-color": "#ffffff",
+    "footer-font-color": "#ffffff",
+    "title-site-color": "#ffffff",
+    "subtitle-site-color": "#ffffff",
+    "font-nav-color": "#434460"
 }
