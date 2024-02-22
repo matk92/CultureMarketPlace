@@ -5,28 +5,28 @@ namespace App\Core;
 class Form
 {
 
-    protected $crsf_token;
+    protected $csrf_token;
     protected $config;
     protected $inputs = [];
 
     public function __construct()
     {
-        $this->crsf_token = $this->generateCrsfToken();
+        $this->csrf_token = $this->generatecsrfToken();
     }
 
 
-    private function generateCrsfToken()
+    private function generatecsrfToken()
     {
-        if (empty($_SESSION['crsf_token'])) {
-            $_SESSION['crsf_token'] = bin2hex(random_bytes(32));
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
         }
-        return $_SESSION['crsf_token'];
+        return $_SESSION['csrf_token'];
     }
 
 
     public function getConfig(): array
     {
-        if(!isset($this->crsf_token) || empty($this->crsf_token))
+        if(!isset($this->csrf_token) || empty($this->csrf_token))
             die("Erreur lors de la génération du formulaire : Token CSRF invalide, assurez-vous d'incorporer le parent::__construct() dans le constructeur de votre formulaire");
         if(!isset($this->config) || empty($this->config))
             die("Erreur lors de la génération du formulaire : Configuration invalide, assurez-vous de configurer \$this->config dans le constructeur de votre formulaire");
@@ -37,9 +37,9 @@ class Form
             "config" => $this->config,
             "inputs" => [
                 ...$this->inputs,
-                "crsf_token" => [
+                "csrf_token" => [
                     "type" => "hidden",
-                    "defaultValue" => $this->crsf_token
+                    "defaultValue" => $this->csrf_token
                 ]
             ]
         ];
